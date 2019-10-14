@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
 {
+    public bool IsInvulnerable { get; set; }
+
     [Header("UI reference")]
     [SerializeField] private GameObject canvas;
     private HealthBarController healthBarController;
@@ -28,7 +30,45 @@ public class HealthComponent : MonoBehaviour
         get => currentHealth;
         set
         {
+            // Adding health
 
+            if (value > MaxHealth)
+            {
+                currentHealth = MaxHealth;
+            }
+            else if (value > currentHealth)
+            {
+                currentHealth = value;
+            }
+
+            // Subtracting health
+
+            else if (value < currentHealth)
+            {
+                if (IsInvulnerable == true) { }
+
+                else if (value <= 0)
+                {
+                    currentHealth = value;
+
+                    // Death event (?)
+                }
+
+                else
+                {
+                    currentHealth = value;
+                }
+            }
+
+            healthBarController.CurrentHealth = currentHealth;
         }
+    }
+
+    private void Awake()
+    {
+        healthBarController = canvas.GetComponent<HealthBarController>();
+        healthBarController.MaxHealth = maxHealth;
+        MaxHealth = maxHealth;
+        IsInvulnerable = false;
     }
 }
