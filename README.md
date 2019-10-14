@@ -1,9 +1,12 @@
-# ShrinesOfElementia
-A game developed during the SP:PROJ course at DSV
+# Shrines Of Elementia
+A game developed during the SP:PROJ course at DSV, Stockholms University.
+
+# The Game
+A third person, 3D action game with magic and elements.
 
 # Team members
-Niklas Almqvist
-Alexander Zingmark
-Bilal el Medkouri
-Sofia Chyle Kauko
-Joakim Ljung
+Niklas Almqvist <br>
+Alexander Zingmark <br>
+Bilal el Medkouri <br>
+Sofia Chyle Kauko <br>
+Joakim Ljung <br>
