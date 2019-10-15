@@ -54,7 +54,7 @@ public class MovementInput : MonoBehaviour
 
         }
         controller.Move(moveVector * Time.deltaTime);
-        Debug.Log(animator.GetBool("IsGrounded"));
+        //Debug.Log(animator.GetBool("IsGrounded"));
     }
 
     private void PlayerMoveAndRotation()
