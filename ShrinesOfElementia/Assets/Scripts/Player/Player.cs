@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public static Player Instance { private set; get; }
     public HealthComponent Health { private set; get; }
+    public Animator Animator { private set; get; }
 
     private void Awake()
     {
@@ -14,5 +15,6 @@ public class Player : MonoBehaviour
         else { Debug.Log("Warning: multiple " + this + " in scene!"); }
 
         Health = GetComponent<HealthComponent>();
+        Animator = GetComponent<Animator>();
     }
 }
