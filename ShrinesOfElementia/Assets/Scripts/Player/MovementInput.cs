@@ -38,10 +38,13 @@ public class MovementInput : MonoBehaviour
         //isGrounded = controller.isGrounded;   Old code, didn't work. Keeping just in case.
         if (IsGrounded())
         {
+            //animator.SetBool("IsGrounded", true);   Jumping animation (not good)
+
             moveVector.y = -gravity * Time.deltaTime;
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                moveVector.y = jumpSpeed;                
+                moveVector.y = jumpSpeed;
+                //animator.SetBool("IsGrounded", false);   Jumping animation (not good)
             }
             
         }
@@ -51,6 +54,7 @@ public class MovementInput : MonoBehaviour
 
         }
         controller.Move(moveVector * Time.deltaTime);
+        Debug.Log(animator.GetBool("IsGrounded"));
     }
 
     private void PlayerMoveAndRotation()
