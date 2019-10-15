@@ -2,24 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Author: Joakim Ljung
 public class MovementInput : MonoBehaviour
 {
 
     private float inputX;
     private float inputZ;
     private Vector3 desiredMoveDirection;
-    [SerializeField]private bool blockRotationPlayer;
-    [SerializeField]private float desiredRotationSpeed;
+    [SerializeField] private bool blockRotationPlayer;
+    [SerializeField] private float desiredRotationSpeed;
     private Animator animator;
     private float speed;
     private float allowPlayerRotation;
-    [SerializeField]private Camera camera;
+    [SerializeField] private Camera camera;
     private CharacterController controller;
-    private bool isGrounded;
+    //[SerializeField] private bool isGrounded;   Old code, didn't work. Keeping just in case.
     private Player player;
+    [SerializeField] private float gravity;
+    [SerializeField] private float jumpSpeed;
 
-    [SerializeField]private float verticalVelocity;
-    private Vector3 moveVector;
+    private Vector3 moveVector = Vector3.zero;
+    [SerializeField] private float distanceToGround;
 
 
     private void Start()
@@ -32,18 +35,22 @@ public class MovementInput : MonoBehaviour
     private void Update()
     {
         InputMagnitude();
-        isGrounded = controller.isGrounded;
-        if (isGrounded)
+        //isGrounded = controller.isGrounded;   Old code, didn't work. Keeping just in case.
+        if (IsGrounded())
         {
-            verticalVelocity = 0;
+            moveVector.y = -gravity * Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                moveVector.y = jumpSpeed;                
+            }
+            
         }
         else
         {
-            verticalVelocity -= 9.8f * Time.deltaTime;
-        }
+            moveVector.y -= gravity * Time.deltaTime;
 
-        moveVector = new Vector3(0, verticalVelocity, 0);
-        controller.Move(moveVector);
+        }
+        controller.Move(moveVector * Time.deltaTime);
     }
 
     private void PlayerMoveAndRotation()
@@ -86,6 +93,18 @@ public class MovementInput : MonoBehaviour
         else if(speed < allowPlayerRotation)
         {
             animator.SetFloat("InputMagnitude", speed, 0.0f, Time.deltaTime);
+        }
+    }
+
+    private bool IsGrounded()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down, distanceToGround))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

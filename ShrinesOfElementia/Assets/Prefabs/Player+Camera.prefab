@@ -97,7 +97,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486532335}
-  m_LocalRotation: {x: -0.018141469, y: -0.000000013731487, z: 7.0855444e-10, w: 0.99983543}
+  m_LocalRotation: {x: -0.034608103, y: 0.000000036887112, z: -0.0000000016856672,
+    w: 0.999401}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -133,7 +134,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 70
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -205,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 2.5, z: -10.33}
+  m_FollowOffset: {x: 0, y: 2.5, z: -4.41}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -521,7 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 2.5, z: -10.33}
+  m_FollowOffset: {x: 0, y: 2.5, z: -4.41}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -798,8 +799,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395336070}
-  m_LocalRotation: {x: 0.034845557, y: -0.0000000037230286, z: 1.2980983e-10, w: 0.99939275}
-  m_LocalPosition: {x: 0, y: 2.5, z: -10.33}
+  m_LocalRotation: {x: 0.08715847, y: 0.000000033783966, z: -0.0000000029558072, w: 0.9961945}
+  m_LocalPosition: {x: 0, y: 2.5, z: -4.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1724865903}
@@ -833,7 +834,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -944,7 +945,7 @@ MonoBehaviour:
   m_Follow: {fileID: 8411750471432892845}
   m_CommonLens: 1
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 70
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -1013,7 +1014,7 @@ MonoBehaviour:
   - m_Height: 7
     m_Radius: 1.75
   - m_Height: 2.5
-    m_Radius: 10.33
+    m_Radius: 4.41
   - m_Height: 0.38
     m_Radius: 0.94
   m_LegacyHeadingBias: 3.4028235e+38
@@ -1079,7 +1080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 2.5, z: -10.33}
+  m_FollowOffset: {x: 0, y: 2.5, z: -4.41}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1206,7 +1207,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724865902}
-  m_LocalRotation: {x: 0.018189464, y: -8.7602725e-10, z: 7.719371e-11, w: 0.9998346}
+  m_LocalRotation: {x: 0.03494621, y: 0.00000003326994, z: 0.0000000012906453, w: 0.99938923}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1242,7 +1243,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 70
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -1370,8 +1371,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105239360}
-  m_LocalRotation: {x: -0.0000000074505797, y: 0.000000003716244, z: -2.5946215e-10,
-    w: 1}
+  m_LocalRotation: {x: -0, y: 0.00000004754201, z: -0.0000000065253865, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1407,7 +1407,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 70
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -1433,12 +1433,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.035
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.08, z: 0}
+  m_Center: {x: 0, y: 1.02, z: 0}
 --- !u!114 &1666356492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1480,7 +1480,9 @@ MonoBehaviour:
   blockRotationPlayer: 0
   desiredRotationSpeed: 0.1
   camera: {fileID: 1395336072}
-  verticalVelocity: 0
+  gravity: 20
+  jumpSpeed: 9
+  distanceToGround: 0.1
 --- !u!1 &7904000395586982403
 GameObject:
   m_ObjectHideFlags: 0
