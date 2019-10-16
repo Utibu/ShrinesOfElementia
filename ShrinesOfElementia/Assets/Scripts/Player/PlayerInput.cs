@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour
     private Player player;
 
     private float lightAttackTimer = 0f; // Temporary fix
+    private bool blockTrigger = false, isBlocking = false;
 
     private void Start()
     {
@@ -41,7 +42,7 @@ public class PlayerInput : MonoBehaviour
             }
         }
 
-        lightAttackTimer -= Time.deltaTime;
+        lightAttackTimer -= Time.deltaTime; // Temporary fix
 
         // Holding down left click / Primary button
         if (Input.GetMouseButton(0))
@@ -50,9 +51,23 @@ public class PlayerInput : MonoBehaviour
         }
 
         // Holding down right click / Secondary button
-        if (Input.GetMouseButton(1))
+
+        isBlocking = Input.GetMouseButton(1);
+        player.Animator.SetBool("IsBlocking", isBlocking);
+
+        if (isBlocking == true) // Start blocking
         {
-            // Block
+
+            if (blockTrigger == true)   // Makes it so that the trigger is only called on once per "action"
+                return;
+
+            player.Animator.SetTrigger("ShieldBlock");
+
+            blockTrigger = true;
+        }
+        else if (blockTrigger == true && isBlocking == false) // Resets the trigger if the player isn't blocking
+        {
+            blockTrigger = false;
         }
     }
 }
