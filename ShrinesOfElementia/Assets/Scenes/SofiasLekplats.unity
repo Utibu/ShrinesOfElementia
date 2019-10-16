@@ -227,7 +227,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140952174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 224.35, y: 2, z: 791}
+  m_LocalPosition: {x: 158.1, y: 2, z: 743.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -374,7 +374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2105239361, guid: 999c0c93194df0048b7a5609cdecbdaf, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1.0355628e-17
+      value: 3.4167345e-18
       objectReference: {fileID: 0}
     - target: {fileID: 2105239361, guid: 999c0c93194df0048b7a5609cdecbdaf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -382,15 +382,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 486532336, guid: 999c0c93194df0048b7a5609cdecbdaf, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.034608107
+      value: -0.03460811
       objectReference: {fileID: 0}
     - target: {fileID: 486532336, guid: 999c0c93194df0048b7a5609cdecbdaf, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000179134
+      value: 0.000000016828837
       objectReference: {fileID: 0}
     - target: {fileID: 486532336, guid: 999c0c93194df0048b7a5609cdecbdaf, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000000383572
+      value: -0.0000000010575564
       objectReference: {fileID: 0}
     - target: {fileID: 486532336, guid: 999c0c93194df0048b7a5609cdecbdaf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -547,7 +547,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979406573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.86, y: 52.08, z: -14.64}
+  m_LocalPosition: {x: -57.82, y: 52.08, z: 8.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1329735095}
@@ -588,10 +588,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: d2609ca9a970b354e99e651d5dd424ce, type: 2}
+  - {fileID: 11400000, guid: dba76b7df2df4ff49bde11cc7c7526a4, type: 2}
+  - {fileID: 11400000, guid: b321dd9cdd0cd3a4e9e54b793dd1e811, type: 2}
   currentState: {fileID: 0}
   lastState: {fileID: 0}
+  patrolPoints:
+  - {fileID: 1042866045}
+  - {fileID: 140952174}
+  maxHealth: 100
+  currentHealth: 100
+  attackDamage: 10
+  attackSpeed: 1
+  attackCooldown: 3
+  dodgeCooldown: 3
 --- !u!65 &979406577
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -675,7 +685,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042866045}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 234.1, y: 4.34, z: 794}
+  m_LocalPosition: {x: 184.6, y: 4.34, z: 748}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
