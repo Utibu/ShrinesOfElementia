@@ -9,10 +9,8 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
 
     private Vector3 startPosition;
     private float chaseSpeed = 3.0f;
-    //add eventual shouts/screehes from angry chasing enemy? yes please
 
 
-    //called from baseclass StateMachine in Awake().
     public override void Initialize(StateMachine stateMachine)
     {
         base.Initialize(stateMachine);

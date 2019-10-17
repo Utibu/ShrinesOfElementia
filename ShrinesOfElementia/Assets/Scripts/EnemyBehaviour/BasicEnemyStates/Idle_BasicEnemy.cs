@@ -9,7 +9,6 @@ public class Idle_BasicEnemy : BasicEnemyBaseState
     private float idleTimerCountdown;
     private float idleTime = 7.0f;
 
-    //private float distanceToPlayer;
 
     //called from baseclass StateMachine in Awake().
     public override void Initialize(StateMachine stateMachine) {
