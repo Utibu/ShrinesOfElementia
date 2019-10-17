@@ -50,11 +50,8 @@ public class HealthComponent : MonoBehaviour
                 else if (value <= 0)
                 {
                     currentHealth = value;
-
-                    // Death event (?)
-                    GetComponent<BasicEnemySM>().Transition<Die_BasicEnemy>();
+                    Die();
                 }
-
                 else
                 {
                     currentHealth = value;
@@ -71,5 +68,19 @@ public class HealthComponent : MonoBehaviour
         healthBarController.MaxHealth = maxHealth;
         MaxHealth = maxHealth;
         IsInvulnerable = false;
+    }
+
+
+    private void Die()
+    {
+        // Death event (?) Ful lösning bara för nu:
+        if (gameObject.CompareTag("Enemy"))
+        {
+            GetComponent<BasicEnemySM>().Transition<Die_BasicEnemy>();
+        }
+        else if (gameObject.CompareTag("Player"))
+        {
+            Debug.Log("YOU DIEDED");
+        }
     }
 }

@@ -63,7 +63,10 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         // start strike animation, check hit, send damage event if hit. (in other script on GameObject that hit player or other creature )
 
         //owner.GetComponent<Animation_Test>().AttackAni();
-        
+
+
+        DamageEvent damageEvent = new DamageEvent((int)attackDamage, owner.gameObject, owner.Player.gameObject);
+        damageEvent.FireEvent();
     }
 
 }
