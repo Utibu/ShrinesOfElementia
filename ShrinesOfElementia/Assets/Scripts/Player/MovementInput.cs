@@ -8,7 +8,7 @@ public class MovementInput : MonoBehaviour
 
     private float inputX;
     private float inputZ;
-    private Vector3 desiredMoveDirection;
+    [SerializeField] private Vector3 desiredMoveDirection;
     [SerializeField] private bool blockRotationPlayer;
     [SerializeField] private float desiredRotationSpeed;
     private Animator animator;
