@@ -10,7 +10,7 @@ public class BasicEnemySM : StateMachine
     //Do not show the designers
     public NavMeshAgent Agent { get; private set; }
 
-    public Player Player;
+    public Player Player { get; private set; }
 
     [SerializeField] private GameObject[] patrolPoints;
     public GameObject[] PatrolPoints { get => patrolPoints; }

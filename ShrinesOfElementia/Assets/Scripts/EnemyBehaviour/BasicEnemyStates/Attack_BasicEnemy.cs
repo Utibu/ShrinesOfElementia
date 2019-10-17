@@ -7,11 +7,10 @@ using UnityEngine;
 public class Attack_BasicEnemy : BasicEnemyBaseState
 {
 
-    [SerializeField] private float attackDamage;
-    [SerializeField] private float attackSpeed;
-    [SerializeField] private float attackCooldown;
-    private float countdown;
-    [SerializeField] private float dodgeCooldown; // do some dodge cooldown timer too?
+    private float attackDamage = 20;
+    private float attackSpeed = 2.1f;
+    private float cooldown;
+    private float dodgeCooldown; // do some dodge cooldown timer too?
 
     public override void Initialize(StateMachine stateMachine)
     {
@@ -23,8 +22,8 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
     {
         base.Enter();
         Debug.Log("Entering attack state.");
-        countdown = attackCooldown;
-        Debug.Log("countdown: " + countdown);
+        cooldown = attackSpeed;
+        Debug.Log("cooldown: " + cooldown);
         owner.Agent.SetDestination(owner.transform.position);
         
     }
@@ -35,11 +34,11 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
 
         base.Update();
         
-        if (countdown <= 0)
+        if (cooldown <= 0)
         {
-            attack();
+            Attack();
         }
-        countdown -= Time.deltaTime;
+        cooldown -= Time.deltaTime;
 
 
         // state transition checks
@@ -57,10 +56,10 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         Debug.Log("Leaving attack state");
     }
 
-    private void attack()
+    private void Attack()
     {
         Debug.Log("Attacking!!");
-        countdown = attackCooldown;
+        cooldown = attackSpeed;
         // start strike animation, check hit, send damage event if hit. (in other script on GameObject that hit player or other creature )
 
         //owner.GetComponent<Animation_Test>().AttackAni();

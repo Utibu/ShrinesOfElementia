@@ -8,7 +8,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
 {
 
     private Vector3 startPosition;
-    private float chaseSpeed = 3.0f;
+    private float chaseSpeed = 3.5f;
 
 
     public override void Initialize(StateMachine stateMachine)
@@ -24,7 +24,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
         //modify agent to chase settings
         owner.Agent.speed = chaseSpeed;
         startPosition = owner.transform.position;
-
+        //owner.transform.rot
     }
 
 

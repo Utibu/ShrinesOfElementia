@@ -19,27 +19,26 @@ public class Idle_BasicEnemy : BasicEnemyBaseState
     public override void Enter() {
         Debug.Log("Entering idle state.");
         base.Enter();
-        
     }
 
 
     public override void Update() {
 
         base.Update();
-        //do idle stuff
-        owner.transform.Rotate(new Vector3(0, 1, 0), 15 * Time.deltaTime);
+
+        //do idle stuff (placeholder til we have animations)
+        owner.transform.Rotate(new Vector3(0, 1, 0), 35 * Time.deltaTime);
+
+
         //update idle timer
         idleTimerCountdown -= Time.deltaTime;
 
         // State Transition checks:
-
         if (distanceToPlayer < sightRange)
         {
             Debug.Log("nu kommer jag och tar dig!");
             owner.Transition<Chase_BasicEnemy>();
         }
-
-        
         else if (idleTimerCountdown <= 0)
         {
             idleTimerCountdown = idleTime;

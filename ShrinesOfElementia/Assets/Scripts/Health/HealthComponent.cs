@@ -52,6 +52,7 @@ public class HealthComponent : MonoBehaviour
                     currentHealth = value;
 
                     // Death event (?)
+                    GetComponent<BasicEnemySM>().Transition<Die_BasicEnemy>();
                 }
 
                 else
