@@ -10,16 +10,21 @@ public class Sword : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Vector3 hitPoint;
 
+    private BoxCollider boxCollider;
 
-    private void OnTriggerEnter(Collider other)
+    private void Awake()
     {
-        RaycastHit hit;
+        boxCollider = GetComponent<BoxCollider>();
+    }
 
-        if(Physics.Raycast(transform.position + (transform.forward * 1f), -transform.forward, out hit, 8, layerMask))
+    private void OnCollisionEnter(Collision collision)
+    {
+        print("Hit " + collision.gameObject);
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            print("hit");
+            print("Enemy hit");
 
-            hitPoint = hit.point;
+            hitPoint = collision.GetContact(0).point;
 
             // Deal damage
         }
@@ -28,8 +33,6 @@ public class Sword : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Ray ray = new Ray(transform.position + (transform.forward * 1f), -transform.forward);
-        Gizmos.DrawRay(ray);
 
         Gizmos.DrawSphere(hitPoint, .2f);
     }
