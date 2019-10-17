@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Shrine : MonoBehaviour
 {
-    private ShrineAbility shrineAbility;
+    [SerializeField] private ShrineElementActivator shrineElementActivator;
+    private string element;
 
-    void Start()
-    {
-        
-    }
 
-    void Update()
+    private void OnPlayerInteract()
     {
-        
+
     }
 }
