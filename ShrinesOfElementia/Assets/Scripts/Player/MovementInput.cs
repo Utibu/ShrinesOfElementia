@@ -14,7 +14,7 @@ public class MovementInput : MonoBehaviour
     private Animator animator;
     private float speed;
     private float allowPlayerRotation;
-    [SerializeField] private Camera camera;
+    private CameraReference camera;
     private CharacterController controller;
     //[SerializeField] private bool isGrounded;   Old code, didn't work. Keeping just in case.
     private Player player;
@@ -29,6 +29,7 @@ public class MovementInput : MonoBehaviour
     {
         player = Player.Instance;
         animator = player.Animator;
+        camera = CameraReference.Instance;
         controller = GetComponent<CharacterController>();
     }
 

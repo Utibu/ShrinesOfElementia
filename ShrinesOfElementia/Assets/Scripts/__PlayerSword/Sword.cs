@@ -6,27 +6,19 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-    [SerializeField] private float damage;
-    [SerializeField] private LayerMask layerMask;
-    [SerializeField] private Vector3 hitPoint;
-
-    private BoxCollider boxCollider;
-
-    private void Awake()
-    {
-        boxCollider = GetComponent<BoxCollider>();
-    }
+    [SerializeField] private int damage;
+    private Vector3 hitPoint;
 
     private void OnCollisionEnter(Collision collision)
     {
-        print("Hit " + collision.gameObject);
         if (collision.gameObject.CompareTag("Enemy"))
         {
             print("Enemy hit");
 
             hitPoint = collision.GetContact(0).point;
 
-            // Deal damage
+            DamageEvent damageEvent = new DamageEvent(damage, this.gameObject, collision.gameObject);
+            damageEvent.FireEvent();
         }
     }
 
