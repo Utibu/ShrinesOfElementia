@@ -4,11 +4,5 @@ using UnityEngine;
 
 public class ShrineElementActivator : MonoBehaviour
 {
-
-
-    void Start()
-    {
-    }
-
-
+    
 }
