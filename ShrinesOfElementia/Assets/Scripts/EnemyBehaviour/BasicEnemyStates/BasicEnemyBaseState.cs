@@ -9,10 +9,9 @@ public class BasicEnemyBaseState : State
     
     //reference to statemachine of enemy this state belongs to.
     protected BasicEnemySM owner;
-    protected Player player = Player.Instance;
 
     protected float distanceToPlayer;
-    protected float attackRange = 5.0f;
+    protected float attackRange = 2.0f;
     protected float sightRange = 20.0f;
 
 
@@ -21,30 +20,31 @@ public class BasicEnemyBaseState : State
     public override void Initialize(StateMachine stateMachine)
     {
         owner = (BasicEnemySM)stateMachine;  // cast to subtype. 
+        
     }
 
     public virtual void Start()
     {
-
+        
     }
 
     public override void Enter()
     {
-        Debug.Log("Entering base state.");
-
 
     }
 
 
     public override void Leave()
     {
-        Debug.Log("Leaving base state");
+        
     }
 
 
     public override void Update()
     {
-        distanceToPlayer = Vector3.Distance(owner.transform.position, player.transform.position);
+        
+        
+        distanceToPlayer = Vector3.Distance(owner.transform.position, owner.Player.transform.position);
 
     }
 }

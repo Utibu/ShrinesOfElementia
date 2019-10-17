@@ -9,9 +9,12 @@ public class BasicEnemySM : StateMachine
     
     //Do not show the designers
     public NavMeshAgent Agent { get; private set; }
-    public GameObject[] patrolPoints;
 
-    //Actually, you could just remove this SM subclass alltogether. If there are no type unique variables that needs to be stored here. 
+    public Player Player;
+
+    [SerializeField] private GameObject[] patrolPoints;
+    public GameObject[] PatrolPoints { get => patrolPoints; }
+    
 
     protected override void Awake()
     {
@@ -23,7 +26,8 @@ public class BasicEnemySM : StateMachine
         base.Start();
         //Init Components.
         Agent = GetComponent<NavMeshAgent>();
-
+        Agent.baseOffset = 0.5f;
+        Player = Player.Instance;
     }
  
 

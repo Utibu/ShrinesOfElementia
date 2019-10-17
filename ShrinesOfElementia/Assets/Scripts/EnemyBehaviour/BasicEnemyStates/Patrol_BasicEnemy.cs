@@ -25,7 +25,7 @@ public class Patrol_BasicEnemy : BasicEnemyBaseState
     {
         base.Enter();
         owner.Agent.speed = patrolSpeed;
-        owner.Agent.SetDestination(owner.patrolPoints[currentTargetIndex].transform.position);
+        owner.Agent.SetDestination(owner.PatrolPoints[currentTargetIndex].transform.position);
         Debug.Log("Entering patrol state");
     }
 
@@ -33,7 +33,7 @@ public class Patrol_BasicEnemy : BasicEnemyBaseState
     {
         base.Update();
 
-        distanceToPatrolPoint = Vector3.Distance(owner.transform.position, owner.patrolPoints[currentTargetIndex].transform.position);
+        distanceToPatrolPoint = Vector3.Distance(owner.transform.position, owner.PatrolPoints[currentTargetIndex].transform.position);
 
         //state Transistion checks: 
         if (distanceToPlayer < sightRange)
@@ -43,8 +43,8 @@ public class Patrol_BasicEnemy : BasicEnemyBaseState
         }
         else if (distanceToPatrolPoint <= 3.0f)
         {
-            //change patrol point 
-            int nextIndex = (currentTargetIndex + 1) % owner.patrolPoints.Length;
+            //change patrol point for next time
+            int nextIndex = (currentTargetIndex + 1) % owner.PatrolPoints.Length;
             currentTargetIndex = nextIndex;
             owner.Transition<Idle_BasicEnemy>();
         }

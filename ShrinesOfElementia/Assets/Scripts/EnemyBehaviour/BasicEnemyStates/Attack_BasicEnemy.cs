@@ -9,7 +9,7 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
 
     [SerializeField] private float attackDamage;
     [SerializeField] private float attackSpeed;
-    [SerializeField] private float attackCooldown = 1.5f;
+    [SerializeField] private float attackCooldown;
     private float countdown;
     [SerializeField] private float dodgeCooldown; // do some dodge cooldown timer too?
 
@@ -24,8 +24,9 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         base.Enter();
         Debug.Log("Entering attack state.");
         countdown = attackCooldown;
-
+        Debug.Log("countdown: " + countdown);
         owner.Agent.SetDestination(owner.transform.position);
+        
     }
 
 
@@ -33,13 +34,12 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
     {
 
         base.Update();
-
+        
         if (countdown <= 0)
         {
             attack();
-            countdown = attackCooldown;
         }
-
+        countdown -= Time.deltaTime;
 
 
         // state transition checks
@@ -48,23 +48,23 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
             owner.Transition<Chase_BasicEnemy>();
         }
 
-        
-        
     }
 
 
     public override void Leave()
     {
         base.Leave();
-        Debug.Log("Leaving Idle state");
-
+        Debug.Log("Leaving attack state");
     }
 
     private void attack()
     {
-        Debug.Log("Attacking!!!!!!!!!!!!");
+        Debug.Log("Attacking!!");
+        countdown = attackCooldown;
+        // start strike animation, check hit, send damage event if hit. (in other script on GameObject that hit player or other creature )
 
-        // start strike animation, check hi, send damage event if hit. (in other script on GameObject that hit player or other creature )
+        //owner.GetComponent<Animation_Test>().AttackAni();
+        
     }
 
 }

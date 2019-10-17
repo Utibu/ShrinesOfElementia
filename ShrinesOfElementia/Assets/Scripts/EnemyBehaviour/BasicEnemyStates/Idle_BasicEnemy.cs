@@ -7,7 +7,7 @@ public class Idle_BasicEnemy : BasicEnemyBaseState
 {
     //let enemy idle at each patrol point, for x seconds or until player is close.
     private float idleTimerCountdown;
-    private float idleTime = 7.0f;
+    private float idleTime = 4.0f;
 
 
     //called from baseclass StateMachine in Awake().

@@ -34,7 +34,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
         base.Update();
         
         //do the chasing
-        owner.Agent.SetDestination(player.transform.position);
+        owner.Agent.SetDestination(Player.Instance.transform.position);
 
 
         //State transition checks:
