@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "InstantiateEnemyStates/BasicEnemyPatrol")]
 public class Patrol_BasicEnemy : BasicEnemyBaseState
 {
-    private GameObject[] patrolPoints; //kinda unneccesary, might remove later idk
+    
     private int currentTargetIndex;
-    private float patrolSpeedModifier = 1.0f;
+    private float patrolSpeed = 2.0f;
     private float distanceToPatrolPoint;
     
 
@@ -19,32 +19,33 @@ public class Patrol_BasicEnemy : BasicEnemyBaseState
     public override void Start()
     {
         base.Start(); //for later
-        patrolPoints = owner.PatrolPoints;
         currentTargetIndex = 0;
     }
     public override void Enter()
     {
         base.Enter();
-        owner.Agent.speed *= patrolSpeedModifier;
-        owner.Agent.SetDestination(patrolPoints[currentTargetIndex].transform.position);
-
+        owner.Agent.speed = patrolSpeed;
+        owner.Agent.SetDestination(owner.patrolPoints[currentTargetIndex].transform.position);
+        Debug.Log("Entering patrol state");
     }
 
     public override void Update()
     {
         base.Update();
 
-        distanceToPatrolPoint = Vector3.Distance(owner.transform.position, patrolPoints[currentTargetIndex].transform.position);
+        distanceToPatrolPoint = Vector3.Distance(owner.transform.position, owner.patrolPoints[currentTargetIndex].transform.position);
 
         //state Transistion checks: 
-        //if on destination, transition to idle, update current target index
-        if (distanceToPlayer <= 20)
+        if (distanceToPlayer < sightRange)
         {
             Debug.Log("nu kommer jag och tar dig!");
             owner.Transition<Chase_BasicEnemy>();
         }
-        else if (distanceToPatrolPoint <= 5.0f)
+        else if (distanceToPatrolPoint <= 3.0f)
         {
+            //change patrol point 
+            int nextIndex = (currentTargetIndex + 1) % owner.patrolPoints.Length;
+            currentTargetIndex = nextIndex;
             owner.Transition<Idle_BasicEnemy>();
         }
     }
@@ -52,9 +53,7 @@ public class Patrol_BasicEnemy : BasicEnemyBaseState
     public override void Leave()
     {
         base.Leave();
-        //change up patrol pattern 
-        int nextIndex = (currentTargetIndex + 1) % patrolPoints.Length;
-        currentTargetIndex = nextIndex;
+        Debug.Log("Leaving patrol state");
     }
 
 }

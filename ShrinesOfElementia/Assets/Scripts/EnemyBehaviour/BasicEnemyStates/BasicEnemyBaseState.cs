@@ -9,9 +9,13 @@ public class BasicEnemyBaseState : State
     
     //reference to statemachine of enemy this state belongs to.
     protected BasicEnemySM owner;
-    protected float distanceToPlayer;
+    protected Player player = Player.Instance;
 
-    private float baseSpeed;
+    protected float distanceToPlayer;
+    protected float attackRange = 5.0f;
+    protected float sightRange = 20.0f;
+
+
 
     //called from baseclass StateMachine in Awake().
     public override void Initialize(StateMachine stateMachine)
@@ -21,7 +25,7 @@ public class BasicEnemyBaseState : State
 
     public virtual void Start()
     {
-        baseSpeed = owner.Agent.speed;
+
     }
 
     public override void Enter()
@@ -35,13 +39,12 @@ public class BasicEnemyBaseState : State
     public override void Leave()
     {
         Debug.Log("Leaving base state");
-        owner.Agent.speed = baseSpeed;
     }
 
 
     public override void Update()
     {
-        distanceToPlayer = Vector3.Distance(owner.transform.position, owner.Player.transform.position);
+        distanceToPlayer = Vector3.Distance(owner.transform.position, player.transform.position);
 
     }
 }

@@ -8,7 +8,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
 {
 
     private Vector3 startPosition;
-    private float chaseSpeedModifier = 1.3f;
+    private float chaseSpeed = 3.0f;
     //add eventual shouts/screehes from angry chasing enemy? yes please
 
 
@@ -21,9 +21,10 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
 
     public override void Enter()
     {
+        base.Enter();
         Debug.Log("Entering chase state.");
         //modify agent to chase settings
-        owner.Agent.speed *= chaseSpeedModifier;
+        owner.Agent.speed = chaseSpeed;
         startPosition = owner.transform.position;
 
     }
@@ -35,19 +36,24 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
         base.Update();
         
         //do the chasing
-        owner.Agent.SetDestination(owner.Player.transform.position);
+        owner.Agent.SetDestination(player.transform.position);
 
 
         //State transition checks:
-        if (distanceToPlayer >= 30)
+        if (distanceToPlayer > sightRange)
         {
             owner.Transition<Idle_BasicEnemy>();
+        }
+        else if (distanceToPlayer <= attackRange)
+        {
+            owner.Transition<Attack_BasicEnemy>();
         }
 
     }
 
     public override void Leave()
     {
+        base.Leave();
         Debug.Log("Leaving chase state");
         owner.Agent.SetDestination(startPosition);
     }

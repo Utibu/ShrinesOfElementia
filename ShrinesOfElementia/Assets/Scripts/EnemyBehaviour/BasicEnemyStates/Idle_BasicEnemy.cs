@@ -5,8 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "InstantiateEnemyStates/BasicEnemyIdle")]
 public class Idle_BasicEnemy : BasicEnemyBaseState
 {
+    //let enemy idle at each patrol point, for x seconds or until player is close.
     private float idleTimerCountdown;
     private float idleTime = 7.0f;
+
+    //private float distanceToPlayer;
 
     //called from baseclass StateMachine in Awake().
     public override void Initialize(StateMachine stateMachine) {
@@ -16,38 +19,42 @@ public class Idle_BasicEnemy : BasicEnemyBaseState
 
     public override void Enter() {
         Debug.Log("Entering idle state.");
-        //set/reset timer each enter.
+        base.Enter();
         
     }
 
 
     public override void Update() {
 
+        base.Update();
         //do idle stuff
         owner.transform.Rotate(new Vector3(0, 1, 0), 15 * Time.deltaTime);
-        //owner.transform.position += Vector3.up * 10f * Time.deltaTime;
         //update idle timer
         idleTimerCountdown -= Time.deltaTime;
 
         // State Transition checks:
 
-        if (distanceToPlayer <= 20)
+        if (distanceToPlayer < sightRange)
         {
             Debug.Log("nu kommer jag och tar dig!");
             owner.Transition<Chase_BasicEnemy>();
         }
+
+        
         else if (idleTimerCountdown <= 0)
         {
             idleTimerCountdown = idleTime;
             owner.Transition<Patrol_BasicEnemy>();
         }
+        
     }
 
 
     public override void Leave()
     {
+        base.Leave();
         Debug.Log("Leaving Idle state");
-       
+        idleTimerCountdown = idleTime;
 
     }
 }
