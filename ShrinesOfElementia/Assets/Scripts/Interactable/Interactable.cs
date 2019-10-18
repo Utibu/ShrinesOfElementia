@@ -12,7 +12,21 @@ public class Interactable : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
     }
 
+    protected virtual void OnTriggerEnter(Collider other)
+    {
+
+    }
+
     protected virtual void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.E))
+        {
+            OnInteract();
+        }
+
+    }
+
+    protected virtual void OnInteract()
     {
 
     }
