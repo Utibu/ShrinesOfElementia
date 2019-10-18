@@ -46,16 +46,22 @@ public class Shrine : Interactable
         }
     }
 
-    protected override void OnTriggerStay(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         interactCanvas.gameObject.SetActive(true);
-        if (other.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.E))
-        {
-            ShrineEvent shrineEvent = new ShrineEvent(element);
-            shrineEvent.FireEvent();
-            Disable();
-            Debug.Log("Shrine event fired");
-        }
+    }
+
+    protected override void OnTriggerStay(Collider other)
+    {
+        base.OnTriggerStay(other);
+    }
+
+    protected override void OnInteract()
+    {
+        print("In shrine on interact");
+        ShrineEvent shrineEvent = new ShrineEvent(element);
+        shrineEvent.FireEvent();
+        Disable();
     }
 
     private void OnTriggerExit(Collider other)
@@ -69,6 +75,7 @@ public class Shrine : Interactable
 
     protected override void Disable()
     {
+        print("in shrine disable");
         boxCollider.enabled = false;
         interactCanvas.gameObject.SetActive(false);
     }
