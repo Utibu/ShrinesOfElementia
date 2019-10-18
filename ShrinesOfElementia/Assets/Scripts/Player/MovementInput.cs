@@ -21,7 +21,7 @@ public class MovementInput : MonoBehaviour
     [SerializeField] private float gravity;
     [SerializeField] private float jumpSpeed;
 
-    private Vector3 moveVector = Vector3.zero;
+    [SerializeField] private Vector3 moveVector = Vector3.zero;
     [SerializeField] private float distanceToGround;
 
 
@@ -37,7 +37,7 @@ public class MovementInput : MonoBehaviour
     {
         InputMagnitude();
         //isGrounded = controller.isGrounded;   Old code, didn't work. Keeping just in case.
-        if (IsGrounded())
+        if (IsGrounded() && moveVector.y < 0.5f)
         {
             //animator.SetBool("IsGrounded", true);   Jumping animation (not good)
 

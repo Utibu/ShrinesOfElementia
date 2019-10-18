@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ShrineEvent : Event<ShrineEvent>
 {
-    public ShrineElementActivator Activator;
+    public string Element;
+    public Player Player;
 
-
-    public ShrineEvent(ShrineElementActivator activator)
+    public ShrineEvent(string element)
     {
-        Activator = activator;
+        Element = element;
+        Player = Player.Instance;
     }
 }

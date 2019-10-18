@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class Shrine : Interactable
 {
-    [SerializeField] private ShrineElementActivator shrineElementActivator;
+    private string element;
+    [SerializeField] private Canvas interactCanvas;
+    public enum ShrineTypes
+    {
+        Fire,
+        Water,
+        Earth,
+        Wind
+    };
 
     private void Start()
     {
@@ -13,9 +21,21 @@ public class Shrine : Interactable
 
     protected override void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.E))
+        interactCanvas.gameObject.SetActive(true);
+        if (other.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.E))
         {
-            ShrineEvent shrineEvent = new ShrineEvent(shrineElementActivator);
+            ShrineEvent shrineEvent = new ShrineEvent(element);
+            shrineEvent.FireEvent();
+            Debug.Log("Shrine event fired");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("Left");
+        if(other.gameObject.tag == "Player")
+        {
+            interactCanvas.gameObject.SetActive(false);
         }
     }
 }
