@@ -6,7 +6,7 @@ public class Shrine : Interactable
 {
     private string element;
     [SerializeField] private Canvas interactCanvas;
-    public enum ShrineTypes
+    private enum SHRINETYPES
     {
         Fire,
         Water,
@@ -14,9 +14,36 @@ public class Shrine : Interactable
         Wind
     };
 
-    private void Start()
-    {
+    [SerializeField] private SHRINETYPES shrineTypes;
+    
 
+    protected override void Start()
+    {
+        base.Start();
+
+        switch (shrineTypes)
+        {
+            case SHRINETYPES.Fire:
+                element = "Fire";
+                print("Fire active");
+                break;
+            case SHRINETYPES.Water:
+                element = "Water";
+                print("Water active");
+
+                break;
+            case SHRINETYPES.Earth:
+                element = "Earth";
+                print("Earth active");
+
+                break;
+            case SHRINETYPES.Wind:
+                element = "Earth";
+                print("Wind active");
+
+                break;
+
+        }
     }
 
     protected override void OnTriggerStay(Collider other)
@@ -26,6 +53,7 @@ public class Shrine : Interactable
         {
             ShrineEvent shrineEvent = new ShrineEvent(element);
             shrineEvent.FireEvent();
+            Disable();
             Debug.Log("Shrine event fired");
         }
     }
@@ -38,4 +66,11 @@ public class Shrine : Interactable
             interactCanvas.gameObject.SetActive(false);
         }
     }
+
+    protected override void Disable()
+    {
+        boxCollider.enabled = false;
+        interactCanvas.gameObject.SetActive(false);
+    }
+
 }

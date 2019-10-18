@@ -6,9 +6,20 @@ public class ShrineEventListener : EventListener<ShrineEvent>
 {
     protected override void OnEvent(ShrineEvent shrineEvent)
     {
-        if(shrineEvent.Element == "Fire")
+        string element = shrineEvent.Element;
+
+        switch (element)
         {
-            shrineEvent.Player.GetComponent<HealthComponent>().MaxHealth += 10;
+            case "Fire":
+                break;
+            case "Water":
+                shrineEvent.Player.GetComponent<HealthComponent>().CurrentHealth += 10;
+                break;
+            case "Earth":
+                break;
+            case "Wind":
+                break;
+
         }
     }
 }
