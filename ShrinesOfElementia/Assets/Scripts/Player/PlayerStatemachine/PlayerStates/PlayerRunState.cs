@@ -9,7 +9,7 @@ public class PlayerRunState : PlayerBaseState
         
     }
 
-    void Update()
+    public override void Update()
     {
         
     }
