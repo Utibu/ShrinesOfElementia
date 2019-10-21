@@ -6,6 +6,7 @@ public class Shrine : Interactable
 {
     private string element;
     [SerializeField] private Canvas interactCanvas;
+    private ParticleSystem particleSystem;
     private enum SHRINETYPES
     {
         Fire,
@@ -20,6 +21,7 @@ public class Shrine : Interactable
     protected override void Start()
     {
         base.Start();
+        particleSystem = GetComponent<ParticleSystem>();
 
         switch (shrineTypes)
         {
@@ -61,6 +63,7 @@ public class Shrine : Interactable
         print("In shrine on interact");
         ShrineEvent shrineEvent = new ShrineEvent(element);
         shrineEvent.FireEvent();
+        particleSystem.Stop();
         Disable();
     }
 

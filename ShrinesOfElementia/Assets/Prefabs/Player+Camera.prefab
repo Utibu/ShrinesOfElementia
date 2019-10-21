@@ -97,7 +97,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486532335}
-  m_LocalRotation: {x: -0.031549882, y: -0.000000050518942, z: 0.00000000798145, w: 0.99950224}
+  m_LocalRotation: {x: -0.031549882, y: 0.000000006076599, z: -0.0000000055479434,
+    w: 0.99950224}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -800,8 +801,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395336070}
-  m_LocalRotation: {x: 0.090288885, y: -0.000000033763026, z: 0.0000000030609273,
-    w: 0.99591565}
+  m_LocalRotation: {x: 0.090288885, y: 0.00000003377381, z: -0.000000003061905, w: 0.99591565}
   m_LocalPosition: {x: 0, y: 2.5, z: -4.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1037,13 +1037,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xAxis:
-    multiplier: 10
+    multiplier: 3.5
     accelTime: 0.1
     decelTime: 0.1
     name: Mouse X
     inputValue: 0
   yAxis:
-    multiplier: -0.1
+    multiplier: -0.035
     accelTime: 0.1
     decelTime: 0.1
     name: Mouse Y
@@ -1245,7 +1245,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724865902}
-  m_LocalRotation: {x: 0.031805146, y: -0.000000033513047, z: 0.000000007958927, w: 0.9994941}
+  m_LocalRotation: {x: 0.031805146, y: 0.0000000334859, z: -0.0000000053848446, w: 0.9994941}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1409,7 +1409,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105239360}
-  m_LocalRotation: {x: -0.000000014901159, y: -0.000000047417977, z: 0.0000000072921105,
+  m_LocalRotation: {x: -0.000000014901159, y: 0.000000047490264, z: -0.00000001828698,
     w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1609,7 +1609,8 @@ MonoBehaviour:
   desiredRotationSpeed: 0.4
   gravity: 20
   jumpSpeed: 9
-  distanceToGround: 0.1
+  moveVector: {x: 0, y: 0, z: 0}
+  distanceToGround: 0.3
 --- !u!1 &7904000395586982403
 GameObject:
   m_ObjectHideFlags: 0

@@ -111,4 +111,9 @@ public class PlayerStateMachine : StateMachine
             return false;
         }
     }
+
+    public void CharacterDirection()
+    {
+
+    }
 }
