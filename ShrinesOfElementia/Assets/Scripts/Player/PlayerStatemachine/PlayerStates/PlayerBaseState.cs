@@ -15,6 +15,9 @@ public class PlayerBaseState : State
 
     public override void Update()
     {
-        base.Update();
+        if (Input.GetMouseButtonDown(0))
+        {
+            owner.Transition<PlayerCombatState>();
+        }
     }
 }
