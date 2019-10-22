@@ -2,17 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombatState : MonoBehaviour
+public class PlayerCombatState : PlayerBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public override void Enter()
     {
-        
+        Player.Instance.GetComponent<MovementInput>().FaceCameraDirection = true;
+        Player.Instance.Animator.SetBool("InCombat", true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            owner.Transition<PlayerRunState>();
+        }
+    }
+
+    public override void Leave()
+    {
+        Player.Instance.GetComponent<MovementInput>().FaceCameraDirection = false;
+        Player.Instance.Animator.SetBool("InCombat", false);
     }
 }

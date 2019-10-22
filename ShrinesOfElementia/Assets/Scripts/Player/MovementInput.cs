@@ -9,7 +9,8 @@ public class MovementInput : MonoBehaviour
     private float inputX;
     private float inputZ;
     [SerializeField] private Vector3 desiredMoveDirection;
-    [SerializeField] private bool blockRotationPlayer;
+    [SerializeField] private bool faceCameraDirection;
+    public bool FaceCameraDirection { set { faceCameraDirection = value; } }
     [SerializeField] private float desiredRotationSpeed;
     private Animator animator;
     private float speed;
@@ -24,6 +25,12 @@ public class MovementInput : MonoBehaviour
     [SerializeField] private Vector3 moveVector = Vector3.zero;
     [SerializeField] private float distanceToGround;
 
+    [SerializeField] private float defaultSpeed;
+    [SerializeField] private float runSpeed;
+
+    public float DefaultSpeed { get { return defaultSpeed; } }
+    public float RunSpeed { get { return runSpeed; } }
+
 
     private void Start()
     {
@@ -35,7 +42,13 @@ public class MovementInput : MonoBehaviour
 
     private void Update()
     {
+        if (faceCameraDirection)
+        {
+            animator.SetBool("InCombat", true);
+        }
+
         InputMagnitude();
+
         //isGrounded = controller.isGrounded;   Old code, didn't work. Keeping just in case.
         if (IsGrounded() && moveVector.y < 0.5f)
         {
@@ -60,9 +73,6 @@ public class MovementInput : MonoBehaviour
 
     private void PlayerMoveAndRotation()
     {
-        inputX = Input.GetAxis("Horizontal");
-        inputZ = Input.GetAxis("Vertical");
-
         Vector3 forward = camera.transform.forward;
         Vector3 right = camera.transform.right;
 
@@ -71,13 +81,18 @@ public class MovementInput : MonoBehaviour
 
         forward.Normalize();
         right.Normalize();
-
-        desiredMoveDirection = forward * inputZ + right * inputX;
-
-        if(blockRotationPlayer == false)
+        
+        if (faceCameraDirection)
         {
+            transform.rotation = Quaternion.LookRotation(forward, Vector3.zero);
+
+        }
+        else
+        {
+            desiredMoveDirection = forward * inputZ + right * inputX;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), desiredRotationSpeed);
         }
+
     }
 
     private void InputMagnitude()
@@ -87,18 +102,18 @@ public class MovementInput : MonoBehaviour
 
         animator.SetFloat("InputZ", inputZ, 0.0f, Time.deltaTime * 2f);
         animator.SetFloat("InputX", inputX, 0.0f, Time.deltaTime * 2f);
+        
 
         speed = new Vector2(inputX, inputZ).sqrMagnitude;
+        //print(speed);
 
-        if(speed > allowPlayerRotation)
+        animator.SetFloat("InputMagnitude", speed, 0.0f, Time.deltaTime);
+        
+        if(speed > allowPlayerRotation || faceCameraDirection)
         {
-            animator.SetFloat("InputMagnitude", speed, 0.0f, Time.deltaTime);
             PlayerMoveAndRotation();
         }
-        else if(speed < allowPlayerRotation)
-        {
-            animator.SetFloat("InputMagnitude", speed, 0.0f, Time.deltaTime);
-        }
+
     }
 
     private bool IsGrounded()

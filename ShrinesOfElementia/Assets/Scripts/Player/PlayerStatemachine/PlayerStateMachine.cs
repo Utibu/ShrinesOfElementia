@@ -23,6 +23,9 @@ public class PlayerStateMachine : StateMachine
     [SerializeField] private Vector3 moveVector = Vector3.zero;
     [SerializeField] private float distanceToGround;
 
+    private bool faceCamera;
+    public bool FaceCamera { get { return faceCamera; } set { faceCamera = value; } }
+
     public override void Start()
     {
         base.Start();
@@ -61,6 +64,8 @@ public class PlayerStateMachine : StateMachine
     {
         inputX = Input.GetAxis("Horizontal");
         inputZ = Input.GetAxis("Vertical");
+        Debug.Log("Input x : " + inputX + " Input z: " + inputZ);
+
 
         Vector3 forward = camera.transform.forward;
         Vector3 right = camera.transform.right;

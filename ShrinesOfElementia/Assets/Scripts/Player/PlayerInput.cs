@@ -5,13 +5,17 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     private Player player;
+    private MovementInput movementInput;
 
     private float lightAttackTimer = 0f; // Temporary fix
     private bool blockTrigger = false, isBlocking = false;
+    
+
 
     private void Start()
     {
         player = Player.Instance;
+        movementInput = player.GetComponent<MovementInput>();
     }
 
     private void Update()
@@ -29,11 +33,23 @@ public class PlayerInput : MonoBehaviour
         }
 
 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            player.Animator.speed = movementInput.RunSpeed;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            player.Animator.speed = movementInput.DefaultSpeed;
+        }
+
+
         // Mouse buttons, 0 - Primary Button, 1 - Secondary Button, 2 - Middle Click
 
         // Left click / Primary button
         if (Input.GetMouseButtonDown(0))
         {
+            movementInput.FaceCameraDirection = true;
             // Temporary fix to stop animations from repeating
             if (lightAttackTimer <= 0f)
             {
