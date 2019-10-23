@@ -17,7 +17,7 @@ public class ShrineElementActivator : MonoBehaviour
             case "Fire":
                 break;
             case "Water":
-                shrineEvent.Player.GetComponent<HealthComponent>().CurrentHealth += 10;
+                shrineEvent.Player.GetComponent<HealthComponent>().CurrentHealth = shrineEvent.Player.GetComponent<HealthComponent>().MaxHealth;
                 break;
             case "Earth":
                 break;
