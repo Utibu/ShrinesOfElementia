@@ -1,8 +1,15 @@
 ﻿// Author: Bilal El Medkouri
 
-public class DamageEventListener : EventListener<DamageEvent>
+using UnityEngine;
+
+public class DamageEventListener : MonoBehaviour
 {
-    protected override void OnEvent(DamageEvent damageEvent)
+    private void Start()
+    {
+        EventSystem.Current.RegisterListener<DamageEvent>(OnDamageEvent);
+    }
+
+    private void OnDamageEvent(DamageEvent damageEvent)
     {
         damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= damageEvent.Damage;
 

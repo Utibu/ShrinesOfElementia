@@ -60,9 +60,8 @@ public class Shrine : Interactable
 
     protected override void OnInteract()
     {
-        print("In shrine on interact");
-        ShrineEvent shrineEvent = new ShrineEvent(element);
-        shrineEvent.FireEvent();
+        ShrineEvent shrineEvent = new ShrineEvent(element + " shrine activated", element);
+        EventSystem.Current.FireEvent(shrineEvent);
         particleSystem.Stop();
         Disable();
     }
@@ -78,7 +77,6 @@ public class Shrine : Interactable
 
     protected override void Disable()
     {
-        print("in shrine disable");
         boxCollider.enabled = false;
         interactCanvas.gameObject.SetActive(false);
     }

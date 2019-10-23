@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShrineEventListener : EventListener<ShrineEvent>
+public class ShrineEventListener : MonoBehaviour
 {
-    protected override void OnEvent(ShrineEvent shrineEvent)
+    private void Start()
+    {
+        EventSystem.Current.RegisterListener<ShrineEvent>(OnShrineEvent);
+    }
+    private void OnShrineEvent(ShrineEvent shrineEvent)
     {
         string element = shrineEvent.Element;
+        print(shrineEvent.eventDescription);
 
         switch (element)
         {

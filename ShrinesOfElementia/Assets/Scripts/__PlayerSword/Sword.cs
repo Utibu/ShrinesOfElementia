@@ -15,8 +15,8 @@ public class Sword : MonoBehaviour
         {
             hitPoint = collision.GetContact(0).point;
 
-            DamageEvent damageEvent = new DamageEvent(damage, gameObject, collision.gameObject);
-            damageEvent.FireEvent();
+            DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + damage + " damage to " + collision.gameObject, damage, gameObject, collision.gameObject);
+            EventSystem.Current.FireEvent(damageEvent);
         }
     }
 

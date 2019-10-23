@@ -1,7 +1,7 @@
 ﻿// Author: Bilal El Medkouri
 
 using UnityEngine;
-
+/*
 public abstract class EventListener<T> : MonoBehaviour where T : Event<T>
 {
     protected virtual void Start()
@@ -16,3 +16,4 @@ public abstract class EventListener<T> : MonoBehaviour where T : Event<T>
 
     protected virtual void OnEvent(T eventType) { }
 }
+*/

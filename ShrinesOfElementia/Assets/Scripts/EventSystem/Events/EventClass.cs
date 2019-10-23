@@ -1,7 +1,27 @@
 ﻿// Author: Bilal El Medkouri
 
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
+public abstract class EventClass
+{
+  
+}
+
+public class DebugEvent : EventClass
+{
+    public string eventDescription = "";
+    public DebugEvent(string eventDescription)
+    {
+        this.eventDescription = eventDescription;
+    }
+}
+
+
+
+
+/*      ///////OLD CODE///////
 public abstract class Event<T> where T : Event<T>
 {
     private bool hasFired;
@@ -33,3 +53,4 @@ public abstract class Event<T> where T : Event<T>
         Debug.Log(this + " has fired");
     }
 }
+*/

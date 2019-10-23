@@ -65,8 +65,8 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         //owner.GetComponent<Animation_Test>().AttackAni();
 
 
-        DamageEvent damageEvent = new DamageEvent((int)attackDamage, owner.gameObject, owner.Player.gameObject);
-        damageEvent.FireEvent();
+        DamageEvent damageEvent = new DamageEvent("Enemy dealt " + attackDamage + " to player", (int)attackDamage, owner.gameObject, owner.Player.gameObject);
+        EventSystem.Current.FireEvent(damageEvent);
     }
 
 }
