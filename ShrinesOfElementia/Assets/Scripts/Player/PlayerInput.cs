@@ -73,6 +73,8 @@ public class PlayerInput : MonoBehaviour
 
         if (isBlocking == true) // Start blocking
         {
+            movementInput.FaceCameraDirection = true;
+
 
             if (blockTrigger == true)   // Makes it so that the trigger is only called on once per "action"
                 return;

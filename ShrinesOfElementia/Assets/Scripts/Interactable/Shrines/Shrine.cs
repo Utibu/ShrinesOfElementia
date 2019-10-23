@@ -27,22 +27,15 @@ public class Shrine : Interactable
         {
             case SHRINETYPES.Fire:
                 element = "Fire";
-                print("Fire active");
                 break;
             case SHRINETYPES.Water:
                 element = "Water";
-                print("Water active");
-
                 break;
             case SHRINETYPES.Earth:
                 element = "Earth";
-                print("Earth active");
-
                 break;
             case SHRINETYPES.Wind:
                 element = "Earth";
-                print("Wind active");
-
                 break;
 
         }
