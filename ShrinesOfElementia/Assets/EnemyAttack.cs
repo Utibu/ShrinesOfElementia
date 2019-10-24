@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
+    //Temporary fix, should get damage from attack state instead
     private float damage;
     BoxCollider attackCollider;
+    Animator animator;
 
     private void Start()
     {
         damage = 20;
         attackCollider = GetComponent<BoxCollider>();
+        animator = GetComponentInParent<Animator>();
     }
-
+    /*
     private void OnCollisionEnter(Collision collision)
     {
         print(collision.gameObject.name);
@@ -30,15 +33,15 @@ public class EnemyAttack : MonoBehaviour
             EventSystem.Current.FireEvent(damageEvent);
         }
     }
-    /*
+    */
+
+
     private void OnTriggerEnter(Collider other)
     {
-        print(other.gameObject.name);
-        print(other.gameObject.name);
-        
+        attackCollider.enabled = false;
         if (other.gameObject.tag == "Shield")
         {
-            attackCollider.enabled = false;
+            animator.SetTrigger("AttackBlocked");
             print("Player shield hit");
         }
         else if (other.gameObject.tag == "Player")
@@ -48,5 +51,4 @@ public class EnemyAttack : MonoBehaviour
             EventSystem.Current.FireEvent(damageEvent);
         }
     }
-    */
 }
