@@ -12,6 +12,8 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
     private float cooldown;
     private float dodgeCooldown; // do some dodge cooldown timer too?
 
+    public float AttackDamage { get { return attackDamage; } }
+
     public override void Initialize(StateMachine stateMachine)
     {
         base.Initialize(stateMachine);
@@ -58,15 +60,18 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
 
     private void Attack()
     {
+        
         Debug.Log("Attacking!!");
         cooldown = attackSpeed;
         // start strike animation, check hit, send damage event if hit. (in other script on GameObject that hit player or other creature )
 
         //owner.GetComponent<Animation_Test>().AttackAni();
 
-
+        owner.animator.SetTrigger("ShouldAttack");
+        /*
         DamageEvent damageEvent = new DamageEvent("Enemy dealt " + attackDamage + " to player", (int)attackDamage, owner.gameObject, owner.Player.gameObject);
         EventSystem.Current.FireEvent(damageEvent);
+        */
     }
 
 }

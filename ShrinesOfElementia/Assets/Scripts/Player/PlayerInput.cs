@@ -53,7 +53,7 @@ public class PlayerInput : MonoBehaviour
             // Temporary fix to stop animations from repeating
             if (lightAttackTimer <= 0f)
             {
-                lightAttackTimer = 1.5f;
+                lightAttackTimer = 0.5f;
                 player.Animator.SetTrigger("LightAttack1");
             }
         }

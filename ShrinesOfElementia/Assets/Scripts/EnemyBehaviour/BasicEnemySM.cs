@@ -15,6 +15,7 @@ public class BasicEnemySM : StateMachine
     [SerializeField] private GameObject[] patrolPoints;
     public GameObject[] PatrolPoints { get => patrolPoints; }
     
+    public Animator animator { get; private set; }
 
     protected override void Awake()
     {
@@ -28,6 +29,7 @@ public class BasicEnemySM : StateMachine
         Agent = GetComponent<NavMeshAgent>();
         Agent.baseOffset = 0.5f;
         Player = Player.Instance;
+        animator = GetComponent<Animator>();
     }
  
 
