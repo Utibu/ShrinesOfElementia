@@ -10,8 +10,9 @@ public class PlayerInput : MonoBehaviour
     private float lightAttackTimer = 0f; // Temporary fix
     private bool blockTrigger = false, isBlocking = false;
 
-    [Header("Temporary Fireball placeholder")]
+    [Header("Temporary Fireball attributes")]
     [SerializeField] private GameObject fireballPrefab;
+    [SerializeField] private float fireballSpeed;
     [SerializeField] private Transform fireballSpawnLocation;
 
     private void Start()
@@ -36,7 +37,8 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Instantiate(fireballPrefab, fireballSpawnLocation);
+            GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation);
+            fireball.GetComponent<Rigidbody>().AddForce(transform.forward * fireballSpeed, ForceMode.VelocityChange);
         }
 
 
