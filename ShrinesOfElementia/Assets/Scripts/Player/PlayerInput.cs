@@ -7,7 +7,6 @@ public class PlayerInput : MonoBehaviour
     private Player player;
     private MovementInput movementInput;
 
-    private float lightAttackTimer = 0f; // Temporary fix
     private bool blockTrigger = false, isBlocking = false;
 
     [Header("Temporary Fireball attributes")]
@@ -15,10 +14,16 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float fireballSpeed;
     [SerializeField] private Transform fireballSpawnLocation;
 
+    private float resetTimer = 0;
+    private float lightAttackTimer = 0.9f; // Temporary fix
+    private string[] lightAttacks;
+    private int attackIndex = 0;
+
     private void Start()
     {
         player = Player.Instance;
         movementInput = player.GetComponent<MovementInput>();
+        lightAttacks = new string[] { "LightAttack1", "LightAttack2" };   
     }
 
     private void Update()
@@ -56,18 +61,22 @@ public class PlayerInput : MonoBehaviour
         // Mouse buttons, 0 - Primary Button, 1 - Secondary Button, 2 - Middle Click
 
         // Left click / Primary button
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length)
         {
-            movementInput.FaceCameraDirection = true;
-            // Temporary fix to stop animations from repeating
-            if (lightAttackTimer <= 0f)
+            LightAttack();
+        }
+
+        if (attackIndex > 0)
+        {
+            resetTimer += Time.deltaTime;
+            if (resetTimer > lightAttackTimer)
             {
-                lightAttackTimer = 0.5f;
-                player.Animator.SetTrigger("LightAttack1");
+                player.Animator.SetTrigger("ResetAttack");
+                attackIndex = 0;
             }
         }
 
-        lightAttackTimer -= Time.deltaTime; // Temporary fix
+        //lightAttackTimer -= Time.deltaTime; // Temporary fix
 
         // Holding down left click / Primary button
         if (Input.GetMouseButton(0))
@@ -96,5 +105,26 @@ public class PlayerInput : MonoBehaviour
         {
             blockTrigger = false;
         }
+    }
+
+    private void LightAttack()
+    {
+        movementInput.FaceCameraDirection = true;
+        // Temporary fix to stop animations from repeating
+
+        player.Animator.SetTrigger(lightAttacks[attackIndex]);
+        attackIndex = (attackIndex + 1) % lightAttacks.Length;
+        resetTimer = 0f;
+
+        print(resetTimer + "     " + lightAttackTimer);
+        
+
+        /*
+        if (lightAttackTimer <= 0f)
+        {
+            lightAttackTimer = 0.5f;
+            player.Animator.SetTrigger("LightAttack1");
+        }
+        */
     }
 }
