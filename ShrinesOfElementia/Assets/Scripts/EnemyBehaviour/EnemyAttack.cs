@@ -6,36 +6,39 @@ public class EnemyAttack : MonoBehaviour
 {
     //Temporary fix, should get damage from attack state instead
     private float damage;
-    BoxCollider attackCollider;
+    Collider attackCollider;
     Animator animator;
 
     private void Start()
     {
         damage = 20;
-        attackCollider = GetComponent<BoxCollider>();
+        attackCollider = GetComponent<Collider>();
         animator = GetComponentInParent<Animator>();
+        print(attackCollider.gameObject.name);
     }
-    /*
+    
     private void OnCollisionEnter(Collision collision)
     {
-        print(collision.gameObject.name);
-        print(collision.collider.gameObject.name);
-        
+        print("Enemy attack collision");
+
+
         if (collision.collider.gameObject.CompareTag("Shield"))
         {
-            attackCollider.enabled = false;
+            attackCollider.gameObject.SetActive(false);
+            animator.SetTrigger("AttackBlocked");
             print("Player shield hit");
         }
-        else if (collision.collider.gameObject.CompareTag("Player"))
+        else if (collision.gameObject.CompareTag("Player"))
         {
+            attackCollider.gameObject.SetActive(false);
             print("Player hit");
             DamageEvent damageEvent = new DamageEvent(gameObject.name + " did " + damage + " to player", (int)damage, gameObject, collision.gameObject);
             EventSystem.Current.FireEvent(damageEvent);
         }
     }
-    */
+    
 
-
+    /*
     private void OnTriggerEnter(Collider other)
     {
         attackCollider.gameObject.SetActive(false);
@@ -51,4 +54,5 @@ public class EnemyAttack : MonoBehaviour
             EventSystem.Current.FireEvent(damageEvent);
         }
     }
+    */
 }
