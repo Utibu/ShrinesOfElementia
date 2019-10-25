@@ -35,7 +35,7 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
     {
 
         base.Update();
-        
+
         if (cooldown <= 0)
         {
             Attack();
@@ -43,8 +43,15 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         cooldown -= Time.deltaTime;
 
 
+        /*
+        // rotate enemy towards target
+        Vector3 direction = (owner.Player.transform.position - owner.transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        owner.transform.rotation = Quaternion.Slerp(owner.transform.rotation, lookRotation, Time.deltaTime * owner.Agent.angularSpeed);
+        */
+
         // state transition checks
-        if (distanceToPlayer  > attackRange * 1.4f)
+        if (distanceToPlayer  > attackRange * 2f)
         {
             owner.Transition<Chase_BasicEnemy>();
         }
@@ -65,14 +72,10 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         cooldown = attackSpeed;
         // start strike animation, check hit, send damage event if hit. (in other script on GameObject that hit player or other creature )
 
-        //owner.GetComponent<Animation_Test>().AttackAni();
 
         owner.EnemyAttack.gameObject.SetActive(true);
-        owner.animator.SetTrigger("ShouldAttack");
-        /*
-        DamageEvent damageEvent = new DamageEvent("Enemy dealt " + attackDamage + " to player", (int)attackDamage, owner.gameObject, owner.Player.gameObject);
-        EventSystem.Current.FireEvent(damageEvent);
-        */
+        owner.Animator.SetTrigger("ShouldAttack");
+        
     }
 
 }

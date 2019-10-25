@@ -11,8 +11,8 @@ public class BasicEnemyBaseState : State
     protected BasicEnemySM owner;
 
     protected float distanceToPlayer;
-    protected float attackRange = 2.0f;
-    protected float sightRange = 20.0f;
+    protected float attackRange = 1.3f;
+    protected float sightRange = 16.0f;
 
 
 

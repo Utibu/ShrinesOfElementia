@@ -7,7 +7,7 @@ using UnityEngine;
 public class Die_BasicEnemy : BasicEnemyBaseState
 {
 
-    private float dyingTime = 1.5f;
+    private float dyingTime = 1.0f;
     private float timer;
 
 
@@ -25,6 +25,9 @@ public class Die_BasicEnemy : BasicEnemyBaseState
 
         // Start some cool death animation
         // play wicked screech of anguish
+        GameObject gameobject = owner.GetComponent<GameObject>();
+        EventSystem.Current.FireEvent(new EnemyDeathEvent(gameobject, owner.SpawnArea));
+        Destroy(owner.gameObject);
 
     }
 
@@ -35,13 +38,17 @@ public class Die_BasicEnemy : BasicEnemyBaseState
         base.Update();
         owner.transform.Rotate(new Vector3(1, 0, 0), 75);
         
-
+        /*
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
-            owner.gameObject.SetActive(false);
-        }
 
+            GameObject gameobject = owner.GetComponent<GameObject>();
+            EventSystem.Current.FireEvent(new EnemyDeathEvent(gameobject, owner.SpawnArea));
+            Destroy(owner.gameObject);
+        }
+        */
+        
     }
 
 
