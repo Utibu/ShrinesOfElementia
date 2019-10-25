@@ -38,8 +38,8 @@ public class MovementInput : MonoBehaviour
         animator = player.Animator;
         camera = CameraReference.Instance;
         controller = GetComponent<CharacterController>();
-        Cursor.visible = false;
-        
+        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()

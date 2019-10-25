@@ -38,7 +38,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        attackCollider.enabled = false;
+        attackCollider.gameObject.SetActive(false);
         if (other.gameObject.tag == "Shield")
         {
             animator.SetTrigger("AttackBlocked");

@@ -12,9 +12,4 @@ public class Shield : MonoBehaviour
         shieldCollider = GetComponent<BoxCollider>();
         shieldCollider.enabled = false;
     }
-
-    private void OnBlock()
-    {
-        shieldCollider.enabled = true;
-    }
 }

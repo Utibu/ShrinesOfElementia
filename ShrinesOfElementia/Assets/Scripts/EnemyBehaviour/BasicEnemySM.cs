@@ -13,9 +13,11 @@ public class BasicEnemySM : StateMachine
     public Player Player { get; private set; }
 
     [SerializeField] private GameObject[] patrolPoints;
+    private EnemyAttack enemyAttack;
     public GameObject[] PatrolPoints { get => patrolPoints; }
     
     public Animator animator { get; private set; }
+    public EnemyAttack EnemyAttack { get { return enemyAttack; } set { enemyAttack = value; } }
 
     protected override void Awake()
     {
@@ -30,6 +32,7 @@ public class BasicEnemySM : StateMachine
         Agent.baseOffset = 0.5f;
         Player = Player.Instance;
         animator = GetComponent<Animator>();
+        enemyAttack = GetComponentInChildren<EnemyAttack>();
     }
  
 

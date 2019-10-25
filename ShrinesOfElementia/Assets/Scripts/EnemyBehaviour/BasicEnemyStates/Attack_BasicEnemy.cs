@@ -7,12 +7,12 @@ using UnityEngine;
 public class Attack_BasicEnemy : BasicEnemyBaseState
 {
 
-    private float attackDamage = 20;
+    [SerializeField] private float basicAttackDamage = 20;
     private float attackSpeed = 2.1f;
     private float cooldown;
     private float dodgeCooldown; // do some dodge cooldown timer too?
 
-    public float AttackDamage { get { return attackDamage; } }
+    
 
     public override void Initialize(StateMachine stateMachine)
     {
@@ -67,6 +67,7 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
 
         //owner.GetComponent<Animation_Test>().AttackAni();
 
+        owner.EnemyAttack.gameObject.SetActive(true);
         owner.animator.SetTrigger("ShouldAttack");
         /*
         DamageEvent damageEvent = new DamageEvent("Enemy dealt " + attackDamage + " to player", (int)attackDamage, owner.gameObject, owner.Player.gameObject);
