@@ -12,7 +12,7 @@ public class PlayerInput : MonoBehaviour
     [Header("Temporary Fireball attributes")]
     [SerializeField] private GameObject fireballPrefab;
     [SerializeField] private float fireballSpeed;
-    [SerializeField] private Transform fireballSpawnLocation;
+    [SerializeField] private GameObject fireballSpawnLocation;
 
     private float resetTimer = 0;
     private float lightAttackTimer = 0.9f; // Temporary fix
@@ -23,7 +23,7 @@ public class PlayerInput : MonoBehaviour
     {
         player = Player.Instance;
         movementInput = player.GetComponent<MovementInput>();
-        lightAttacks = new string[] { "LightAttack1", "LightAttack2" };   
+        lightAttacks = new string[] { "LightAttack1", "LightAttack2" };
     }
 
     private void Update()
@@ -42,7 +42,7 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation);
+            GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation.transform.position, Quaternion.identity);
             fireball.GetComponent<Rigidbody>().AddForce(transform.forward * fireballSpeed, ForceMode.VelocityChange);
         }
 
@@ -117,7 +117,7 @@ public class PlayerInput : MonoBehaviour
         resetTimer = 0f;
 
         print(resetTimer + "     " + lightAttackTimer);
-        
+
 
         /*
         if (lightAttackTimer <= 0f)
