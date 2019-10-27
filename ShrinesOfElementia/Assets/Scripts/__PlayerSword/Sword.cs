@@ -7,6 +7,7 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     [SerializeField] private int damage;
+    [SerializeField] private GameObject hitParticleSystem;
     private Vector3 hitPoint;
 
     private void OnCollisionEnter(Collision collision)
@@ -14,6 +15,12 @@ public class Sword : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player"))
         {
             hitPoint = collision.GetContact(0).point;
+
+            if(collision.gameObject.CompareTag("Enemy"))
+            {
+                GameObject go = (GameObject)Instantiate(hitParticleSystem, hitPoint, Quaternion.identity);
+                Destroy(go, 1f);
+            }
 
             DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + damage + " damage to " + collision.gameObject, damage, gameObject, collision.gameObject);
             EventSystem.Current.FireEvent(damageEvent);
