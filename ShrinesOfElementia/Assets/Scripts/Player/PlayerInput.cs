@@ -40,12 +40,27 @@ public class PlayerInput : MonoBehaviour
             player.Health.CurrentHealth += 10;
         }
 
+
+        // Fireball
         if (Input.GetKeyDown(KeyCode.F))
         {
             GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation.transform.position, Quaternion.identity);
             fireball.GetComponent<Rigidbody>().AddForce(transform.forward * fireballSpeed, ForceMode.VelocityChange);
         }
 
+        // Temporary water walking. Layer 9 is the player, and layer 4 is water
+
+        //Enable water walking
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            Physics.IgnoreLayerCollision(9, 4, false);
+        }
+
+        //Disable water walking
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            Physics.IgnoreLayerCollision(9, 4, true);
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
