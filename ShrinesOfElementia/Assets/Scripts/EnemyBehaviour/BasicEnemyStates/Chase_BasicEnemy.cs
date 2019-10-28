@@ -20,7 +20,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Entering chase state.");
+        //Debug.Log("Entering chase state.");
         //modify agent to chase settings
         owner.Agent.speed = chaseSpeed;
         startPosition = owner.transform.position;

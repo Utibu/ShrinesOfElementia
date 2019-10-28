@@ -19,7 +19,7 @@ public class EnemyAttack : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        print("Enemy attack collision");
+        //print("Enemy attack collision");
 
 
         if (collision.collider.gameObject.CompareTag("Shield"))

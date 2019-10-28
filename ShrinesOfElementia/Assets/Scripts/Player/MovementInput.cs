@@ -102,8 +102,13 @@ public class MovementInput : MonoBehaviour
         inputX = Input.GetAxis("Horizontal");
         inputZ = Input.GetAxis("Vertical");
 
-        animator.SetFloat("InputZ", inputZ, 0.0f, Time.deltaTime * 2f);
-        animator.SetFloat("InputX", inputX, 0.0f, Time.deltaTime * 2f);
+        //print("X: " + inputX + "Z: " + inputZ);
+        print(player.Animator.GetFloat("InputX") + " " + player.Animator.GetFloat("InputZ"));
+
+
+        animator.SetFloat("InputZ", inputZ);
+        animator.SetFloat("InputX", inputX);
+        
         
 
         speed = new Vector2(inputX, inputZ).sqrMagnitude;

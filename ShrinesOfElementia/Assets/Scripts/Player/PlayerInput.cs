@@ -72,6 +72,11 @@ public class PlayerInput : MonoBehaviour
             player.Animator.speed = movementInput.DefaultSpeed;
         }
 
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            player.Animator.SetTrigger("OnDodge");
+        }
+
 
         // Mouse buttons, 0 - Primary Button, 1 - Secondary Button, 2 - Middle Click
 
@@ -131,7 +136,7 @@ public class PlayerInput : MonoBehaviour
         attackIndex = (attackIndex + 1) % lightAttacks.Length;
         resetTimer = 0f;
 
-        print(resetTimer + "     " + lightAttackTimer);
+        //print(resetTimer + "     " + lightAttackTimer);
 
 
         /*
