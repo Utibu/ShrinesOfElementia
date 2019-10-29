@@ -11,13 +11,18 @@ public class BasicEnemySM : StateMachine
     public NavMeshAgent Agent { get; private set; }
     public GameObject SpawnArea { get; private set; }
     public Player Player { get; private set; }
+    
     public Animator Animator { get; private set; }
 
     [SerializeField] private GameObject[] patrolPoints;
-    private EnemyAttack enemyAttack;
     public GameObject[] PatrolPoints { get => patrolPoints; }
+
+    private EnemyAttack enemyAttack;
+    
     public EnemyAttack EnemyAttack { get { return enemyAttack; } set { enemyAttack = value; } }
 
+    //fix  this later
+    public bool Elite;
 
     protected override void Awake()
     {
