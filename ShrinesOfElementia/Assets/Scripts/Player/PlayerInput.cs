@@ -14,6 +14,10 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float fireballSpeed;
     [SerializeField] private GameObject fireballSpawnLocation;
 
+    [Header("Temporary Geyser attributes")]
+    [SerializeField] private GameObject geyserPrefab;
+    [SerializeField] private GameObject geyserSpawnLocation;
+
     private float resetTimer = 0;
     private float lightAttackTimer = 0.9f; // Temporary fix
     private string[] lightAttacks;
@@ -46,6 +50,13 @@ public class PlayerInput : MonoBehaviour
         {
             GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation.transform.position, Quaternion.identity);
             fireball.GetComponent<Rigidbody>().AddForce(transform.forward * fireballSpeed, ForceMode.VelocityChange);
+        }
+
+        // Geyser
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            /*GameObject geyser = */
+            Instantiate(geyserPrefab, geyserSpawnLocation.transform.position, Quaternion.identity);
         }
 
         // Temporary water walking. Layer 9 is the player, and layer 4 is water

@@ -5183,6 +5183,7 @@ GameObject:
   - component: {fileID: 1456840720}
   - component: {fileID: 1456840719}
   - component: {fileID: 844825524}
+  - component: {fileID: 6036624984709815187}
   m_Layer: 0
   m_Name: EnemyWithIdleAnimation
   m_TagString: Enemy
@@ -5271,6 +5272,7 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
+  Elite: 0
 --- !u!114 &8440498011063795496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5283,6 +5285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab43eef181cda0540a6dabf238a3fa50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInvulnerable: 0
   canvas: {fileID: 4656249571850126288}
   maxHealth: 50
 --- !u!136 &574717247644612076
@@ -5421,6 +5424,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 1925370788}
+--- !u!54 &6036624984709815187
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8477197259440531354}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8837430643871623739
 GameObject:
   m_ObjectHideFlags: 0
