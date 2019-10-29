@@ -78,7 +78,7 @@ public class HealthComponent : MonoBehaviour
         // Death event (?) Ful lösning bara för nu:
         if (gameObject.CompareTag("Enemy"))
         {
-            GetComponent<BasicEnemySM>().Transition<Die_BasicEnemy>();
+            GetComponent<EnemySM>().Transition<Die_BasicEnemy>();
         }
         else if (gameObject.CompareTag("Player"))
         {

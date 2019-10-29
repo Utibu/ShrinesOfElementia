@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BasicEnemySM : StateMachine
+public class EnemySM : StateMachine
 {
     
     //Do not show the designers
