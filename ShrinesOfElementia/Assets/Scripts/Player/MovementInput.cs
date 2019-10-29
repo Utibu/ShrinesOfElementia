@@ -17,6 +17,10 @@ public class MovementInput : MonoBehaviour
     private float allowPlayerRotation;
     private CameraReference camera;
     private CharacterController controller;
+    private float dodgeTimer = 0.0f;
+    [SerializeField] private float dodgeDuration;
+    private bool isDodging;
+
     //[SerializeField] private bool isGrounded;   Old code, didn't work. Keeping just in case.
     private Player player;
     [SerializeField] private float gravity;
@@ -27,9 +31,12 @@ public class MovementInput : MonoBehaviour
 
     [SerializeField] private float defaultSpeed;
     [SerializeField] private float runSpeed;
+    [SerializeField] private float dodgeLength;
 
     public float DefaultSpeed { get { return defaultSpeed; } }
     public float RunSpeed { get { return runSpeed; } }
+    public bool IsDodging { get { return isDodging; } }
+
 
 
     private void Start()
@@ -44,6 +51,27 @@ public class MovementInput : MonoBehaviour
 
     private void Update()
     {
+        if (isDodging)
+        {
+            dodgeTimer += Time.deltaTime;
+            if (dodgeTimer >= dodgeDuration)
+            {
+                isDodging = false;
+                dodgeTimer = 0.0f;
+                moveVector.x = 0.0f;
+                moveVector.z = 0.0f;
+            }
+            else
+            {
+                
+                moveVector = new Vector3(inputX, 0.0f, inputZ);
+                moveVector = transform.TransformDirection(moveVector);
+                moveVector *= dodgeLength;
+            }
+            
+        }
+
+        print(moveVector);
         if (faceCameraDirection)
         {
             animator.SetBool("InCombat", true);
@@ -103,7 +131,7 @@ public class MovementInput : MonoBehaviour
         inputZ = Input.GetAxis("Vertical");
 
         //print("X: " + inputX + "Z: " + inputZ);
-        print(player.Animator.GetFloat("InputX") + " " + player.Animator.GetFloat("InputZ"));
+        //print(player.Animator.GetFloat("InputX") + " " + player.Animator.GetFloat("InputZ"));
 
 
         animator.SetFloat("InputZ", inputZ);
@@ -133,5 +161,16 @@ public class MovementInput : MonoBehaviour
         {
             return false;
         }
+    }
+
+    
+    public void OnDodge()
+    {
+        isDodging = true;
+        player.Animator.SetTrigger("OnDodge");
+        //Vector3 dodgeVector = new Vector3(Input.GetAxis("Horizontal") * dodgeLength, 0.0f, Input.GetAxis("Vertical") * dodgeLength);
+        
+        //controller.Move(dodgeVector * Time.deltaTime);
+        //moveVector += dodgeVector;
     }
 }

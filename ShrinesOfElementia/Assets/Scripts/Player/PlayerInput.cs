@@ -72,9 +72,9 @@ public class PlayerInput : MonoBehaviour
             player.Animator.speed = movementInput.DefaultSpeed;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging)
         {
-            player.Animator.SetTrigger("OnDodge");
+            movementInput.OnDodge();
         }
 
 
