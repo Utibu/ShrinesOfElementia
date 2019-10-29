@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthComponent : MonoBehaviour
 {
@@ -81,7 +82,7 @@ public class HealthComponent : MonoBehaviour
         }
         else if (gameObject.CompareTag("Player"))
         {
-            Debug.Log("YOU DIEDED");
+            SceneManager.LoadScene("DeathScreen");
         }
     }
 }
