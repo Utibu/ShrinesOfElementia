@@ -12,7 +12,7 @@ public class Sword : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             hitPoint = collision.GetContact(0).point;
 
