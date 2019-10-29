@@ -22,6 +22,8 @@ public class PlayerInput : MonoBehaviour
     private float lightAttackTimer = 0.9f; // Temporary fix
     private string[] lightAttacks;
     private int attackIndex = 0;
+    private bool canAttack = true;
+    private float attackSpeed;
 
     private void Start()
     {
@@ -90,13 +92,22 @@ public class PlayerInput : MonoBehaviour
             movementInput.OnDodge();
         }
 
+        if((!player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1")
+            || !player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2")))
+        {
+            print("attack playing");
+        }
 
         // Mouse buttons, 0 - Primary Button, 1 - Secondary Button, 2 - Middle Click
 
         // Left click / Primary button
         if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length)
         {
-            LightAttack();
+            if (!player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1") || !player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2"))
+            {
+                print("attacking");
+                LightAttack();
+            }
         }
 
         if (attackIndex > 0)
