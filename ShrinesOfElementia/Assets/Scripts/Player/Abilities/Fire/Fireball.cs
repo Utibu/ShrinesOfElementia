@@ -27,7 +27,7 @@ public class Fireball : MonoBehaviour
     {
         currentPosition = gameObject.transform.position;
 
-        print(Vector3.Distance(spawnPosition, currentPosition));
+        //print(Vector3.Distance(spawnPosition, currentPosition));
 
         if (Vector3.Distance(spawnPosition, currentPosition) >= maxRange)
         {

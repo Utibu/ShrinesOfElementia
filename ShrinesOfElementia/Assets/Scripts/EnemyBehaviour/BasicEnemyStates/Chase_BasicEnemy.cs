@@ -40,11 +40,16 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
         //State transition checks:
         if (distanceToPlayer > sightRange)
         {
+            owner.Agent.SetDestination(startPosition); // walk back and idle
             owner.Transition<Idle_BasicEnemy>();
         }
         else if (distanceToPlayer <= attackRange)
         {
             owner.Transition<Attack_BasicEnemy>();
+        }
+        else if(owner.Elite && distanceToPlayer <= castRange)
+        {
+            owner.Transition<Cast_EnemyState>();
         }
 
     }
@@ -53,6 +58,5 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
     {
         base.Leave();
         Debug.Log("Leaving chase state");
-        owner.Agent.SetDestination(startPosition);
     }
 }

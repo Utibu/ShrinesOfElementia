@@ -32,7 +32,6 @@ public class Patrol_BasicEnemy : BasicEnemyBaseState
     public override void Update()
     {
         base.Update();
-
         distanceToPatrolPoint = Vector3.Distance(owner.transform.position, owner.PatrolPoints[currentTargetIndex].transform.position);
 
         //state Transistion checks: 
