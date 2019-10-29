@@ -7,22 +7,29 @@ using UnityEngine;
 public class Cast_EnemyState : BasicEnemyBaseState
 {
 
-    [SerializeField]private GameObject spellPrefab;
-    private float castTime = 3.0f;
+    private GameObject spellPrefab;
+    private float castTime;
     private float countdown;
+    private Dictionary<string, System.Action> spells = new Dictionary<string, System.Action>();
+    private string elementType;
 
-    //FIREBALL
+    //FIREBALL variables
     private float fireballSpeed = 13f;
     private Vector3 fireballSpawnLocation;
 
-    //OTHER SPELLS?
-
-
+    
     
 
     public override void Initialize(StateMachine stateMachine)
     {
         base.Initialize(stateMachine);
+
+        //Prepare variables to cast the right spell
+        spells.Add("Fire", castFire);
+        spells.Add("Water", castWater);
+        elementType = owner.GetComponent<EnemySpellManager>().ElementType;
+        spellPrefab = owner.GetComponent<EnemySpellManager>().SpellPrefab;
+        castTime = owner.GetComponent<EnemySpellManager>().CastTime;
     }
 
     public override void Enter()
@@ -35,39 +42,31 @@ public class Cast_EnemyState : BasicEnemyBaseState
         //set timer
         countdown = 0.5f;
 
-
         
-
-        
-        //fetch spell to be cast from statemachine or other component on enemy.
     }
 
     public override void Update()
     {
         base.Update();
-
         //rotate / aim at player
         owner.transform.LookAt(owner.Player.transform.position);
         
-
         //tick down spell channel
         countdown -= Time.deltaTime;
-        Debug.Log("countdown: " + countdown);
 
         //animate enemy, sound
         
         //spellcast:
         if(countdown <= 0)
         {
-            castFire();
+            Debug.Log("Element type: " + elementType);
+            spells[elementType]();
             countdown = castTime;
         }
         else if (distanceToPlayer > castRange * 1.1)
         {
             owner.Transition<Chase_BasicEnemy>();
         }
-
-        
     }
 
     public override void Leave()
@@ -79,11 +78,8 @@ public class Cast_EnemyState : BasicEnemyBaseState
 
     private void castFire()
     {
-        //prepare variables
         //alter spawn location to avoid colliding with its own collider
-        fireballSpawnLocation = owner.transform.position;
-        fireballSpawnLocation += owner.gameObject.transform.forward * 2f;
-        fireballSpawnLocation += Vector3.up.normalized * 1.5f;
+        fireballSpawnLocation = owner.transform.position + Vector3.up.normalized * 1.5f + owner.gameObject.transform.forward * 2f;
         Vector3 oldAim = owner.gameObject.transform.forward * fireballSpeed;
         //cast spell
         Debug.Log("Firespell cast");
