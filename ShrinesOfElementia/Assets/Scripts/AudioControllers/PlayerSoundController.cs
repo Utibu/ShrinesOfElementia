@@ -11,6 +11,9 @@ public class PlayerSoundController : MonoBehaviour
     [SerializeField] private AudioClip swordHitClip;
     [SerializeField] private AudioClip enemyHitClip;
     [SerializeField] private AudioClip footstepClip;
+    [SerializeField] private AudioClip parryClip;
+    [SerializeField] private AudioClip BlockClip;
+    [SerializeField] private AudioClip hurtClip;
 
     private float footstepTimer = 0f;
     private float timeBeforeNextAllowedStep = 0.1f;
@@ -32,6 +35,7 @@ public class PlayerSoundController : MonoBehaviour
         } else
         {
             playerAudioSource.PlayOneShot(enemyHitClip);
+            playerAudioSource.PlayOneShot(hurtClip);
         }
     }
 
@@ -42,6 +46,12 @@ public class PlayerSoundController : MonoBehaviour
             footAudioSource.PlayOneShot(footstepClip);
             footstepTimer = 0f;
         }
+    }
+
+    public void PlayHurtSound()
+    {
+        playerAudioSource.PlayOneShot(hurtClip);
+        Debug.LogWarning("Playing clip");
     }
 
     private void Update()

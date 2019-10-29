@@ -48,7 +48,6 @@ public class HealthComponent : MonoBehaviour
             else if (value < currentHealth)
             {
                 if (IsInvulnerable == true) { }
-
                 else if (value <= 0)
                 {
                     currentHealth = value;
