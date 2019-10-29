@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
 {
-    public bool IsInvulnerable { get; set; }
+    public bool IsInvulnerable { get { return isInvulnerable; } set { isInvulnerable = value; } }
+    [SerializeField] private bool isInvulnerable;
 
     [Header("UI reference")]
     [SerializeField] private GameObject canvas;
