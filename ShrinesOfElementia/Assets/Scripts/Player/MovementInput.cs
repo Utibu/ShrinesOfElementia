@@ -71,10 +71,14 @@ public class MovementInput : MonoBehaviour
             
         }
 
-        print(moveVector);
+
         if (animator.GetBool("InCombat"))
         {
             faceCameraDirection = true;
+        }
+        else if(animator.GetBool("InCombat") == false)
+        {
+            faceCameraDirection = false;
         }
 
         InputMagnitude();
