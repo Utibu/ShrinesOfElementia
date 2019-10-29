@@ -49,8 +49,8 @@ public class SpawnBasic : MonoBehaviour
         //give enemy 2 random patrolpoints
         GameObject point1 = patrolPoints[Random.Range(0, patrolPoints.Length)];
         GameObject point2 = patrolPoints[Random.Range(0, patrolPoints.Length)];
-        g.GetComponent<BasicEnemySM>().SetPatrolPoints(point1, point2);
-        g.GetComponent<BasicEnemySM>().setSpawnArea(this.gameObject);
+        g.GetComponent<EnemySM>().SetPatrolPoints(point1, point2);
+        g.GetComponent<EnemySM>().setSpawnArea(this.gameObject);
         spawnlings.Add(g);
 
     }

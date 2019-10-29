@@ -8,7 +8,7 @@ public class BasicEnemyBaseState : State
 {
     
     //reference to statemachine of enemy this state belongs to.
-    protected BasicEnemySM owner;
+    protected EnemySM owner;
 
     protected float distanceToPlayer;
     protected float attackRange = 1.3f;
@@ -20,7 +20,7 @@ public class BasicEnemyBaseState : State
     //called from baseclass StateMachine in Awake().
     public override void Initialize(StateMachine stateMachine)
     {
-        owner = (BasicEnemySM)stateMachine;  // cast to subtype. 
+        owner = (EnemySM)stateMachine;  // cast to subtype. 
         
     }
 

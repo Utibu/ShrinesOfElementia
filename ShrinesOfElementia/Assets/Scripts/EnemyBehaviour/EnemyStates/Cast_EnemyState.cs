@@ -25,8 +25,8 @@ public class Cast_EnemyState : BasicEnemyBaseState
         base.Initialize(stateMachine);
 
         //Prepare variables to cast the right spell
-        spells.Add("Fire", castFire);
-        spells.Add("Water", castWater);
+        spells.Add("Fire", CastFire);
+        spells.Add("Water", CastWater);
         elementType = owner.GetComponent<EnemySpellManager>().ElementType;
         spellPrefab = owner.GetComponent<EnemySpellManager>().SpellPrefab;
         castTime = owner.GetComponent<EnemySpellManager>().CastTime;
@@ -76,7 +76,7 @@ public class Cast_EnemyState : BasicEnemyBaseState
     }
 
 
-    private void castFire()
+    private void CastFire()
     {
         //alter spawn location to avoid colliding with its own collider
         fireballSpawnLocation = owner.transform.position + Vector3.up.normalized * 1.5f + owner.gameObject.transform.forward * 2f;
@@ -89,7 +89,7 @@ public class Cast_EnemyState : BasicEnemyBaseState
 
 
     // could to separeate states for each but there would be a lot of kodupprepning
-    private void castWater()
+    private void CastWater()
     {
         Debug.Log("Waterspell cast");
     }
