@@ -12,6 +12,9 @@ public class PlayerSoundController : MonoBehaviour
     [SerializeField] private AudioClip enemyHitClip;
     [SerializeField] private AudioClip footstepClip;
 
+    private float footstepTimer = 0f;
+    private float timeBeforeNextAllowedStep = 0.1f;
+
     public void Start()
     {
         EventSystem.Current.RegisterListener<DamageEvent>(PlayHitClip);
@@ -34,7 +37,16 @@ public class PlayerSoundController : MonoBehaviour
 
     public void PlayFootstep()
     {
-        footAudioSource.PlayOneShot(footstepClip);
+        if(footstepTimer >= timeBeforeNextAllowedStep)
+        {
+            footAudioSource.PlayOneShot(footstepClip);
+            footstepTimer = 0f;
+        }
+    }
+
+    private void Update()
+    {
+        footstepTimer += Time.deltaTime;
     }
 
 }
