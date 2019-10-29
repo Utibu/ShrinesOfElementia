@@ -64,12 +64,14 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            player.Animator.speed = movementInput.RunSpeed;
+            player.Animator.SetBool("InCombat", false);
+            player.Animator.SetTrigger("IsSprinting");
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint"))
         {
-            player.Animator.speed = movementInput.DefaultSpeed;
+            print("sprint key up");
+            player.Animator.SetTrigger("ToNeutral");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking && player.Animator.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Entire Body.Combat"))
@@ -111,7 +113,7 @@ public class PlayerInput : MonoBehaviour
 
         if (isBlocking == true) // Start blocking
         {
-            movementInput.FaceCameraDirection = true;
+            player.Animator.SetBool("InCombat", true);
 
 
             if (blockTrigger == true)   // Makes it so that the trigger is only called on once per "action"
@@ -125,11 +127,16 @@ public class PlayerInput : MonoBehaviour
         {
             blockTrigger = false;
         }
+
+        if (Player.Instance.Animator.GetBool("InCombat"))
+        {
+
+        }
     }
 
     private void LightAttack()
     {
-        movementInput.FaceCameraDirection = true;
+        player.Animator.SetBool("InCombat", true);
         // Temporary fix to stop animations from repeating
 
         player.Animator.SetTrigger(lightAttacks[attackIndex]);

@@ -71,10 +71,14 @@ public class MovementInput : MonoBehaviour
             
         }
 
-        print(moveVector);
-        if (faceCameraDirection)
+
+        if (animator.GetBool("InCombat"))
         {
-            animator.SetBool("InCombat", true);
+            faceCameraDirection = true;
+        }
+        else if(animator.GetBool("InCombat") == false)
+        {
+            faceCameraDirection = false;
         }
 
         InputMagnitude();
@@ -168,9 +172,5 @@ public class MovementInput : MonoBehaviour
     {
         isDodging = true;
         player.Animator.SetTrigger("OnDodge");
-        //Vector3 dodgeVector = new Vector3(Input.GetAxis("Horizontal") * dodgeLength, 0.0f, Input.GetAxis("Vertical") * dodgeLength);
-        
-        //controller.Move(dodgeVector * Time.deltaTime);
-        //moveVector += dodgeVector;
     }
 }

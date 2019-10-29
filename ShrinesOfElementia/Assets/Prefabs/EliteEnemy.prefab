@@ -5028,6 +5028,7 @@ GameObject:
   - component: {fileID: 3870711360265897862}
   - component: {fileID: 3870711360265897881}
   - component: {fileID: 3870711358714111010}
+  - component: {fileID: 6774878239672553485}
   m_Layer: 0
   m_Name: EliteEnemy
   m_TagString: Enemy
@@ -5130,6 +5131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab43eef181cda0540a6dabf238a3fa50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInvulnerable: 0
   canvas: {fileID: 8442513352543134790}
   maxHealth: 50
 --- !u!136 &3624915235859059322
@@ -5268,6 +5270,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 3870711359794623538}
+--- !u!114 &6774878239672553485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4616904882408669196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beaa5de83763ce940884b9c0d78134db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementType: Fire
+  spellPrefab: {fileID: 1555590810750732474, guid: 280d48f0732f96a4f9acd55900fa17d2,
+    type: 3}
+  castTime: 4
+  spellSpeedModifier: 1
 --- !u!1 &5697998147381153197
 GameObject:
   m_ObjectHideFlags: 0
