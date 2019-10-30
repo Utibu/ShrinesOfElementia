@@ -11,12 +11,15 @@ public class PlayerInput : MonoBehaviour
 
     [Header("Temporary Fireball attributes")]
     [SerializeField] private GameObject fireballPrefab;
-    [SerializeField] private float fireballSpeed;
+    [SerializeField] private float fireballSpeed, fireballCooldown;
     [SerializeField] private GameObject fireballSpawnLocation;
+    private float fireballTimer;
 
     [Header("Temporary Geyser attributes")]
     [SerializeField] private GameObject geyserPrefab;
+    [SerializeField] private float geyserCooldown;
     [SerializeField] private GameObject geyserSpawnLocation;
+    private float geyserTimer;
 
     private float resetTimer = 0;
     private float lightAttackTimer = 0.9f; // Temporary fix
@@ -30,6 +33,9 @@ public class PlayerInput : MonoBehaviour
         player = Player.Instance;
         movementInput = player.GetComponent<MovementInput>();
         lightAttacks = new string[] { "LightAttack1", "LightAttack2" };
+
+        fireballTimer = 0f;
+        geyserTimer = 0f;
     }
 
     private void Update()
@@ -48,18 +54,26 @@ public class PlayerInput : MonoBehaviour
 
 
         // Fireball
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && fireballTimer <= 0f)
         {
             GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation.transform.position, Quaternion.identity);
             fireball.GetComponent<Rigidbody>().AddForce(transform.forward * fireballSpeed, ForceMode.VelocityChange);
+
+            fireballTimer = fireballCooldown;
         }
 
+        fireballTimer -= Time.deltaTime;
+
         // Geyser
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && geyserTimer <= 0f)
         {
             /*GameObject geyser = */
             Instantiate(geyserPrefab, geyserSpawnLocation.transform.position, Quaternion.identity);
+
+            geyserTimer = geyserCooldown;
         }
+
+        geyserTimer -= Time.deltaTime;
 
         // Temporary water walking. Layer 9 is the player, and layer 4 is water
 
