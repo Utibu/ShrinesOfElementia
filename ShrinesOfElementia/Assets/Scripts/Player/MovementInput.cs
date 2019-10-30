@@ -37,6 +37,8 @@ public class MovementInput : MonoBehaviour
     public float RunSpeed { get { return runSpeed; } }
     public bool IsDodging { get { return isDodging; } }
 
+    private bool breakUpdate;
+
 
 
     private void Start()
@@ -47,10 +49,18 @@ public class MovementInput : MonoBehaviour
         controller = GetComponent<CharacterController>();
         //Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        breakUpdate = false;
     }
 
     private void Update()
     {
+        if(breakUpdate == true)
+        {
+            breakUpdate = false;
+            return;
+        }
+
         if (isDodging)
         {
             dodgeTimer += Time.deltaTime;
@@ -172,5 +182,12 @@ public class MovementInput : MonoBehaviour
     {
         isDodging = true;
         player.Animator.SetTrigger("OnDodge");
+    }
+
+    public void MoveTo(Vector3 position)
+    {
+        breakUpdate = true;
+        transform.position = position;
+        Debug.Break();
     }
 }

@@ -31,7 +31,7 @@ public class EnemyAttack : MonoBehaviour
         else if (collision.gameObject.CompareTag("Player"))
         {
             attackCollider.gameObject.SetActive(false);
-            print("Player hit");
+            //print("Player hit");
             DamageEvent damageEvent = new DamageEvent(gameObject.name + " did " + damage + " to player", (int)damage, gameObject, collision.gameObject);
             EventSystem.Current.FireEvent(damageEvent);
         }
