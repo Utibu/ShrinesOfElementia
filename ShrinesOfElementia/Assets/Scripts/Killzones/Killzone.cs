@@ -32,11 +32,11 @@ public class Killzone : MonoBehaviour
 
         if (targetGameObject.CompareTag("Player"))
         {
-            Player.Instance.MovementInput.MoveTo(transform.TransformPoint(respawnLocation.transform.position));
+            Player.Instance.MovementInput.MoveTo(respawnLocation.transform.position);
         }
         else
         {
-            targetGameObject.transform.position = respawnLocation.transform.position;
+            //targetGameObject.transform.position = respawnLocation.transform.position;
         }
 
         print("Transform after: " + targetGameObject.transform.position);

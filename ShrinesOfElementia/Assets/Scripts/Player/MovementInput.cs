@@ -186,7 +186,8 @@ public class MovementInput : MonoBehaviour
     public void MoveTo(Vector3 position)
     {
         breakUpdate = true;
-        transform.position = position;
-        Debug.Break();
+        controller.enabled = false;
+        controller.transform.position = position;
+        controller.enabled = true;
     }
 }
