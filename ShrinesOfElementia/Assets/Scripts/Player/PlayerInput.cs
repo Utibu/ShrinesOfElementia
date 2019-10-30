@@ -6,9 +6,11 @@ public class PlayerInput : MonoBehaviour
 {
     private Player player;
     private MovementInput movementInput;
+    private AbilityManager abilityManager;
 
     private bool blockTrigger = false, isBlocking = false;
 
+    /*     Moved to AbilityManager
     [Header("Temporary Fireball attributes")]
     [SerializeField] private GameObject fireballPrefab;
     [SerializeField] private float fireballSpeed, fireballCooldown;
@@ -20,6 +22,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float geyserCooldown;
     [SerializeField] private GameObject geyserSpawnLocation;
     private float geyserTimer;
+    */
 
     private float resetTimer = 0;
     private float lightAttackTimer = 0.9f; // Temporary fix
@@ -32,10 +35,11 @@ public class PlayerInput : MonoBehaviour
     {
         player = Player.Instance;
         movementInput = player.GetComponent<MovementInput>();
+        abilityManager = GetComponent<AbilityManager>();
         lightAttacks = new string[] { "LightAttack1", "LightAttack2" };
 
-        fireballTimer = 0f;
-        geyserTimer = 0f;
+        //fireballTimer = 0f;
+        //geyserTimer = 0f;
     }
 
     private void Update()
@@ -56,26 +60,32 @@ public class PlayerInput : MonoBehaviour
 
 
         // Fireball
-        if (Input.GetKeyDown(KeyCode.F) && fireballTimer <= 0f)
+        if (Input.GetKeyDown(KeyCode.F)) //  && fireballTimer <= 0f
         {
+            abilityManager.CastFireBall();
+
+            /*
             GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation.transform.position, Quaternion.identity);
             fireball.GetComponent<Rigidbody>().AddForce(transform.forward * fireballSpeed, ForceMode.VelocityChange);
-
             fireballTimer = fireballCooldown;
+            */
         }
 
-        fireballTimer -= Time.deltaTime;
+        //fireballTimer -= Time.deltaTime;
 
         // Geyser
-        if (Input.GetKeyDown(KeyCode.R) && geyserTimer <= 0f)
+        if (Input.GetKeyDown(KeyCode.R)) // && geyserTimer <= 0f
         {
+            abilityManager.CastGeyser();
             /*GameObject geyser = */
+            /*
             Instantiate(geyserPrefab, geyserSpawnLocation.transform.position, Quaternion.identity);
 
             geyserTimer = geyserCooldown;
+            */
         }
 
-        geyserTimer -= Time.deltaTime;
+        //geyserTimer -= Time.deltaTime;
 
         // Temporary water walking. Layer 9 is the player, and layer 4 is water
 
@@ -103,7 +113,7 @@ public class PlayerInput : MonoBehaviour
             player.Animator.SetTrigger("ToNeutral");
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking && player.Animator.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Entire Body.Combat"))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking) //&& player.Animator.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Entire Body.Combat"
         {
             movementInput.OnDodge();
         }
@@ -111,7 +121,6 @@ public class PlayerInput : MonoBehaviour
         if((!player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1")
             || !player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2")))
         {
-            //print("attack playing");
         }
 
         // Mouse buttons, 0 - Primary Button, 1 - Secondary Button, 2 - Middle Click

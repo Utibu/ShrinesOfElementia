@@ -7,7 +7,7 @@ public class AbilityManager : MonoBehaviour
     [Header("Temporary Fireball attributes")]
     [SerializeField] private GameObject fireballPrefab;
     [SerializeField] private float fireballSpeed, fireballCooldown;
-    [SerializeField] private GameObject fireballSpawnLocation;
+    private Vector3 fireballSpawnLocation;
     private float fireballTimer;
 
     [Header("Temporary Geyser attributes")]
@@ -31,34 +31,68 @@ public class AbilityManager : MonoBehaviour
 
     private void Update()
     {
-        
+        fireballTimer -= Time.deltaTime;
+        geyserTimer -= Time.deltaTime;
     }
 
     public void CastFireBall()
     {
-
+        if (hasFire && fireballTimer <= 0f)
+        {
+            fireballSpawnLocation = gameObject.transform.position + Vector3.up.normalized * 1.5f + gameObject.transform.forward * 2f; ;
+            GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation, Quaternion.identity);
+            fireball.GetComponent<Rigidbody>().AddForce(transform.forward * fireballSpeed, ForceMode.VelocityChange);
+            fireballTimer = fireballCooldown;
+        }
     }
 
     public void CastGeyser()
     {
+        if (hasWater && geyserTimer <= 0f)
+        {
+            Instantiate(geyserPrefab, geyserSpawnLocation.transform.position, Quaternion.identity);
 
+            geyserTimer = geyserCooldown;
+        }
     }
+    private void EnableFireAbilities()
+    {
+        hasFire = true;
+    }
+
+    private void EnableWaterAbilities()
+    {
+        hasWater = true;
+        Physics.IgnoreLayerCollision(9, 4, false);
+        hasFire = true; // just for testing!
+    }
+
+    private void EnableEarthAbilities()
+    {
+        hasEarth = true;
+    }
+
+    private void EnableWindAbilities()
+    {
+        hasWind = true;
+    }
+
 
     private void unlockElement(ShrineEvent eve)
     {
         switch (eve.Element)
         {
             case "Fire":
-                hasFire = true;
+                EnableFireAbilities();
                 break;
             case "Water":
-                hasWater = true;
+                EnableWaterAbilities();
                 break;
             case "Earth":
-                hasEarth = true;
+                EnableEarthAbilities();
                 break;
             case "Wind":
-                hasWind = true;
+                EnableWindAbilities();
                 break;
         }
     }
