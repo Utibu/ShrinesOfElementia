@@ -25,10 +25,10 @@ public class PlayerInput : MonoBehaviour
     */
 
     private float resetTimer = 0;
-    private float lightAttackTimer = 0.9f; // Temporary fix
+    [SerializeField] private float lightAttackTimer; // Temporary fix
     private string[] lightAttacks;
     private int attackIndex = 0;
-    private bool canAttack = true;
+    private bool isAttacking;
     private float attackSpeed;
 
     private void Start()
@@ -37,6 +37,7 @@ public class PlayerInput : MonoBehaviour
         movementInput = player.GetComponent<MovementInput>();
         abilityManager = GetComponent<AbilityManager>();
         lightAttacks = new string[] { "LightAttack1", "LightAttack2" };
+        isAttacking = false;
 
         //fireballTimer = 0f;
         //geyserTimer = 0f;
@@ -44,7 +45,6 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        print(gameObject.transform.position);
 
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -118,21 +118,28 @@ public class PlayerInput : MonoBehaviour
             movementInput.OnDodge();
         }
 
-        if((!player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1")
-            || !player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2")))
+        if((player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1")
+            || player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2")))
         {
+            //isAttacking = true;
+        }
+        else
+        {
+            //isAttacking = false;
         }
 
         // Mouse buttons, 0 - Primary Button, 1 - Secondary Button, 2 - Middle Click
 
         // Left click / Primary button
-        if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length)
+        if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length && !isBlocking)
         {
-            if (!player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1") || !player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2"))
+            if(!player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1")
+            || !player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2"))
             {
-                print("attacking");
                 LightAttack();
+                print("attack input");
             }
+            
         }
 
         if (attackIndex > 0)
@@ -140,6 +147,7 @@ public class PlayerInput : MonoBehaviour
             resetTimer += Time.deltaTime;
             if (resetTimer > lightAttackTimer)
             {
+                print("resetting attack");
                 player.Animator.SetTrigger("ResetAttack");
                 attackIndex = 0;
             }
@@ -189,6 +197,8 @@ public class PlayerInput : MonoBehaviour
         player.Animator.SetTrigger(lightAttacks[attackIndex]);
         attackIndex = (attackIndex + 1) % lightAttacks.Length;
         resetTimer = 0f;
+
+        //print(attackIndex);
 
         //print(resetTimer + "     " + lightAttackTimer);
 

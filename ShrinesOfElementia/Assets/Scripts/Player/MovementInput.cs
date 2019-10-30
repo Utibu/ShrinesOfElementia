@@ -75,6 +75,7 @@ public class MovementInput : MonoBehaviour
             {
                 moveVector = new Vector3(inputX, 0.0f, inputZ);
                 moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
+                moveVector.y = 0.0f;
                 moveVector *= dodgeLength;
             }
             
@@ -179,8 +180,11 @@ public class MovementInput : MonoBehaviour
     
     public void OnDodge()
     {
-        isDodging = true;
-        player.Animator.SetTrigger("OnDodge");
+        if (IsGrounded())
+        {
+            isDodging = true;
+            player.Animator.SetTrigger("OnDodge");
+        }
     }
 
     public void MoveTo(Vector3 position)
