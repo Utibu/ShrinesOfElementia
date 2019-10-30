@@ -63,9 +63,8 @@ public class MovementInput : MonoBehaviour
             }
             else
             {
-                
                 moveVector = new Vector3(inputX, 0.0f, inputZ);
-                moveVector = transform.TransformDirection(moveVector);
+                moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
                 moveVector *= dodgeLength;
             }
             
