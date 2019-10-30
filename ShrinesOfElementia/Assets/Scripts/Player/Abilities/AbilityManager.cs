@@ -1,19 +1,21 @@
-﻿using System.Collections;
+﻿// Author: Joakim Ljung, Co-author Sofia Kauko
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
 {
-    [Header("Temporary Fireball attributes")]
+    [Header("Fireball attributes")]
     [SerializeField] private GameObject fireballPrefab;
     [SerializeField] private float fireballSpeed, fireballCooldown;
     private Vector3 fireballSpawnLocation;
     private float fireballTimer;
 
-    [Header("Temporary Geyser attributes")]
+    [Header("Geyser attributes")]
     [SerializeField] private GameObject geyserPrefab;
     [SerializeField] private float geyserCooldown;
-    [SerializeField] private GameObject geyserSpawnLocation;
+    [SerializeField] private GameObject geyserSpawnLocation; // make this simpler? gsl = player.position + forward * 2f eller ngt baserat på kameran
+    [SerializeField]private float moistRange = 6f;
     private float geyserTimer;
 
     private bool hasFire;
@@ -24,6 +26,8 @@ public class AbilityManager : MonoBehaviour
 
     private void Start()
     {
+        hasWater = true; // REMOVE THIS
+
         fireballTimer = 0.0f;
         geyserTimer = 0.0f;
         EventSystem.Current.RegisterListener<ShrineEvent>(unlockElement);
@@ -51,8 +55,8 @@ public class AbilityManager : MonoBehaviour
         if (hasWater && geyserTimer <= 0f)
         {
             Instantiate(geyserPrefab, geyserSpawnLocation.transform.position, Quaternion.identity);
-
             geyserTimer = geyserCooldown;
+            EventSystem.Current.FireEvent(new GeyserCastEvent(geyserSpawnLocation.transform.position, moistRange)); // change 5f to geyser range later.
         }
     }
     private void EnableFireAbilities()

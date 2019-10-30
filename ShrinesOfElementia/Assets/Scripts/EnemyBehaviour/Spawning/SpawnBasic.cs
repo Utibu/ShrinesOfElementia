@@ -26,6 +26,12 @@ public class SpawnBasic : MonoBehaviour
         currentSpawnCount = 0;
         countdown = spawnRate;
 
+        //generate start amount
+        for (int i = 0; i<= spawnLimit; i++)
+        {
+            spawnNew();
+        }
+
     }
 
     // Update is called once per frame

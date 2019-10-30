@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 19800000}
   - component: {fileID: 19900000}
   - component: {fileID: 6699439800466413548}
+  - component: {fileID: 2913436755396911557}
   m_Layer: 0
   m_Name: FireWall
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: -0.5447862, y: -0.044764113, z: -0.020876322, w: 0.8371191}
   m_LocalPosition: {x: 93.71861, y: 10.888561, z: 21.472126}
-  m_LocalScale: {x: 1.5488002, y: 1, z: 1}
+  m_LocalScale: {x: 2.675821, y: 2.6758215, z: 2.675821}
   m_Children:
   - {fileID: 400002}
   m_Father: {fileID: 0}
@@ -4878,6 +4879,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2913436755396911557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b34fd252671274294f2f447fefd2bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReviveTime: 3
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
