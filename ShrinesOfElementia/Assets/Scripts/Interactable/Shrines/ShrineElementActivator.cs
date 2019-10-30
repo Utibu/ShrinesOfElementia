@@ -23,7 +23,6 @@ public class ShrineElementActivator : MonoBehaviour
                 break;
             case "Wind":
                 break;
-
         }
     }
 }
