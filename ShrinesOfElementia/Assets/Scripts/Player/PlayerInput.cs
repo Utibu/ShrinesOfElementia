@@ -44,6 +44,8 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
+        print(gameObject.transform.position);
+
         if (Input.GetKeyDown(KeyCode.K))
         {
             // Deals 10 damage to the player
@@ -111,7 +113,7 @@ public class PlayerInput : MonoBehaviour
             player.Animator.SetTrigger("ToNeutral");
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking && player.Animator.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Entire Body.Combat"))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking) //&& player.Animator.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Entire Body.Combat"
         {
             movementInput.OnDodge();
         }
@@ -119,7 +121,6 @@ public class PlayerInput : MonoBehaviour
         if((!player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1")
             || !player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2")))
         {
-
         }
 
         // Mouse buttons, 0 - Primary Button, 1 - Secondary Button, 2 - Middle Click
