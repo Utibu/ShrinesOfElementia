@@ -38,7 +38,7 @@ public class Extinguishable : MonoBehaviour
     {
        
 
-        if (Vector3.Distance(this.transform.position, ev.affectedPosition) <= ev.effectRange)
+        if (gameObject != null && Vector3.Distance(this.transform.position, ev.affectedPosition) <= ev.effectRange)
         {
             Debug.Log("FIRE IS EXTINGUISHHDD");
             timer = ReviveTime;
@@ -85,6 +85,11 @@ public class Extinguishable : MonoBehaviour
         Debug.Log("enemy fireball cast is now disabled");
         GetComponent<EnemySM>().Elite = false;
         GetComponent<EnemySM>().Transition<Chase_BasicEnemy>();
+    }
+
+    public void OnDestroy()
+    {
+        EventSystem.Current.UnregisterListener<GeyserCastEvent>(Extinguish);
     }
 
 }

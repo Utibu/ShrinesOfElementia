@@ -11,7 +11,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void Start()
     {
-        damage = 20;
+        damage = 10;
         attackCollider = GetComponent<Collider>();
         animator = GetComponentInParent<Animator>();
         print(attackCollider.gameObject.name);

@@ -22,7 +22,7 @@ public class SpawnBasic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EventSystem.Current.RegisterListener<ShrineEvent>(increaseEnemyActivity);
+        //EventSystem.Current.RegisterListener<ShrineEvent>(increaseEnemyActivity);
         EventSystem.Current.RegisterListener<EnemyDeathEvent>(OnEnemyDeath);
         currentSpawnCount = 0;
         countdown = spawnRate;
@@ -62,12 +62,13 @@ public class SpawnBasic : MonoBehaviour
 
     }
 
-
+    /*
     private void increaseEnemyActivity(ShrineEvent ev)
     {
         spawnLimit *= 2;
         spawnRate /= 2;
     }
+    */
 
     private void OnEnemyDeath(EnemyDeathEvent ev)
     {
