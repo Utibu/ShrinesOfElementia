@@ -9,15 +9,16 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
 {
 
     [SerializeField] private float basicAttackDamage = 20;
-    private float attackSpeed = 2.1f;
+    [SerializeField]private float attackSpeed = 2.1f;
     private float cooldown;
-    private float dodgeCooldown; // do some dodge cooldown timer too?
+    private float dodgeCooldown; // do some dodge cooldown timer too? a 10% chanse of dodging each PlayerDamage Event. (add forward force/vector of damaging obj to event) 
 
     
 
     public override void Initialize(StateMachine stateMachine)
     {
         base.Initialize(stateMachine);
+        //EventSystem.Current.RegisterListener<DamageEvent>(OnAttacked);
     }
 
 
@@ -25,7 +26,7 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
     {
         base.Enter();
         Debug.Log("Entering attack state.");
-        cooldown = attackSpeed;
+        cooldown = 0;
         Debug.Log("cooldown: " + cooldown);
         owner.Agent.SetDestination(owner.transform.position);
         
@@ -44,12 +45,7 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         cooldown -= Time.deltaTime;
 
 
-        /*
-        // rotate enemy towards target
-        Vector3 direction = (owner.Player.transform.position - owner.transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
-        owner.transform.rotation = Quaternion.Slerp(owner.transform.rotation, lookRotation, Time.deltaTime * owner.Agent.angularSpeed);
-        */
+        
 
         // state transition checks
         if (distanceToPlayer  > attackRange * 2f)
@@ -70,13 +66,30 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
     {
         
         Debug.Log("Attacking!!");
-        cooldown = attackSpeed;
-        // start strike animation, check hit, send damage event if hit. (in other script on GameObject that hit player or other creature )
+        // rotate enemy towards target
+        owner.Agent.updateRotation = true;
+        owner.transform.LookAt(owner.Player.transform);
 
+        cooldown = attackSpeed;
 
         owner.EnemyAttack.gameObject.SetActive(true);
         owner.Animator.SetTrigger("ShouldAttack");
+    }
+
+    
+    /*
+    private void OnAttacked(DamageEvent ev)
+    {
+        if (ev.TargetGameObject.Equals(owner.gameObject))
+        {
+            //pushback when attacked(damaged)
+            Debug.Log("get pushed back");
+            Vector3 newPosition = owner.transform.position += ev.InstigatorGameObject.transform.forward * 4f;
+            owner.Agent.updateRotation = false;
+            owner.Agent.SetDestination(newPosition);
+        }
         
     }
+    */
 
 }
