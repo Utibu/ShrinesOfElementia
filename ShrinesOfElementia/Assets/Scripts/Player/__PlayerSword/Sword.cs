@@ -12,7 +12,9 @@ public class Sword : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        print("hit");
+
+        if (collision.gameObject.CompareTag("Enemy")) //Should fix later. Attacks should be normalized
         {
             hitPoint = collision.GetContact(0).point;
 

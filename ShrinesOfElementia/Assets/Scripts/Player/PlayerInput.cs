@@ -101,13 +101,13 @@ public class PlayerInput : MonoBehaviour
             Physics.IgnoreLayerCollision(9, 4, true);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")) 
         {
             player.Animator.SetBool("InCombat", false);
             player.Animator.SetTrigger("IsSprinting");
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint"))
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             print("sprint key up");
             player.Animator.SetTrigger("ToNeutral");
