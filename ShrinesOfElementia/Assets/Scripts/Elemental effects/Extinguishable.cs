@@ -27,15 +27,9 @@ public class Extinguishable : MonoBehaviour
         if (extinguished)
         {
             timer -= Time.deltaTime;
-
             if (timer <= 0)
             {
-                extinguished = false;
-                timer = ReviveTime;
-                foreach (ParticleSystem fire in GetComponentsInChildren<ParticleSystem>())
-                {
-                    fire.Play();
-                }
+                reviveFire();
             }
         }
     }
@@ -54,6 +48,12 @@ public class Extinguishable : MonoBehaviour
                 fire.Stop();
             }
 
+            //if its a firewall, disable collider
+            if (gameObject.CompareTag("Firewall"))
+            {
+                GetComponent<Collider>().enabled = false;
+            }
+
             //if its an enemy, disable casting!
             if (gameObject.CompareTag("Enemy"))
             {
@@ -61,6 +61,23 @@ public class Extinguishable : MonoBehaviour
             }
         }
         
+    }
+
+
+    private void reviveFire()
+    {
+        extinguished = false;
+        timer = ReviveTime;
+        foreach (ParticleSystem fire in GetComponentsInChildren<ParticleSystem>())
+        {
+            fire.Play();
+        }
+
+        //if its a firewall, enable collider
+        if (gameObject.CompareTag("Firewall"))
+        {
+            GetComponent<Collider>().enabled = true;
+        }
     }
 
     private void disableCast()
