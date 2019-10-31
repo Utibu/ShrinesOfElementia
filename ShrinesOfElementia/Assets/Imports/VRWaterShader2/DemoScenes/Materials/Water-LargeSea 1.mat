@@ -4,10 +4,11 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Water-LargeSea 1
-  m_Shader: {fileID: 4800000, guid: 58f047517fd799149bfc42cb67a78e41, type: 3}
+  m_Shader: {fileID: 4800000, guid: ad1c6387792c537479ad4c6ba27cd238, type: 3}
   m_ShaderKeywords: BLEND_COLOR_ENABLED BLEND_ENABLED SECOND_ENABLED _BLENDENABLETHIS_ON
     _CULL_BACK _SECONDWAVEENABLETHIS_ON
   m_LightmapFlags: 4
@@ -31,7 +32,19 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BumpMapDetail:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Cube:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _CubemapCustomCubemap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Detail:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -83,7 +96,27 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _OverallGlossMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OverallMetallicMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OverallNormalStrengthMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OverallWaveHeightMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SSRefractionStrengthMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -113,6 +146,7 @@ Material:
     - _BlendEnableThis: 1
     - _BlendIsAdditive: 0
     - _BumpScale: 1
+    - _ContrastMt: 1
     - _CubemapFresnel: 10.4
     - _CubemapGlossiness: 1
     - _CubemapStrength: 0.216
@@ -129,14 +163,25 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _IntensityMicrowave: 0.5
+    - _IntensityMt: 1
+    - _IntensityNm: 1
+    - _IntensityRef: 0.15
+    - _MainDetailFlow: 1
+    - _MainDetailScale: 1
     - _Metallic: 0
+    - _MicrowaveScale: 1
     - _Mode: 0
+    - _NormalmapDetailScale: 0.5
+    - _NormalmapDetailSpeed: 0.5
     - _OcclusionStrength: 1
     - _OverallGloss: 0.371
     - _OverallMetallic: 1
     - _OverallNormalStrength: 0.225
     - _OverallWaveHeight: 2.93
     - _Parallax: 0.02
+    - _ParallaxScale: 1
+    - _ReverseFlow: 1
     - _SSRefractionDecaydistance: 10.4
     - _SSRefractionRefractionFresnel: 3.02
     - _SSRefractionStrength: 0.158
@@ -145,7 +190,9 @@ Material:
     - _SecondWaveNormalStrength: 0.5
     - _ShadowOpacityRatio: 1
     - _ShadowWaveFactor: 5
+    - _Shininess: 0.15
     - _SmoothnessTextureChannel: 0
+    - _SoftFactor: 0.5
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _TessellationFarCap: 500
@@ -167,7 +214,9 @@ Material:
     - _FirstWaveUandVspeedZWNotused: {r: 0, g: 0, b: 0, a: 0}
     - _FourthWaveUandVspeed: {r: -0.05, g: -0.075, b: 0, a: 0}
     - _FourthWaveUandVspeedZWNotused: {r: -0.05, g: -0.075, b: 0, a: 0}
+    - _ReflectColor: {r: 0.28, g: 0.29, b: 0.25, a: 0.5}
     - _SecondWaveUandVspeed: {r: -0.0032, g: -0.00152, b: 0, a: 0}
     - _SecondWaveUandVspeedZWNotused: {r: -0.05, g: -0.075, b: 0, a: 0}
+    - _SpecColor: {r: 0.086, g: 0.086, b: 0.086, a: 1}
     - _ThirdWaveUandVspeed: {r: -0.00445, g: -0.00755, b: 0, a: 0}
     - _ThirdWaveUandVspeedZWNotused: {r: -0.05, g: -0.075, b: 0, a: 0}
