@@ -8,6 +8,7 @@ public class SpawnBasic : MonoBehaviour
 {
 
     [SerializeField]private GameObject spawnling;
+    [SerializeField] private GameObject elite;
     [SerializeField]private int spawnLimit;
     [SerializeField]private float spawnRate;
     [SerializeField]private GameObject[] patrolPoints;
