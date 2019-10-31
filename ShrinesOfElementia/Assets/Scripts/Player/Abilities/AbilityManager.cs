@@ -18,16 +18,15 @@ public class AbilityManager : MonoBehaviour
     [SerializeField]private float moistRange = 6f;
     private float geyserTimer;
 
-    private bool hasFire;
-    private bool hasWater;
-    private bool hasEarth;
-    private bool hasWind;
+    [Header("Elemental Abilities (For Testing)")]
+    [SerializeField] private bool hasFire;
+    [SerializeField] private bool hasWater;
+    [SerializeField] private bool hasEarth;
+    [SerializeField] private bool hasWind;
 
 
     private void Start()
     {
-        hasWater = true; // REMOVE THIS
-
         fireballTimer = 0.0f;
         geyserTimer = 0.0f;
         EventSystem.Current.RegisterListener<ShrineEvent>(unlockElement);
@@ -56,7 +55,7 @@ public class AbilityManager : MonoBehaviour
         {
             Instantiate(geyserPrefab, geyserSpawnLocation.transform.position, Quaternion.identity);
             geyserTimer = geyserCooldown;
-            EventSystem.Current.FireEvent(new GeyserCastEvent(geyserSpawnLocation.transform.position, moistRange)); // change 5f to geyser range later.
+            EventSystem.Current.FireEvent(new GeyserCastEvent(geyserSpawnLocation.transform.position, moistRange)); 
         }
     }
     private void EnableFireAbilities()
@@ -68,7 +67,6 @@ public class AbilityManager : MonoBehaviour
     {
         hasWater = true;
         Physics.IgnoreLayerCollision(9, 4, false);
-        hasFire = true; // just for testing!
     }
 
     private void EnableEarthAbilities()
