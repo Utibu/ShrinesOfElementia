@@ -140,7 +140,7 @@ public class MovementInput : MonoBehaviour
         forward.Normalize();
         right.Normalize();
         
-        if (faceCameraDirection)
+        if (animator.GetBool("InCombat"))
         {
             transform.rotation = Quaternion.LookRotation(forward, Vector3.zero);
 
@@ -171,7 +171,7 @@ public class MovementInput : MonoBehaviour
 
         animator.SetFloat("InputMagnitude", speed, 0.0f, Time.deltaTime);
         
-        if(speed > allowPlayerRotation || faceCameraDirection)
+        if(speed > allowPlayerRotation || animator.GetBool("InCombat"))
         {
             PlayerMoveAndRotation();
         }
