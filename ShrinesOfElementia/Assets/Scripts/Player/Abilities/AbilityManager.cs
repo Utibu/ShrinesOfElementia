@@ -30,6 +30,7 @@ public class AbilityManager : MonoBehaviour
         fireballTimer = 0.0f;
         geyserTimer = 0.0f;
         EventSystem.Current.RegisterListener<ShrineEvent>(unlockElement);
+        EventSystem.Current.FireEvent(new ShrineEvent("Fire unlocked", "Fire"));
     }
 
     private void Update()

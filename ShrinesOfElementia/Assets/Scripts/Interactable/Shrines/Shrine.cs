@@ -8,6 +8,7 @@ public class Shrine : Interactable
     private string element;
     [SerializeField] private Canvas interactCanvas;
     [SerializeField] private Animator shrineAnimationController;
+    [SerializeField] private GameObject beacon;
     [SerializeField] private RectTransform shrinePanel;
     private enum SHRINETYPES
     {
@@ -62,6 +63,7 @@ public class Shrine : Interactable
         shrineAnimationController.SetTrigger("IsTaken");
         shrinePanel.gameObject.SetActive(true);
         Player.Instance.GetComponent<MovementInput>().TakeInput = false;
+        beacon.SetActive(false);
         Disable();
     }
 
