@@ -81,7 +81,7 @@ public class HealthComponent : MonoBehaviour
         }
         else if (gameObject.CompareTag("Player"))
         {
-            //SceneManager.LoadScene("DeathScreen");
+            SceneManager.LoadScene("DeathScreen");
         }
     }
 }
