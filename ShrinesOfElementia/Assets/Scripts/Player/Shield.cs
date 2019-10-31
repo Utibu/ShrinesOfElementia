@@ -11,5 +11,11 @@ public class Shield : MonoBehaviour
     {
         shieldCollider = GetComponent<BoxCollider>();
         shieldCollider.enabled = false;
+        EventSystem.Current.RegisterListener<BlockEvent>(OnBlock);
+    }
+
+    private void OnBlock(BlockEvent eve)
+    {
+        eve.Defender.GetComponentInParent<Animator>().SetTrigger("OnBlock");
     }
 }

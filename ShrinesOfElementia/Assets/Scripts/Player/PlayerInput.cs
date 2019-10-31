@@ -113,7 +113,7 @@ public class PlayerInput : MonoBehaviour
             player.Animator.SetTrigger("ToNeutral");
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking) //&& player.Animator.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Entire Body.Combat"
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint"))
         {
             movementInput.OnDodge();
         }

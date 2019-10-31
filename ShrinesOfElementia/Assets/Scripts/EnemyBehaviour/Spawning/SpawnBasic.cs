@@ -27,7 +27,7 @@ public class SpawnBasic : MonoBehaviour
         countdown = spawnRate;
 
         //generate start amount
-        for (int i = 0; i<= spawnLimit; i++)
+        for (int i = 0; i<= spawnLimit-1; i++)
         {
             spawnNew();
         }
