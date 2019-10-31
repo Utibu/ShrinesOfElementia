@@ -10,13 +10,13 @@ public class Extinguishable : MonoBehaviour
     private float timer;
     private bool extinguished;
 
-    private ParticleSystem fire;
+    //private ParticleSystem fire;
 
     // Start is called before the first frame update
     void Start()
     {
         extinguished = false;
-        fire = GetComponent<ParticleSystem>();
+        //fire = GetComponent<ParticleSystem>();
         EventSystem.Current.RegisterListener<GeyserCastEvent>(Extinguish);
 
     }
@@ -32,31 +32,42 @@ public class Extinguishable : MonoBehaviour
             {
                 extinguished = false;
                 timer = ReviveTime;
-                fire.Play();
+                foreach (ParticleSystem fire in GetComponentsInChildren<ParticleSystem>())
+                {
+                    fire.Play();
+                }
             }
         }
     }
 
     private void Extinguish(GeyserCastEvent ev)
     {
-        /*
-        Debug.Log("FIRE IS EXTINGUISHHDD");
-        timer = ReviveTime;
-        extinguished = true;
-        fire.Stop();
-        */
+       
 
         if (Vector3.Distance(this.transform.position, ev.affectedPosition) <= ev.effectRange)
         {
             Debug.Log("FIRE IS EXTINGUISHHDD");
             timer = ReviveTime;
             extinguished = true;
-            fire.Stop();
+            foreach (ParticleSystem fire in GetComponentsInChildren<ParticleSystem>())
+            {
+                fire.Stop();
+            }
+
+            //if its an enemy, disable casting!
+            if (gameObject.CompareTag("Enemy"))
+            {
+                disableCast();
+            }
         }
-        else
-        {
-            Debug.Log("geyser not close enough to fire");
-        }
+        
+    }
+
+    private void disableCast()
+    {
+        Debug.Log("enemy fireball cast is now disabled");
+        GetComponent<EnemySM>().Elite = false;
+        GetComponent<EnemySM>().Transition<Chase_BasicEnemy>();
     }
 
 }

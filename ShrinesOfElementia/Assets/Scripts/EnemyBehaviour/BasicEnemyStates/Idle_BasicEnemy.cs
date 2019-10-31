@@ -17,7 +17,7 @@ public class Idle_BasicEnemy : BasicEnemyBaseState
 
 
     public override void Enter() {
-        //Debug.Log("Entering idle state.");
+        Debug.Log("Entering idle state.");
         base.Enter();
     }
 
@@ -51,7 +51,7 @@ public class Idle_BasicEnemy : BasicEnemyBaseState
     public override void Leave()
     {
         base.Leave();
-        //Debug.Log("Leaving Idle state");
+        Debug.Log("Leaving Idle state");
         idleTimerCountdown = idleTime;
 
     }
