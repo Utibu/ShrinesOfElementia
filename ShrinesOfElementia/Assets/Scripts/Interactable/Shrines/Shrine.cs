@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shrine : Interactable
 {
     private string element;
     [SerializeField] private Canvas interactCanvas;
     [SerializeField] private Animator shrineAnimationController;
+    [SerializeField] private RectTransform shrinePanel;
     private enum SHRINETYPES
     {
         Fire,
@@ -42,7 +44,10 @@ public class Shrine : Interactable
 
     protected override void OnTriggerEnter(Collider other)
     {
-        interactCanvas.gameObject.SetActive(true);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            interactCanvas.gameObject.SetActive(true);
+        }
     }
 
     protected override void OnTriggerStay(Collider other)
@@ -55,6 +60,8 @@ public class Shrine : Interactable
         ShrineEvent shrineEvent = new ShrineEvent(element + " shrine activated", element);
         EventSystem.Current.FireEvent(shrineEvent);
         shrineAnimationController.SetTrigger("IsTaken");
+        shrinePanel.gameObject.SetActive(true);
+        Player.Instance.GetComponent<MovementInput>().TakeInput = false;
         Disable();
     }
 

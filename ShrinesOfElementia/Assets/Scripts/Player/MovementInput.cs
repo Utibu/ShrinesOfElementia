@@ -48,6 +48,8 @@ public class MovementInput : MonoBehaviour
     public bool IsDodging { get { return isDodging; } }
 
     private bool breakUpdate;
+    private bool takeInput = true;
+    public bool TakeInput { set { takeInput = value; } }
 
 
 
@@ -59,73 +61,77 @@ public class MovementInput : MonoBehaviour
         controller = GetComponent<CharacterController>();
         //Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        Physics.IgnoreLayerCollision(9, 4, true);
 
         breakUpdate = false;
     }
 
     private void Update()
     {
-        inputX = Input.GetAxis("Horizontal");
-        inputZ = Input.GetAxis("Vertical");
-
-        if (breakUpdate == true)
+        if (takeInput)
         {
-            breakUpdate = false;
-            return;
-        }
+            inputX = Input.GetAxis("Horizontal");
+            inputZ = Input.GetAxis("Vertical");
 
-        if (isDodging)
-        {
-            dodgeTimer += Time.deltaTime;
-            if (dodgeTimer >= dodgeDuration)
+            if (breakUpdate == true)
             {
-                isDodging = false;
-                dodgeTimer = 0.0f;
-                moveVector.x = 0.0f;
-                moveVector.z = 0.0f;
+                breakUpdate = false;
+                return;
+            }
+
+            if (isDodging)
+            {
+                dodgeTimer += Time.deltaTime;
+                if (dodgeTimer >= dodgeDuration)
+                {
+                    isDodging = false;
+                    dodgeTimer = 0.0f;
+                    moveVector.x = 0.0f;
+                    moveVector.z = 0.0f;
+                }
+                else
+                {
+                    moveVector = new Vector3(inputX, 0.0f, inputZ);
+                    moveVector.Normalize();
+                    moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
+                    moveVector.y = 0.0f;
+                    moveVector *= dodgeLength;
+                }
+
+            }
+
+
+            if (animator.GetBool("InCombat"))
+            {
+                faceCameraDirection = true;
+            }
+            else if (animator.GetBool("InCombat") == false)
+            {
+                faceCameraDirection = false;
+            }
+
+            InputMagnitude();
+
+            //isGrounded = controller.isGrounded;   Old code, didn't work. Keeping just in case.
+            if (IsGrounded() && moveVector.y < 0.5f)
+            {
+                //animator.SetBool("IsGrounded", true);   Jumping animation (not good)
+
+                moveVector.y = -gravity * Time.deltaTime;
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    moveVector.y = jumpSpeed;
+                    //animator.SetBool("IsGrounded", false);   Jumping animation (not good)
+                }
+
             }
             else
             {
-                moveVector = new Vector3(inputX, 0.0f, inputZ);
-                moveVector.Normalize();
-                moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
-                moveVector.y = 0.0f;
-                moveVector *= dodgeLength;
+                moveVector.y -= gravity * Time.deltaTime;
+
             }
-            
+            controller.Move(moveVector * Time.deltaTime);
         }
-
-
-        if (animator.GetBool("InCombat"))
-        {
-            faceCameraDirection = true;
-        }
-        else if(animator.GetBool("InCombat") == false)
-        {
-            faceCameraDirection = false;
-        }
-
-        InputMagnitude();
-
-        //isGrounded = controller.isGrounded;   Old code, didn't work. Keeping just in case.
-        if (IsGrounded() && moveVector.y < 0.5f)
-        {
-            //animator.SetBool("IsGrounded", true);   Jumping animation (not good)
-
-            moveVector.y = -gravity * Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                moveVector.y = jumpSpeed;
-                //animator.SetBool("IsGrounded", false);   Jumping animation (not good)
-            }
-            
-        }
-        else
-        {
-            moveVector.y -= gravity * Time.deltaTime;
-
-        }
-        controller.Move(moveVector * Time.deltaTime);
         //Debug.Log(animator.GetBool("IsGrounded"));
     }
 

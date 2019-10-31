@@ -31,6 +31,8 @@ public class PlayerInput : MonoBehaviour
     private bool isAttacking;
     private float attackSpeed;
 
+    [SerializeField] private RectTransform shrinePanel; //TEMPORARY, REMOVE AFTER POC
+
     private void Start()
     {
         player = Player.Instance;
@@ -183,9 +185,10 @@ public class PlayerInput : MonoBehaviour
             blockTrigger = false;
         }
 
-        if (Player.Instance.Animator.GetBool("InCombat"))
+        if (Input.GetKeyDown(KeyCode.Escape) && shrinePanel.gameObject.activeSelf == true)
         {
-
+            shrinePanel.gameObject.SetActive(false);
+            movementInput.TakeInput = true;
         }
     }
 
