@@ -38,7 +38,10 @@ public class EnemySM : StateMachine
         Player = Player.Instance;
         Animator = GetComponent<Animator>();
         enemyAttack = GetComponentInChildren<EnemyAttack>();
-       
+
+
+        //EventSystem.Current.RegisterListener<DamageEvent>(OnAttacked);
+
     }
  
 
@@ -59,5 +62,24 @@ public class EnemySM : StateMachine
     {
         this.SpawnArea = SpawnArea;
     }
-    
+
+
+
+    // temporary placement for pushback.
+    /*
+    public void OnAttacked(DamageEvent ev)
+    {
+        if (ev.TargetGameObject.Equals(gameObject)) { 
+            //pushback when attacked(damaged)
+            Debug.Log("get pushed back");
+            Vector3 newPosition = transform.position + ev.InstigatorGameObject.transform.forward * 4f;
+            Agent.updateRotation = false;
+            //Agent.speed *= 2;
+            Agent.SetDestination(newPosition);
+
+            transform.position += ev.InstigatorGameObject.transform.forward * 2f;
+        }
+    }
+    */
+
 }

@@ -39,16 +39,6 @@ public class Die_BasicEnemy : BasicEnemyBaseState
         base.Update();
         owner.transform.Rotate(new Vector3(1, 0, 0), 75);
         
-        /*
-        timer -= Time.deltaTime;
-        if(timer <= 0)
-        {
-
-            GameObject gameobject = owner.GetComponent<GameObject>();
-            EventSystem.Current.FireEvent(new EnemyDeathEvent(gameobject, owner.SpawnArea));
-            Destroy(owner.gameObject);
-        }
-        */
         
     }
 

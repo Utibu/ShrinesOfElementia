@@ -11,7 +11,12 @@ public class DamageEventListener : MonoBehaviour
 
     private void OnDamageEvent(DamageEvent damageEvent)
     {
+        //deal damage
         damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= damageEvent.Damage;
+
+        //pushback
+        //damageEvent.TargetGameObject.GetComponent<EnemySM>().OnAttacked(damageEvent);
+        damageEvent.TargetGameObject.transform.position += damageEvent.TargetGameObject.transform.forward * -1.4f;
 
         print(damageEvent.InstigatorGameObject + " has dealt " + damageEvent.Damage + " damage to " + damageEvent.TargetGameObject);
     }
