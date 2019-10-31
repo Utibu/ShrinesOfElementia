@@ -24,13 +24,14 @@ public class EnemyAttack : MonoBehaviour
 
         if (collision.collider.gameObject.CompareTag("Shield"))
         {
-            attackCollider.gameObject.SetActive(false);
+            gameObject.SetActive(false);
             animator.SetTrigger("AttackBlocked");
+            EventSystem.Current.FireEvent(new BlockEvent("Attack blocked by " + collision.gameObject.name, attackCollider, collision.collider.gameObject));
             print("Player shield hit");
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
-            attackCollider.gameObject.SetActive(false);
+            gameObject.SetActive(false);
             //print("Player hit");
             DamageEvent damageEvent = new DamageEvent(gameObject.name + " did " + damage + " to player", (int)damage, gameObject, collision.gameObject);
             EventSystem.Current.FireEvent(damageEvent);

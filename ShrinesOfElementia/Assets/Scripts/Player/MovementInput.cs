@@ -8,30 +8,40 @@ public class MovementInput : MonoBehaviour
 
     private float inputX;
     private float inputZ;
-    [SerializeField] private Vector3 desiredMoveDirection;
-    [SerializeField] private bool faceCameraDirection;
+    private Vector3 desiredMoveDirection;
+    private bool faceCameraDirection;
     public bool FaceCameraDirection { set { faceCameraDirection = value; } }
-    [SerializeField] private float desiredRotationSpeed;
     private Animator animator;
     private float speed;
     private float allowPlayerRotation;
     private CameraReference camera;
     private CharacterController controller;
     private float dodgeTimer = 0.0f;
-    [SerializeField] private float dodgeDuration;
     private bool isDodging;
+    private Vector3 moveVector = Vector3.zero;
+
 
     //[SerializeField] private bool isGrounded;   Old code, didn't work. Keeping just in case.
     private Player player;
+
+    [Header("Jump")]
     [SerializeField] private float gravity;
     [SerializeField] private float jumpSpeed;
 
-    [SerializeField] private Vector3 moveVector = Vector3.zero;
-    [SerializeField] private float distanceToGround;
 
+    [Header("Movement Speed")]
     [SerializeField] private float defaultSpeed;
     [SerializeField] private float runSpeed;
+
+    [Header("Dodge")]
     [SerializeField] private float dodgeLength;
+    [SerializeField] private float dodgeDuration;
+
+    [Header("Misc")]
+    [SerializeField] private float distanceToGround;
+    [SerializeField] private float desiredRotationSpeed;
+
+
 
     public float DefaultSpeed { get { return defaultSpeed; } }
     public float RunSpeed { get { return runSpeed; } }
@@ -55,7 +65,10 @@ public class MovementInput : MonoBehaviour
 
     private void Update()
     {
-        if(breakUpdate == true)
+        inputX = Input.GetAxis("Horizontal");
+        inputZ = Input.GetAxis("Vertical");
+
+        if (breakUpdate == true)
         {
             breakUpdate = false;
             return;
@@ -142,8 +155,7 @@ public class MovementInput : MonoBehaviour
 
     private void InputMagnitude()
     {
-        inputX = Input.GetAxis("Horizontal");
-        inputZ = Input.GetAxis("Vertical");
+        
 
         //print("X: " + inputX + "Z: " + inputZ);
         //print(player.Animator.GetFloat("InputX") + " " + player.Animator.GetFloat("InputZ"));
