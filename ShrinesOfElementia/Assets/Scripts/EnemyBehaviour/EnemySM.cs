@@ -39,7 +39,7 @@ public class EnemySM : StateMachine
         Animator = GetComponent<Animator>();
         enemyAttack = GetComponentInChildren<EnemyAttack>();
 
-
+        Physics.IgnoreLayerCollision(8, 4, false);
         //EventSystem.Current.RegisterListener<DamageEvent>(OnAttacked);
 
     }

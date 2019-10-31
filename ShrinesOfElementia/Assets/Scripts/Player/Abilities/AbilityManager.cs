@@ -43,7 +43,7 @@ public class AbilityManager : MonoBehaviour
         if (hasFire && fireballTimer <= 0f)
         {
             Player.Instance.Animator.SetBool("InCombat", true);
-            fireballSpawnLocation = gameObject.transform.position + Vector3.up.normalized * 1.5f + gameObject.transform.forward * 1.2f;
+            fireballSpawnLocation = gameObject.transform.position + Vector3.up.normalized * 1.5f + gameObject.transform.forward * 1.8f;
             GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation, Quaternion.identity);
             fireball.GetComponent<Rigidbody>().AddForce(CameraReference.Instance.transform.forward * fireballSpeed, ForceMode.VelocityChange);
             fireballTimer = fireballCooldown;
