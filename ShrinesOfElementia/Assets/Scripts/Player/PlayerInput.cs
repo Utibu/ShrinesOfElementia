@@ -62,7 +62,7 @@ public class PlayerInput : MonoBehaviour
 
 
         // Fireball
-        if (Input.GetKeyDown(KeyCode.F)) //  && fireballTimer <= 0f
+        if (Input.GetKeyDown(KeyCode.Q)) //  && fireballTimer <= 0f
         {
             abilityManager.CastFireBall();
 
