@@ -96,6 +96,7 @@ public class MovementInput : MonoBehaviour
                     moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
                     moveVector.y = 0.0f;
                     moveVector *= dodgeLength;
+                    
                 }
 
             }
@@ -203,6 +204,7 @@ public class MovementInput : MonoBehaviour
         {
             isDodging = true;
             player.Animator.SetTrigger("OnDodge");
+            EventSystem.Current.FireEvent(new StaminaDrainEvent("stamina drained", 15));
         }
     }
 

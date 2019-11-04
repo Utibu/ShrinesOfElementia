@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour
     private Player player;
     private MovementInput movementInput;
     private AbilityManager abilityManager;
+    private StaminaManager staminaManager;
 
     private bool blockTrigger = false, isBlocking = false;
 
@@ -40,6 +41,7 @@ public class PlayerInput : MonoBehaviour
         abilityManager = GetComponent<AbilityManager>();
         lightAttacks = new string[] { "LightAttack1", "LightAttack2" };
         isAttacking = false;
+        staminaManager = GetComponent<StaminaManager>();
 
         //fireballTimer = 0f;
         //geyserTimer = 0f;
@@ -115,7 +117,9 @@ public class PlayerInput : MonoBehaviour
             player.Animator.SetTrigger("ToNeutral");
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint"))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking 
+            && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
+            && staminaManager.CurrentStamina > 0)
         {
             movementInput.OnDodge();
         }
@@ -133,7 +137,7 @@ public class PlayerInput : MonoBehaviour
         // Mouse buttons, 0 - Primary Button, 1 - Secondary Button, 2 - Middle Click
 
         // Left click / Primary button
-        if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length && !isBlocking)
+        if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length && !isBlocking && staminaManager.CurrentStamina > 0)
         {
             if(!player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1")
             || !player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2"))
@@ -219,5 +223,10 @@ public class PlayerInput : MonoBehaviour
             player.Animator.SetTrigger("LightAttack1");
         }
         */
+    }
+    // Might be used maybe not
+    public void FireStaminaDrainEvent(int drain)
+    {
+        EventSystem.Current.FireEvent(new StaminaDrainEvent(drain + " stamina drained", drain));
     }
 }
