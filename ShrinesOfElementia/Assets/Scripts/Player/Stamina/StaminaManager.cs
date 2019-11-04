@@ -9,7 +9,7 @@ public class StaminaManager : MonoBehaviour
     [SerializeField] private float maxStamina;
     [SerializeField] private float staminaRegenerationAmount;
     [SerializeField] private int staminaRegenerationDelay;
-    [SerializeField] private float regenerationCountdown;
+    private float regenerationCountdown;
 
     [SerializeField] private Slider staminaSlider;
 
@@ -57,7 +57,7 @@ public class StaminaManager : MonoBehaviour
     private void Update()
     {
         regenerationCountdown += Time.deltaTime;
-        if(regenerationCountdown >= staminaRegenerationDelay)
+        if (regenerationCountdown >= staminaRegenerationDelay)
         {
             RegenerateStamina();
         }
@@ -68,7 +68,14 @@ public class StaminaManager : MonoBehaviour
     {
         if (CurrentStamina < maxStamina)
         {
-            CurrentStamina += staminaRegenerationAmount;
+            if (GetComponent<PlayerInput>().IsBlocking)
+            {
+                regenerationCountdown = 0;
+            }
+            else
+            {
+                CurrentStamina += staminaRegenerationAmount;
+            }
         }
     }
 

@@ -10,6 +10,7 @@ public class PlayerInput : MonoBehaviour
     private StaminaManager staminaManager;
 
     private bool blockTrigger = false, isBlocking = false;
+    public bool IsBlocking { get { return isBlocking; } }
 
     /*     Moved to AbilityManager
     [Header("Temporary Fireball attributes")]
