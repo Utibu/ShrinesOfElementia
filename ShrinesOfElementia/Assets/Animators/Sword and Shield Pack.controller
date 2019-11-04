@@ -222,7 +222,7 @@ AnimatorStateMachine:
     m_Position: {x: 310, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4434408540234455263}
-    m_Position: {x: 310, y: -10, z: 0}
+    m_Position: {x: 310, y: -50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2250601726945159691}
     m_Position: {x: 570, y: 120, z: 0}
@@ -309,7 +309,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 0b86943931a069e489cc366d9c409e89,
+  m_Motion: {fileID: -203655887218126122, guid: 5996d66c54be5f342b928b0990e64fe5,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -464,15 +464,6 @@ BlendTree:
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0.1, y: 0}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: Blend
-    m_Mirror: 0
-  - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: d32ac2b46c20d424aacd10b5bf01c15c,
-      type: 3}
-    m_Threshold: 0
-    m_Position: {x: 0.3, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -750,6 +741,12 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: OnBlock
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: OnJump
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -1043,7 +1040,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.1
   m_TransitionOffset: 0
-  m_ExitTime: 0.85
+  m_ExitTime: 0.5
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
