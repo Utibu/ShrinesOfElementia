@@ -256,7 +256,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486532335}
-  m_LocalRotation: {x: -0.031549197, y: 0.00020568472, z: 0.006516655, w: 0.99948096}
+  m_LocalRotation: {x: -0.031548183, y: 0.00032645365, z: 0.010343669, w: 0.9994487}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10709,8 +10709,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395336070}
-  m_LocalRotation: {x: 0.090289004, y: -5.7969924e-11, z: 5.255512e-12, w: 0.9959156}
-  m_LocalPosition: {x: 0.2400055, y: 9.76, z: -1.3499985}
+  m_LocalRotation: {x: 0.09028887, y: -0.000000033829018, z: 0.00000000306691, w: 0.99591565}
+  m_LocalPosition: {x: 0, y: 2.5, z: -4.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1724865903}
@@ -10945,13 +10945,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xAxis:
-    multiplier: 3.5
+    multiplier: 2.5
     accelTime: 0.1
     decelTime: 0.1
     name: Mouse X
     inputValue: 0
   yAxis:
-    multiplier: -0.035
+    multiplier: -0.025
     accelTime: 0.1
     decelTime: 0.1
     name: Mouse Y
@@ -11183,7 +11183,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724865902}
-  m_LocalRotation: {x: 0.03180459, y: -0.00019420701, z: 0.006102922, w: 0.9994755}
+  m_LocalRotation: {x: 0.031805143, y: 0.00000054894105, z: -0.000018286853, w: 0.99949414}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11474,7 +11474,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105239360}
-  m_LocalRotation: {x: -0.000000007450581, y: -2.9579065e-11, z: 0.0050200815, w: 0.9999874}
+  m_LocalRotation: {x: -0.000000007450581, y: -0.000000048398693, z: 0.033293623,
+    w: 0.9994456}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -17197,15 +17198,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05788b7f1122e8f4c8ac9aac37565de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthRegeneration: 1
+  regenerationInterval: 3
   fireballPrefab: {fileID: 1555590810750732474, guid: 280d48f0732f96a4f9acd55900fa17d2,
     type: 3}
   fireballSpeed: 15
   fireballCooldown: 3
   geyserPrefab: {fileID: 1201472749364718067, guid: ada15d4953ae06a44ab3eed588b0ac46,
     type: 3}
-  geyserCooldown: 0
+  geyserCooldown: 12
   geyserSpawnLocation: {fileID: 4485157310357868782}
   moistRange: 6
+  healthRegenerationIncrease: 2
   hasFire: 0
   hasWater: 0
   hasEarth: 0
@@ -17305,6 +17309,18 @@ MonoBehaviour:
   dodgeDuration: 0.5
   distanceToGround: 0.3
   desiredRotationSpeed: 0.4
+--- !u!114 &269579426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4821054629253841854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af7d91f8e3365c45aa9d7becd651042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5200110774431715743
 GameObject:
   m_ObjectHideFlags: 0
@@ -17910,17 +17926,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 91b32e2611309b641af3461a4f93e9c2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 91b32e2611309b641af3461a4f93e9c2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.26
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 91b32e2611309b641af3461a4f93e9c2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.06
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 91b32e2611309b641af3461a4f93e9c2,
         type: 3}

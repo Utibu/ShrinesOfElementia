@@ -190,6 +190,12 @@ public class PlayerInput : MonoBehaviour
             shrinePanel.gameObject.SetActive(false);
             movementInput.TakeInput = true;
         }
+
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            print("earth is heaeasgyrhs");
+            EventSystem.Current.FireEvent(new ShrineEvent("Earth activated", "Earth"));
+        }
     }
 
     private void LightAttack()

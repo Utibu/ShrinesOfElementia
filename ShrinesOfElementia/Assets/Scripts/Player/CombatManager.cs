@@ -5,6 +5,7 @@ using UnityEngine;
 public class CombatManager : MonoBehaviour
 {
     private MovementInput movementInput;
+    public bool InCombat { get { return inCombat; } }
     private bool inCombat;
     private int enemiesAttacking;
 

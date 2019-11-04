@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
 {
+    [Header("Health")]
+    [SerializeField] private int healthRegeneration;
+    [SerializeField] private int regenerationInterval;
+    private float regenerationCountdown = 0;
+
     [Header("Fireball attributes")]
     [SerializeField] private GameObject fireballPrefab;
     [SerializeField] private float fireballSpeed, fireballCooldown;
@@ -18,11 +23,16 @@ public class AbilityManager : MonoBehaviour
     [SerializeField]private float moistRange = 6f;
     private float geyserTimer;
 
+    [Header("Touch of Nature")]
+    [SerializeField] private int healthRegenerationIncrease;
+
+
     [Header("Elemental Abilities (For Testing)")]
     [SerializeField] private bool hasFire;
     [SerializeField] private bool hasWater;
     [SerializeField] private bool hasEarth;
     [SerializeField] private bool hasWind;
+
 
 
     private void Start()
@@ -37,6 +47,12 @@ public class AbilityManager : MonoBehaviour
     {
         fireballTimer -= Time.deltaTime;
         geyserTimer -= Time.deltaTime;
+        regenerationCountdown += Time.deltaTime;
+        //print(regenerationCountdown);
+        if (!GetComponent<CombatManager>().InCombat && regenerationCountdown >= regenerationInterval)
+        {
+            RegenerateHealth();
+        }
     }
 
     public void CastFireBall()
@@ -74,11 +90,19 @@ public class AbilityManager : MonoBehaviour
     private void EnableEarthAbilities()
     {
         hasEarth = true;
+        healthRegeneration *= healthRegenerationIncrease;
     }
 
     private void EnableWindAbilities()
     {
         hasWind = true;
+    }
+
+    private void RegenerateHealth()
+    {
+        print("regenerating");
+        Player.Instance.Health.CurrentHealth += healthRegeneration;
+        regenerationCountdown = 0;
     }
 
 
