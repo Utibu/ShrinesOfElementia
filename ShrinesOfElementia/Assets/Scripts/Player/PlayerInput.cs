@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour
     private Player player;
     private MovementInput movementInput;
     private AbilityManager abilityManager;
+
     private StaminaManager staminaManager;
 
     private bool blockTrigger = false, isBlocking = false;
@@ -106,16 +107,35 @@ public class PlayerInput : MonoBehaviour
             Physics.IgnoreLayerCollision(9, 4, true);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")) 
+        //Wind blade
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            abilityManager.CheckWindBlade();
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
+            && staminaManager.CurrentStamina > 0) 
         {
             player.Animator.SetBool("InCombat", false);
             player.Animator.SetTrigger("IsSprinting");
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift) || (player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint") 
+            && staminaManager.CurrentStamina <= 0))
         {
             print("sprint key up");
             player.Animator.SetTrigger("ToNeutral");
+        }
+        /*
+        if(player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint") && staminaManager.CurrentStamina <= 0)
+        {
+            player.Animator.SetTrigger("ToNeutral");
+        }
+        */
+        if(player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint"))
+        {
+            print("sprinting");
+            EventSystem.Current.FireEvent(new StaminaDrainEvent("sprinting", 0.5f));
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking 
@@ -173,7 +193,7 @@ public class PlayerInput : MonoBehaviour
         isBlocking = Input.GetMouseButton(1);
         player.Animator.SetBool("IsBlocking", isBlocking);
 
-        if (isBlocking == true) // Start blocking
+        if (isBlocking == true && staminaManager.CurrentStamina > 0) // Start blocking
         {
             player.Animator.SetBool("InCombat", true);
 
@@ -185,7 +205,7 @@ public class PlayerInput : MonoBehaviour
 
             blockTrigger = true;
         }
-        else if (blockTrigger == true && isBlocking == false) // Resets the trigger if the player isn't blocking
+        else if ((blockTrigger == true && isBlocking == false) || staminaManager.CurrentStamina <= 0) // Resets the trigger if the player isn't blocking
         {
             blockTrigger = false;
         }
@@ -198,8 +218,19 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            print("earth is heaeasgyrhs");
+            EventSystem.Current.FireEvent(new ShrineEvent("Fire activated", "Fire"));
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            EventSystem.Current.FireEvent(new ShrineEvent("Water activated", "Water"));
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
             EventSystem.Current.FireEvent(new ShrineEvent("Earth activated", "Earth"));
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            EventSystem.Current.FireEvent(new ShrineEvent("Wind activated", "Wind"));
         }
     }
 
@@ -212,6 +243,7 @@ public class PlayerInput : MonoBehaviour
         attackIndex = (attackIndex + 1) % lightAttacks.Length;
         resetTimer = 0f;
 
+        EventSystem.Current.FireEvent(new StaminaDrainEvent("light attack", 15));
         //print(attackIndex);
 
         //print(resetTimer + "     " + lightAttackTimer);

@@ -88,6 +88,6 @@ public class StaminaManager : MonoBehaviour
     private void UpdateStaminaBar()
     {
         staminaSlider.value = CurrentStamina;
-        staminaSlider.GetComponentInChildren<Text>().text = Mathf.Floor(currentStamina) + "/" + Mathf.Floor(maxStamina);
+        //staminaSlider.GetComponentInChildren<Text>().text = Mathf.Floor(currentStamina) + "/" + Mathf.Floor(maxStamina);
     }
 }
