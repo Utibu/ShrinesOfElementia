@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour
     private Player player;
     private MovementInput movementInput;
     private AbilityManager abilityManager;
+
     private StaminaManager staminaManager;
 
     private bool blockTrigger = false, isBlocking = false;
@@ -104,6 +105,13 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             Physics.IgnoreLayerCollision(9, 4, true);
+        }
+
+        //Wind blade
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            print("hit f");
+            abilityManager.CastWindBlade();
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
@@ -212,7 +220,22 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
             print("earth is heaeasgyrhs");
+            EventSystem.Current.FireEvent(new ShrineEvent("Fire activated", "Fire"));
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            print("earth is heaeasgyrhs");
+            EventSystem.Current.FireEvent(new ShrineEvent("Water activated", "Water"));
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            print("earth is heaeasgyrhs");
             EventSystem.Current.FireEvent(new ShrineEvent("Earth activated", "Earth"));
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            print("earth is heaeasgyrhs");
+            EventSystem.Current.FireEvent(new ShrineEvent("Wind activated", "Wind"));
         }
     }
 
