@@ -33,7 +33,7 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private int healthRegenerationIncrease;
 
 
-    [Header("Elemental Abilities (For Testing)")]
+    [Header("Elemental Abilities (Serialized For Testing)")]
     [SerializeField] private bool hasFire;
     [SerializeField] private bool hasWater;
     [SerializeField] private bool hasEarth;
