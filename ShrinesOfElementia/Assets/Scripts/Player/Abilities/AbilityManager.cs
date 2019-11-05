@@ -17,11 +17,17 @@ public class AbilityManager : MonoBehaviour
     private float fireballTimer;
 
     [Header("Geyser attributes")]
+
     [SerializeField] private GameObject geyserPrefab;
     [SerializeField] private float geyserCooldown;
     [SerializeField] private GameObject geyserSpawnLocation; // make this simpler? gsl = player.position + forward * 2f eller ngt baserat på kameran
     [SerializeField]private float moistRange = 6f;
     private float geyserTimer;
+
+    [Header("Wind Blade Attributes")]
+    [SerializeField] private GameObject windBladePrefab;
+    [SerializeField] private float windBladeCooldown, windBladeSpeed;
+    private float windBladeTimer;
 
     [Header("Touch of Nature")]
     [SerializeField] private int healthRegenerationIncrease;
@@ -39,14 +45,15 @@ public class AbilityManager : MonoBehaviour
     {
         fireballTimer = 0.0f;
         geyserTimer = 0.0f;
+        windBladeTimer = 0.0f;
         EventSystem.Current.RegisterListener<ShrineEvent>(unlockElement);
-        EventSystem.Current.FireEvent(new ShrineEvent("Fire unlocked", "Fire"));
     }
 
     private void Update()
     {
         fireballTimer -= Time.deltaTime;
         geyserTimer -= Time.deltaTime;
+        windBladeTimer -= Time.deltaTime;
         regenerationCountdown += Time.deltaTime;
         //print(regenerationCountdown);
         if (!GetComponent<CombatManager>().InCombat && regenerationCountdown >= regenerationInterval)
@@ -69,13 +76,30 @@ public class AbilityManager : MonoBehaviour
 
     public void CastGeyser()
     {
+        print("in cast");
         if (hasWater && geyserTimer <= 0f)
         {
+            print("casting");
+            Player.Instance.Animator.SetBool("InCombat", true);
             Instantiate(geyserPrefab, geyserSpawnLocation.transform.position, Quaternion.identity);
             geyserTimer = geyserCooldown;
             EventSystem.Current.FireEvent(new GeyserCastEvent(geyserSpawnLocation.transform.position, moistRange)); 
         }
     }
+
+    public void CastWindBlade()
+    {
+        print("in wind");
+        if(hasWind && windBladeTimer <= 0f)
+        {
+            print("casting wind");
+            Player.Instance.Animator.SetBool("InCombat", true);
+            Instantiate(windBladePrefab, gameObject.transform.position + Vector3.up.normalized * 2f + gameObject.transform.forward * 2f, gameObject.transform.rotation);
+            windBladePrefab.GetComponent<Rigidbody>().AddForce(CameraReference.Instance.transform.forward * windBladeSpeed, ForceMode.VelocityChange);
+            windBladeTimer = windBladeCooldown;
+        }
+    }
+
     private void EnableFireAbilities()
     {
         hasFire = true;
