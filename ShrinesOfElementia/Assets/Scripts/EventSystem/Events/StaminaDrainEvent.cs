@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class StaminaDrainEvent : DebugEvent
 {
-    public int DrainAmount { get; }
+    public float DrainAmount { get; }
 
-    public StaminaDrainEvent(string eventDescription, int drainAmount) : base(eventDescription)
+    public StaminaDrainEvent(string eventDescription, float drainAmount) : base(eventDescription)
     {
         DrainAmount = drainAmount;
     }

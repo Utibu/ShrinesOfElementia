@@ -23,6 +23,11 @@ public class AbilityManager : MonoBehaviour
     [SerializeField]private float moistRange = 6f;
     private float geyserTimer;
 
+    [Header("Wind Blade Attributes")]
+    [SerializeField] private GameObject windBladePrefab;
+    [SerializeField] private float windBladeCooldown, windBladeSpeed;
+    private float windBladeTimer;
+
     [Header("Touch of Nature")]
     [SerializeField] private int healthRegenerationIncrease;
 
@@ -39,6 +44,7 @@ public class AbilityManager : MonoBehaviour
     {
         fireballTimer = 0.0f;
         geyserTimer = 0.0f;
+        windBladeTimer = 0.0f;
         EventSystem.Current.RegisterListener<ShrineEvent>(unlockElement);
         EventSystem.Current.FireEvent(new ShrineEvent("Fire unlocked", "Fire"));
     }
@@ -47,6 +53,7 @@ public class AbilityManager : MonoBehaviour
     {
         fireballTimer -= Time.deltaTime;
         geyserTimer -= Time.deltaTime;
+        windBladeTimer -= Time.deltaTime;
         regenerationCountdown += Time.deltaTime;
         //print(regenerationCountdown);
         if (!GetComponent<CombatManager>().InCombat && regenerationCountdown >= regenerationInterval)
@@ -71,11 +78,24 @@ public class AbilityManager : MonoBehaviour
     {
         if (hasWater && geyserTimer <= 0f)
         {
+            Player.Instance.Animator.SetBool("InCombat", true);
             Instantiate(geyserPrefab, geyserSpawnLocation.transform.position, Quaternion.identity);
             geyserTimer = geyserCooldown;
             EventSystem.Current.FireEvent(new GeyserCastEvent(geyserSpawnLocation.transform.position, moistRange)); 
         }
     }
+
+    public void CastWindBlade()
+    {
+        if(hasWind && windBladeTimer <= 0f)
+        {
+            Player.Instance.Animator.SetBool("InCombat", true);
+            Instantiate(windBladePrefab, this.gameObject.transform.position, Quaternion.identity);
+            windBladeTimer = windBladeCooldown;
+            windBladePrefab.GetComponent<Rigidbody>().AddForce(CameraReference.Instance.transform.forward * windBladeSpeed, ForceMode.VelocityChange);
+        }
+    }
+
     private void EnableFireAbilities()
     {
         hasFire = true;

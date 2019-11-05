@@ -106,16 +106,29 @@ public class PlayerInput : MonoBehaviour
             Physics.IgnoreLayerCollision(9, 4, true);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")) 
+        if (Input.GetKeyDown(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
+            && staminaManager.CurrentStamina > 0) 
         {
             player.Animator.SetBool("InCombat", false);
             player.Animator.SetTrigger("IsSprinting");
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift) || (player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint") 
+            && staminaManager.CurrentStamina <= 0))
         {
             print("sprint key up");
             player.Animator.SetTrigger("ToNeutral");
+        }
+        /*
+        if(player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint") && staminaManager.CurrentStamina <= 0)
+        {
+            player.Animator.SetTrigger("ToNeutral");
+        }
+        */
+        if(player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint"))
+        {
+            print("sprinting");
+            EventSystem.Current.FireEvent(new StaminaDrainEvent("sprinting", 0.5f));
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking 
@@ -212,6 +225,7 @@ public class PlayerInput : MonoBehaviour
         attackIndex = (attackIndex + 1) % lightAttacks.Length;
         resetTimer = 0f;
 
+        EventSystem.Current.FireEvent(new StaminaDrainEvent("light attack", 15));
         //print(attackIndex);
 
         //print(resetTimer + "     " + lightAttackTimer);
