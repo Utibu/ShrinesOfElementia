@@ -110,8 +110,7 @@ public class PlayerInput : MonoBehaviour
         //Wind blade
         if (Input.GetKeyDown(KeyCode.F))
         {
-            print("hit f");
-            abilityManager.CastWindBlade();
+            abilityManager.CheckWindBlade();
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
@@ -194,7 +193,7 @@ public class PlayerInput : MonoBehaviour
         isBlocking = Input.GetMouseButton(1);
         player.Animator.SetBool("IsBlocking", isBlocking);
 
-        if (isBlocking == true) // Start blocking
+        if (isBlocking == true && staminaManager.CurrentStamina > 0) // Start blocking
         {
             player.Animator.SetBool("InCombat", true);
 
@@ -206,7 +205,7 @@ public class PlayerInput : MonoBehaviour
 
             blockTrigger = true;
         }
-        else if (blockTrigger == true && isBlocking == false) // Resets the trigger if the player isn't blocking
+        else if ((blockTrigger == true && isBlocking == false) || staminaManager.CurrentStamina <= 0) // Resets the trigger if the player isn't blocking
         {
             blockTrigger = false;
         }
@@ -219,22 +218,18 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            print("earth is heaeasgyrhs");
             EventSystem.Current.FireEvent(new ShrineEvent("Fire activated", "Fire"));
         }
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
-            print("earth is heaeasgyrhs");
             EventSystem.Current.FireEvent(new ShrineEvent("Water activated", "Water"));
         }
         if (Input.GetKeyDown(KeyCode.Keypad3))
         {
-            print("earth is heaeasgyrhs");
             EventSystem.Current.FireEvent(new ShrineEvent("Earth activated", "Earth"));
         }
         if (Input.GetKeyDown(KeyCode.Keypad4))
         {
-            print("earth is heaeasgyrhs");
             EventSystem.Current.FireEvent(new ShrineEvent("Wind activated", "Wind"));
         }
     }

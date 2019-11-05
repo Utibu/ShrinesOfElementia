@@ -6,12 +6,12 @@ public class WindBlade : MonoBehaviour
 {
     //private GameObject[] enemiesHit;
     private List<GameObject> enemiesHit;
-    private int damage;
+    [SerializeField] private int damage;
     [SerializeField] private float lifeTime;
 
     private void Start()
     {
-        
+        enemiesHit = new List<GameObject>();
     }
 
     private void Update()
@@ -21,6 +21,7 @@ public class WindBlade : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
 
     private void OnTriggerEnter(Collider other)

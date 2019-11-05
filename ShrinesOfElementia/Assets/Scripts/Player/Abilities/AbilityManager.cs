@@ -87,17 +87,20 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    public void CastWindBlade()
+    public void CheckWindBlade()
     {
-        print("in wind");
         if(hasWind && windBladeTimer <= 0f)
         {
-            print("casting wind");
             Player.Instance.Animator.SetBool("InCombat", true);
-            Instantiate(windBladePrefab, gameObject.transform.position + Vector3.up.normalized * 2f + gameObject.transform.forward * 2f, gameObject.transform.rotation);
-            windBladePrefab.GetComponent<Rigidbody>().AddForce(CameraReference.Instance.transform.forward * windBladeSpeed, ForceMode.VelocityChange);
-            windBladeTimer = windBladeCooldown;
+            Player.Instance.Animator.SetTrigger("OnWindBlade");
         }
+    }
+
+    private void CastWindBlade()
+    {
+        GameObject windBlade = Instantiate(windBladePrefab, gameObject.transform.position + Vector3.up.normalized + gameObject.transform.forward * 2f, gameObject.transform.rotation);
+        windBlade.GetComponent<Rigidbody>().AddForce(Player.Instance.transform.forward * windBladeSpeed, ForceMode.VelocityChange);
+        windBladeTimer = windBladeCooldown;
     }
 
     private void EnableFireAbilities()
