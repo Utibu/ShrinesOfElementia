@@ -38,12 +38,14 @@ public class SpawnBasic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        countdown -= Time.deltaTime;
-        if (currentSpawnCount < spawnLimit && countdown <= 0)
+        if(currentSpawnCount < spawnLimit)
         {
-            //check spawnrate timer
-            countdown = spawnRate;
-            spawnNew();
+            countdown -= Time.deltaTime;
+            if (currentSpawnCount < spawnLimit && countdown <= 0)
+            {
+                countdown = spawnRate;
+                spawnNew();
+            }
         }
     }
 
@@ -52,8 +54,8 @@ public class SpawnBasic : MonoBehaviour
         currentSpawnCount += 1;
         //fix random x,z within spawn area later
         
-        GameObject g = Instantiate(spawnling, GetComponent<Collider>().transform);
-        //give enemy 2 random patrolpoints
+        GameObject g = Instantiate(spawnling, gameObject.transform);
+        //give enemy 2 random patrolpoints. Consider replacing this with constructor
         GameObject point1 = patrolPoints[Random.Range(0, patrolPoints.Length)];
         GameObject point2 = patrolPoints[Random.Range(0, patrolPoints.Length)];
         g.GetComponent<EnemySM>().SetPatrolPoints(point1, point2);
