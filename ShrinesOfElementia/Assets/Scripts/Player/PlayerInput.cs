@@ -34,6 +34,8 @@ public class PlayerInput : MonoBehaviour
     private bool isAttacking;
     private float attackSpeed;
 
+    [SerializeField] private float sprintStaminaDrain;
+
     [SerializeField] private RectTransform shrinePanel; //TEMPORARY, REMOVE AFTER POC
 
     private void Start()
@@ -113,6 +115,8 @@ public class PlayerInput : MonoBehaviour
             abilityManager.CheckWindBlade();
         }
 
+        
+
         if (Input.GetKeyDown(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
             && staminaManager.CurrentStamina > 0) 
         {
@@ -132,10 +136,10 @@ public class PlayerInput : MonoBehaviour
             player.Animator.SetTrigger("ToNeutral");
         }
         */
-        if(player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint"))
+        if(player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint") && player.Animator.GetFloat("InputMagnitude") != 0)
         {
             print("sprinting");
-            EventSystem.Current.FireEvent(new StaminaDrainEvent("sprinting", 0.5f));
+            EventSystem.Current.FireEvent(new StaminaDrainEvent("sprinting", sprintStaminaDrain));
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking 
@@ -193,7 +197,7 @@ public class PlayerInput : MonoBehaviour
         isBlocking = Input.GetMouseButton(1);
         player.Animator.SetBool("IsBlocking", isBlocking);
 
-        if (isBlocking == true && staminaManager.CurrentStamina > 0) // Start blocking
+        if (isBlocking == true && staminaManager.CurrentStamina > 0 && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")) // Start blocking
         {
             player.Animator.SetBool("InCombat", true);
 
@@ -216,19 +220,19 @@ public class PlayerInput : MonoBehaviour
             movementInput.TakeInput = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             EventSystem.Current.FireEvent(new ShrineEvent("Fire activated", "Fire"));
         }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
+        if (Input.GetKeyDown(KeyCode.Alpha8))
         {
             EventSystem.Current.FireEvent(new ShrineEvent("Water activated", "Water"));
         }
-        if (Input.GetKeyDown(KeyCode.Keypad3))
+        if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             EventSystem.Current.FireEvent(new ShrineEvent("Earth activated", "Earth"));
         }
-        if (Input.GetKeyDown(KeyCode.Keypad4))
+        if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             EventSystem.Current.FireEvent(new ShrineEvent("Wind activated", "Wind"));
         }
