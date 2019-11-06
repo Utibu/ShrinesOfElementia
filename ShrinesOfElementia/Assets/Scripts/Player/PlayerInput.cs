@@ -115,6 +115,12 @@ public class PlayerInput : MonoBehaviour
             abilityManager.CheckWindBlade();
         }
 
+        //Earth spikes
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            abilityManager.CastEarthSpikes();
+        }
+
         
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
@@ -138,7 +144,6 @@ public class PlayerInput : MonoBehaviour
         */
         if(player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint") && player.Animator.GetFloat("InputMagnitude") != 0)
         {
-            print("sprinting");
             EventSystem.Current.FireEvent(new StaminaDrainEvent("sprinting", sprintStaminaDrain));
         }
 

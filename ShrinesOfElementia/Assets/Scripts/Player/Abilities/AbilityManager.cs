@@ -29,6 +29,9 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private float windBladeCooldown, windBladeSpeed;
     private float windBladeTimer;
 
+    [Header("Earth Spikes Attributes")]
+    [SerializeField] private GameObject earthSpikesPrefab;
+
     [Header("Touch of Nature")]
     [SerializeField] private int healthRegenerationIncrease;
 
@@ -101,6 +104,12 @@ public class AbilityManager : MonoBehaviour
         GameObject windBlade = Instantiate(windBladePrefab, gameObject.transform.position + Vector3.up.normalized + gameObject.transform.forward * 2f, gameObject.transform.rotation);
         windBlade.GetComponent<Rigidbody>().AddForce(Player.Instance.transform.forward * windBladeSpeed, ForceMode.VelocityChange);
         windBladeTimer = windBladeCooldown;
+    }
+
+    public void CastEarthSpikes()
+    {
+        GameObject earthSpikes = Instantiate(earthSpikesPrefab, gameObject.transform.position, earthSpikesPrefab.transform.rotation);
+        earthSpikes.GetComponent<ParticleSystem>().Play();
     }
 
     private void EnableFireAbilities()

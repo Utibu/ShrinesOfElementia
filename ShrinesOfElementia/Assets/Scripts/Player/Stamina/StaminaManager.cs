@@ -20,7 +20,6 @@ public class StaminaManager : MonoBehaviour
         }
         set
         {
-            print(value);
             if(value > maxStamina)
             {
                 currentStamina = maxStamina;
