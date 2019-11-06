@@ -121,6 +121,7 @@ public class MovementInput : MonoBehaviour
                 moveVector.y = -gravity * Time.deltaTime;
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    animator.SetTrigger("OnJump");
                     moveVector.y = jumpSpeed;
                     //animator.SetBool("IsGrounded", false);   Jumping animation (not good)
                 }
@@ -189,10 +190,12 @@ public class MovementInput : MonoBehaviour
     {
         if(Physics.Raycast(transform.position, Vector3.down, distanceToGround))
         {
+            animator.SetBool("IsGrounded", true);
             return true;
         }
         else
         {
+            animator.SetBool("IsGrounded", false);
             return false;
         }
     }

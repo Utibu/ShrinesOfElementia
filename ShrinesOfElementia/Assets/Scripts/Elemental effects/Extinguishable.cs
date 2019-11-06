@@ -89,7 +89,7 @@ public class Extinguishable : MonoBehaviour
 
     public void OnDestroy()
     {
-        EventSystem.Current.UnregisterListener<GeyserCastEvent>(Extinguish); // null reference, undersök.
+        EventSystem.Current.UnregisterListener<GeyserCastEvent>(Extinguish);
     }
 
 }
