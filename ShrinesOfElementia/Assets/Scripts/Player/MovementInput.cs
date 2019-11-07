@@ -32,6 +32,7 @@ public class MovementInput : MonoBehaviour
 
     [Header("Glide")]
     [SerializeField] private float glideSpeed;
+    [SerializeField] private float glideStrength;
 
     [Header("Movement Speed")]
     [SerializeField] private float defaultSpeed;
@@ -107,19 +108,14 @@ public class MovementInput : MonoBehaviour
 
             else if (isGliding)
             {
-                moveVector = new Vector3(inputX, moveVector.y, inputZ);
-                gravity = 0;
+                print("gliding");
+                moveVector = new Vector3(inputX, glideStrength, inputZ);
+                moveVector.y += 10;
                 moveVector.Normalize();
                 moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
                 moveVector *= glideSpeed;
                 fromGlide = true;
             }
-            else
-            {
-                gravity = 20;
-            }
-
-            print(gravity);
 
             if (animator.GetBool("InCombat"))
             {

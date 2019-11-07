@@ -16,8 +16,12 @@ public class AbilityManager : MonoBehaviour
     private Vector3 fireballSpawnLocation;
     private float fireballTimer;
 
-    [Header("Geyser attributes")]
+    [Header("Fire Infusion attributes")]
+    [SerializeField] private GameObject fireParticles;
+    [SerializeField] private GameObject sword;
+    [SerializeField] private int damageIncrease;
 
+    [Header("Geyser attributes")]
     [SerializeField] private GameObject geyserPrefab;
     [SerializeField] private float geyserCooldown;
     [SerializeField] private GameObject geyserSpawnLocation; // make this simpler? gsl = player.position + forward * 2f eller ngt baserat på kameran
@@ -125,6 +129,8 @@ public class AbilityManager : MonoBehaviour
     private void EnableFireAbilities()
     {
         hasFire = true;
+        fireParticles.SetActive(true);
+        sword.GetComponent<Sword>().SetDamage(damageIncrease);
     }
 
     private void EnableWaterAbilities()

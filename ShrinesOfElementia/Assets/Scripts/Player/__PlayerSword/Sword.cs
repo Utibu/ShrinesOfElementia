@@ -35,4 +35,9 @@ public class Sword : MonoBehaviour
 
         Gizmos.DrawSphere(hitPoint, .2f);
     }
+
+    public void SetDamage(int damage)
+    {
+        this.damage += damage;
+    }
 }
