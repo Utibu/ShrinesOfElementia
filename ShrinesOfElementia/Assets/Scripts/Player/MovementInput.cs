@@ -19,6 +19,7 @@ public class MovementInput : MonoBehaviour
     private float dodgeTimer = 0.0f;
     private bool isDodging;
     private bool isGliding;
+    private bool fromGlide;
     private Vector3 moveVector = Vector3.zero;
 
 
@@ -65,7 +66,7 @@ public class MovementInput : MonoBehaviour
         //Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Physics.IgnoreLayerCollision(9, 4, true);
-
+        fromGlide = false;
         breakUpdate = false;
     }
 
@@ -106,10 +107,12 @@ public class MovementInput : MonoBehaviour
 
             else if (isGliding)
             {
-                moveVector = new Vector3(inputX, 1.0f, inputZ);
+                moveVector = new Vector3(inputX, moveVector.y, inputZ);
                 gravity = 0;
                 moveVector.Normalize();
                 moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
+                moveVector *= glideSpeed;
+                fromGlide = true;
             }
             else
             {
@@ -130,16 +133,25 @@ public class MovementInput : MonoBehaviour
             InputMagnitude();
 
             //isGrounded = controller.isGrounded;   Old code, didn't work. Keeping just in case.
-            if (IsGrounded()&& moveVector.y < 0.5f)
+            if (IsGrounded() && moveVector.y < 0.5f)
             {
                 //animator.SetBool("IsGrounded", true);   Jumping animation (not good)
                 moveVector.y = -gravity * Time.deltaTime;
-                isGliding = false;
-                animator.SetBool("IsGliding", false);
             }
+
+          
             else
             {
                 moveVector.y -= gravity * Time.deltaTime;
+            }
+
+            if (IsGrounded() && fromGlide)
+            {
+                isGliding = false;
+                animator.SetBool("IsGliding", false);
+                moveVector.x = 0;
+                moveVector.z = 0;
+                fromGlide = false;
             }
 
             if (Input.GetKeyDown(KeyCode.Space))
