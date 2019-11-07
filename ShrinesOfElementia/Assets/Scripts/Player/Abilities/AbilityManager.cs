@@ -31,6 +31,8 @@ public class AbilityManager : MonoBehaviour
 
     [Header("Earth Spikes Attributes")]
     [SerializeField] private GameObject earthSpikesPrefab;
+    [SerializeField] private float earthSpikesCooldown;
+    private float earthSpikesTimer;
 
     [Header("Touch of Nature")]
     [SerializeField] private int healthRegenerationIncrease;
@@ -49,6 +51,7 @@ public class AbilityManager : MonoBehaviour
         fireballTimer = 0.0f;
         geyserTimer = 0.0f;
         windBladeTimer = 0.0f;
+        earthSpikesTimer = 0.0f;
         EventSystem.Current.RegisterListener<ShrineEvent>(unlockElement);
     }
 
@@ -57,6 +60,7 @@ public class AbilityManager : MonoBehaviour
         fireballTimer -= Time.deltaTime;
         geyserTimer -= Time.deltaTime;
         windBladeTimer -= Time.deltaTime;
+        earthSpikesTimer -= Time.deltaTime;
         regenerationCountdown += Time.deltaTime;
         //print(regenerationCountdown);
         if (!GetComponent<CombatManager>().InCombat && regenerationCountdown >= regenerationInterval)
@@ -108,8 +112,15 @@ public class AbilityManager : MonoBehaviour
 
     public void CastEarthSpikes()
     {
-        GameObject earthSpikes = Instantiate(earthSpikesPrefab, gameObject.transform.position, earthSpikesPrefab.transform.rotation);
-        earthSpikes.GetComponent<ParticleSystem>().Play();
+        if (hasEarth && earthSpikesTimer <= 0f)
+        {
+            print(Player.Instance.gameObject.name + Player.Instance.gameObject.transform.rotation.eulerAngles);
+            Player.Instance.Animator.SetBool("InCombat", true);
+            Quaternion spikesRotation = Quaternion.Euler(-90, gameObject.transform.rotation.eulerAngles.y, 0);
+            GameObject earthSpikes = Instantiate(earthSpikesPrefab, gameObject.transform.position + gameObject.transform.forward * 2f, spikesRotation);
+            earthSpikes.GetComponent<ParticleSystem>().Play();
+            earthSpikesTimer = earthSpikesCooldown;
+        }
     }
 
     private void EnableFireAbilities()
