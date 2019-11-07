@@ -18,6 +18,7 @@ public class MovementInput : MonoBehaviour
     private CharacterController controller;
     private float dodgeTimer = 0.0f;
     private bool isDodging;
+    private bool isGliding;
     private Vector3 moveVector = Vector3.zero;
 
 
@@ -28,6 +29,8 @@ public class MovementInput : MonoBehaviour
     [SerializeField] private float gravity;
     [SerializeField] private float jumpSpeed;
 
+    [Header("Glide")]
+    [SerializeField] private float glideSpeed;
 
     [Header("Movement Speed")]
     [SerializeField] private float defaultSpeed;
@@ -101,6 +104,19 @@ public class MovementInput : MonoBehaviour
 
             }
 
+            else if (isGliding)
+            {
+                moveVector = new Vector3(inputX, 1.0f, inputZ);
+                gravity = 0;
+                moveVector.Normalize();
+                moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
+            }
+            else
+            {
+                gravity = 20;
+            }
+
+            print(gravity);
 
             if (animator.GetBool("InCombat"))
             {
@@ -114,22 +130,36 @@ public class MovementInput : MonoBehaviour
             InputMagnitude();
 
             //isGrounded = controller.isGrounded;   Old code, didn't work. Keeping just in case.
-            if (IsGrounded() && moveVector.y < 0.5f)
+            if (IsGrounded()&& moveVector.y < 0.5f)
             {
                 //animator.SetBool("IsGrounded", true);   Jumping animation (not good)
-
                 moveVector.y = -gravity * Time.deltaTime;
-                if (Input.GetKeyDown(KeyCode.Space))
+                isGliding = false;
+                animator.SetBool("IsGliding", false);
+            }
+            else
+            {
+                moveVector.y -= gravity * Time.deltaTime;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (!isGliding && IsGrounded())
                 {
                     animator.SetTrigger("OnJump");
                     moveVector.y = jumpSpeed;
                     //animator.SetBool("IsGrounded", false);   Jumping animation (not good)
                 }
-
-            }
-            else
-            {
-                moveVector.y -= gravity * Time.deltaTime;
+                else if (!isGliding && !IsGrounded())
+                {
+                    isGliding = true;
+                    animator.SetBool("IsGliding", true);
+                }
+                else if (isGliding && !IsGrounded())
+                {
+                    isGliding = false;
+                    animator.SetBool("IsGliding", false);
+                }
 
             }
             controller.Move(moveVector * Time.deltaTime);
@@ -208,6 +238,16 @@ public class MovementInput : MonoBehaviour
             isDodging = true;
             player.Animator.SetTrigger("OnDodge");
             EventSystem.Current.FireEvent(new StaminaDrainEvent("stamina drained", 15));
+        }
+    }
+
+    public void OnGlide()
+    {
+        if (!IsGrounded())
+        {
+            isGliding = true;
+            animator.SetBool("IsGliding", true);
+
         }
     }
 

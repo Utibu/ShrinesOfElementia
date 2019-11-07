@@ -24,28 +24,12 @@ public class EarthSpikes : MonoBehaviour
             boxCollider.enabled = false;
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        print(collision.gameObject.name);
-    }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
             print("trigger particle");
-            EventSystem.Current.FireEvent(new DamageEvent("damage dealt", 20, gameObject, other.gameObject));
-
-        }
-    }
-
-    private void OnParticleCollision(GameObject other)
-    {
-        print("particle collision");
-        print(other.gameObject.name);
-        if (other.CompareTag("Enemy"))
-        {
             EventSystem.Current.FireEvent(new DamageEvent("damage dealt", 20, gameObject, other.gameObject));
         }
     }

@@ -114,7 +114,6 @@ public class AbilityManager : MonoBehaviour
     {
         if (hasEarth && earthSpikesTimer <= 0f)
         {
-            print(Player.Instance.gameObject.name + Player.Instance.gameObject.transform.rotation.eulerAngles);
             Player.Instance.Animator.SetBool("InCombat", true);
             Quaternion spikesRotation = Quaternion.Euler(-90, gameObject.transform.rotation.eulerAngles.y, 0);
             GameObject earthSpikes = Instantiate(earthSpikesPrefab, gameObject.transform.position + gameObject.transform.forward * 2f, spikesRotation);

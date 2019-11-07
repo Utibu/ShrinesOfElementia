@@ -26,7 +26,6 @@ public class StaminaManager : MonoBehaviour
             }
             else if (value > currentStamina)
             {
-                print("setting");
                 currentStamina = value;
             }
             else if(value < currentStamina)
