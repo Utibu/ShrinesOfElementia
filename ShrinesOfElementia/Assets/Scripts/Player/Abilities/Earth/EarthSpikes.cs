@@ -5,15 +5,39 @@ using UnityEngine;
 public class EarthSpikes : MonoBehaviour
 {
     private ParticleSystem particles;
+    private BoxCollider boxCollider;
 
     private void Start()
     {
         particles = GetComponent<ParticleSystem>();
+        boxCollider = GetComponent<BoxCollider>();
+    }
+
+    private void Update()
+    {
+        if (particles.IsAlive())
+        {
+            boxCollider.enabled = true;
+        }
+        else
+        {
+            boxCollider.enabled = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         print(collision.gameObject.name);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            print("trigger particle");
+            EventSystem.Current.FireEvent(new DamageEvent("damage dealt", 20, gameObject, other.gameObject));
+
+        }
     }
 
     private void OnParticleCollision(GameObject other)
@@ -22,7 +46,7 @@ public class EarthSpikes : MonoBehaviour
         print(other.gameObject.name);
         if (other.CompareTag("Enemy"))
         {
-            print("enemy hit");
+            EventSystem.Current.FireEvent(new DamageEvent("damage dealt", 20, gameObject, other.gameObject));
         }
     }
 }

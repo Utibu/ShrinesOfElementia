@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4479981995537874223}
   - component: {fileID: 1327437493104499732}
   - component: {fileID: 1652049504460037545}
+  - component: {fileID: 8181009744287108275}
   m_Layer: 0
   m_Name: EarthSpikes 2
   m_TagString: Untagged
@@ -3642,7 +3643,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 3
     type: 1
     collisionMode: 0
@@ -3712,7 +3713,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3816,7 +3817,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     minKillSpeed: 0
-    maxKillSpeed: 10000
+    maxKillSpeed: 0
     radiusScale: 0.37
     collidesWith:
       serializedVersion: 2
@@ -3824,7 +3825,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -4853,6 +4854,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a413a63dc158ff3499f921153a71525d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &8181009744287108275
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339032902255765298}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 4.01, y: 5.67, z: 1.1148145}
+  m_Center: {x: 0.28003502, y: -0.93, z: 0.1339198}
 --- !u!1 &1339032902272261055
 GameObject:
   m_ObjectHideFlags: 0
@@ -4864,6 +4878,8 @@ GameObject:
   - component: {fileID: 6521382520958666351}
   - component: {fileID: 4479981995598954914}
   - component: {fileID: 1327437493103698073}
+  - component: {fileID: 5993142430678772302}
+  - component: {fileID: 6565882186394185602}
   m_Layer: 0
   m_Name: EarthSpikes (1)
   m_TagString: Untagged
@@ -8492,7 +8508,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 3
     type: 1
     collisionMode: 0
@@ -9691,6 +9707,31 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!65 &5993142430678772302
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339032902272261055}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 5.43, y: 5.48, z: 1.1148145}
+  m_Center: {x: 0.22, y: -0.2, z: 0.1339198}
+--- !u!114 &6565882186394185602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339032902272261055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a413a63dc158ff3499f921153a71525d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1339032902816211750
 GameObject:
   m_ObjectHideFlags: 0
@@ -9702,6 +9743,8 @@ GameObject:
   - component: {fileID: 6521382521504726774}
   - component: {fileID: 4479981996126665019}
   - component: {fileID: 1327437492557649920}
+  - component: {fileID: 2989952200910415590}
+  - component: {fileID: 3307646304483006684}
   m_Layer: 0
   m_Name: EarthSpikes (2)
   m_TagString: Untagged
@@ -13330,7 +13373,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 3
     type: 1
     collisionMode: 0
@@ -14529,3 +14572,28 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!65 &2989952200910415590
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339032902816211750}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 8.83, y: 5.02, z: 1.1148145}
+  m_Center: {x: 0.28003502, y: 0.15, z: 0.1339198}
+--- !u!114 &3307646304483006684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339032902816211750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a413a63dc158ff3499f921153a71525d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
