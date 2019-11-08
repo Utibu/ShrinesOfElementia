@@ -29,9 +29,9 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
 
 
 
-    public override void Update()
+    public override void HandleUpdate()
     {
-        base.Update();
+        base.HandleUpdate();
         
         //do the chasing
         owner.Agent.SetDestination(Player.Instance.transform.position);

@@ -33,10 +33,10 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
     }
 
 
-    public override void Update()
+    public override void HandleUpdate()
     {
 
-        base.Update();
+        base.HandleUpdate();
 
         if (cooldown <= 0)
         {

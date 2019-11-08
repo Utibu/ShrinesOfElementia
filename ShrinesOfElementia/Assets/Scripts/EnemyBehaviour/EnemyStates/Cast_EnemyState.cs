@@ -46,9 +46,9 @@ public class Cast_EnemyState : BasicEnemyBaseState
         
     }
 
-    public override void Update()
+    public override void HandleUpdate()
     {
-        base.Update();
+        base.HandleUpdate();
         //rotate / aim at player
         owner.transform.LookAt(owner.Player.transform.position);
         

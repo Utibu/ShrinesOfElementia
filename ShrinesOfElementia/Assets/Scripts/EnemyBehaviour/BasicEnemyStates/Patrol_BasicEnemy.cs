@@ -30,9 +30,9 @@ public class Patrol_BasicEnemy : BasicEnemyBaseState
         Debug.Log("Entering patrol state");
     }
 
-    public override void Update()
+    public override void HandleUpdate()
     {
-        base.Update();
+        base.HandleUpdate();
         distanceToPatrolPoint = Vector3.Distance(owner.transform.position, owner.PatrolPoints[currentTargetIndex].transform.position);
 
         //state Transistion checks: 

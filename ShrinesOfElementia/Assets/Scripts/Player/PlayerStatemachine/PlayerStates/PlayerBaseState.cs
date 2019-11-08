@@ -13,7 +13,7 @@ public class PlayerBaseState : State
         camera = CameraReference.Instance;
     }
 
-    public override void Update()
+    public override void HandleUpdate()
     {
         if (Input.GetMouseButtonDown(0))
         {

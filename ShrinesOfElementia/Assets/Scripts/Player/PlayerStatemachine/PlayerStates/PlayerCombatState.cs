@@ -11,7 +11,7 @@ public class PlayerCombatState : PlayerBaseState
         Player.Instance.Animator.SetBool("InCombat", true);
     }
 
-    public override void Update()
+    public override void HandleUpdate()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {

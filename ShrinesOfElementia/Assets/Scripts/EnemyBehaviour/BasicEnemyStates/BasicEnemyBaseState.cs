@@ -41,7 +41,7 @@ public class BasicEnemyBaseState : State
     }
 
 
-    public override void Update()
+    public override void HandleUpdate()
     {
         
         

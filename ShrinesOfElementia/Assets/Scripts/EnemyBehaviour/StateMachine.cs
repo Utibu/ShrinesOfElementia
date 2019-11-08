@@ -37,7 +37,7 @@ public class StateMachine : MonoBehaviour
     {
         if (currentState != null)
         {
-            currentState.Update();
+            currentState.HandleUpdate();
         }
     }
 
