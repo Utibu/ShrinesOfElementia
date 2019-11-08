@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author: Joakim Ljung
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +12,7 @@ public class StaminaManager : MonoBehaviour
     [SerializeField] private float staminaRegenerationAmount;
     [SerializeField] private int staminaRegenerationDelay;
     private float regenerationCountdown;
+    [SerializeField] private bool infiniteStamina;
 
     [SerializeField] private Slider staminaSlider;
 
@@ -79,8 +82,11 @@ public class StaminaManager : MonoBehaviour
 
     private void OnStaminaDrain(StaminaDrainEvent eve)
     {
-        CurrentStamina -= eve.DrainAmount;
-        regenerationCountdown = 0;
+        if (!infiniteStamina)
+        {
+            CurrentStamina -= eve.DrainAmount;
+            regenerationCountdown = 0;
+        }
     }
 
     private void UpdateStaminaBar()

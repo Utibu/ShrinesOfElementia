@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author: Joakim Ljung
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -80,11 +82,15 @@ public class MovementInput : MonoBehaviour
             inputX = Input.GetAxis("Horizontal");
             inputZ = Input.GetAxis("Vertical");
 
-            if (breakUpdate == true)
-            {
-                breakUpdate = false;
-                return;
-            }
+
+            //TEST STUFF
+            //moveVector = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+            //moveVector.Normalize();
+            //moveVector = camera.transform.TransformDirection(moveVector);
+            //moveVector.y = 0.0f;
+            //moveVector *= runSpeed;
+            //print(moveVector);
+
 
             if (isDodging)
             {
@@ -134,6 +140,10 @@ public class MovementInput : MonoBehaviour
             if (IsGrounded() && moveVector.y < 0.5f)
             {
                 //animator.SetBool("IsGrounded", true);   Jumping animation (not good)
+
+                
+                
+
                 moveVector.y = -gravity * Time.deltaTime;
             }
 
@@ -172,6 +182,8 @@ public class MovementInput : MonoBehaviour
                 }
 
             }
+
+            //print(moveVector);
             controller.Move(moveVector * Time.deltaTime);
         }
         //Debug.Log(animator.GetBool("IsGrounded"));

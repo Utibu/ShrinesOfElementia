@@ -1,5 +1,5 @@
 ﻿// Author: Bilal El Medkouri
-
+// Co-author: Joakim Ljung
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
@@ -65,7 +65,6 @@ public class PlayerInput : MonoBehaviour
             // Heals the player for 10 hp
             player.Health.CurrentHealth += 30;
         }
-
 
         // Fireball
         if (Input.GetKeyDown(KeyCode.Alpha1)) //  && fireballTimer <= 0f
