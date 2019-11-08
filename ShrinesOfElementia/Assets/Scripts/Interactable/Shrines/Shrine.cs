@@ -37,7 +37,7 @@ public class Shrine : Interactable
                 element = "Earth";
                 break;
             case SHRINETYPES.Wind:
-                element = "Wind";
+                element = "Earth";
                 break;
 
         }
@@ -61,8 +61,8 @@ public class Shrine : Interactable
         ShrineEvent shrineEvent = new ShrineEvent(element + " shrine activated", element);
         EventSystem.Current.FireEvent(shrineEvent);
         shrineAnimationController.SetTrigger("IsTaken");
-        //shrinePanel.gameObject.SetActive(true);
-        //Player.Instance.GetComponent<MovementInput>().TakeInput = false;
+        shrinePanel.gameObject.SetActive(true);
+        Player.Instance.GetComponent<MovementInput>().TakeInput = false;
         beacon.SetActive(false);
         Disable();
     }
