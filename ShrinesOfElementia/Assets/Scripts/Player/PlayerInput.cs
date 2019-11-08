@@ -68,7 +68,7 @@ public class PlayerInput : MonoBehaviour
 
 
         // Fireball
-        if (Input.GetKeyDown(KeyCode.Alpha1)) //  && fireballTimer <= 0f
+        if (Input.GetKeyDown(KeyCode.Q)) //  && fireballTimer <= 0f
         {
             abilityManager.CastFireBall();
 
@@ -82,7 +82,7 @@ public class PlayerInput : MonoBehaviour
         //fireballTimer -= Time.deltaTime;
 
         // Geyser
-        if (Input.GetKeyDown(KeyCode.Alpha2)) // && geyserTimer <= 0f
+        if (Input.GetKeyDown(KeyCode.R)) // && geyserTimer <= 0f
         {
             abilityManager.CastGeyser();
             /*GameObject geyser = */
@@ -98,25 +98,25 @@ public class PlayerInput : MonoBehaviour
         // Temporary water walking. Layer 9 is the player, and layer 4 is water
 
         //Enable water walking
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             Physics.IgnoreLayerCollision(9, 4, false);
         }
 
         //Disable water walking
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             Physics.IgnoreLayerCollision(9, 4, true);
         }
 
         //Wind blade
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             abilityManager.CheckWindBlade();
         }
 
         //Earth spikes
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             abilityManager.CastEarthSpikes();
         }

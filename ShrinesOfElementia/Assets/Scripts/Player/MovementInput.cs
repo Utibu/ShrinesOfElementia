@@ -20,7 +20,6 @@ public class MovementInput : MonoBehaviour
     private bool isDodging;
     private bool isGliding;
     private bool fromGlide;
-    private bool hasGlide;
     private Vector3 moveVector = Vector3.zero;
 
 
@@ -70,7 +69,6 @@ public class MovementInput : MonoBehaviour
         Physics.IgnoreLayerCollision(9, 4, true);
         fromGlide = false;
         breakUpdate = false;
-        hasGlide = false;
     }
 
     private void Update()
@@ -160,12 +158,12 @@ public class MovementInput : MonoBehaviour
                     moveVector.y = jumpSpeed;
                     //animator.SetBool("IsGrounded", false);   Jumping animation (not good)
                 }
-                else if (!isGliding && !IsGrounded() && hasGlide)
+                else if (!isGliding && !IsGrounded())
                 {
                     isGliding = true;
                     animator.SetBool("IsGliding", true);
                 }
-                else if (isGliding && !IsGrounded() && hasGlide)
+                else if (isGliding && !IsGrounded())
                 {
                     isGliding = false;
                     animator.SetBool("IsGliding", false);
@@ -251,9 +249,14 @@ public class MovementInput : MonoBehaviour
         }
     }
 
-    public void ActivateGlide()
+    public void OnGlide()
     {
-        hasGlide = true;
+        if (!IsGrounded())
+        {
+            isGliding = true;
+            animator.SetBool("IsGliding", true);
+
+        }
     }
 
     public void MoveTo(Vector3 position)
