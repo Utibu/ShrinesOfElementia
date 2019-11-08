@@ -29,6 +29,7 @@ public class Giant : StateMachine
     {
         print("BossAreaEntered");
         Transition<GiantPhaseOneState>();
+        BossEvents.Instance.OnBossFightAreaTriggerEnter -= OnBossAreaEnter;
     }
 
     private void OnDestroy()

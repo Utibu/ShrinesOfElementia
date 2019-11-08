@@ -26,6 +26,8 @@ public class GiantPhaseOneState : GiantBaseState
 
     public override void HandleUpdate()
     {
+        MonoBehaviour.print("Sweep Cooldown:" + sweepTimer);
+
         if (Vector3.Distance(owner.gameObject.transform.position, Player.Instance.transform.position) > attackRange)
         {
             owner.Transition<GiantChaseState>();
