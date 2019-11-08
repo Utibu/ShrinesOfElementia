@@ -16,7 +16,7 @@ public class BossBaseState : State
 
     }
 
-    public override void Update()
+    public override void HandleUpdate()
     {
 
     }

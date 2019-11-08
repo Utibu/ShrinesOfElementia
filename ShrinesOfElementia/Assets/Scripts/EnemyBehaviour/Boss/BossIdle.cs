@@ -20,10 +20,10 @@ public class BossIdle : BossBaseState
     }
 
 
-    public override void Update()
+    public override void HandleUpdate()
     {
 
-        base.Update();
+        base.HandleUpdate();
 
     }
 

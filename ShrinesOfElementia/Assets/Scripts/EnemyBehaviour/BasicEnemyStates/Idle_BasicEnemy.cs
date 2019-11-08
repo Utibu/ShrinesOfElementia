@@ -22,9 +22,9 @@ public class Idle_BasicEnemy : BasicEnemyBaseState
     }
 
 
-    public override void Update() {
+    public override void HandleUpdate() {
 
-        base.Update();
+        base.HandleUpdate();
 
         //do idle stuff (placeholder til we have animations)
         owner.transform.Rotate(new Vector3(0, 1, 0), 35 * Time.deltaTime);

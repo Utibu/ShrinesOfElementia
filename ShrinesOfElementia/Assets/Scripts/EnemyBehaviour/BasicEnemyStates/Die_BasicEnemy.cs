@@ -33,10 +33,10 @@ public class Die_BasicEnemy : BasicEnemyBaseState
     }
 
 
-    public override void Update()
+    public override void HandleUpdate()
     {
 
-        base.Update();
+        base.HandleUpdate();
         owner.transform.Rotate(new Vector3(1, 0, 0), 75);
         
         
