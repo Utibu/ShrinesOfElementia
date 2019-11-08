@@ -1,4 +1,5 @@
 ﻿// Author: Bilal El Medkouri
+// Co-Author: Joakim Ljung
 
 using UnityEngine;
 
@@ -40,7 +41,7 @@ public class Fireball : MonoBehaviour
         if (hasDealtDamage == true)
             return;
 
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player"))
         {
             DealDamage(collision.gameObject, directHitDamage);
 

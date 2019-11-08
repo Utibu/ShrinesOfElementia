@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author: Joakim Ljung
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +8,8 @@ public class Interactable : MonoBehaviour
 {
     protected bool isInteractable;
     protected BoxCollider boxCollider;
+    [SerializeField] protected Canvas interactCanvas;
+
 
     protected virtual void Start()
     {
@@ -14,7 +18,10 @@ public class Interactable : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-
+        if (other.gameObject.CompareTag("Player"))
+        {
+            interactCanvas.gameObject.SetActive(true);
+        }
     }
 
     protected virtual void OnTriggerStay(Collider other)
@@ -24,6 +31,15 @@ public class Interactable : MonoBehaviour
             OnInteract();
         }
 
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("Left");
+        if (other.gameObject.tag == "Player")
+        {
+            interactCanvas.gameObject.SetActive(false);
+        }
     }
 
     protected virtual void OnInteract()
