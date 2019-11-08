@@ -148,7 +148,9 @@ public class AbilityManager : MonoBehaviour
     private void EnableWindAbilities()
     {
         hasWind = true;
+        Player.Instance.GetComponent<MovementInput>().ActivateGlide();
     }
+
 
     private void RegenerateHealth()
     {
