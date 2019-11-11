@@ -35,7 +35,7 @@ public class PlayerStateMachine : StateMachine
         controller = GetComponent<CharacterController>();
     }
 
-    public override void Update()
+    protected override void Update()
     {
         InputMagnitude();
         //isGrounded = controller.isGrounded;   Old code, didn't work. Keeping just in case.
