@@ -7,28 +7,14 @@ public class GiantPhaseOneState : GiantBaseState
 {
     [SerializeField] private float movementSpeed;
 
-    [Header("Phase One Abilities")]
-    [SerializeField] private float attackRange;
-    [SerializeField] private float sweepCooldown;
-    private float sweepTimer;
-
     public override void Enter()
     {
         owner.Agent.speed = movementSpeed;
     }
 
-    public override void Initialize(StateMachine owner)
-    {
-        sweepTimer = sweepCooldown;
-
-        base.Initialize(owner);
-    }
-
     public override void HandleUpdate()
     {
-        MonoBehaviour.print("Sweep Cooldown:" + sweepTimer);
-
-        if (Vector3.Distance(owner.gameObject.transform.position, Player.Instance.transform.position) > attackRange)
+        if (Vector3.Distance(owner.gameObject.transform.position, Player.Instance.transform.position) > owner.Agent.stoppingDistance)
         {
             owner.Transition<GiantChaseState>();
         }
@@ -37,15 +23,14 @@ public class GiantPhaseOneState : GiantBaseState
             UseAbility();
         }
 
-        CountdownCooldowns();
-
         base.HandleUpdate();
     }
 
     protected virtual void UseAbility()
     {
-        if (sweepTimer <= 0f)
+        if (owner.SweepAvailable == true)
         {
+            owner.SweepAvailable = false;
             owner.Transition<GiantSweepState>();
         }
         else
@@ -53,13 +38,4 @@ public class GiantPhaseOneState : GiantBaseState
             owner.Transition<GiantAttackState>();
         }
     }
-
-    protected virtual void CountdownCooldowns()
-    {
-        if (sweepTimer > 0f)
-        {
-            sweepTimer -= Time.deltaTime;
-        }
-    }
-
 }
