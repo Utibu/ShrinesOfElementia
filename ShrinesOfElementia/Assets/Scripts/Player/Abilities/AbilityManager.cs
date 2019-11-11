@@ -64,7 +64,7 @@ public class AbilityManager : MonoBehaviour
         geyserTimer = 0.0f;
         windBladeTimer = 0.0f;
         earthSpikesTimer = 0.0f;
-        EventSystem.Current.RegisterListener<ShrineEvent>(unlockElement);
+        EventManager.Current.RegisterListener<ShrineEvent>(unlockElement);
     }
 
     private void Update()
@@ -123,7 +123,7 @@ public class AbilityManager : MonoBehaviour
             Player.Instance.Animator.SetBool("InCombat", true);
             Instantiate(geyserPrefab, geyserSpawnLocation.transform.position, Quaternion.identity);
             geyserTimer = geyserCooldown;
-            EventSystem.Current.FireEvent(new GeyserCastEvent(geyserSpawnLocation.transform.position, moistRange));
+            EventManager.Current.FireEvent(new GeyserCastEvent(geyserSpawnLocation.transform.position, moistRange));
             geyserCooldownButton.GetComponent<Image>().fillAmount = 1;
         }
     }

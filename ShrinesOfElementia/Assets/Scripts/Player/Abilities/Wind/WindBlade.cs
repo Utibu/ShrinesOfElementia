@@ -28,7 +28,7 @@ public class WindBlade : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && !enemiesHit.Contains(other.gameObject))
         {
-            EventSystem.Current.FireEvent(new DamageEvent("Wind blade dealt " + damage + "to " + other.gameObject, damage, gameObject, other.gameObject));
+            EventManager.Current.FireEvent(new DamageEvent("Wind blade dealt " + damage + "to " + other.gameObject, damage, gameObject, other.gameObject));
             enemiesHit.Add(other.gameObject);
         }
         

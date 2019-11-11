@@ -6,7 +6,7 @@ public class DamageEventListener : MonoBehaviour
 {
     private void Start()
     {
-        EventSystem.Current.RegisterListener<DamageEvent>(OnDamageEvent);
+        EventManager.Current.RegisterListener<DamageEvent>(OnDamageEvent);
     }
 
     private void OnDamageEvent(DamageEvent damageEvent)

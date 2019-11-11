@@ -70,6 +70,6 @@ public class Fireball : MonoBehaviour
     private void DealDamage(GameObject damagedGameObject, int damage)
     {
         DamageEvent damageEvent = new DamageEvent(damagedGameObject + " has dealt " + damage + " damage to " + damagedGameObject, damage, gameObject, damagedGameObject);
-        EventSystem.Current.FireEvent(damageEvent);
+        EventManager.Current.FireEvent(damageEvent);
     }
 }
