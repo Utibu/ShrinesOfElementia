@@ -55,7 +55,7 @@ public class Shrine : Interactable
     {
         Disable();
         ShrineEvent shrineEvent = new ShrineEvent(element + " shrine activated", element);
-        EventSystem.Current.FireEvent(shrineEvent);
+        EventManager.Current.FireEvent(shrineEvent);
         shrineAnimationController.SetTrigger("IsTaken");
         //shrinePanel.gameObject.SetActive(true);
         //Player.Instance.GetComponent<MovementInput>().TakeInput = false;

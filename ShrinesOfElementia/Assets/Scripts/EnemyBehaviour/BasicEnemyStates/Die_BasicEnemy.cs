@@ -27,7 +27,7 @@ public class Die_BasicEnemy : BasicEnemyBaseState
         // Start some cool death animation
         // play wicked screech of anguish
         GameObject gameobject = owner.GetComponent<GameObject>();
-        EventSystem.Current.FireEvent(new EnemyDeathEvent(gameobject, owner.SpawnArea));
+        EventManager.Current.FireEvent(new EnemyDeathEvent(gameobject, owner.SpawnArea));
         Destroy(owner.gameObject);
 
     }

@@ -20,7 +20,7 @@ public class PlayerSoundController : MonoBehaviour
 
     public void Start()
     {
-        EventSystem.Current.RegisterListener<DamageEvent>(PlayHitClip);
+        EventManager.Current.RegisterListener<DamageEvent>(PlayHitClip);
     }
     public void PlaySlashClip()
     {

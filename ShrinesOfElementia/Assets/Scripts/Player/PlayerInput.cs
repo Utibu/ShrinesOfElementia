@@ -143,7 +143,7 @@ public class PlayerInput : MonoBehaviour
         */
         if(player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint") && player.Animator.GetFloat("InputMagnitude") != 0)
         {
-            EventSystem.Current.FireEvent(new StaminaDrainEvent("sprinting", sprintStaminaDrain));
+            EventManager.Current.FireEvent(new StaminaDrainEvent("sprinting", sprintStaminaDrain));
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking 
@@ -226,19 +226,19 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            EventSystem.Current.FireEvent(new ShrineEvent("Fire activated", "Fire"));
+            EventManager.Current.FireEvent(new ShrineEvent("Fire activated", "Fire"));
         }
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            EventSystem.Current.FireEvent(new ShrineEvent("Water activated", "Water"));
+            EventManager.Current.FireEvent(new ShrineEvent("Water activated", "Water"));
         }
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            EventSystem.Current.FireEvent(new ShrineEvent("Earth activated", "Earth"));
+            EventManager.Current.FireEvent(new ShrineEvent("Earth activated", "Earth"));
         }
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            EventSystem.Current.FireEvent(new ShrineEvent("Wind activated", "Wind"));
+            EventManager.Current.FireEvent(new ShrineEvent("Wind activated", "Wind"));
         }
     }
 
@@ -251,7 +251,7 @@ public class PlayerInput : MonoBehaviour
         attackIndex = (attackIndex + 1) % lightAttacks.Length;
         resetTimer = 0f;
 
-        EventSystem.Current.FireEvent(new StaminaDrainEvent("light attack", 15));
+        EventManager.Current.FireEvent(new StaminaDrainEvent("light attack", 15));
         //print(attackIndex);
 
         //print(resetTimer + "     " + lightAttackTimer);
@@ -268,6 +268,6 @@ public class PlayerInput : MonoBehaviour
     // Might be used maybe not
     public void FireStaminaDrainEvent(int drain)
     {
-        EventSystem.Current.FireEvent(new StaminaDrainEvent(drain + " stamina drained", drain));
+        EventManager.Current.FireEvent(new StaminaDrainEvent(drain + " stamina drained", drain));
     }
 }

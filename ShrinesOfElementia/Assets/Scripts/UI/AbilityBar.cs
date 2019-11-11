@@ -11,7 +11,7 @@ public class AbilityBar : MonoBehaviour
 
     private void Start()
     {
-        EventSystem.Current.RegisterListener<ShrineEvent>(OnShrineEvent);
+        EventManager.Current.RegisterListener<ShrineEvent>(OnShrineEvent);
     }
 
     private void OnShrineEvent(ShrineEvent eve)
