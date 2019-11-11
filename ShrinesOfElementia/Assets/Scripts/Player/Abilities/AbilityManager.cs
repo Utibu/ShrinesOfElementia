@@ -33,6 +33,9 @@ public class AbilityManager : MonoBehaviour
     private float geyserTimer;
     [SerializeField] private GameObject geyserCooldownButton;
 
+    [Header("Spell Indicator")]
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private GameObject indicatorProjector;
 
     [Header("Wind Blade Attributes")]
     [SerializeField] private GameObject windBladePrefab;
@@ -58,9 +61,7 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private bool hasEarth;
     [SerializeField] private bool hasWind;
 
-    [SerializeField] private LayerMask layerMask;
-    [SerializeField] private GameObject indicatorProjector;
-
+    
     private void Start()
     {
         fireballTimer = 0.0f;
@@ -105,10 +106,6 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    public void ToggleAim(bool aimOn)
-    {
-        indicatorProjector.SetActive(aimOn);
-    }
 
     public void CastFireBall()
     {
@@ -116,13 +113,21 @@ public class AbilityManager : MonoBehaviour
         {
             Player.Instance.Animator.SetBool("InCombat", true);
             fireballSpawnLocation = gameObject.transform.position + Vector3.up.normalized * 1.5f + gameObject.transform.forward * 1.8f;
-            GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation, Quaternion.identity);
+            GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation, gameObject.transform.rotation);
             fireball.GetComponent<Rigidbody>().AddForce(CameraReference.Instance.transform.forward * fireballSpeed, ForceMode.VelocityChange);
             fireballTimer = fireballCooldown;
             fireballCooldownButton.GetComponent<Image>().fillAmount = 1;
         }
     }
 
+    public void ToggleAim(bool aimOn)
+    {
+        if (hasWater)
+        {
+            Player.Instance.Animator.SetBool("InCombat", true);
+            indicatorProjector.SetActive(aimOn);
+        }
+    }
     public void CastGeyser()
     {
 
@@ -228,15 +233,19 @@ public class AbilityManager : MonoBehaviour
         {
             case "Fire":
                 EnableFireAbilities();
+                fireballCooldownButton.GetComponent<Image>().fillAmount = 0;
                 break;
             case "Water":
                 EnableWaterAbilities();
+                geyserCooldownButton.GetComponent<Image>().fillAmount = 0;
                 break;
             case "Earth":
                 EnableEarthAbilities();
+                earthSpikesCooldownButton.GetComponent<Image>().fillAmount = 0;
                 break;
             case "Wind":
                 EnableWindAbilities();
+                windBladeCooldownButton.GetComponent<Image>().fillAmount = 0;
                 break;
         }
     }
