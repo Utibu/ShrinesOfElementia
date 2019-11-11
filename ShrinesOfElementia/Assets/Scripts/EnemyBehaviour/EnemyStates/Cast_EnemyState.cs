@@ -46,8 +46,8 @@ public class Cast_EnemyState : BasicEnemyBaseState
     {
         base.Enter();
         //stop and rotate / aim to player
-        owner.Agent.destination = owner.Player.transform.position;
-        owner.Agent.isStopped = true; // stop while casting
+        owner.Agent.destination = owner.transform.position;
+        //owner.Agent.isStopped = true; // stop while casting
 
         //set timer
         countdown = 0.5f;
@@ -119,8 +119,8 @@ public class Cast_EnemyState : BasicEnemyBaseState
     private void CastWind()
     {
         Debug.Log("wind cast");
-        GameObject windBlade = Instantiate(spellPrefab, owner.transform.position + Vector3.up.normalized + owner.transform.forward * 2f, owner.transform.rotation);
-        windBlade.GetComponent<Rigidbody>().AddForce(Player.Instance.transform.forward * windBladeSpeed, ForceMode.VelocityChange);
+        GameObject windBlade = Instantiate(spellPrefab, owner.transform.position + Vector3.up.normalized + owner.transform.forward * 2f, owner.Agent.transform.rotation);
+        windBlade.GetComponent<Rigidbody>().AddForce(owner.transform.forward * windBladeSpeed, ForceMode.VelocityChange);
     }
 
 }
