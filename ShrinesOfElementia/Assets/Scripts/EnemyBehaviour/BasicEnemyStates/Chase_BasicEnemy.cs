@@ -38,7 +38,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
 
 
         //State transition checks:
-        if (distanceToPlayer > sightRange)
+        if (distanceToPlayer > sightRange* 1.7)
         {
             owner.Agent.SetDestination(startPosition); // walk back and idle
             owner.Transition<Idle_BasicEnemy>();

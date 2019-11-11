@@ -10,11 +10,38 @@ public class Giant : StateMachine
     public NavMeshAgent Agent { get; set; }
     public HealthComponent HealthComponent { get; set; }
 
+    [Header("Basic Attack")]
+    [SerializeField] private int basicAttackDamage;
+    [SerializeField] private float basicAttackRange;
+
+    [Header("Sweep")]
+    [SerializeField] private int sweepDamage;
+    [SerializeField] private float sweepRange, sweepCooldown;
+    private float sweepTimer;
+
+    private bool sweepAvailable;
+    public bool SweepAvailable
+    {
+        get => sweepAvailable;
+        set
+        {
+            sweepAvailable = value;
+
+            if (value == false)
+            {
+                sweepTimer = sweepCooldown;
+            }
+        }
+    }
+
     protected override void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
         Animator = GetComponent<Animator>();
         HealthComponent = GetComponent<HealthComponent>();
+
+        sweepTimer = sweepCooldown;
+        SweepAvailable = false;
 
         base.Awake();
     }
@@ -23,6 +50,28 @@ public class Giant : StateMachine
     {
         BossEvents.Instance.OnBossFightAreaTriggerEnter += OnBossAreaEnter;
         print("Subscribed to BossFightAreaTriggerEnter");
+    }
+
+    protected override void Update()
+    {
+        CountDownCooldowns();
+
+        base.Update();
+    }
+
+    private void CountDownCooldowns()
+    {
+        print("Is sweep available? " + sweepAvailable);
+        print("Sweep timer: " + sweepTimer);
+        // Sweep
+        if(sweepAvailable == false && sweepTimer <= 0f)
+        {
+            SweepAvailable = true;
+        }
+        else if (sweepAvailable == false && sweepTimer > 0f)
+        {
+            sweepTimer -= Time.deltaTime;
+        }
     }
 
     private void OnBossAreaEnter()

@@ -27,7 +27,6 @@ public class Patrol_BasicEnemy : BasicEnemyBaseState
         base.Enter();
         owner.Agent.speed = patrolSpeed;
         owner.Agent.SetDestination(owner.PatrolPoints[currentTargetIndex].transform.position);
-        Debug.Log("Entering patrol state");
     }
 
     public override void HandleUpdate()

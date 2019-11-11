@@ -27,7 +27,7 @@ public class EarthSpikes : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
         {
             print("trigger particle");
             EventManager.Current.FireEvent(new DamageEvent("damage dealt", 20, gameObject, other.gameObject));

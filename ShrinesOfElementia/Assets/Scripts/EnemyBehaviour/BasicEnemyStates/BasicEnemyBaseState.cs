@@ -26,7 +26,7 @@ public class BasicEnemyBaseState : State
 
     public virtual void Start()
     {
-        
+        //EventManager.Current.RegisterListener<DamageEvent>(CheckDisadvantage);
     }
 
     public override void Enter()
@@ -46,5 +46,15 @@ public class BasicEnemyBaseState : State
         distanceToPlayer = Vector3.Distance(owner.transform.position, owner.Player.transform.position);
     }
 
+    public void CheckDisadvantage(DamageEvent ev)
+    {
+        if (ev.InstigatorGameObject.CompareTag("Fire") && owner.gameObject.name.Equals("WindEliteEnemy"))
+        {
+            Debug.Log("wind elite struck by fire, disadvantage activated");
+            owner.Elite = false;
+            owner.Transition<Chase_BasicEnemy>();
+            owner.GetComponent<ParticleSystem>().Pause();
+        }
+    }
     
 }

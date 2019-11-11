@@ -33,7 +33,7 @@ public class StateMachine : MonoBehaviour
     }
     
     //Called from statemachine that is a subclass to this statemachine. Makes sure the current states Update() is called. 
-    public virtual void Update()
+    protected virtual void Update()
     {
         if (currentState != null)
         {
