@@ -1,15 +1,14 @@
-﻿//Author: Joakim Ljung
+﻿// Main Author: Joakim Ljung
+// Co-Authors: Sofia Kauko, Bilal El Medkouri
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Author: Joakim Ljung
 public class MovementInput : MonoBehaviour
 {
 
-    private float inputX;
-    private float inputZ;
+    private Vector2 playerInput;
     private Vector3 desiredMoveDirection;
     private bool faceCameraDirection;
     public bool FaceCameraDirection { set { faceCameraDirection = value; } }
@@ -78,9 +77,7 @@ public class MovementInput : MonoBehaviour
 
     private void Update()
     {
-        inputX = Input.GetAxis("Horizontal");
-        inputZ = Input.GetAxis("Vertical");
-
+        playerInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         //TEST STUFF
         //moveVector = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
@@ -103,18 +100,14 @@ public class MovementInput : MonoBehaviour
             }
             else
             {
-                moveVector = new Vector3(inputX, 0.0f, inputZ);
-                moveVector.Normalize();
-                moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
-                moveVector.y = 0.0f;
-                moveVector *= dodgeLength;
-                
+                moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
+                moveVector *= dodgeLength;                
             }
         }
 
         else if (isGliding)
         {
-            moveVector = new Vector3(inputX, glideStrength, inputZ);
+            moveVector = new Vector3(playerInput.x, glideStrength, playerInput.y);
             moveVector.Normalize();
 
             
@@ -192,7 +185,7 @@ public class MovementInput : MonoBehaviour
         }
         else
         {
-            desiredMoveDirection = forward * inputZ + right * inputX;
+            desiredMoveDirection = forward * playerInput.y + right * playerInput.x;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), desiredRotationSpeed);
         }
 
@@ -206,12 +199,12 @@ public class MovementInput : MonoBehaviour
         //print(player.Animator.GetFloat("InputX") + " " + player.Animator.GetFloat("InputZ"));
 
 
-        animator.SetFloat("InputZ", inputZ);
-        animator.SetFloat("InputX", inputX);
+        animator.SetFloat("InputZ", playerInput.y);
+        animator.SetFloat("InputX", playerInput.x);
         
         
 
-        speed = new Vector2(inputX, inputZ).sqrMagnitude;
+        speed = new Vector2(playerInput.x, playerInput.y).sqrMagnitude;
         //print(speed);
 
         animator.SetFloat("InputMagnitude", speed, 0.0f, Time.deltaTime);
