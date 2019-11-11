@@ -1723,6 +1723,7 @@ MonoBehaviour:
     type: 3}
   fireballSpeed: 15
   fireballCooldown: 3
+  fireballCooldownButton: {fileID: 8805428659506171705}
   fireParticles: {fileID: 6913744539286149983}
   sword: {fileID: 3999986769231775074}
   damageIncrease: 5
@@ -1731,13 +1732,16 @@ MonoBehaviour:
   geyserCooldown: 12
   geyserSpawnLocation: {fileID: 5228471381656963487}
   moistRange: 6
+  geyserCooldownButton: {fileID: 8917900500237472140}
   windBladePrefab: {fileID: 7115669940648976771, guid: 406fe25df922d7740a2bdfb9a0b2961e,
     type: 3}
   windBladeCooldown: 6
   windBladeSpeed: 30
+  windBladeCooldownButton: {fileID: 2786011836274248299}
   earthSpikesPrefab: {fileID: 1339032902255765298, guid: b2f35920e0dbf694aa5f4a5fe3bd1d88,
     type: 3}
   earthSpikesCooldown: 10
+  earthSpikesCooldownButton: {fileID: 985526281079090699}
   healthRegenerationIncrease: 2
   hasFire: 0
   hasWater: 0
@@ -1836,7 +1840,7 @@ MonoBehaviour:
   glideSpeed: 5
   glideStrength: 10
   defaultSpeed: 1.1
-  runSpeed: 1.4
+  runSpeed: 4
   dodgeLength: 6
   dodgeDuration: 0.5
   distanceToGround: 0.3
@@ -9611,7 +9615,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8552680707344450591}
-  m_LocalRotation: {x: 0.031805143, y: -0.000001043397, z: 0.000033817025, w: 0.99949414}
+  m_LocalRotation: {x: 0.031805143, y: -0.0000010433961, z: 0.000033817014, w: 0.99949414}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9811,8 +9815,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8552680707454828081}
-  m_LocalRotation: {x: -0.0000000074505797, y: 0.000000048955894, z: 0.014446634,
-    w: 0.99989563}
+  m_LocalRotation: {x: -0.0000000074505797, y: 0.00000004907231, z: 0.014446637, w: 0.99989563}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -20318,7 +20321,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8552680708097587959}
-  m_LocalRotation: {x: 0.090288885, y: 0.00000003416824, z: -0.0000000030976643, w: 0.99591565}
+  m_LocalRotation: {x: 0.090288885, y: 0.000000034283712, z: -0.0000000031081324,
+    w: 0.99591565}
   m_LocalPosition: {x: 0, y: 2.5, z: -4.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -20440,7 +20444,7 @@ MonoBehaviour:
   m_Strategy: 0
   m_MaximumEffort: 4
   m_SmoothingTime: 0
-  m_Damping: 0.19
+  m_Damping: 0.09
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
 --- !u!114 &8552680708173425439
@@ -21438,7 +21442,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8552680709056822686}
-  m_LocalRotation: {x: -0.03154956, y: 0.00013860024, z: 0.004390632, w: 0.9994926}
+  m_LocalRotation: {x: -0.03154958, y: 0.00013864537, z: 0.0043907766, w: 0.9994925}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -21980,7 +21984,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
