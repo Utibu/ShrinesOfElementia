@@ -80,8 +80,6 @@ public class AbilityManager : MonoBehaviour
             RegenerateHealth();
         }
 
-        print(fireballTimer);
-
         if(fireballTimer > 0)
         {
             fireballCooldownButton.GetComponent<Image>().fillAmount -= 1/fireballCooldown * Time.deltaTime;

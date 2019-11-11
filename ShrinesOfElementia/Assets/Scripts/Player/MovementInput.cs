@@ -36,6 +36,7 @@ public class MovementInput : MonoBehaviour
     [Header("Glide")]
     [SerializeField] private float glideSpeed;
     [SerializeField] private float glideStrength;
+    [SerializeField] private float glideGravityMultiplier;
 
     [Header("Movement Speed")]
     [SerializeField] private float defaultSpeed;
@@ -77,115 +78,99 @@ public class MovementInput : MonoBehaviour
 
     private void Update()
     {
-        if (takeInput)
+        inputX = Input.GetAxis("Horizontal");
+        inputZ = Input.GetAxis("Vertical");
+
+
+        //TEST STUFF
+        //moveVector = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+        //moveVector.Normalize();
+        //moveVector = camera.transform.TransformDirection(moveVector);
+        //moveVector.y = 0.0f;
+        //moveVector *= runSpeed;
+        //print(moveVector);
+
+
+        if (isDodging)
         {
-            inputX = Input.GetAxis("Horizontal");
-            inputZ = Input.GetAxis("Vertical");
-
-
-            //TEST STUFF
-            //moveVector = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-            //moveVector.Normalize();
-            //moveVector = camera.transform.TransformDirection(moveVector);
-            //moveVector.y = 0.0f;
-            //moveVector *= runSpeed;
-            //print(moveVector);
-
-
-            if (isDodging)
+            dodgeTimer += Time.deltaTime;
+            if (dodgeTimer >= dodgeDuration)
             {
-                dodgeTimer += Time.deltaTime;
-                if (dodgeTimer >= dodgeDuration)
-                {
-                    isDodging = false;
-                    dodgeTimer = 0.0f;
-                    moveVector.x = 0.0f;
-                    moveVector.z = 0.0f;
-                }
-                else
-                {
-                    moveVector = new Vector3(inputX, 0.0f, inputZ);
-                    moveVector.Normalize();
-                    moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
-                    moveVector.y = 0.0f;
-                    moveVector *= dodgeLength;
-                    
-                }
-
+                isDodging = false;
+                dodgeTimer = 0.0f;
+                moveVector.x = 0.0f;
+                moveVector.z = 0.0f;
             }
-
-            else if (isGliding)
-            {
-                print("gliding");
-                moveVector = new Vector3(inputX, glideStrength, inputZ);
-                moveVector.y += 10;
-                moveVector.Normalize();
-                moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
-                moveVector *= glideSpeed;
-                fromGlide = true;
-            }
-
-            if (animator.GetBool("InCombat"))
-            {
-                faceCameraDirection = true;
-            }
-            else if (animator.GetBool("InCombat") == false)
-            {
-                faceCameraDirection = false;
-            }
-
-            InputMagnitude();
-
-            //isGrounded = controller.isGrounded;   Old code, didn't work. Keeping just in case.
-            if (IsGrounded() && moveVector.y < 0.5f)
-            {
-                //animator.SetBool("IsGrounded", true);   Jumping animation (not good)
-
-                
-                
-
-                moveVector.y = -gravity * Time.deltaTime;
-            }
-
-          
             else
             {
-                moveVector.y -= gravity * Time.deltaTime;
+                moveVector = new Vector3(inputX, 0.0f, inputZ);
+                moveVector.Normalize();
+                moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
+                moveVector.y = 0.0f;
+                moveVector *= dodgeLength;
+                
             }
+        }
 
-            if (IsGrounded() && fromGlide)
+        else if (isGliding)
+        {
+            moveVector = new Vector3(inputX, glideStrength, inputZ);
+            moveVector.Normalize();
+
+            
+            float saveY = moveVector.y; // test
+            moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
+            moveVector.y = saveY; // test
+
+            moveVector.Normalize(); 
+            moveVector *= glideSpeed;
+            fromGlide = true;
+        }
+
+        if (animator.GetBool("InCombat"))
+        {
+            faceCameraDirection = true;
+        }
+        else if (animator.GetBool("InCombat") == false)
+        {
+            faceCameraDirection = false;
+        }
+        
+        InputMagnitude();
+
+        ApplyGravity();
+
+        if (IsGrounded() && fromGlide)
+        {
+            isGliding = false;
+            animator.SetBool("IsGliding", false);
+            moveVector.x = 0;
+            moveVector.z = 0;
+            fromGlide = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (!isGliding && IsGrounded())
+            {
+                animator.SetTrigger("OnJump");
+                moveVector.y = jumpSpeed;
+                //animator.SetBool("IsGrounded", false);   Jumping animation (not good)
+            }
+            else if (!isGliding && !IsGrounded() && hasGlide)
+            {
+                isGliding = true;
+                animator.SetBool("IsGliding", true);
+            }
+            else if (isGliding && !IsGrounded() && hasGlide)
             {
                 isGliding = false;
                 animator.SetBool("IsGliding", false);
-                moveVector.x = 0;
-                moveVector.z = 0;
-                fromGlide = false;
             }
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (!isGliding && IsGrounded())
-                {
-                    animator.SetTrigger("OnJump");
-                    moveVector.y = jumpSpeed;
-                    //animator.SetBool("IsGrounded", false);   Jumping animation (not good)
-                }
-                else if (!isGliding && !IsGrounded() && hasGlide)
-                {
-                    isGliding = true;
-                    animator.SetBool("IsGliding", true);
-                }
-                else if (isGliding && !IsGrounded() && hasGlide)
-                {
-                    isGliding = false;
-                    animator.SetBool("IsGliding", false);
-                }
-
-            }
-
-            //print(moveVector);
-            controller.Move(moveVector * Time.deltaTime);
         }
+
+        //print(moveVector);
+        controller.Move(moveVector * Time.deltaTime);
         //Debug.Log(animator.GetBool("IsGrounded"));
     }
 
@@ -250,6 +235,25 @@ public class MovementInput : MonoBehaviour
             animator.SetBool("IsGrounded", false);
             return false;
         }
+    }
+
+    private void ApplyGravity()
+    {
+        if (isGliding)
+        {
+            print(moveVector.magnitude); 
+            moveVector.y -= gravity * glideGravityMultiplier;
+        }
+        else if (IsGrounded() && moveVector.y < 0.5f)
+        {
+            //animator.SetBool("IsGrounded", true);   Jumping animation (not good)
+            moveVector.y = -gravity * Time.deltaTime;
+        }
+        else
+        {
+            moveVector.y -= gravity * Time.deltaTime;
+        }
+
     }
 
     
