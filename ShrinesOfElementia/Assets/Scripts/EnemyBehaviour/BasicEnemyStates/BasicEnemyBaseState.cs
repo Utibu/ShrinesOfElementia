@@ -43,9 +43,8 @@ public class BasicEnemyBaseState : State
 
     public override void HandleUpdate()
     {
-        
-        
         distanceToPlayer = Vector3.Distance(owner.transform.position, owner.Player.transform.position);
-
     }
+
+    
 }

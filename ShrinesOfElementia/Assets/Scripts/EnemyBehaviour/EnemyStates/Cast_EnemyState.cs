@@ -14,23 +14,32 @@ public class Cast_EnemyState : BasicEnemyBaseState
     private Dictionary<string, System.Action> spells = new Dictionary<string, System.Action>();
     private string elementType;
 
-    //FIREBALL variables
+    //spellvariables. consider including these in the actual spell prefab/ spellprefab script later.(unless palyer and elites have different versions of same spells)///
+    //Fire
     private float fireballSpeed = 13f;
     private Vector3 fireballSpawnLocation;
+    //Water
 
-    
+    //Earth
+    //Wind
+    private float windBladeSpeed = 10f;
     
 
     public override void Initialize(StateMachine stateMachine)
     {
         base.Initialize(stateMachine);
 
-        //Prepare variables to cast the right spell
+        //Prepare functions to cast the right spell
         spells.Add("Fire", CastFire);
         spells.Add("Water", CastWater);
-        elementType = owner.GetComponent<EnemySpellManager>().ElementType;
-        spellPrefab = owner.GetComponent<EnemySpellManager>().SpellPrefab;
-        castTime = owner.GetComponent<EnemySpellManager>().CastTime;
+        spells.Add("Earth", CastEarth);
+        spells.Add("Wind", CastWind);
+
+        //get nessecary variables
+        EnemySpellManager spelldata = owner.GetComponent<EnemySpellManager>();
+        elementType = spelldata.ElementType;
+        spellPrefab = spelldata.SpellPrefab;
+        castTime = spelldata.CastTime;
     }
 
     public override void Enter()
@@ -55,7 +64,7 @@ public class Cast_EnemyState : BasicEnemyBaseState
         //tick down spell channel
         countdown -= Time.deltaTime;
 
-        //animate enemy, sound
+        
         
         //spellcast:
         if(countdown <= 0)
@@ -63,6 +72,7 @@ public class Cast_EnemyState : BasicEnemyBaseState
             Debug.Log("Element type: " + elementType);
             spells[elementType]();
             countdown = castTime;
+            // go to idle / play some "summoning new spell" animation
         }
         else if (distanceToPlayer > castRange * 1.1)
         {
@@ -93,6 +103,24 @@ public class Cast_EnemyState : BasicEnemyBaseState
     private void CastWater()
     {
         Debug.Log("Waterspell cast");
+        Vector3 eruptionSpot = owner.Player.transform.position + Vector3.up * -3f;
+        Instantiate(spellPrefab, eruptionSpot, Quaternion.identity);
+        EventSystem.Current.FireEvent(new GeyserCastEvent(eruptionSpot, 6f)); //6f is range of extinguish. put this in geysher prefab script later.
+    }
+
+    private void CastEarth()
+    {
+        Debug.Log("earth cast");
+        Quaternion spikesRotation = Quaternion.Euler(-90, owner.transform.rotation.eulerAngles.y, 0);
+        GameObject earthSpikes = Instantiate(spellPrefab, owner.transform.position + owner.transform.forward * 2f, spikesRotation);
+        earthSpikes.GetComponent<ParticleSystem>().Play();
+    }
+
+    private void CastWind()
+    {
+        Debug.Log("wind cast");
+        GameObject windBlade = Instantiate(spellPrefab, owner.transform.position + Vector3.up.normalized + owner.transform.forward * 2f, owner.transform.rotation);
+        windBlade.GetComponent<Rigidbody>().AddForce(Player.Instance.transform.forward * windBladeSpeed, ForceMode.VelocityChange);
     }
 
 }
