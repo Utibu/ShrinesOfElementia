@@ -112,14 +112,14 @@ public class Cast_EnemyState : BasicEnemyBaseState
     {
         Debug.Log("earth cast");
         Quaternion spikesRotation = Quaternion.Euler(-90, owner.transform.rotation.eulerAngles.y, 0);
-        GameObject earthSpikes = Instantiate(spellPrefab, owner.transform.position + owner.transform.forward * 2f, spikesRotation);
+        GameObject earthSpikes = Instantiate(spellPrefab, owner.transform.position + owner.transform.forward * 3f, spikesRotation);
         earthSpikes.GetComponent<ParticleSystem>().Play();
     }
 
     private void CastWind()
     {
         Debug.Log("wind cast");
-        GameObject windBlade = Instantiate(spellPrefab, owner.transform.position + Vector3.up.normalized + owner.transform.forward * 2f, owner.Agent.transform.rotation);
+        GameObject windBlade = Instantiate(spellPrefab, owner.transform.position + Vector3.up.normalized + owner.transform.forward * 3f, owner.Agent.transform.rotation);
         windBlade.GetComponent<Rigidbody>().AddForce(owner.transform.forward * windBladeSpeed, ForceMode.VelocityChange);
     }
 

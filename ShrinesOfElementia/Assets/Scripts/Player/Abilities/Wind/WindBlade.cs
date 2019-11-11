@@ -17,16 +17,16 @@ public class WindBlade : MonoBehaviour
     private void Update()
     {
         lifeTime -= Time.deltaTime;
-        if(lifeTime <= 0)
+        if (lifeTime <= 0)
         {
             Destroy(gameObject);
         }
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy") && !enemiesHit.Contains(other.gameObject))
+        if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) && !enemiesHit.Contains(other.gameObject))
         {
             EventManager.Current.FireEvent(new DamageEvent("Wind blade dealt " + damage + "to " + other.gameObject, damage, gameObject, other.gameObject));
             enemiesHit.Add(other.gameObject);
