@@ -81,15 +81,22 @@ public class PlayerInput : MonoBehaviour
         //fireballTimer -= Time.deltaTime;
 
         // Geyser
-        if (Input.GetKeyDown(KeyCode.Alpha2)) // && geyserTimer <= 0f
+        if (Input.GetKey(KeyCode.Alpha2)) // && geyserTimer <= 0f
         {
-            abilityManager.CastGeyser();
+            // activate projector
+            abilityManager.ToggleAim(true);
+            
             /*GameObject geyser = */
             /*
             Instantiate(geyserPrefab, geyserSpawnLocation.transform.position, Quaternion.identity);
 
             geyserTimer = geyserCooldown;
             */
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            abilityManager.CastGeyser();
+            abilityManager.ToggleAim(false);
         }
 
         //geyserTimer -= Time.deltaTime;

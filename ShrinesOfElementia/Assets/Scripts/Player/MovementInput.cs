@@ -101,7 +101,10 @@ public class MovementInput : MonoBehaviour
             else
             {
                 moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
-                moveVector *= dodgeLength;                
+                moveVector.Normalize();
+                moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
+                moveVector.y = 0.0f;
+                moveVector *= dodgeLength;
             }
         }
 

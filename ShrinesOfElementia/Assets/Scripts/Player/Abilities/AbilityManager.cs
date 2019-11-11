@@ -26,8 +26,10 @@ public class AbilityManager : MonoBehaviour
     [Header("Geyser attributes")]
     [SerializeField] private GameObject geyserPrefab;
     [SerializeField] private float geyserCooldown;
-    [SerializeField] private GameObject geyserSpawnLocation; // make this simpler? gsl = player.position + forward * 2f eller ngt baserat på kameran
+    //[SerializeField] private GameObject geyserSpawnLocation; // make this simpler? gsl = player.position + forward * 2f eller ngt baserat på kameran
+    [SerializeField] private Vector3 geyserSpawnLocation;
     [SerializeField]private float moistRange = 6f;
+    [SerializeField] private float geyserRange;
     private float geyserTimer;
     [SerializeField] private GameObject geyserCooldownButton;
 
@@ -56,7 +58,8 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private bool hasEarth;
     [SerializeField] private bool hasWind;
 
-
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private GameObject indicatorProjector;
 
     private void Start()
     {
@@ -65,6 +68,7 @@ public class AbilityManager : MonoBehaviour
         windBladeTimer = 0.0f;
         earthSpikesTimer = 0.0f;
         EventManager.Current.RegisterListener<ShrineEvent>(unlockElement);
+        indicatorProjector.SetActive(false);
     }
 
     private void Update()
@@ -101,6 +105,11 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
+    public void ToggleAim(bool aimOn)
+    {
+        indicatorProjector.SetActive(aimOn);
+    }
+
     public void CastFireBall()
     {
         if (hasFire && fireballTimer <= 0f)
@@ -116,14 +125,34 @@ public class AbilityManager : MonoBehaviour
 
     public void CastGeyser()
     {
+
+        /**
+         * CHECK RAYCAST PROJECTOR
+         * CAST GEYSER AT POINT
+         */
+
+        RaycastHit hit;
+        Debug.DrawRay(indicatorProjector.transform.position, indicatorProjector.transform.forward);
+        if(Physics.Raycast(indicatorProjector.transform.position, indicatorProjector.transform.forward, out hit, geyserRange, layerMask))
+        {
+            print(hit.collider.gameObject.name);
+            if(geyserRange < Vector3.Distance(hit.point, Player.Instance.transform.position))
+            {
+                print("geyser hit");
+                geyserSpawnLocation = hit.point;
+            }
+            geyserSpawnLocation = hit.point;
+
+        }
+
         print("in cast");
         if (hasWater && geyserTimer <= 0f)
         {
             print("casting");
             Player.Instance.Animator.SetBool("InCombat", true);
-            Instantiate(geyserPrefab, geyserSpawnLocation.transform.position, Quaternion.identity);
+            Instantiate(geyserPrefab, geyserSpawnLocation, Quaternion.identity);
             geyserTimer = geyserCooldown;
-            EventManager.Current.FireEvent(new GeyserCastEvent(geyserSpawnLocation.transform.position, moistRange));
+            EventManager.Current.FireEvent(new GeyserCastEvent(geyserSpawnLocation, moistRange));
             geyserCooldownButton.GetComponent<Image>().fillAmount = 1;
         }
     }
@@ -190,6 +219,7 @@ public class AbilityManager : MonoBehaviour
         Player.Instance.Health.CurrentHealth += healthRegeneration;
         regenerationCountdown = 0;
     }
+
 
 
     private void unlockElement(ShrineEvent eve)

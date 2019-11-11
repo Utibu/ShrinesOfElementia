@@ -67,8 +67,9 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         
         Debug.Log("Attacking!!");
         // rotate enemy towards target
-        owner.Agent.updateRotation = true;
+        //owner.Agent.updateRotation = true;
         owner.transform.LookAt(owner.Player.transform);
+        owner.transform.rotation = new Quaternion(owner.transform.rotation.x, owner.transform.rotation.y, 0.0f, 1.0f);
 
         cooldown = attackSpeed;
 

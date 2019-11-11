@@ -59,8 +59,10 @@ public class Cast_EnemyState : BasicEnemyBaseState
     {
         base.HandleUpdate();
         //rotate / aim at player
-        owner.transform.LookAt(owner.Player.transform.position);
-        
+        //owner.transform.LookAt(owner.Player.transform.position);
+        owner.transform.LookAt(owner.Player.transform);
+        owner.transform.rotation = new Quaternion(owner.transform.rotation.x, owner.transform.rotation.y, 0.0f, 1.0f);
+
         //tick down spell channel
         countdown -= Time.deltaTime;
 
