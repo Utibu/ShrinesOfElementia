@@ -455,7 +455,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26404720}
-  m_LocalRotation: {x: -0.031549215, y: 0.000205146, z: 0.006498449, w: 0.999481}
+  m_LocalRotation: {x: -0.031549208, y: 0.0002051103, z: 0.0064984537, w: 0.999481}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7573,6 +7573,7 @@ MonoBehaviour:
     type: 3}
   fireballSpeed: 15
   fireballCooldown: 3
+  fireballCooldownButton: {fileID: 0}
   fireParticles: {fileID: 1149157749}
   sword: {fileID: 4698370468857159564}
   damageIncrease: 5
@@ -7581,13 +7582,16 @@ MonoBehaviour:
   geyserCooldown: 12
   geyserSpawnLocation: {fileID: 4485157310142714737}
   moistRange: 6
+  geyserCooldownButton: {fileID: 0}
   windBladePrefab: {fileID: 7115669940648976771, guid: 406fe25df922d7740a2bdfb9a0b2961e,
     type: 3}
   windBladeCooldown: 6
   windBladeSpeed: 30
+  windBladeCooldownButton: {fileID: 0}
   earthSpikesPrefab: {fileID: 1339032902255765298, guid: b2f35920e0dbf694aa5f4a5fe3bd1d88,
     type: 3}
   earthSpikesCooldown: 6
+  earthSpikesCooldownButton: {fileID: 0}
   healthRegenerationIncrease: 2
   hasFire: 0
   hasWater: 0
@@ -20053,7 +20057,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612080351}
-  m_LocalRotation: {x: -0.000000022351742, y: -5.820766e-11, z: 0.0050199493, w: 0.9999874}
+  m_LocalRotation: {x: -0.000000022351742, y: 5.72572e-11, z: 0.0050199493, w: 0.9999874}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -22828,7 +22832,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074238705}
-  m_LocalRotation: {x: 0.031804577, y: -0.00019417645, z: 0.0061026583, w: 0.9994755}
+  m_LocalRotation: {x: 0.03180455, y: -0.00019421664, z: 0.006102671, w: 0.9994754}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -25816,6 +25820,7 @@ MonoBehaviour:
   jumpSpeed: 9
   glideSpeed: 10
   glideStrength: 10
+  glideGravityMultiplier: 0
   defaultSpeed: 1.1
   runSpeed: 1.4
   dodgeLength: 6
