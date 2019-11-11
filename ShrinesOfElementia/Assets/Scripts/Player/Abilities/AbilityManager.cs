@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AbilityManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private float fireballSpeed, fireballCooldown;
     private Vector3 fireballSpawnLocation;
     private float fireballTimer;
+    [SerializeField] private GameObject fireballCooldownButton;
 
     [Header("Fire Infusion attributes")]
     [SerializeField] private GameObject fireParticles;
@@ -27,16 +29,22 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private GameObject geyserSpawnLocation; // make this simpler? gsl = player.position + forward * 2f eller ngt baserat på kameran
     [SerializeField]private float moistRange = 6f;
     private float geyserTimer;
+    [SerializeField] private GameObject geyserCooldownButton;
+
 
     [Header("Wind Blade Attributes")]
     [SerializeField] private GameObject windBladePrefab;
     [SerializeField] private float windBladeCooldown, windBladeSpeed;
     private float windBladeTimer;
+    [SerializeField] private GameObject windBladeCooldownButton;
+
 
     [Header("Earth Spikes Attributes")]
     [SerializeField] private GameObject earthSpikesPrefab;
     [SerializeField] private float earthSpikesCooldown;
     private float earthSpikesTimer;
+    [SerializeField] private GameObject earthSpikesCooldownButton;
+
 
     [Header("Touch of Nature")]
     [SerializeField] private int healthRegenerationIncrease;
@@ -71,6 +79,28 @@ public class AbilityManager : MonoBehaviour
         {
             RegenerateHealth();
         }
+
+        print(fireballTimer);
+
+        if(fireballTimer > 0)
+        {
+            fireballCooldownButton.GetComponent<Image>().fillAmount -= 1/fireballCooldown * Time.deltaTime;
+        }
+
+        if(geyserTimer > 0)
+        {
+            geyserCooldownButton.GetComponent<Image>().fillAmount -= 1 / geyserCooldown * Time.deltaTime;
+        }
+
+        if (windBladeTimer > 0)
+        {
+            windBladeCooldownButton.GetComponent<Image>().fillAmount -= 1 / windBladeCooldown * Time.deltaTime;
+        }
+
+        if (earthSpikesTimer > 0)
+        {
+            earthSpikesCooldownButton.GetComponent<Image>().fillAmount -= 1 / earthSpikesCooldown * Time.deltaTime;
+        }
     }
 
     public void CastFireBall()
@@ -82,6 +112,7 @@ public class AbilityManager : MonoBehaviour
             GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation, Quaternion.identity);
             fireball.GetComponent<Rigidbody>().AddForce(CameraReference.Instance.transform.forward * fireballSpeed, ForceMode.VelocityChange);
             fireballTimer = fireballCooldown;
+            fireballCooldownButton.GetComponent<Image>().fillAmount = 1;
         }
     }
 
@@ -94,7 +125,8 @@ public class AbilityManager : MonoBehaviour
             Player.Instance.Animator.SetBool("InCombat", true);
             Instantiate(geyserPrefab, geyserSpawnLocation.transform.position, Quaternion.identity);
             geyserTimer = geyserCooldown;
-            EventSystem.Current.FireEvent(new GeyserCastEvent(geyserSpawnLocation.transform.position, moistRange)); 
+            EventSystem.Current.FireEvent(new GeyserCastEvent(geyserSpawnLocation.transform.position, moistRange));
+            geyserCooldownButton.GetComponent<Image>().fillAmount = 1;
         }
     }
 
@@ -112,6 +144,7 @@ public class AbilityManager : MonoBehaviour
         GameObject windBlade = Instantiate(windBladePrefab, gameObject.transform.position + Vector3.up.normalized + gameObject.transform.forward * 2f, gameObject.transform.rotation);
         windBlade.GetComponent<Rigidbody>().AddForce(Player.Instance.transform.forward * windBladeSpeed, ForceMode.VelocityChange);
         windBladeTimer = windBladeCooldown;
+        windBladeCooldownButton.GetComponent<Image>().fillAmount = 1;
     }
 
     public void CastEarthSpikes()
@@ -123,6 +156,7 @@ public class AbilityManager : MonoBehaviour
             GameObject earthSpikes = Instantiate(earthSpikesPrefab, gameObject.transform.position + gameObject.transform.forward * 2f, spikesRotation);
             earthSpikes.GetComponent<ParticleSystem>().Play();
             earthSpikesTimer = earthSpikesCooldown;
+            earthSpikesCooldownButton.GetComponent<Image>().fillAmount = 1;
         }
     }
 
