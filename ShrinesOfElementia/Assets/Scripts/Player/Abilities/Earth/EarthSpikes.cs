@@ -30,7 +30,7 @@ public class EarthSpikes : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             print("trigger particle");
-            EventSystem.Current.FireEvent(new DamageEvent("damage dealt", 20, gameObject, other.gameObject));
+            EventManager.Current.FireEvent(new DamageEvent("damage dealt", 20, gameObject, other.gameObject));
         }
     }
 }

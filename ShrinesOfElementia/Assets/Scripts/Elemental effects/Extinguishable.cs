@@ -17,7 +17,7 @@ public class Extinguishable : MonoBehaviour
     {
         extinguished = false;
         //fire = GetComponent<ParticleSystem>();
-        EventSystem.Current.RegisterListener<GeyserCastEvent>(Extinguish);
+        EventManager.Current.RegisterListener<GeyserCastEvent>(Extinguish);
 
     }
 
@@ -89,7 +89,7 @@ public class Extinguishable : MonoBehaviour
 
     public void OnDestroy()
     {
-        EventSystem.Current.UnregisterListener<GeyserCastEvent>(Extinguish);
+        EventManager.Current.UnregisterListener<GeyserCastEvent>(Extinguish);
     }
 
 }

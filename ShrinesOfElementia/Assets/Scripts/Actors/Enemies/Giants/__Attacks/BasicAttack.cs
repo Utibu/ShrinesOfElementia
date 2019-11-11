@@ -13,7 +13,7 @@ public class BasicAttack : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + damage + " damage to " + collision.gameObject, damage, gameObject, collision.gameObject);
-            EventSystem.Current.FireEvent(damageEvent);
+            EventManager.Current.FireEvent(damageEvent);
         }
     }
 }

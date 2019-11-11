@@ -11,6 +11,6 @@ public class BlockEvent : DebugEvent
     {
         Attacker = attacker;
         Defender = defender;
-        EventSystem.Current.FireEvent(new StaminaDrainEvent("stamina drained", 20));
+        EventManager.Current.FireEvent(new StaminaDrainEvent("stamina drained", 20));
     }
 }

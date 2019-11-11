@@ -51,7 +51,7 @@ public class StaminaManager : MonoBehaviour
     {
         currentStamina = maxStamina;
         regenerationCountdown = 0;
-        EventSystem.Current.RegisterListener<StaminaDrainEvent>(OnStaminaDrain);
+        EventManager.Current.RegisterListener<StaminaDrainEvent>(OnStaminaDrain);
         staminaSlider.maxValue = maxStamina;
     }
 

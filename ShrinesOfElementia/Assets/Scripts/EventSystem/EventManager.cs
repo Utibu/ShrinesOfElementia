@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventSystem : MonoBehaviour
+public class EventManager : MonoBehaviour
 {
 
-    private static EventSystem __Current;
-    public static EventSystem Current
+    private static EventManager __Current;
+    public static EventManager Current
     {
         get
         {
             if (__Current == null)
             {
-                __Current = GameObject.FindObjectOfType<EventSystem>();
+                __Current = GameObject.FindObjectOfType<EventManager>();
             }
             return __Current;
         }
