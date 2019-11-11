@@ -105,7 +105,7 @@ public class Cast_EnemyState : BasicEnemyBaseState
         Debug.Log("Waterspell cast");
         Vector3 eruptionSpot = owner.Player.transform.position + Vector3.up * -3f;
         Instantiate(spellPrefab, eruptionSpot, Quaternion.identity);
-        EventSystem.Current.FireEvent(new GeyserCastEvent(eruptionSpot, 6f)); //6f is range of extinguish. put this in geysher prefab script later.
+        EventManager.Current.FireEvent(new GeyserCastEvent(eruptionSpot, 6f)); //6f is range of extinguish. put this in geysher prefab script later.
     }
 
     private void CastEarth()
