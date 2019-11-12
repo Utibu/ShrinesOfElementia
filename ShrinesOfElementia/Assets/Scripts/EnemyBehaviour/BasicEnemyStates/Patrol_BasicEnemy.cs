@@ -40,7 +40,7 @@ public class Patrol_BasicEnemy : BasicEnemyBaseState
             Debug.Log("nu kommer jag och tar dig!");
             owner.Transition<Chase_BasicEnemy>();
         }
-        else if (distanceToPatrolPoint <= 3.0f)
+        else if (distanceToPatrolPoint <= 2.0f)
         {
             //change patrol point for next time
             int nextIndex = (currentTargetIndex + 1) % owner.PatrolPoints.Length;
