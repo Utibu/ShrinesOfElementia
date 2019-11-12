@@ -22,13 +22,11 @@ public class Die_BasicEnemy : BasicEnemyBaseState
     {
         base.Enter();
         timer = dyingTime;
-        owner.transform.position += Vector3.down * 1.2f;
 
-        // Start some cool death animation
-        // play wicked screech of anguish
+        owner.gameObject.GetComponent<Collider>().enabled = false;
         GameObject gameobject = owner.GetComponent<GameObject>();
         EventManager.Current.FireEvent(new EnemyDeathEvent(gameobject, owner.SpawnArea));
-        Destroy(owner.gameObject);
+        Destroy(owner.gameObject, 1.0f);
 
     }
 
@@ -36,8 +34,8 @@ public class Die_BasicEnemy : BasicEnemyBaseState
     public override void HandleUpdate()
     {
 
-        base.HandleUpdate();
-        owner.transform.Rotate(new Vector3(1, 0, 0), 75);
+        //base.HandleUpdate();
+        //owner.transform.Rotate(new Vector3(1, 0, 0), 75);
         
         
     }
@@ -45,6 +43,6 @@ public class Die_BasicEnemy : BasicEnemyBaseState
 
     public override void Leave()
     {
-        base.Leave();
+        //base.Leave();
     }
 }

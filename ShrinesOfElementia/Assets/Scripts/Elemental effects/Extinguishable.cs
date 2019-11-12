@@ -87,9 +87,10 @@ public class Extinguishable : MonoBehaviour
         GetComponent<EnemySM>().Transition<Chase_BasicEnemy>();
     }
 
+    /*
     public void OnDestroy()
     {
         EventManager.Current.UnregisterListener<GeyserCastEvent>(Extinguish);
     }
-
+    */
 }
