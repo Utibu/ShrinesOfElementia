@@ -241,17 +241,19 @@ public class PlayerInput : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            EventManager.Current.FireEvent(new ShrineEvent("Earth activated", "Earth"));
+            EventManager.Current.FireEvent(new ShrineEvent("Earth activated", "Wind"));
         }
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            EventManager.Current.FireEvent(new ShrineEvent("Wind activated", "Wind"));
+            EventManager.Current.FireEvent(new ShrineEvent("Wind activated", "Earth"));
         }
     }
 
     private void LightAttack()
     {
-        player.Animator.SetBool("InCombat", true);
+        if (player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")) {
+            player.Animator.SetBool("InCombat", true);
+        }
         // Temporary fix to stop animations from repeating
 
         player.Animator.SetTrigger(lightAttacks[attackIndex]);
