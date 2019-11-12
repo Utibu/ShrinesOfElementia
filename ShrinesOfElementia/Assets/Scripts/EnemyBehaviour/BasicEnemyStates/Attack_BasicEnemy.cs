@@ -69,7 +69,7 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         // rotate enemy towards target
         //owner.Agent.updateRotation = true;
         owner.transform.LookAt(owner.Player.transform);
-        owner.transform.rotation = new Quaternion(owner.transform.rotation.x, owner.transform.rotation.y, 0.0f, 1.0f);
+        owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
 
         cooldown = attackSpeed;
 

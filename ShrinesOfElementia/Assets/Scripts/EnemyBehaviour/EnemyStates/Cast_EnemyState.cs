@@ -61,7 +61,7 @@ public class Cast_EnemyState : BasicEnemyBaseState
         //rotate / aim at player
         //owner.transform.LookAt(owner.Player.transform.position);
         owner.transform.LookAt(owner.Player.transform);
-        owner.transform.rotation = new Quaternion(owner.transform.rotation.x, owner.transform.rotation.y, 0.0f, 1.0f);
+        owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
 
         //tick down spell channel
         countdown -= Time.deltaTime;

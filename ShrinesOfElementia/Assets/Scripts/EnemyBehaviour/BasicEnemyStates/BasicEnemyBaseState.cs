@@ -13,7 +13,7 @@ public class BasicEnemyBaseState : State
     protected float distanceToPlayer;
     protected float attackRange = 1.3f;
     protected float sightRange = 14.0f;
-    protected float castRange = 11.0f;
+    protected float castRange = 13.5f;
 
 
 

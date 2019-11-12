@@ -5077,7 +5077,7 @@ Transform:
   m_GameObject: {fileID: 3424373011236769543}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 93.75564, y: 18.97, z: 104.21235}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 8981429378578117289}
   - {fileID: 4776825472691056182}
@@ -5114,16 +5114,16 @@ NavMeshAgent:
   m_GameObject: {fileID: 3424373011236769543}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 150
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1.55
+  m_Height: 1.5
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -5166,7 +5166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvulnerable: 0
   canvas: {fileID: 1927134589094783821}
-  maxHealth: 80
+  maxHealth: 90
 --- !u!136 &6762456831102573937
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5331,7 +5331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b34fd252671274294f2f447fefd2bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReviveTime: 5
+  ReviveTime: 6
 --- !u!114 &4545991623520069825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5347,7 +5347,7 @@ MonoBehaviour:
   elementType: Fire
   spellPrefab: {fileID: 1555590810750732474, guid: 280d48f0732f96a4f9acd55900fa17d2,
     type: 3}
-  castTime: 3
+  castTime: 5
   spellSpeedModifier: 10
 --- !u!1 &3862847822991046969
 GameObject:
@@ -20107,6 +20107,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1864077674371431700}
     m_Modifications:
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 4086458299678198103, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20211,11 +20216,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 184444fcd2106c24697b408e5174cd0c, type: 3}
