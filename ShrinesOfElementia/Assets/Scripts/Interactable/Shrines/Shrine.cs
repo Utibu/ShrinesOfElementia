@@ -10,7 +10,7 @@ public class Shrine : Interactable
     private string element;
     [SerializeField] private Animator shrineAnimationController;
     [SerializeField] private GameObject beacon;
-    [SerializeField] private RectTransform shrinePanel;
+    //[SerializeField] private RectTransform shrinePanel;
     private enum SHRINETYPES
     {
         Fire,

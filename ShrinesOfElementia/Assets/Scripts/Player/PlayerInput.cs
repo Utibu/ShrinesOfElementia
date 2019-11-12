@@ -225,12 +225,13 @@ public class PlayerInput : MonoBehaviour
             blockTrigger = false;
         }
 
+        /*
         if (Input.GetKeyDown(KeyCode.Escape) && shrinePanel.gameObject.activeSelf == true)
         {
             shrinePanel.gameObject.SetActive(false);
             movementInput.TakeInput = true;
         }
-
+        */
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             EventManager.Current.FireEvent(new ShrineEvent("Fire activated", "Fire"));
