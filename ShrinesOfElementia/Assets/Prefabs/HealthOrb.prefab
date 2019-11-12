@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droppedObject: {fileID: 4681701038757555463}
-  vacuumSpeed: 3
+  vacuumSpeed: 20
   vacuumPoint: {fileID: 0}
 --- !u!65 &1246227494
 BoxCollider:
@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 2708314564179464278}
   - component: {fileID: 3774283459922141649}
   - component: {fileID: 4988288001187328211}
+  - component: {fileID: 3904148835050083192}
   m_Layer: 0
   m_Name: HealthOrb
   m_TagString: Untagged
@@ -162,7 +163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4681701038757555463}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.268, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4064, y: 0.4064, z: 0.4064}
   m_Children:
   - {fileID: 1246227493}
@@ -216,3 +217,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!95 &3904148835050083192
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4681701038757555463}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 71b7d2489268cf646b867dfe6b296049, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
