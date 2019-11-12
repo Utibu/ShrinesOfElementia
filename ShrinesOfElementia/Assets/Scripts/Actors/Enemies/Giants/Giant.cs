@@ -19,6 +19,8 @@ public class Giant : StateMachine
     [SerializeField] private float sweepRange, sweepCooldown;
     private float sweepTimer;
 
+    // [Header("Spawn")]
+
     private bool sweepAvailable;
     public bool SweepAvailable
     {
@@ -46,7 +48,7 @@ public class Giant : StateMachine
         base.Awake();
     }
 
-    public override void Start()
+    protected override void Start()
     {
         BossEvents.Instance.OnBossFightAreaTriggerEnter += OnBossAreaEnter;
         print("Subscribed to BossFightAreaTriggerEnter");
@@ -59,12 +61,12 @@ public class Giant : StateMachine
         base.Update();
     }
 
-    private void CountDownCooldowns()
+    protected void CountDownCooldowns()
     {
         print("Is sweep available? " + sweepAvailable);
         print("Sweep timer: " + sweepTimer);
         // Sweep
-        if(sweepAvailable == false && sweepTimer <= 0f)
+        if (sweepAvailable == false && sweepTimer <= 0f)
         {
             SweepAvailable = true;
         }

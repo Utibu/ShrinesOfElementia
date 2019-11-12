@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerStateMachine : StateMachine
 {
@@ -26,7 +24,7 @@ public class PlayerStateMachine : StateMachine
     private bool faceCamera;
     public bool FaceCamera { get { return faceCamera; } set { faceCamera = value; } }
 
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
         player = Player.Instance;

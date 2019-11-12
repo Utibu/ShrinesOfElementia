@@ -1,24 +1,22 @@
 ﻿//Author: Sofia Kauko
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemySM : StateMachine
 {
-    
+
     //Do not show the designers
     public NavMeshAgent Agent { get; private set; }
     public GameObject SpawnArea { get; private set; }
     public Player Player { get; private set; }
-    
+
     public Animator Animator { get; private set; }
 
     [SerializeField] private GameObject[] patrolPoints;
     public GameObject[] PatrolPoints { get => patrolPoints; }
 
     private EnemyAttack enemyAttack;
-    
+
     public EnemyAttack EnemyAttack { get { return enemyAttack; } set { enemyAttack = value; } }
 
     //fix  this later
@@ -29,7 +27,7 @@ public class EnemySM : StateMachine
         base.Awake();
     }
 
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
         //Init Components.
@@ -43,12 +41,12 @@ public class EnemySM : StateMachine
         //EventSystem.Current.RegisterListener<DamageEvent>(OnAttacked);
 
     }
- 
+
 
     protected override void Update()
     {
         base.Update();
-        
+
     }
 
 

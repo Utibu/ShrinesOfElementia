@@ -1,7 +1,6 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class StateMachine : MonoBehaviour
 {
@@ -27,11 +26,11 @@ public class StateMachine : MonoBehaviour
     }
 
 
-    public virtual void Start()
+    protected virtual void Start()
     {
 
     }
-    
+
     //Called from statemachine that is a subclass to this statemachine. Makes sure the current states Update() is called. 
     protected virtual void Update()
     {
