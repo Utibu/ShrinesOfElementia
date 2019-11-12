@@ -60,7 +60,9 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private bool hasWater;
     [SerializeField] private bool hasEarth;
     [SerializeField] private bool hasWind;
+    [SerializeField] private bool noCooldown;
 
+    
     
     private void Start()
     {
@@ -70,6 +72,13 @@ public class AbilityManager : MonoBehaviour
         earthSpikesTimer = 0.0f;
         EventManager.Current.RegisterListener<ShrineEvent>(unlockElement);
         indicatorProjector.SetActive(false);
+        if (noCooldown)
+        {
+            fireballCooldown = 1;
+            geyserCooldown = 1;
+            windBladeCooldown = 1;
+            earthSpikesCooldown = 1;
+        }
     }
 
     private void Update()
@@ -107,17 +116,24 @@ public class AbilityManager : MonoBehaviour
     }
 
 
-    public void CastFireBall()
+    public void CheckFireBall()
     {
         if (hasFire && fireballTimer <= 0f)
         {
             Player.Instance.Animator.SetBool("InCombat", true);
-            fireballSpawnLocation = gameObject.transform.position + Vector3.up.normalized * 1.5f + gameObject.transform.forward * 1.8f;
-            GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation, gameObject.transform.rotation);
-            fireball.GetComponent<Rigidbody>().AddForce(CameraReference.Instance.transform.forward * fireballSpeed, ForceMode.VelocityChange);
-            fireballTimer = fireballCooldown;
-            fireballCooldownButton.GetComponent<Image>().fillAmount = 1;
+
+            Player.Instance.Animator.SetTrigger("CastFireball");
         }
+    }
+
+    private void CastFireBall()
+    {
+        Player.Instance.Animator.SetBool("InCombat", true);
+        fireballSpawnLocation = gameObject.transform.position + Vector3.up.normalized * 1.5f + gameObject.transform.forward * 1.8f;
+        GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation, gameObject.transform.rotation);
+        fireball.GetComponent<Rigidbody>().AddForce(CameraReference.Instance.transform.forward * fireballSpeed, ForceMode.VelocityChange);
+        fireballTimer = fireballCooldown;
+        fireballCooldownButton.GetComponent<Image>().fillAmount = 1;
     }
 
     public void ToggleAim(bool aimOn)
@@ -184,17 +200,24 @@ public class AbilityManager : MonoBehaviour
         windBladeCooldownButton.GetComponent<Image>().fillAmount = 1;
     }
 
-    public void CastEarthSpikes()
+    public void CheckEarthSpikes()
     {
         if (hasEarth && earthSpikesTimer <= 0f)
         {
+            print("casting earthspikes");
+            Player.Instance.Animator.SetTrigger("CastEarthSpikes");
             Player.Instance.Animator.SetBool("InCombat", true);
-            Quaternion spikesRotation = Quaternion.Euler(-90, gameObject.transform.rotation.eulerAngles.y, 0);
-            GameObject earthSpikes = Instantiate(earthSpikesPrefab, gameObject.transform.position + gameObject.transform.forward * 2f, spikesRotation);
-            earthSpikes.GetComponent<ParticleSystem>().Play();
-            earthSpikesTimer = earthSpikesCooldown;
-            earthSpikesCooldownButton.GetComponent<Image>().fillAmount = 1;
+
         }
+    }
+
+    private void CastEarthSpikes()
+    {
+        Quaternion spikesRotation = Quaternion.Euler(-90, gameObject.transform.rotation.eulerAngles.y, 0);
+        GameObject earthSpikes = Instantiate(earthSpikesPrefab, gameObject.transform.position + gameObject.transform.forward * 2f, spikesRotation);
+        earthSpikes.GetComponent<ParticleSystem>().Play();
+        earthSpikesTimer = earthSpikesCooldown;
+        earthSpikesCooldownButton.GetComponent<Image>().fillAmount = 1;
     }
 
     private void EnableFireAbilities()
