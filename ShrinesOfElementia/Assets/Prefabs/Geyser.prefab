@@ -52,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201472749364718067}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -96,7 +96,7 @@ CapsuleCollider:
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 2.04, z: 0}
 --- !u!95 &3352959257087669556
 Animator:
   serializedVersion: 3
@@ -233,11 +233,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1201472749364718064}
     m_Modifications:
-    - target: {fileID: 8512037269385939813, guid: 0c4fb82191e5b5b4fac88dfa3d0efc44,
-        type: 3}
-      propertyPath: m_Name
-      value: GeyserParticles
-      objectReference: {fileID: 0}
     - target: {fileID: 8512037269385939814, guid: 0c4fb82191e5b5b4fac88dfa3d0efc44,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -292,6 +287,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512037269385939813, guid: 0c4fb82191e5b5b4fac88dfa3d0efc44,
+        type: 3}
+      propertyPath: m_Name
+      value: GeyserParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940784516328775997, guid: 0c4fb82191e5b5b4fac88dfa3d0efc44,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512037269874953367, guid: 0c4fb82191e5b5b4fac88dfa3d0efc44,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512037269874953367, guid: 0c4fb82191e5b5b4fac88dfa3d0efc44,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512037269874953367, guid: 0c4fb82191e5b5b4fac88dfa3d0efc44,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512037270149612013, guid: 0c4fb82191e5b5b4fac88dfa3d0efc44,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512037270149612013, guid: 0c4fb82191e5b5b4fac88dfa3d0efc44,
+        type: 3}
+      propertyPath: ForceModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512037270149612013, guid: 0c4fb82191e5b5b4fac88dfa3d0efc44,
+        type: 3}
+      propertyPath: ForceModule.y.scalar
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512037270149612013, guid: 0c4fb82191e5b5b4fac88dfa3d0efc44,
+        type: 3}
+      propertyPath: ForceModule.inWorldSpace
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c4fb82191e5b5b4fac88dfa3d0efc44, type: 3}
