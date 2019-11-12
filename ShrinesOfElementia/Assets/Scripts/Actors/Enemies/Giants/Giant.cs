@@ -12,15 +12,16 @@ public class Giant : StateMachine
 
     [Header("Basic Attack")]
     [SerializeField] private int basicAttackDamage;
-    [SerializeField] private float basicAttackRange;
+    public float basicAttackRange;
 
     [Header("Sweep")]
     [SerializeField] private int sweepDamage;
-    [SerializeField] private float sweepRange, sweepCooldown;
+    public float sweepRange;
+    [SerializeField] private float sweepCooldown;
+
+
+    #region SweepCooldownVariables
     private float sweepTimer;
-
-    // [Header("Spawn")]
-
     private bool sweepAvailable;
     public bool SweepAvailable
     {
@@ -35,6 +36,55 @@ public class Giant : StateMachine
             }
         }
     }
+    #endregion SweepCooldownVariables
+
+    // [Header("Spawn")]
+
+    [Header("Stomp")]
+    [SerializeField] private int stompDamage;
+    public float stompRange;
+    [SerializeField] private float stompCooldown;
+
+    #region StompCooldownVariables
+    private float stompTimer;
+    private bool stompAvailable;
+    public bool StompAvailable
+    {
+        get => stompAvailable;
+        set
+        {
+            stompAvailable = value;
+
+            if (value == false)
+            {
+                stompTimer = stompCooldown;
+            }
+        }
+    }
+    #endregion StompCooldownVariables
+
+    [Header("Leap")]
+    [SerializeField] private int leapDamage;
+    public float leapRange;
+    [SerializeField] private float leapCooldown;
+
+    #region LeapCooldownVariables
+    private float leapTimer;
+    private bool leapAvailable;
+    public bool LeapAvailable
+    {
+        get => leapAvailable;
+        set
+        {
+            leapAvailable = value;
+
+            if (value == false)
+            {
+                leapTimer = leapCooldown;
+            }
+        }
+    }
+    #endregion LeapCooldownVariables
 
     protected override void Awake()
     {
@@ -44,6 +94,12 @@ public class Giant : StateMachine
 
         sweepTimer = sweepCooldown;
         SweepAvailable = false;
+
+        stompTimer = stompCooldown;
+        StompAvailable = false;
+
+        leapTimer = leapCooldown;
+        LeapAvailable = false;
 
         base.Awake();
     }
@@ -63,8 +119,6 @@ public class Giant : StateMachine
 
     protected void CountDownCooldowns()
     {
-        print("Is sweep available? " + sweepAvailable);
-        print("Sweep timer: " + sweepTimer);
         // Sweep
         if (sweepAvailable == false && sweepTimer <= 0f)
         {
@@ -73,6 +127,26 @@ public class Giant : StateMachine
         else if (sweepAvailable == false && sweepTimer > 0f)
         {
             sweepTimer -= Time.deltaTime;
+        }
+
+        // Stomp
+        if (stompAvailable == false && stompTimer <= 0f)
+        {
+            StompAvailable = true;
+        }
+        else if (stompAvailable == false && stompTimer > 0f)
+        {
+            stompTimer -= Time.deltaTime;
+        }
+
+        // Leap
+        if (leapAvailable == false && leapTimer <= 0f)
+        {
+            LeapAvailable = true;
+        }
+        else if (leapAvailable == false && leapTimer > 0f)
+        {
+            leapTimer -= Time.deltaTime;
         }
     }
 
@@ -91,5 +165,10 @@ public class Giant : StateMachine
     private void StopAttacking()
     {
         Animator.SetBool("IsAttacking", false);
+    }
+
+    public float DistanceToPlayer()
+    {
+        return Vector3.Distance(gameObject.transform.position, Player.Instance.transform.position);
     }
 }

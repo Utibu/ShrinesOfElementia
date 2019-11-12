@@ -336,7 +336,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2298930019045743474}
-  m_LocalRotation: {x: 0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
@@ -429,17 +429,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states:
   - {fileID: 11400000, guid: f687d9ec0ca305f4284112996771d649, type: 2}
-  - {fileID: 11400000, guid: c1a303ebac2ecd74492d72c6ca989372, type: 2}
   - {fileID: 11400000, guid: 60269a1995c16f24aba16e3a962b7418, type: 2}
+  - {fileID: 11400000, guid: c1a303ebac2ecd74492d72c6ca989372, type: 2}
   - {fileID: 11400000, guid: 0e1b4ca4296f7ca419065ede5ed521c8, type: 2}
   - {fileID: 11400000, guid: 63037708f87e2734cb08373708a4dd1a, type: 2}
+  - {fileID: 11400000, guid: 4e3484b90238825489336ef17e578986, type: 2}
+  - {fileID: 11400000, guid: ffea880cbedff4246b27d2b2f1ee4f68, type: 2}
+  - {fileID: 11400000, guid: 388fa9c226557bb408194d8a146af044, type: 2}
+  - {fileID: 11400000, guid: 8204a46dee18b8348b6528b3d24d51f9, type: 2}
+  - {fileID: 11400000, guid: 061ed7ceb439f414a98fc2382a761129, type: 2}
   currentState: {fileID: 0}
   lastState: {fileID: 0}
   basicAttackDamage: 15
-  basicAttackRange: 0
+  basicAttackRange: 2
   sweepDamage: 30
-  sweepRange: 0
+  sweepRange: 2.5
   sweepCooldown: 8
+  stompDamage: 0
+  stompRange: 0
+  stompCooldown: 0
+  leapDamage: 0
+  leapRange: 0
+  leapCooldown: 0
 --- !u!1 &2335014930789345732
 GameObject:
   m_ObjectHideFlags: 0

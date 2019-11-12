@@ -2,25 +2,33 @@
 
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Giant States/PhaseOneState")]
-public class GiantPhaseOneState : GiantBaseState
+[CreateAssetMenu(menuName = "Giant States/PhaseTwoState")]
+public class GiantPhaseTwoState : GiantPhaseOneState
 {
-    [SerializeField] protected float movementSpeed;
-
     public override void Enter()
     {
         owner.Agent.speed = movementSpeed;
 
-        if (owner.HealthComponent.CurrentHealth <= ((owner.HealthComponent.MaxHealth * 2) / 3))
+        if (owner.HealthComponent.CurrentHealth <= (owner.HealthComponent.MaxHealth / 3))
         {
-            owner.Transition<GiantPhaseTwoState>();
+            owner.Transition<GiantPhaseThreeState>();
         }
     }
 
     public override void HandleUpdate()
     {
+        // Spawn
+        // Spawn stuff
+
+        // Stomp
+        if (owner.StompAvailable && owner.stompRange >= owner.DistanceToPlayer())
+        {
+            owner.StompAvailable = false;
+            owner.Transition<GiantStompState>();
+        }
+
         // Sweep
-        if (owner.SweepAvailable && owner.sweepRange >= owner.DistanceToPlayer())
+        else if (owner.SweepAvailable && owner.sweepRange >= owner.DistanceToPlayer())
         {
             owner.SweepAvailable = false;
             owner.Transition<GiantSweepState>();
