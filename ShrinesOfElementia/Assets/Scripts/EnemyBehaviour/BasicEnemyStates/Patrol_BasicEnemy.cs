@@ -52,7 +52,7 @@ public class Patrol_BasicEnemy : BasicEnemyBaseState
     public override void Leave()
     {
         base.Leave();
-        Debug.Log("Leaving patrol state");
+
     }
 
 }

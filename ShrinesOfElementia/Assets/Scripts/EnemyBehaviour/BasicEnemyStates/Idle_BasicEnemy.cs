@@ -17,7 +17,7 @@ public class Idle_BasicEnemy : BasicEnemyBaseState
 
 
     public override void Enter() {
-        Debug.Log("Entering idle state.");
+
         base.Enter();
     }
 
