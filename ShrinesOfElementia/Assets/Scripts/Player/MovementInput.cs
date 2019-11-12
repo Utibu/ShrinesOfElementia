@@ -25,6 +25,11 @@ public class MovementInput : MonoBehaviour
     private Vector3 moveVector = Vector3.zero;
     float velocityOnImpact = 0;
 
+    //just temporary placement
+    private bool isPushed;
+    private float pushTimer;
+    private Vector3 pushVector;
+
 
 
     //[SerializeField] private bool isGrounded;   Old code, didn't work. Keeping just in case.
@@ -148,6 +153,9 @@ public class MovementInput : MonoBehaviour
 
         CheckFallDamage();
 
+
+        
+
         if (IsGrounded() && fromGlide)
         {
             isGliding = false;
@@ -174,6 +182,23 @@ public class MovementInput : MonoBehaviour
             {
                 isGliding = false;
                 animator.SetBool("IsGliding", false);
+            }
+        }
+
+
+        //retarded temporary shit to prevent crownsurf.
+        if (isPushed)
+        {
+            pushTimer -= Time.deltaTime;
+            if (pushTimer <= 0)
+            {
+                isPushed = false;
+                //moveVector -= pushVector; 
+            }
+            else if (pushTimer > 0)
+            {
+                //moveVector += pushVector * Time.deltaTime;
+                gameObject.transform.position += pushVector * Time.deltaTime;
             }
         }
 
@@ -301,6 +326,19 @@ public class MovementInput : MonoBehaviour
             EventManager.Current.FireEvent(new StaminaDrainEvent("stamina drained", 15));
         }
     }
+
+    
+    public void AddPush(Vector3 push)
+    {
+        if(isPushed == false)
+        {
+            isPushed = true;
+            pushTimer = 1.5f;
+            pushVector = push;
+        }
+        return;
+    }
+    
 
     public void ActivateGlide()
     {

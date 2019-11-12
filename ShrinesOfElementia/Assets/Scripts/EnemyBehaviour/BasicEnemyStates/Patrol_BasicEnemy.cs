@@ -35,7 +35,7 @@ public class Patrol_BasicEnemy : BasicEnemyBaseState
         distanceToPatrolPoint = Vector3.Distance(owner.transform.position, owner.PatrolPoints[currentTargetIndex].transform.position);
 
         //state Transistion checks: 
-        if (distanceToPlayer < sightRange)
+        if (distanceToPlayer < sightRange) 
         {
             Debug.Log("nu kommer jag och tar dig!");
             owner.Transition<Chase_BasicEnemy>();

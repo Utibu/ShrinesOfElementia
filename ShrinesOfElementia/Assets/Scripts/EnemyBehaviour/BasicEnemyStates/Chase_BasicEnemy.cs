@@ -36,6 +36,15 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
         //do the chasing
         owner.Agent.SetDestination(Player.Instance.transform.position);
 
+        //testing
+        if (Physics.Raycast(owner.transform.position, Vector3.up, 3f, 8)) // om player är på enemy == true
+        {
+            //push off player + move aside
+            owner.Player.GetComponent<MovementInput>().AddPush(owner.transform.forward * 2f);
+
+            //owner.transform.position += owner.Player.transform.forward * 2f;
+            Debug.Log("player är på enemy");
+        }
 
         //State transition checks:
         if (distanceToPlayer > sightRange* 1.4)

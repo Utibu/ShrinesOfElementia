@@ -13,6 +13,9 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
     private float cooldown;
     private float dodgeCooldown; // do some dodge cooldown timer too? a 10% chanse of dodging each PlayerDamage Event. (add forward force/vector of damaging obj to event) 
 
+
+    private bool pushPlayer;
+    private float pushTimer = 0;
     
 
     public override void Initialize(StateMachine stateMachine)
@@ -38,6 +41,8 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
 
         base.HandleUpdate();
 
+        
+
         if (cooldown <= 0)
         {
             Attack();
@@ -45,13 +50,59 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         cooldown -= Time.deltaTime;
 
 
-        
+       
 
         // state transition checks
         if (distanceToPlayer  > attackRange * 2f)
         {
             owner.Transition<Chase_BasicEnemy>();
         }
+
+        
+        Debug.DrawLine(owner.transform.position, owner.transform.position + owner.transform.up * 3);
+        RaycastHit hit;
+        if (Physics.Raycast(owner.transform.position, owner.transform.position + owner.transform.up * 3))
+        {
+            Debug.Log("something above enemy");
+            owner.Player.GetComponent<MovementInput>().AddPush(owner.transform.forward * 20f);
+
+            //owner.Player.transform.position += owner.transform.forward * 2f;
+            //pushTimer = 1.3f;
+        }
+
+        /*
+        if (pushTimer > 0)
+        {
+            pushTimer -= Time.deltaTime;
+            owner.Player.transform.position += (owner.transform.forward * 20f) * Time.deltaTime;
+        }
+        */
+
+        /*
+        RaycastHit hit;
+        Physics.Raycast(owner.transform.position, Vector3.up, out hit, 3f, 8);
+        if (hit.transform != null && hit.transform.CompareTag("Player")) // om player är på enemy == true
+        {
+            //push off player + move aside
+            owner.Player.GetComponent<MovementInput>().AddPush(owner.transform.forward * 2f);
+
+            //owner.transform.position += owner.Player.transform.forward * 2f;
+            Debug.Log("player är på enemy");
+        }
+        // seems like raycast is in a completely wrong direction and i ant see why. 
+        // simpler version: 
+        Debug.DrawRay(owner.transform.position, Vector3.up * 5f);
+        if (Physics.Raycast(owner.transform.position, Vector3.up, 3f, 8)) // om player är på enemy == true
+        {
+            //push off player + move aside
+            owner.Player.GetComponent<MovementInput>().AddPush(owner.transform.forward * 2f);
+
+            //owner.transform.position += owner.Player.transform.forward * 2f;
+            Debug.Log("player är på enemy");
+        }
+        */
+
+
 
     }
 
