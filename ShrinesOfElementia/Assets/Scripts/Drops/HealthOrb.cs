@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author: Joakim Ljung
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +17,7 @@ public class HealthOrb : DroppableObject
     {
         
     }
-    
+    /*
     private void OnCollisionEnter(Collision collision)
     {
         print("Collision");
@@ -27,14 +29,14 @@ public class HealthOrb : DroppableObject
         }
 
     }
-    /*
+    */
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             Player.Instance.Health.CurrentHealth += healthAmount;
-            Destroy(gameObject);
+            Destroy(droppedObject);
         }
     }
-    */
+    
 }

@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿//Author: Joakim Ljung
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DroppableObject : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] protected GameObject droppedObject;
+
     protected virtual void Start()
     {
         
