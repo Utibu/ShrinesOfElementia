@@ -69,7 +69,7 @@ public class PlayerInput : MonoBehaviour
         // Fireball
         if (Input.GetKeyDown(KeyCode.Alpha1)) //  && fireballTimer <= 0f
         {
-            abilityManager.CastFireBall();
+            abilityManager.CheckFireBall();
 
             /*
             GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation.transform.position, Quaternion.identity);
@@ -124,7 +124,7 @@ public class PlayerInput : MonoBehaviour
         //Earth spikes
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            abilityManager.CastEarthSpikes();
+            abilityManager.CheckEarthSpikes();
         }
 
         
