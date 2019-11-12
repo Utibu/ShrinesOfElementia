@@ -9,7 +9,7 @@ public class GiantStompState : GiantCombatState
     {
         MonoBehaviour.print("Stomp");
 
-        //owner.Animator.SetTrigger("Stomp");
+        owner.Animator.SetTrigger("Stomp");
 
         base.Enter();
     }

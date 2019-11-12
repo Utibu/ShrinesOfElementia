@@ -9,7 +9,7 @@ public class GiantLeapState : GiantCombatState
     {
         MonoBehaviour.print("Leap");
 
-        //owner.Animator.SetTrigger("Leap");
+        owner.Animator.SetTrigger("Leap");
 
         base.Enter();
     }
