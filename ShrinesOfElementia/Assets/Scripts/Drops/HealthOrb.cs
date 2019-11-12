@@ -15,14 +15,26 @@ public class HealthOrb : DroppableObject
     {
         
     }
-
+    
     private void OnCollisionEnter(Collision collision)
     {
+        print("Collision");
         if (collision.gameObject.CompareTag("Player"))
         {
+            print("Collision with player");
             Player.Instance.Health.CurrentHealth += healthAmount;
+            Destroy(gameObject);
         }
 
-        Destroy(gameObject);
     }
+    /*
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Player.Instance.Health.CurrentHealth += healthAmount;
+            Destroy(gameObject);
+        }
+    }
+    */
 }
