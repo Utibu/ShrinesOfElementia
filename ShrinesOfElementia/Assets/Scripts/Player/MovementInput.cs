@@ -23,6 +23,8 @@ public class MovementInput : MonoBehaviour
     private bool fromGlide;
     private bool hasGlide;
     private Vector3 moveVector = Vector3.zero;
+    float velocityOnImpact = 0;
+
 
 
     //[SerializeField] private bool isGrounded;   Old code, didn't work. Keeping just in case.
@@ -45,11 +47,18 @@ public class MovementInput : MonoBehaviour
     [SerializeField] private float dodgeLength;
     [SerializeField] private float dodgeDuration;
 
+    [Header("Fall Damage")]
+    [SerializeField] private float maxAirTime;
+    [SerializeField] private float maxVelocity;
+    [SerializeField] private float damageMultiplier;
+
     [Header("Misc")]
     [SerializeField] private float distanceToGround;
     [SerializeField] private float desiredRotationSpeed;
 
 
+
+    private float airTime;
 
     public float DefaultSpeed { get { return defaultSpeed; } }
     public float RunSpeed { get { return runSpeed; } }
@@ -73,6 +82,7 @@ public class MovementInput : MonoBehaviour
         fromGlide = false;
         breakUpdate = false;
         hasGlide = false;
+        airTime = 0;
     }
 
     private void Update()
@@ -135,6 +145,8 @@ public class MovementInput : MonoBehaviour
         InputMagnitude();
 
         ApplyGravity();
+
+        CheckFallDamage();
 
         if (IsGrounded() && fromGlide)
         {
@@ -252,6 +264,33 @@ public class MovementInput : MonoBehaviour
 
     }
 
+    private void CheckFallDamage()
+    {
+        //print(moveVector.y + " " + airTime);
+
+        if (!IsGrounded())
+        {
+            airTime += Time.deltaTime;
+            if(moveVector.y < velocityOnImpact)
+            {
+                velocityOnImpact = moveVector.y;
+            }
+        }
+
+        else if(IsGrounded() && airTime > maxAirTime && moveVector.y < maxVelocity)
+        {
+            print((int)velocityOnImpact * damageMultiplier + " damage taken");
+            velocityOnImpact *= damageMultiplier;
+            player.Health.CurrentHealth -= Mathf.Abs((int)velocityOnImpact);
+            airTime = 0;
+        }
+
+        else
+        {
+            airTime = 0;
+            velocityOnImpact = 0;
+        }
+    }
     
     public void OnDodge()
     {
