@@ -95,7 +95,7 @@ public class PlayerInput : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.Alpha2))
         {
-            abilityManager.CastGeyser();
+            abilityManager.CheckGeyser();
             abilityManager.ToggleAim(false);
         }
 

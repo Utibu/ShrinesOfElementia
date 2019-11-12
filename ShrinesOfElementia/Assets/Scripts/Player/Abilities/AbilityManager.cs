@@ -122,13 +122,13 @@ public class AbilityManager : MonoBehaviour
 
     public void ToggleAim(bool aimOn)
     {
-        if (hasWater)
+        if (hasWater && geyserTimer <= 0f)
         {
             Player.Instance.Animator.SetBool("InCombat", true);
             indicatorProjector.SetActive(aimOn);
         }
     }
-    public void CastGeyser()
+    public void CheckGeyser()
     {
 
         /**
@@ -153,13 +153,18 @@ public class AbilityManager : MonoBehaviour
         print("in cast");
         if (hasWater && geyserTimer <= 0f)
         {
-            print("casting");
-            Player.Instance.Animator.SetBool("InCombat", true);
-            Instantiate(geyserPrefab, geyserSpawnLocation, Quaternion.identity);
-            geyserTimer = geyserCooldown;
-            EventManager.Current.FireEvent(new GeyserCastEvent(geyserSpawnLocation, moistRange));
-            geyserCooldownButton.GetComponent<Image>().fillAmount = 1;
+            Player.Instance.Animator.SetTrigger("CastGeyser");
         }
+    }
+
+    private void CastGeyser()
+    {
+        print("casting");
+        Player.Instance.Animator.SetBool("InCombat", true);
+        Instantiate(geyserPrefab, geyserSpawnLocation, Quaternion.identity);
+        geyserTimer = geyserCooldown;
+        EventManager.Current.FireEvent(new GeyserCastEvent(geyserSpawnLocation, moistRange));
+        geyserCooldownButton.GetComponent<Image>().fillAmount = 1;
     }
 
     public void CheckWindBlade()
