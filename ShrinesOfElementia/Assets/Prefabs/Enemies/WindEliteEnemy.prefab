@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 9052777519132571242}
   - component: {fileID: 3343794356400336461}
   - component: {fileID: 8992086663926792458}
+  - component: {fileID: 5843396640896974301}
   m_Layer: 0
   m_Name: WindEliteEnemy
   m_TagString: Enemy
@@ -325,6 +326,25 @@ MonoBehaviour:
     type: 3}
   castTime: 5
   spellSpeedModifier: 1
+--- !u!114 &5843396640896974301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577833831253201476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a9dd492abdcefd4985cf4788f00a2b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  damage: 15
+  speed: 4
+  atkCooldown: 2
+  sightRange: 15
+  attackRange: 1.2
+  castRange: 14
 --- !u!1 &1304538052730463354
 GameObject:
   m_ObjectHideFlags: 0

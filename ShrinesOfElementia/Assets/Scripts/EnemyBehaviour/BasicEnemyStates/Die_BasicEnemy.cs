@@ -26,7 +26,7 @@ public class Die_BasicEnemy : BasicEnemyBaseState
         owner.gameObject.GetComponent<Collider>().enabled = false;
         GameObject gameobject = owner.GetComponent<GameObject>();
         EventManager.Current.FireEvent(new EnemyDeathEvent(gameobject, owner.SpawnArea));
-        Destroy(owner.gameObject, 1.0f);
+        Destroy(owner.gameObject, 0.5f);
 
     }
 

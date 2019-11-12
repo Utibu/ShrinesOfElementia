@@ -11,17 +11,28 @@ public class BasicEnemyBaseState : State
     protected EnemySM owner;
 
     protected float distanceToPlayer;
-    protected float attackRange = 1.3f;
-    protected float sightRange = 14.0f;
-    protected float castRange = 13.5f;
+    protected float damage;
+    protected float atkCooldown;
+    protected float attackRange;
+    protected float sightRange;
 
+    //greater elemental values
+    protected float castRange;
+    
 
 
     //called from baseclass StateMachine in Awake().
     public override void Initialize(StateMachine stateMachine)
     {
         owner = (EnemySM)stateMachine;  // cast to subtype. 
-        
+
+        //Set enemy values
+        attackRange = owner.GetComponent<EnemyValues>().AttackRange;
+        sightRange = owner.GetComponent<EnemyValues>().SightRange;
+        atkCooldown = owner.GetComponent<EnemyValues>().AtkCooldown;
+        damage = owner.GetComponent<EnemyValues>().Damage;
+        castRange = owner.GetComponent<EnemyValues>().CastRange;
+
     }
 
     public virtual void Start()

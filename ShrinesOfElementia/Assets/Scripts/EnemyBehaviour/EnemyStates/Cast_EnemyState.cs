@@ -58,27 +58,31 @@ public class Cast_EnemyState : BasicEnemyBaseState
     public override void HandleUpdate()
     {
         base.HandleUpdate();
-        //rotate / aim at player
-        //owner.transform.LookAt(owner.Player.transform.position);
         owner.transform.LookAt(owner.Player.transform);
         owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
 
         //tick down spell channel
         countdown -= Time.deltaTime;
 
-        
-        
         //spellcast:
-        if(countdown <= 0)
+        if (countdown <= 0)
         {
             Debug.Log("Element type: " + elementType);
             spells[elementType]();
             countdown = castTime;
-            // go to idle / play some "summoning new spell" animation
+            // go to idle or play some "summoning new spell" animation
         }
         else if (distanceToPlayer > castRange * 1.1)
         {
             owner.Transition<Chase_BasicEnemy>();
+        }
+        else if(distanceToPlayer <= attackRange)
+        {
+            //Attack player when too close to cast
+            owner.Transition<Attack_BasicEnemy>();
+
+            //Evade player when too close to cast
+            //try this later.
         }
     }
 

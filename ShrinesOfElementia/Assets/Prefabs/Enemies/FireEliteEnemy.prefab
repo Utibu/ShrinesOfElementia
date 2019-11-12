@@ -5061,6 +5061,7 @@ GameObject:
   - component: {fileID: 713462730250367758}
   - component: {fileID: 6494433526131057334}
   - component: {fileID: 4545991623520069825}
+  - component: {fileID: 6156860049884484638}
   m_Layer: 0
   m_Name: FireEliteEnemy
   m_TagString: Enemy
@@ -5349,6 +5350,25 @@ MonoBehaviour:
     type: 3}
   castTime: 5
   spellSpeedModifier: 10
+--- !u!114 &6156860049884484638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424373011236769543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a9dd492abdcefd4985cf4788f00a2b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  damage: 15
+  speed: 4
+  atkCooldown: 2
+  sightRange: 15
+  attackRange: 1.2
+  castRange: 14
 --- !u!1 &3862847822991046969
 GameObject:
   m_ObjectHideFlags: 0
