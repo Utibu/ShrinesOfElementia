@@ -1722,14 +1722,14 @@ MonoBehaviour:
   fireballPrefab: {fileID: 7657389444824941636, guid: 345c3bf3e79235e4b83c4ad44bfcd7bc,
     type: 3}
   fireballSpeed: 15
-  fireballCooldown: 1
+  fireballCooldown: 6
   fireballCooldownButton: {fileID: 8805428659506171705}
   fireParticles: {fileID: 6913744539286149983}
   sword: {fileID: 3999986769231775074}
   damageIncrease: 5
   geyserPrefab: {fileID: 1201472749364718067, guid: ada15d4953ae06a44ab3eed588b0ac46,
     type: 3}
-  geyserCooldown: 1
+  geyserCooldown: 12
   geyserSpawnLocation: {x: 0, y: 0, z: 0}
   moistRange: 6
   geyserRange: 100
@@ -1752,6 +1752,7 @@ MonoBehaviour:
   hasWater: 0
   hasEarth: 0
   hasWind: 0
+  noCooldown: 1
 --- !u!114 &8552680707284503677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9621,7 +9622,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8552680707344450591}
-  m_LocalRotation: {x: 0.031805135, y: -0.0000011101264, z: 0.00003383068, w: 0.99949414}
+  m_LocalRotation: {x: 0.031805143, y: -0.0000010433531, z: 0.000033815435, w: 0.99949414}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9821,7 +9822,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8552680707454828081}
-  m_LocalRotation: {x: -0.000000014901161, y: -0.00000004625136, z: 0.014446652, w: 0.9998957}
+  m_LocalRotation: {x: -0.000000014901159, y: 0.000000049421555, z: 0.014446685, w: 0.99989563}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -20327,7 +20328,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8552680708097587959}
-  m_LocalRotation: {x: 0.09028888, y: -0.000000033145824, z: 0.0000000030049723, w: 0.99591565}
+  m_LocalRotation: {x: 0.09028888, y: 0.000000035077505, z: -0.0000000031800973, w: 0.99591565}
   m_LocalPosition: {x: 0, y: 2.5, z: -4.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -21447,7 +21448,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8552680709056822686}
-  m_LocalRotation: {x: -0.031549588, y: 0.00013856056, z: 0.0043911636, w: 0.9994925}
+  m_LocalRotation: {x: -0.031549573, y: 0.00013861846, z: 0.0043911943, w: 0.9994925}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
