@@ -35,11 +35,16 @@ public class Shield : MonoBehaviour
     {
         blockMeter.value = currentBlockAmount;
 
-        if (IsBlocking())
+        if(currentBlockAmount > 0)
         {
             blockMeter.gameObject.SetActive(true);
+        }
+
+        if (IsBlocking())
+        {
             drainTimer = drainDelay;
         }
+
         else if(!IsBlocking() && currentBlockAmount < 0)
         {
             blockMeter.gameObject.SetActive(false);

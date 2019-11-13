@@ -15,6 +15,8 @@ public class StaminaManager : MonoBehaviour
     [SerializeField] private bool infiniteStamina;
 
     [SerializeField] private Slider staminaSlider;
+    
+
 
     public float CurrentStamina {
         get
@@ -51,7 +53,7 @@ public class StaminaManager : MonoBehaviour
     {
         currentStamina = maxStamina;
         regenerationCountdown = 0;
-        EventManager.Current.RegisterListener<StaminaDrainEvent>(OnStaminaDrain);
+        EventManager.Current.RegisterListener<DodgeEvent>(OnDodge);
         staminaSlider.maxValue = maxStamina;
     }
 
@@ -80,13 +82,32 @@ public class StaminaManager : MonoBehaviour
         }
     }
 
-    private void OnStaminaDrain(StaminaDrainEvent eve)
+    private void OnDodge(DodgeEvent eve)
     {
         if (!infiniteStamina)
         {
-            CurrentStamina -= eve.DrainAmount;
+            if(currentStamina >= maxStamina)
+            {
+                currentStamina -= maxStamina / 3;
+            }
+            /*
+            else if (currentStamina >= (maxStamina / 3) * 2)
+            {
+                currentStamina -= maxStamina / 3;
+            }
+            */
+            else if (currentStamina >= maxStamina / 3)
+            {
+                print("last dodge");
+                currentStamina -= maxStamina / 3;
+            }
             regenerationCountdown = 0;
         }
+    }
+
+    public bool CanDodge()
+    {
+        return currentStamina >= maxStamina / 3;
     }
 
     private void UpdateStaminaBar()

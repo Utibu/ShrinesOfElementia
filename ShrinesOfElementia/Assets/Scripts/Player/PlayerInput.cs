@@ -150,12 +150,12 @@ public class PlayerInput : MonoBehaviour
         */
         if(player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint") && player.Animator.GetFloat("InputMagnitude") != 0)
         {
-            EventManager.Current.FireEvent(new StaminaDrainEvent("sprinting", sprintStaminaDrain));
+            EventManager.Current.FireEvent(new DodgeEvent("sprinting", sprintStaminaDrain));
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking 
             && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
-            && staminaManager.CurrentStamina > 0)
+            && staminaManager.CanDodge())
         {
             movementInput.OnDodge();
         }
@@ -261,7 +261,7 @@ public class PlayerInput : MonoBehaviour
         attackIndex = (attackIndex + 1) % lightAttacks.Length;
         resetTimer = 0f;
 
-        EventManager.Current.FireEvent(new StaminaDrainEvent("light attack", 15));
+        EventManager.Current.FireEvent(new DodgeEvent("light attack", 15));
         //print(attackIndex);
 
         //print(resetTimer + "     " + lightAttackTimer);
@@ -278,6 +278,6 @@ public class PlayerInput : MonoBehaviour
     // Might be used maybe not
     public void FireStaminaDrainEvent(int drain)
     {
-        EventManager.Current.FireEvent(new StaminaDrainEvent(drain + " stamina drained", drain));
+        EventManager.Current.FireEvent(new DodgeEvent(drain + " stamina drained", drain));
     }
 }

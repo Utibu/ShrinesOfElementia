@@ -323,7 +323,7 @@ public class MovementInput : MonoBehaviour
         {
             isDodging = true;
             player.Animator.SetTrigger("OnDodge");
-            EventManager.Current.FireEvent(new StaminaDrainEvent("stamina drained", 15));
+            EventManager.Current.FireEvent(new DodgeEvent("stamina drained", 15));
         }
     }
 
