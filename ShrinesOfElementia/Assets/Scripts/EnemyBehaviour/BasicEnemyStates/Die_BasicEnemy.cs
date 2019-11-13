@@ -26,7 +26,12 @@ public class Die_BasicEnemy : BasicEnemyBaseState
         owner.gameObject.GetComponent<Collider>().enabled = false;
         GameObject gameobject = owner.GetComponent<GameObject>();
         EventManager.Current.FireEvent(new EnemyDeathEvent(gameobject, owner.SpawnArea));
-        Destroy(owner.gameObject, 0.5f);
+        if (Random.Range(0f,100f) < orbDropChance )
+        {
+            GameObject.Instantiate(orb, owner.transform.position + owner.Player.transform.forward * 4f, new Quaternion(0, 0, 0, 0));
+        }
+        
+        Destroy(owner.gameObject, 0.2f);
 
     }
 

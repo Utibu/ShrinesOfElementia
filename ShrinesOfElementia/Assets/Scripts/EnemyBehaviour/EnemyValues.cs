@@ -11,6 +11,8 @@ public class EnemyValues : MonoBehaviour
     [SerializeField] private float atkCooldown;
     [SerializeField] private float sightRange;
     [SerializeField] private float attackRange;
+    [SerializeField] private float orbDropChance;
+    [SerializeField] private GameObject orb;
 
     //If enemy is elite
     [SerializeField] private float castRange;
@@ -24,6 +26,8 @@ public class EnemyValues : MonoBehaviour
     public float SightRange { get => sightRange; set => sightRange = value; }
     public float AttackRange { get => attackRange; private set => attackRange = value; }
     public float CastRange { get => castRange; set => castRange = value; }
+    public float OrbDropChance { get => orbDropChance; set => orbDropChance = value; }
+    public GameObject Orb { get => orb; set => orb = value; }
 
 
     // Start is called before the first frame update

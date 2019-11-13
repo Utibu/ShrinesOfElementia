@@ -17,6 +17,8 @@ public class BasicEnemyBaseState : State
     protected float atkCooldown;
     protected float attackRange;
     protected float sightRange;
+    protected GameObject orb;
+    protected float orbDropChance;
 
     //greater elemental values
     protected float castRange;
@@ -34,6 +36,8 @@ public class BasicEnemyBaseState : State
         atkCooldown = owner.GetComponent<EnemyValues>().AtkCooldown;
         damage = owner.GetComponent<EnemyValues>().Damage;
         castRange = owner.GetComponent<EnemyValues>().CastRange;
+        orb = owner.GetComponent<EnemyValues>().Orb;
+        orbDropChance = owner.GetComponent<EnemyValues>().OrbDropChance;
 
     }
 
