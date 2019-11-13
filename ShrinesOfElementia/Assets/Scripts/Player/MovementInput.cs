@@ -136,6 +136,7 @@ public class MovementInput : MonoBehaviour
             moveVector.Normalize(); 
             moveVector *= glideSpeed;
             fromGlide = true;
+            velocityOnImpact = 0;
         }
 
         if (animator.GetBool("InCombat"))
@@ -274,7 +275,7 @@ public class MovementInput : MonoBehaviour
     {
         if (isGliding)
         {
-            print(moveVector.magnitude); 
+            print(moveVector.y); 
             moveVector.y -= gravity * glideGravityMultiplier;
         }
         else if (IsGrounded() && moveVector.y < 0.5f)
@@ -293,6 +294,11 @@ public class MovementInput : MonoBehaviour
     {
         //print(moveVector.y + " " + airTime);
 
+        if (IsGrounded())
+        {
+            print(velocityOnImpact + " " + airTime);
+        }
+        
         if (!IsGrounded())
         {
             airTime += Time.deltaTime;
@@ -301,8 +307,8 @@ public class MovementInput : MonoBehaviour
                 velocityOnImpact = moveVector.y;
             }
         }
-
-        else if(IsGrounded() && airTime > maxAirTime && moveVector.y < maxVelocity)
+        
+        else if(IsGrounded() && airTime > maxAirTime && velocityOnImpact < -maxVelocity)
         {
             print((int)velocityOnImpact * damageMultiplier + " damage taken");
             velocityOnImpact *= damageMultiplier;

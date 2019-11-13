@@ -84,7 +84,7 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKey(KeyCode.Alpha2)) // && geyserTimer <= 0f
         {
             // activate projector
-            abilityManager.ToggleAim(true);
+            abilityManager.ToggleAim();
             
             /*GameObject geyser = */
             /*
@@ -96,7 +96,7 @@ public class PlayerInput : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Alpha2))
         {
             abilityManager.CheckGeyser();
-            abilityManager.ToggleAim(false);
+            abilityManager.ToggleAim();
         }
 
         //geyserTimer -= Time.deltaTime;
