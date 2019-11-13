@@ -31,10 +31,23 @@ public class EarthSpikes : Ability
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
+        if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) && other.gameObject.tag != Caster.tag)
         {
-            print("trigger particle");
+            //print(caster.name);
+            //print(other.gameObject.name);
+            //print("trigger particle");
             EventManager.Current.FireEvent(new DamageEvent("damage dealt", 20, gameObject, other.gameObject));
         }
     }
+    /*
+    public override void SetCaster(GameObject obj)
+    {
+        base.SetCaster(obj);
+    }
+
+    public override GameObject GetCaster()
+    {
+        return base.GetCaster();
+    }
+    */
 }

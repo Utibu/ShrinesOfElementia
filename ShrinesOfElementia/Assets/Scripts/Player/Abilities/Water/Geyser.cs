@@ -11,7 +11,7 @@ public class Geyser : Ability
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
+        if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) && other.gameObject.tag != caster.tag)
         {
             DealDamage(other.gameObject, damage);
 

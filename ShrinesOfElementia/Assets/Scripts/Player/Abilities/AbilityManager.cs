@@ -133,6 +133,7 @@ public class AbilityManager : MonoBehaviour
         Player.Instance.Animator.SetBool("InCombat", true);
         fireballSpawnLocation = gameObject.transform.position + Vector3.up.normalized * 1.5f + gameObject.transform.forward * 1.8f;
         GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation, gameObject.transform.rotation);
+        fireball.GetComponent<Fireball>().Caster = gameObject;
         fireball.GetComponent<Rigidbody>().AddForce(CameraReference.Instance.transform.forward * fireballSpeed, ForceMode.VelocityChange);
     }
 
@@ -183,7 +184,8 @@ public class AbilityManager : MonoBehaviour
         print("casting");
 
         Player.Instance.Animator.SetBool("InCombat", true);
-        Instantiate(geyserPrefab, geyserSpawnLocation, Quaternion.identity);
+        GameObject geyser = Instantiate(geyserPrefab, geyserSpawnLocation, Quaternion.identity);
+        geyser.GetComponent<Geyser>().Caster = gameObject;
         EventManager.Current.FireEvent(new GeyserCastEvent(geyserSpawnLocation, moistRange));
     }
 
@@ -201,6 +203,7 @@ public class AbilityManager : MonoBehaviour
     private void CastWindBlade()
     {
         GameObject windBlade = Instantiate(windBladePrefab, gameObject.transform.position + Vector3.up.normalized + gameObject.transform.forward * 2f, gameObject.transform.rotation);
+        windBlade.GetComponent<WindBlade>().Caster = gameObject;
         windBlade.GetComponent<Rigidbody>().AddForce(Player.Instance.transform.forward * windBladeSpeed, ForceMode.VelocityChange);
     }
 
@@ -220,6 +223,8 @@ public class AbilityManager : MonoBehaviour
     {
         Quaternion spikesRotation = Quaternion.Euler(-90, gameObject.transform.rotation.eulerAngles.y, 0);
         GameObject earthSpikes = Instantiate(earthSpikesPrefab, gameObject.transform.position + gameObject.transform.forward * 2f, spikesRotation);
+        earthSpikes.GetComponent<EarthSpikes>().Caster = gameObject;
+        print(earthSpikes.GetComponent<EarthSpikes>().Caster);
         earthSpikes.GetComponent<ParticleSystem>().Play();
     }
 
