@@ -3,7 +3,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Giant States/ChaseState")]
-public class GiantChaseState : GiantPhaseOneState
+public class GiantChaseState : GiantBaseState
 {
     public override void Enter()
     {
@@ -17,9 +17,8 @@ public class GiantChaseState : GiantPhaseOneState
     {
         owner.Agent.SetDestination(Player.Instance.transform.position);
 
-        if (Vector3.Distance(owner.gameObject.transform.position, Player.Instance.transform.position) < owner.Agent.stoppingDistance)
+        if (owner.DistanceToPlayer() < owner.Agent.stoppingDistance)
         {
-            owner.Agent.acceleration = 60f;
             owner.Transition<GiantPhaseOneState>();
         }
 
