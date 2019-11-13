@@ -56,7 +56,6 @@ public class Shield : MonoBehaviour
 
         Stagger(isStaggered);
 
-        print(currentBlockAmount);
     }
 
     private void OnBlock(BlockEvent eve)
