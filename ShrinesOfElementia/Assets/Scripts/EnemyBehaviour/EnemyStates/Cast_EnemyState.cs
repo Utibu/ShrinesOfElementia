@@ -101,6 +101,7 @@ public class Cast_EnemyState : BasicEnemyBaseState
         //cast spell
         Debug.Log("Firespell cast");
         GameObject fireball = Instantiate(spellPrefab, fireballSpawnLocation, Quaternion.identity);
+        fireball.GetComponent<Fireball>().Caster = owner.gameObject;
         fireball.GetComponent<Rigidbody>().AddForce(oldAim, ForceMode.VelocityChange);
     }
 
@@ -110,7 +111,8 @@ public class Cast_EnemyState : BasicEnemyBaseState
     {
         Debug.Log("Waterspell cast");
         Vector3 eruptionSpot = owner.Player.transform.position + Vector3.up * -3f;
-        Instantiate(spellPrefab, eruptionSpot, Quaternion.identity);
+        GameObject geyser = Instantiate(spellPrefab, eruptionSpot, Quaternion.identity);
+        geyser.GetComponent<Geyser>().Caster = owner.gameObject;
         EventManager.Current.FireEvent(new GeyserCastEvent(eruptionSpot, 6f)); //6f is range of extinguish. put this in geysher prefab script later.
     }
 
@@ -119,6 +121,7 @@ public class Cast_EnemyState : BasicEnemyBaseState
         Debug.Log("earth cast");
         Quaternion spikesRotation = Quaternion.Euler(-90, owner.transform.rotation.eulerAngles.y, 0);
         GameObject earthSpikes = Instantiate(spellPrefab, owner.transform.position + owner.transform.forward * 3f, spikesRotation);
+        earthSpikes.GetComponent<EarthSpikes>().Caster = owner.gameObject;
         earthSpikes.GetComponent<ParticleSystem>().Play();
     }
 
@@ -126,6 +129,7 @@ public class Cast_EnemyState : BasicEnemyBaseState
     {
         Debug.Log("wind cast");
         GameObject windBlade = Instantiate(spellPrefab, owner.transform.position + Vector3.up.normalized + owner.transform.forward * 3f, owner.Agent.transform.rotation);
+        windBlade.GetComponent<WindBlade>().Caster = owner.gameObject;
         windBlade.GetComponent<Rigidbody>().AddForce(owner.transform.forward * windBladeSpeed, ForceMode.VelocityChange);
     }
 

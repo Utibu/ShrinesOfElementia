@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿//Author: Joakim Ljung
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindBlade : MonoBehaviour
+public class WindBlade : Ability
 {
     //private GameObject[] enemiesHit;
     private List<GameObject> enemiesHit;
@@ -26,7 +28,7 @@ public class WindBlade : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) && !enemiesHit.Contains(other.gameObject))
+        if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) && !enemiesHit.Contains(other.gameObject) && other.gameObject.tag != caster.tag)
         {
             EventManager.Current.FireEvent(new DamageEvent("Wind blade dealt " + damage + "to " + other.gameObject, damage, gameObject, other.gameObject));
             enemiesHit.Add(other.gameObject);
