@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿//Author: Joakim Ljung
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EarthSpikes : MonoBehaviour
+public class EarthSpikes : Ability
 {
     private ParticleSystem particles;
     private BoxCollider boxCollider;
@@ -15,6 +17,7 @@ public class EarthSpikes : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (particles.IsAlive())
         {
             boxCollider.enabled = true;
@@ -23,6 +26,7 @@ public class EarthSpikes : MonoBehaviour
         {
             boxCollider.enabled = false;
         }
+        */
     }
     
     private void OnTriggerEnter(Collider other)

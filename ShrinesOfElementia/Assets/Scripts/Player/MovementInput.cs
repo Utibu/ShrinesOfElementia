@@ -292,12 +292,6 @@ public class MovementInput : MonoBehaviour
 
     private void CheckFallDamage()
     {
-        //print(moveVector.y + " " + airTime);
-
-        if (IsGrounded())
-        {
-            print(velocityOnImpact + " " + airTime);
-        }
         
         if (!IsGrounded())
         {

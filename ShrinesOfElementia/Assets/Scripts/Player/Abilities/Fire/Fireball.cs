@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Handles the fireball prefab
 /// </summary>
-public class Fireball : MonoBehaviour
+public class Fireball : Ability
 {
     [Header("Temporary attributes")]
     [SerializeField] private int directHitDamage;
