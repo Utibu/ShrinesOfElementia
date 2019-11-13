@@ -1,8 +1,9 @@
 ﻿// Author: Bilal El Medkouri
+// Co-Author: Joakim Ljung
 
 using UnityEngine;
 
-public class Geyser : MonoBehaviour
+public class Geyser : Ability
 {
     [Header("Attributes")]
     [SerializeField] private int damage;
@@ -28,10 +29,11 @@ public class Geyser : MonoBehaviour
     {
         // Put this on hold for now
     }
-
+    /*
     private void SelfDestruct()
     {
         print("Self Destruct");
         Destroy(gameObject);
     }
+    */
 }
