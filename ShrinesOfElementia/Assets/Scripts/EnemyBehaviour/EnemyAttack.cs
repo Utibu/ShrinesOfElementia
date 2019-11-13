@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿// Author: Joakim Ljung
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +28,7 @@ public class EnemyAttack : MonoBehaviour
         {
             gameObject.SetActive(false);
             animator.SetTrigger("AttackBlocked");
-            EventManager.Current.FireEvent(new BlockEvent("Attack blocked by " + collision.gameObject.name, attackCollider, collision.collider.gameObject));
+            EventManager.Current.FireEvent(new BlockEvent("Damage blocked: ", damage));
             print("Player shield hit");
         }
         else if (collision.gameObject.CompareTag("Player"))

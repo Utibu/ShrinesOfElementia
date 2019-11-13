@@ -63,7 +63,7 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         RaycastHit hit;
         if (Physics.Raycast(owner.transform.position, owner.transform.position + owner.transform.up * 3))
         {
-            Debug.Log("something above enemy");
+
             owner.Player.GetComponent<MovementInput>().AddPush(owner.transform.forward * 20f);
 
             //owner.Player.transform.position += owner.transform.forward * 2f;
