@@ -10,7 +10,7 @@ public class AbilityManager : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] private int healthRegeneration;
-    [SerializeField] private int regenerationInterval;
+    [SerializeField] private float regenerationInterval;
     private float regenerationCountdown = 0f;
 
     [Header("Fireball attributes")]

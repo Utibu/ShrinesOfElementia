@@ -11,6 +11,10 @@ public class Giant : StateMachine
     public NavMeshAgent Agent { get; set; }
     public HealthComponent HealthComponent { get; set; }
 
+    // Bools for phases
+    public bool Phase2Active { get; set; }
+    public bool Phase3Active { get; set; }
+
     [Header("Basic Attack")]
     [SerializeField] private int basicAttackDamage;
     public float basicAttackRange;

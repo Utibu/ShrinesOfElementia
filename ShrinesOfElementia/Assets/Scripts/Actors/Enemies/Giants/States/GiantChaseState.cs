@@ -3,7 +3,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Giant States/ChaseState")]
-public class GiantChaseState : GiantBaseState
+public class GiantChaseState : GiantBattleState
 {
     public override void Enter()
     {
