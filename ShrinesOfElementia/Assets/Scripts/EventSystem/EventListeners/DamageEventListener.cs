@@ -6,6 +6,7 @@ public class DamageEventListener : MonoBehaviour
 {
 
     [SerializeField] private int elementalDamageBonus;
+    private int totalDamage;
     private void Start()
     {
         EventManager.Current.RegisterListener<DamageEvent>(OnDamageEvent);
@@ -18,27 +19,36 @@ public class DamageEventListener : MonoBehaviour
         {
             //deal melee damage
             damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= damageEvent.Damage;
+            return;
         }
-        else if (damageEvent.TargetGameObject.GetComponent<EnemyValues>().ElementalType.Equals("Earth") && damageEvent.DamageType.Equals("Wind"))
+
+        EnemyValues values;
+        if (damageEvent.TargetGameObject.TryGetComponent<EnemyValues>(out values))
         {
-            damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= damageEvent.Damage + elementalDamageBonus;
-            damageEvent.TargetGameObject.GetComponent<EnemySM>().DisableElite();
+            if (values.ElementalType.Equals("Earth") && damageEvent.DamageType.Equals("Wind"))
+            {
+                totalDamage = damageEvent.Damage + elementalDamageBonus;
+                damageEvent.TargetGameObject.GetComponent<EnemySM>().DisableElite();
+            }
+            else if (values.ElementalType.Equals("Water") && damageEvent.DamageType.Equals("Earth"))
+            {
+                totalDamage = damageEvent.Damage + elementalDamageBonus;
+                damageEvent.TargetGameObject.GetComponent<EnemySM>().DisableElite();
+            }
+            else if (values.ElementalType.Equals("Fire") && damageEvent.DamageType.Equals("Water"))
+            {
+                totalDamage = damageEvent.Damage + elementalDamageBonus;
+                damageEvent.TargetGameObject.GetComponent<EnemySM>().DisableElite();
+            }
+            else if (values.ElementalType.Equals("Wind") && damageEvent.DamageType.Equals("Fire")) // else: this damage is ordinary melee
+            {
+                totalDamage = damageEvent.Damage + elementalDamageBonus;
+                damageEvent.TargetGameObject.GetComponent<EnemySM>().DisableElite();
+            }
+
+            damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= totalDamage;
         }
-        else if (damageEvent.TargetGameObject.GetComponent<EnemyValues>().ElementalType.Equals("Water") && damageEvent.DamageType.Equals("Earth"))
-        {
-            damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= damageEvent.Damage + elementalDamageBonus;
-            damageEvent.TargetGameObject.GetComponent<EnemySM>().DisableElite();
-        }
-        else if (damageEvent.TargetGameObject.GetComponent<EnemyValues>().ElementalType.Equals("Fire") && damageEvent.DamageType.Equals("Water"))
-        {
-            damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= damageEvent.Damage + elementalDamageBonus;
-            damageEvent.TargetGameObject.GetComponent<EnemySM>().DisableElite();
-        }
-        else if(damageEvent.TargetGameObject.GetComponent<EnemyValues>().ElementalType.Equals("Wind") && damageEvent.DamageType.Equals("Fire")) // else: this damage is ordinary melee
-        {
-            damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= damageEvent.Damage + elementalDamageBonus;
-            damageEvent.TargetGameObject.GetComponent<EnemySM>().DisableElite();
-        }
+        
         
 
         //pushback
