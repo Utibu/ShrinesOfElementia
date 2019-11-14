@@ -59,7 +59,7 @@ public class EnemySpellManager : MonoBehaviour
         Vector3 oldAim = gameObject.transform.forward * fireballSpeed;
         //cast spell
         Debug.Log("Firespell cast");
-        GameObject fireball = Instantiate(spellPrefab, fireballSpawnLocation, Quaternion.identity);
+        GameObject fireball = Instantiate(spellPrefab, fireballSpawnLocation, this.GetComponent<EnemySM>().Agent.transform.rotation);
         fireball.GetComponent<Fireball>().Caster = gameObject;
         fireball.GetComponent<Rigidbody>().AddForce(oldAim, ForceMode.VelocityChange);
     }
