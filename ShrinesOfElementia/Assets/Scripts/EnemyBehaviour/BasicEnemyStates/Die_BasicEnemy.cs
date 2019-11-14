@@ -28,7 +28,7 @@ public class Die_BasicEnemy : BasicEnemyBaseState
         EventManager.Current.FireEvent(new EnemyDeathEvent(gameobject, owner.SpawnArea));
         if (Random.Range(0f,100f) < orbDropChance )
         {
-            GameObject.Instantiate(orb, owner.transform.position + owner.Player.transform.forward * 5f, new Quaternion(0, 0, 0, 0));
+            GameObject.Instantiate(orb, owner.transform.position + owner.Player.transform.forward * 3f, new Quaternion(0, 0, 0, 0));
         }
         
         Destroy(owner.gameObject, 0.2f);
