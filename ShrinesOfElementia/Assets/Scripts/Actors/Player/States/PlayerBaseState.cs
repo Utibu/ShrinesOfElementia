@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShrineInteractState : PlayerBaseState
+public class PlayerBaseState : State
 {
     // Start is called before the first frame update
     void Start()

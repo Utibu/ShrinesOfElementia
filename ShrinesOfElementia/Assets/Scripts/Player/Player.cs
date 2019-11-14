@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : StateMachine
 {
     public static Player Instance { get; private set; }
     public MovementInput MovementInput { get; private set; }
