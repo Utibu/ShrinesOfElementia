@@ -71,14 +71,7 @@ public class StaminaManager : MonoBehaviour
     {
         if (CurrentStamina < maxStamina)
         {
-            if (GetComponent<PlayerInput>().IsBlocking)
-            {
-                regenerationCountdown = 0;
-            }
-            else
-            {
-                CurrentStamina += staminaRegenerationAmount;
-            }
+            CurrentStamina += staminaRegenerationAmount;
         }
     }
 
