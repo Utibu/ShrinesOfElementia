@@ -41,7 +41,7 @@ public class Fireball : Ability
         if (hasDealtDamage == true)
             return;
 
-        if ((collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player")) && collision.gameObject.tag != caster.tag)
+        if ((collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player")) && collision.gameObject.CompareTag(caster.tag) == false) //collision.gameObject.tag != caster.tag)
         {
             DealDamage(collision.gameObject, directHitDamage);
 
@@ -49,6 +49,8 @@ public class Fireball : Ability
         }
 
         AreaOfEffect();
+
+        print("Fireball hit " + collision.gameObject);
 
         Destroy(gameObject);
     }
@@ -59,7 +61,7 @@ public class Fireball : Ability
         int i = 0;
         while (i < hitColliders.Length)
         {
-            if ((hitColliders[i].gameObject.CompareTag("Enemy") || hitColliders[i].gameObject.CompareTag("Player")) && hitColliders[i].gameObject.tag != caster.tag)
+            if ((hitColliders[i].gameObject.CompareTag("Enemy") || hitColliders[i].gameObject.CompareTag("Player")) && hitColliders[i].gameObject.CompareTag(caster.tag) == false) //.tag != caster.tag)
             {
                 DealDamage(hitColliders[i].gameObject, aoeDamage);
             }
