@@ -76,13 +76,15 @@ public class Cast_EnemyState : BasicEnemyBaseState
         {
             owner.Transition<Chase_BasicEnemy>();
         }
-        else if(distanceToPlayer <= attackRange)
+        else if(distanceToPlayer <= 5f)
         {
+            /*
             //Attack player when too close to cast
             owner.Transition<Attack_BasicEnemy>();
+            */
 
             //Evade player when too close to cast
-            //try this later.
+            owner.Transition<Flee_EnemyState>();
         }
     }
 

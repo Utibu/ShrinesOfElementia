@@ -88,7 +88,7 @@ public class SpawnBasic : MonoBehaviour
 
     private void spawnNewElite()
     {
-        //currentEliteSpawnCount += 1;
+        currentSpawnCount += 1;
         //fix random x,z within spawn area later
 
         GameObject g = Instantiate(elite, gameObject.transform);
