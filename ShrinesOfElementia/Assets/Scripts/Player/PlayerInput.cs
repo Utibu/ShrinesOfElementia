@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour
     private AbilityManager abilityManager;
 
     private StaminaManager staminaManager;
+    private bool invincible;
 
     private bool blockTrigger = false, isBlocking = false;
     public bool IsBlocking { get { return isBlocking; } }
@@ -249,6 +250,14 @@ public class PlayerInput : MonoBehaviour
         {
             EventManager.Current.FireEvent(new ShrineEvent("Wind activated", "Earth"));
         }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            invincible = !invincible;
+        }
+        if (invincible)
+        {
+            Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
+        }
     }
 
     #region BilalPlayerInput
@@ -450,6 +459,7 @@ public class PlayerInput : MonoBehaviour
         {
             EventManager.Current.FireEvent(new ShrineEvent("Wind activated", "Earth"));
         }
+        
     }
     #endregion BilalPlayerInput
 
