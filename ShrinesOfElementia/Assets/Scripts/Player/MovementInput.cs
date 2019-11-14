@@ -151,7 +151,6 @@ public class MovementInput : MonoBehaviour
             moveVector *= glideSpeed;
             fromGlide = true;
             velocityOnImpact = 0;
-            print(moveVector.magnitude);
         }
 
         if (animator.GetBool("InCombat"))
@@ -272,7 +271,6 @@ public class MovementInput : MonoBehaviour
             moveVector *= glideSpeed;
             fromGlide = true;
             velocityOnImpact = 0;
-            print(moveVector.magnitude);
         }
 
         if (animator.GetBool("InCombat"))
@@ -444,7 +442,6 @@ public class MovementInput : MonoBehaviour
         
         else if(IsGrounded() && airTime > maxAirTime && velocityOnImpact < -maxVelocity)
         {
-            print((int)velocityOnImpact * damageMultiplier + " damage taken");
             velocityOnImpact *= damageMultiplier;
             player.Health.CurrentHealth -= Mathf.Abs((int)velocityOnImpact);
             airTime = 0;

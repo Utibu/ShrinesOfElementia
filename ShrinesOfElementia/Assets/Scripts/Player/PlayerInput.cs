@@ -139,7 +139,6 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift) || (player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint") 
             && staminaManager.CurrentStamina <= 0))
         {
-            print("sprint key up");
             player.Animator.SetTrigger("ToNeutral");
         }
         /*
@@ -175,7 +174,6 @@ public class PlayerInput : MonoBehaviour
             || !player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2"))
             {
                 LightAttack();
-                print("attack input");
             }
             
         }
@@ -193,7 +191,6 @@ public class PlayerInput : MonoBehaviour
             resetTimer += Time.deltaTime;
             if (resetTimer > lightAttackTimer)
             {
-                print("resetting attack");
                 player.Animator.SetTrigger("ResetAttack");
                 attackIndex = 0;
             }
@@ -343,7 +340,6 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift) || (player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint")
             && staminaManager.CurrentStamina <= 0))
         {
-            print("sprint key up");
             player.Animator.SetTrigger("ToNeutral");
         }
         /*
@@ -379,7 +375,6 @@ public class PlayerInput : MonoBehaviour
             || !player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2"))
             {
                 LightAttack();
-                print("attack input");
             }
 
         }
@@ -397,7 +392,6 @@ public class PlayerInput : MonoBehaviour
             resetTimer += Time.deltaTime;
             if (resetTimer > lightAttackTimer)
             {
-                print("resetting attack");
                 player.Animator.SetTrigger("ResetAttack");
                 attackIndex = 0;
             }
