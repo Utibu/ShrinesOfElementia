@@ -1,18 +1,32 @@
-﻿using System.Collections;
+﻿// Author: Bilal El Medkouri
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBaseState : State
 {
-    // Start is called before the first frame update
-    void Start()
+    protected Player owner;
+
+    public override void Initialize(StateMachine owner)
     {
-        
+        this.owner = (Player)owner;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void HandleUpdate()
     {
-        
+        HandlePlayerMovementInput();
+
+        HandlePlayerInput();
+    }
+
+    protected void HandlePlayerMovementInput()
+    {
+        owner.MovementInput.UpdateMovementInput();
+    }
+
+    protected void HandlePlayerInput()
+    {
+        owner.PlayerInput.UpdatePlayerInput();
     }
 }
