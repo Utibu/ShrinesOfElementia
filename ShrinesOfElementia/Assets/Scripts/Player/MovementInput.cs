@@ -107,7 +107,6 @@ public class MovementInput : MonoBehaviour
         //moveVector *= runSpeed;
         //print(moveVector);
 
-        print(playerInput.x + " " + playerInput.y);
 
         if (isDodging)
         {
@@ -418,11 +417,11 @@ public class MovementInput : MonoBehaviour
         {
             moveVector.y -= gravity * glideGravityMultiplier;
         }
-        //else if (IsGrounded() && moveVector.y < 0.5f)
-        //{
-            //animator.SetBool("IsGrounded", true);   Jumping animation (not good)
-           //moveVector.y = -gravity * Time.deltaTime;
-        //}
+        else if (CheckDistanceFromGround(0.05f) && moveVector.y < 0.005f)
+        {
+           animator.SetBool("IsGrounded", true);   //Jumping animation (not good)
+           moveVector.y = -gravity * Time.deltaTime;
+        }
         else
         {
             moveVector.y -= gravity * Time.deltaTime;
