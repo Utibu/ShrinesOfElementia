@@ -11,7 +11,7 @@ public class AbilityManager : MonoBehaviour
     [Header("Health")]
     [SerializeField] private int healthRegeneration;
     [SerializeField] private int regenerationInterval;
-    private float regenerationCountdown = 0;
+    private float regenerationCountdown = 0f;
 
     [Header("Fireball attributes")]
     [SerializeField] private GameObject fireballPrefab;
@@ -72,51 +72,50 @@ public class AbilityManager : MonoBehaviour
         geyserTimer = 0.0f;
         windBladeTimer = 0.0f;
         earthSpikesTimer = 0.0f;
-        EventManager.Current.RegisterListener<ShrineEvent>(unlockElement);
+        EventManager.Current.RegisterListener<ShrineEvent>(UnlockElement);
         indicatorProjector.SetActive(false);
         if (noCooldown)
         {
-            fireballCooldown = 1;
-            geyserCooldown = 1;
-            windBladeCooldown = 1;
-            earthSpikesCooldown = 1;
+            fireballCooldown = 1f;
+            geyserCooldown = 1f;
+            windBladeCooldown = 1f;
+            earthSpikesCooldown = 1f;
         }
     }
 
     private void Update()
     {
-        fireballTimer -= Time.deltaTime;
-        geyserTimer -= Time.deltaTime;
-        windBladeTimer -= Time.deltaTime;
-        earthSpikesTimer -= Time.deltaTime;
-        regenerationCountdown += Time.deltaTime;
-        //print(regenerationCountdown);
         if (!GetComponent<CombatManager>().InCombat && regenerationCountdown >= regenerationInterval)
         {
             RegenerateHealth();
         }
 
-        if(fireballTimer > 0)
+        regenerationCountdown += Time.deltaTime;
+
+        if (fireballTimer > 0f)
         {
-            fireballCooldownButton.GetComponent<Image>().fillAmount -= 1/fireballCooldown * Time.deltaTime;
+            fireballCooldownButton.GetComponent<Image>().fillAmount -= 1f /fireballCooldown * Time.deltaTime;
+            fireballTimer -= Time.deltaTime;
         }
 
-        if(geyserTimer > 0)
+        if(geyserTimer > 0f)
         {
-            geyserCooldownButton.GetComponent<Image>().fillAmount -= 1 / geyserCooldown * Time.deltaTime;
+            geyserCooldownButton.GetComponent<Image>().fillAmount -= 1f / geyserCooldown * Time.deltaTime;
+            geyserTimer -= Time.deltaTime;
         }
 
-        if (windBladeTimer > 0)
+        if (windBladeTimer > 0f)
         {
-            windBladeCooldownButton.GetComponent<Image>().fillAmount -= 1 / windBladeCooldown * Time.deltaTime;
+            windBladeCooldownButton.GetComponent<Image>().fillAmount -= 1f / windBladeCooldown * Time.deltaTime;
+            windBladeTimer -= Time.deltaTime;
         }
 
-        if (earthSpikesTimer > 0)
+        if (earthSpikesTimer > 0f)
         {
-            earthSpikesCooldownButton.GetComponent<Image>().fillAmount -= 1 / earthSpikesCooldown * Time.deltaTime;
+            earthSpikesCooldownButton.GetComponent<Image>().fillAmount -= 1f / earthSpikesCooldown * Time.deltaTime;
+            earthSpikesTimer -= Time.deltaTime;
         }
     }
-
 
     public void CheckFireBall()
     {
@@ -126,7 +125,7 @@ public class AbilityManager : MonoBehaviour
 
             Player.Instance.Animator.SetTrigger("CastFireball");
             fireballTimer = fireballCooldown;
-            fireballCooldownButton.GetComponent<Image>().fillAmount = 1;
+            fireballCooldownButton.GetComponent<Image>().fillAmount = 1f;
         }
     }
 
@@ -176,7 +175,7 @@ public class AbilityManager : MonoBehaviour
 
             print("in cast");
             geyserTimer = geyserCooldown;
-            geyserCooldownButton.GetComponent<Image>().fillAmount = 1;
+            geyserCooldownButton.GetComponent<Image>().fillAmount = 1f;
             Player.Instance.Animator.SetTrigger("CastGeyser");
         }
     }
@@ -198,7 +197,7 @@ public class AbilityManager : MonoBehaviour
             Player.Instance.Animator.SetBool("InCombat", true);
             Player.Instance.Animator.SetTrigger("OnWindBlade");
             windBladeTimer = windBladeCooldown;
-            windBladeCooldownButton.GetComponent<Image>().fillAmount = 1;
+            windBladeCooldownButton.GetComponent<Image>().fillAmount = 1f;
         }
     }
 
@@ -217,13 +216,13 @@ public class AbilityManager : MonoBehaviour
             Player.Instance.Animator.SetTrigger("CastEarthSpikes");
             Player.Instance.Animator.SetBool("InCombat", true);
             earthSpikesTimer = earthSpikesCooldown;
-            earthSpikesCooldownButton.GetComponent<Image>().fillAmount = 1;
+            earthSpikesCooldownButton.GetComponent<Image>().fillAmount = 1f;
         }
     }
 
     private void CastEarthSpikes()
     {
-        Quaternion spikesRotation = Quaternion.Euler(-90, gameObject.transform.rotation.eulerAngles.y, 0);
+        Quaternion spikesRotation = Quaternion.Euler(-90f, gameObject.transform.rotation.eulerAngles.y, 0f);
         GameObject earthSpikes = Instantiate(earthSpikesPrefab, gameObject.transform.position + gameObject.transform.forward * 2f, spikesRotation);
         earthSpikes.GetComponent<EarthSpikes>().Caster = gameObject;
         print(earthSpikes.GetComponent<EarthSpikes>().Caster);
@@ -260,30 +259,30 @@ public class AbilityManager : MonoBehaviour
     {
         print("regenerating");
         Player.Instance.Health.CurrentHealth += healthRegeneration;
-        regenerationCountdown = 0;
+        regenerationCountdown = 0f;
     }
 
 
 
-    private void unlockElement(ShrineEvent eve)
+    private void UnlockElement(ShrineEvent shrineEvent)
     {
-        switch (eve.Element)
+        switch (shrineEvent.Element)
         {
             case "Fire":
                 EnableFireAbilities();
-                fireballCooldownButton.GetComponent<Image>().fillAmount = 0;
+                fireballCooldownButton.GetComponent<Image>().fillAmount = 0f;
                 break;
             case "Water":
                 EnableWaterAbilities();
-                geyserCooldownButton.GetComponent<Image>().fillAmount = 0;
+                geyserCooldownButton.GetComponent<Image>().fillAmount = 0f;
                 break;
             case "Earth":
                 EnableEarthAbilities();
-                earthSpikesCooldownButton.GetComponent<Image>().fillAmount = 0;
+                earthSpikesCooldownButton.GetComponent<Image>().fillAmount = 0f;
                 break;
             case "Wind":
                 EnableWindAbilities();
-                windBladeCooldownButton.GetComponent<Image>().fillAmount = 0;
+                windBladeCooldownButton.GetComponent<Image>().fillAmount = 0f;
                 break;
         }
     }
