@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-public class Player : StateMachine
+public class Player : MonoBehaviour
 {
     // Components
     public static Player Instance { get; private set; }
@@ -11,7 +11,7 @@ public class Player : StateMachine
     public HealthComponent Health { get; private set; }
     public Animator Animator { get; private set; }
 
-    protected override void Awake()
+    private void Awake()
     {
         // Prevents multiple instances
         if (Instance == null) { Instance = this; }
@@ -22,6 +22,7 @@ public class Player : StateMachine
         MovementInput = GetComponent<MovementInput>();
         PlayerInput = GetComponent<PlayerInput>();
 
-        base.Awake();
+        // Put this back when Player is turned into a State Machine
+        //base.Awake();
     }
 }

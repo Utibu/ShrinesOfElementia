@@ -15,18 +15,6 @@ public class PlayerBaseState : State
 
     public override void HandleUpdate()
     {
-        HandlePlayerMovementInput();
-
-        HandlePlayerInput();
-    }
-
-    protected void HandlePlayerMovementInput()
-    {
-        owner.MovementInput.UpdateMovementInput();
-    }
-
-    protected void HandlePlayerInput()
-    {
-        owner.PlayerInput.UpdatePlayerInput();
+        
     }
 }
