@@ -62,6 +62,7 @@ public class MovementInput : MonoBehaviour
     [Header("Misc")]
     [SerializeField] private float distanceToGround;
     [SerializeField] private float desiredRotationSpeed;
+    [SerializeField] private LayerMask groundcheckMask;
 
     //For Debugging
     public GameObject RespawnLocation;
@@ -119,8 +120,15 @@ public class MovementInput : MonoBehaviour
             }
             else
             {
-                moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
-                moveVector.Normalize();
+                if(playerInput.x == 0 && playerInput.y == 0)
+                {
+                    moveVector = new Vector3(-1f, 0.0f, -1f);
+                }
+                else
+                {
+                    moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
+                    moveVector.Normalize();
+                }
                 moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
                 moveVector.y = 0.0f;
                 moveVector *= dodgeLength;
@@ -385,7 +393,7 @@ public class MovementInput : MonoBehaviour
     }
     private bool CheckDistanceFromGround(float distance)
     {
-        return Physics.Raycast(transform.position, Vector3.down, distance);
+        return Physics.Raycast(transform.position, Vector3.down, distance, groundcheckMask);
     }
 
     private bool IsGrounded()
@@ -408,11 +416,11 @@ public class MovementInput : MonoBehaviour
         {
             moveVector.y -= gravity * glideGravityMultiplier;
         }
-        else if (IsGrounded() && moveVector.y < 0.5f)
-        {
+        //else if (IsGrounded() && moveVector.y < 0.5f)
+        //{
             //animator.SetBool("IsGrounded", true);   Jumping animation (not good)
-            moveVector.y = -gravity * Time.deltaTime;
-        }
+           //moveVector.y = -gravity * Time.deltaTime;
+        //}
         else
         {
             moveVector.y -= gravity * Time.deltaTime;
