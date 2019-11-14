@@ -7,7 +7,8 @@ public class MenuManager : MonoBehaviour
 {
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.None;
+        //Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void OnStart()
