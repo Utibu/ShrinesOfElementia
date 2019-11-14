@@ -48,6 +48,7 @@ public class Cast_EnemyState : BasicEnemyBaseState
         //stop and rotate / aim to player
         owner.Agent.destination = owner.transform.position;
         //owner.Agent.isStopped = true; // stop while casting
+        
 
         //set timer
         countdown = 0.5f;
@@ -68,7 +69,8 @@ public class Cast_EnemyState : BasicEnemyBaseState
         if (countdown <= 0)
         {
             Debug.Log("Element type: " + elementType);
-            spells[elementType]();
+            //spells[elementType]();
+            owner.Animator.SetTrigger("ShouldCast");
             countdown = castTime;
             // go to idle or play some "summoning new spell" animation
         }
