@@ -8,12 +8,14 @@ public class SpawnBasic : MonoBehaviour
 {
 
     [SerializeField]private GameObject spawnling;
-    [SerializeField] private GameObject elite;
     [SerializeField]private int spawnLimit;
+    [SerializeField]private GameObject elite;
+    [SerializeField]private float eliteSpawnLimit;
     [SerializeField]private float spawnRate;
     [SerializeField]private GameObject[] patrolPoints;
 
     private int currentSpawnCount;
+    private int currentEliteSpawnCount;
     private float countdown;
 
     private ArrayList spawnlings = new ArrayList();
@@ -28,9 +30,15 @@ public class SpawnBasic : MonoBehaviour
         countdown = spawnRate;
 
         //generate start amount
-        for (int i = 0; i<= spawnLimit-1; i++)
+        for (int i = 0; i<= spawnLimit-(1+eliteSpawnLimit); i++)
         {
             spawnNew();
+        }
+
+        //GreaterElementals
+        for (int i = currentSpawnCount; i <= spawnLimit - 1; i++)
+        {
+            spawnNewElite();
         }
 
     }
@@ -38,13 +46,26 @@ public class SpawnBasic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentSpawnCount < spawnLimit)
+
+        //first, fill upp enemies until limit is almost met
+        if(currentSpawnCount < spawnLimit - eliteSpawnLimit)
+        {
+            countdown -= Time.deltaTime;
+            if (currentSpawnCount < spawnLimit - eliteSpawnLimit && countdown <= 0)
+            {
+                countdown = spawnRate;
+                spawnNew();
+            }
+        }
+
+        //Then, add Greater Elementals for the remaining positions
+        if (currentSpawnCount < spawnLimit)
         {
             countdown -= Time.deltaTime;
             if (currentSpawnCount < spawnLimit && countdown <= 0)
             {
                 countdown = spawnRate;
-                spawnNew();
+                spawnNewElite();
             }
         }
     }
@@ -59,18 +80,35 @@ public class SpawnBasic : MonoBehaviour
         GameObject point1 = patrolPoints[Random.Range(0, patrolPoints.Length)];
         GameObject point2 = patrolPoints[Random.Range(0, patrolPoints.Length)];
         g.GetComponent<EnemySM>().SetPatrolPoints(point1, point2);
-        g.GetComponent<EnemySM>().setSpawnArea(this.gameObject);
+        g.GetComponent<EnemySM>().SetSpawnArea(this.gameObject);
         spawnlings.Add(g);
 
     }
 
-    /*
+
+    private void spawnNewElite()
+    {
+        currentSpawnCount += 1;
+        //fix random x,z within spawn area later
+
+        GameObject g = Instantiate(elite, gameObject.transform);
+        //give enemy 2 random patrolpoints. Consider replacing this with constructor
+        GameObject point1 = patrolPoints[Random.Range(0, patrolPoints.Length)];
+        GameObject point2 = patrolPoints[Random.Range(0, patrolPoints.Length)];
+        g.GetComponent<EnemySM>().SetPatrolPoints(point1, point2);
+        g.GetComponent<EnemySM>().SetSpawnArea(this.gameObject);
+        spawnlings.Add(g);
+
+    }
+
+    //Increase difficulty when player gets new ability
     private void increaseEnemyActivity(ShrineEvent ev)
     {
-        spawnLimit *= 2;
-        spawnRate /= 2;
+        spawnLimit += 1;
+        eliteSpawnLimit += 1;
+        spawnRate -= 5;
     }
-    */
+    
 
     private void OnEnemyDeath(EnemyDeathEvent ev)
     {

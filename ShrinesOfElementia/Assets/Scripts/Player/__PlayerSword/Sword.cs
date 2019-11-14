@@ -24,7 +24,7 @@ public class Sword : MonoBehaviour
                 Destroy(go, 1f);
             }
 
-            DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + damage + " damage to " + collision.gameObject, damage, gameObject, collision.gameObject);
+            DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + damage + " damage to " + collision.gameObject, damage, gameObject, collision.gameObject, "Melee");
             EventManager.Current.FireEvent(damageEvent);
         }
     }

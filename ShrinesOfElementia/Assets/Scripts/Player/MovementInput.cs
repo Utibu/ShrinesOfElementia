@@ -43,6 +43,8 @@ public class MovementInput : MonoBehaviour
     [SerializeField] private float glideSpeed;
     [SerializeField] private float glideStrength;
     [SerializeField] private float glideGravityMultiplier;
+    [SerializeField] private float glideDistanceFromGround;
+
 
     [Header("Movement Speed")]
     [SerializeField] private float defaultSpeed;
@@ -61,6 +63,8 @@ public class MovementInput : MonoBehaviour
     [SerializeField] private float distanceToGround;
     [SerializeField] private float desiredRotationSpeed;
 
+    //For Debugging
+    public GameObject RespawnLocation;
 
 
     private float airTime;
@@ -130,13 +134,15 @@ public class MovementInput : MonoBehaviour
 
             
             float saveY = moveVector.y; // test
-            moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
-            moveVector.y = saveY; // test
+            //moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
+            moveVector += Vector3.ProjectOnPlane(CameraReference.Instance.transform.forward, Vector3.up);
+            //moveVector.y = saveY; // test
 
             moveVector.Normalize(); 
             moveVector *= glideSpeed;
             fromGlide = true;
             velocityOnImpact = 0;
+            print(moveVector.magnitude);
         }
 
         if (animator.GetBool("InCombat"))
@@ -174,7 +180,7 @@ public class MovementInput : MonoBehaviour
                 moveVector.y = jumpSpeed;
                 //animator.SetBool("IsGrounded", false);   Jumping animation (not good)
             }
-            else if (!isGliding && !IsGrounded() && hasGlide)
+            else if (!isGliding && !CheckDistanceFromGround(glideDistanceFromGround) && hasGlide)
             {
                 isGliding = true;
                 animator.SetBool("IsGliding", true);
@@ -208,6 +214,127 @@ public class MovementInput : MonoBehaviour
         //Debug.Log(animator.GetBool("IsGrounded"));
     }
 
+    #region BilalMovementInput
+    public void UpdateMovementInput()
+    {
+        playerInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        //TEST STUFF
+        //moveVector = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+        //moveVector.Normalize();
+        //moveVector = camera.transform.TransformDirection(moveVector);
+        //moveVector.y = 0.0f;
+        //moveVector *= runSpeed;
+        //print(moveVector);
+
+
+        if (isDodging)
+        {
+            dodgeTimer += Time.deltaTime;
+            if (dodgeTimer >= dodgeDuration)
+            {
+                isDodging = false;
+                dodgeTimer = 0.0f;
+                moveVector.x = 0.0f;
+                moveVector.z = 0.0f;
+            }
+            else
+            {
+                moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
+                moveVector.Normalize();
+                moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
+                moveVector.y = 0.0f;
+                moveVector *= dodgeLength;
+            }
+        }
+
+        else if (isGliding)
+        {
+            moveVector = new Vector3(playerInput.x, glideStrength, playerInput.y);
+            moveVector.Normalize();
+
+
+            float saveY = moveVector.y; // test
+            //moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
+            moveVector += Vector3.ProjectOnPlane(CameraReference.Instance.transform.forward, Vector3.up);
+            //moveVector.y = saveY; // test
+
+            moveVector.Normalize();
+            moveVector *= glideSpeed;
+            fromGlide = true;
+            velocityOnImpact = 0;
+            print(moveVector.magnitude);
+        }
+
+        if (animator.GetBool("InCombat"))
+        {
+            faceCameraDirection = true;
+        }
+        else if (animator.GetBool("InCombat") == false)
+        {
+            faceCameraDirection = false;
+        }
+
+        InputMagnitude();
+
+        ApplyGravity();
+
+        CheckFallDamage();
+
+
+
+
+        if (IsGrounded() && fromGlide)
+        {
+            isGliding = false;
+            animator.SetBool("IsGliding", false);
+            moveVector.x = 0;
+            moveVector.z = 0;
+            fromGlide = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (!isGliding && IsGrounded())
+            {
+                animator.SetTrigger("OnJump");
+                moveVector.y = jumpSpeed;
+                //animator.SetBool("IsGrounded", false);   Jumping animation (not good)
+            }
+            else if (!isGliding && !CheckDistanceFromGround(glideDistanceFromGround) && hasGlide)
+            {
+                isGliding = true;
+                animator.SetBool("IsGliding", true);
+            }
+            else if (isGliding && !IsGrounded() && hasGlide)
+            {
+                isGliding = false;
+                animator.SetBool("IsGliding", false);
+            }
+        }
+
+
+        //retarded temporary shit to prevent crownsurf.
+        if (isPushed)
+        {
+            pushTimer -= Time.deltaTime;
+            if (pushTimer <= 0)
+            {
+                isPushed = false;
+                //moveVector -= pushVector; 
+            }
+            else if (pushTimer > 0)
+            {
+                //moveVector += pushVector * Time.deltaTime;
+                gameObject.transform.position += pushVector * Time.deltaTime;
+            }
+        }
+
+        //print(moveVector);
+        controller.Move(moveVector * Time.deltaTime);
+        //Debug.Log(animator.GetBool("IsGrounded"));
+    }
+    #endregion BilalMovementInput
     private void PlayerMoveAndRotation()
     {
         Vector3 forward = camera.transform.forward;
@@ -256,10 +383,14 @@ public class MovementInput : MonoBehaviour
         }
 
     }
+    private bool CheckDistanceFromGround(float distance)
+    {
+        return Physics.Raycast(transform.position, Vector3.down, distance);
+    }
 
     private bool IsGrounded()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, distanceToGround))
+        if (CheckDistanceFromGround(distanceToGround))
         {
             animator.SetBool("IsGrounded", true);
             return true;
@@ -275,7 +406,6 @@ public class MovementInput : MonoBehaviour
     {
         if (isGliding)
         {
-            print(moveVector.y); 
             moveVector.y -= gravity * glideGravityMultiplier;
         }
         else if (IsGrounded() && moveVector.y < 0.5f)
@@ -289,6 +419,7 @@ public class MovementInput : MonoBehaviour
         }
 
     }
+
 
     private void CheckFallDamage()
     {

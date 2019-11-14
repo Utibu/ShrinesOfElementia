@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyValues : MonoBehaviour
 {
-
+    [SerializeField] private string elementalType;
     [SerializeField] private float health;
     [SerializeField] private float damage;
     [SerializeField] private float speed;
@@ -19,6 +19,7 @@ public class EnemyValues : MonoBehaviour
 
 
 
+    public string ElementalType { get => ElementalType; set => ElementalType = value; }
     public float Health { get => health; set => health = value; }
     public float Damage { get => damage; set => damage = value; }
     public float Speed { get => speed; set => speed = value; }
@@ -28,6 +29,7 @@ public class EnemyValues : MonoBehaviour
     public float CastRange { get => castRange; set => castRange = value; }
     public float OrbDropChance { get => orbDropChance; set => orbDropChance = value; }
     public GameObject Orb { get => orb; set => orb = value; }
+    
 
 
     // Start is called before the first frame update

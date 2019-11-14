@@ -2,10 +2,12 @@
 
 using UnityEngine;
 
-public class Player : StateMachine
+public class Player : MonoBehaviour
 {
+    // Components
     public static Player Instance { get; private set; }
     public MovementInput MovementInput { get; private set; }
+    public PlayerInput PlayerInput { get; private set; }
     public HealthComponent Health { get; private set; }
     public Animator Animator { get; private set; }
 
@@ -18,5 +20,9 @@ public class Player : StateMachine
         Health = GetComponent<HealthComponent>();
         Animator = GetComponent<Animator>();
         MovementInput = GetComponent<MovementInput>();
+        PlayerInput = GetComponent<PlayerInput>();
+
+        // Put this back when Player is turned into a State Machine
+        //base.Awake();
     }
 }

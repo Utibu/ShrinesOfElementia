@@ -21,7 +21,7 @@ public class Killzone : MonoBehaviour
 
     private void DealDamage(GameObject targetGameObject)
     {
-        DamageEvent damageEvent = new DamageEvent(targetGameObject + " has dealt " + damage + " damage to " + targetGameObject, damage, gameObject, targetGameObject);
+        DamageEvent damageEvent = new DamageEvent(targetGameObject + " has dealt " + damage + " damage to " + targetGameObject, damage, gameObject, targetGameObject, "Melee");
         EventManager.Current.FireEvent(damageEvent);
     }
 
