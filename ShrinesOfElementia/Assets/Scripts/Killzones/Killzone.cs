@@ -9,6 +9,7 @@ public class Killzone : MonoBehaviour
     [SerializeField] private GameObject respawnLocation;
     [SerializeField] private int damage;
 
+
     private void OnTriggerEnter(Collider other)
     {
         print("Entered killzone");
