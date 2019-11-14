@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Giant : StateMachine
 {
     // Components
+    public static Giant Instance { get; private set; }
     public Animator Animator { get; set; }
     public NavMeshAgent Agent { get; set; }
     public HealthComponent HealthComponent { get; set; }
@@ -41,7 +42,7 @@ public class Giant : StateMachine
     // [Header("Spawn")]
 
     [Header("Stomp")]
-    [SerializeField] private int stompDamage;
+    public int StompDamage;
     public float stompRange;
     [SerializeField] private float stompCooldown;
 
@@ -88,6 +89,10 @@ public class Giant : StateMachine
 
     protected override void Awake()
     {
+        // Prevents multiple instances
+        if (Instance == null) { Instance = this; }
+        else { Debug.Log("Warning: multiple " + this + " in scene!"); }
+
         Agent = GetComponent<NavMeshAgent>();
         Animator = GetComponent<Animator>();
         HealthComponent = GetComponent<HealthComponent>();
