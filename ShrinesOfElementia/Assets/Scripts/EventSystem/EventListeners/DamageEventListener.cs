@@ -21,6 +21,7 @@ public class DamageEventListener : MonoBehaviour
             damageEvent.TargetGameObject.GetComponent<EnemySM>().EnemyAttacked();
         }
 
+        /*
         if (damageEvent.DamageType.Equals("Melee"))
         {
             //deal melee damage
@@ -28,8 +29,7 @@ public class DamageEventListener : MonoBehaviour
             return;
         }
 
-        EnemyValues values;
-        if (damageEvent.TargetGameObject.TryGetComponent<EnemyValues>(out values))
+        if (damageEvent.TargetGameObject.TryGetComponent(out EnemyValues values))
         {
             if (values.ElementalType.Equals("Earth") && damageEvent.DamageType.Equals("Wind"))
             {
@@ -54,12 +54,15 @@ public class DamageEventListener : MonoBehaviour
 
             damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= totalDamage;
         }
-        
-        
+        */
+
+
 
         //pushback
         //damageEvent.TargetGameObject.GetComponent<EnemySM>().OnAttacked(damageEvent);
         //damageEvent.TargetGameObject.transform.position += damageEvent.TargetGameObject.transform.forward * -0.4f;
+
+        damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= damageEvent.Damage;
 
         print(damageEvent.InstigatorGameObject + " has dealt " + damageEvent.Damage + " damage to " + damageEvent.TargetGameObject);
     }

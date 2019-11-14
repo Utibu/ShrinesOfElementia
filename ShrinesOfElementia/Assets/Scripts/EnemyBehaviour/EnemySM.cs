@@ -10,15 +10,13 @@ public class EnemySM : StateMachine
     public NavMeshAgent Agent { get; private set; }
     public GameObject SpawnArea { get; private set; }
     public Player Player { get; private set; }
-
+    public EnemyParticleController EnemyParticleController { get; private set; }
     public Animator Animator { get; private set; }
 
     [SerializeField] private GameObject[] patrolPoints;
     public GameObject[] PatrolPoints { get => patrolPoints; }
 
-    private EnemyAttack enemyAttack;
-
-    public EnemyAttack EnemyAttack { get { return enemyAttack; } set { enemyAttack = value; } }
+    public EnemyAttack EnemyAttack { get; set; }
 
     //fix  this later
     public bool Elite;
@@ -35,8 +33,9 @@ public class EnemySM : StateMachine
         Agent = GetComponent<NavMeshAgent>();
         Agent.baseOffset = 0.5f;
         Player = Player.Instance;
+        EnemyParticleController = GetComponent<EnemyParticleController>();
         Animator = GetComponent<Animator>();
-        enemyAttack = GetComponentInChildren<EnemyAttack>();
+        EnemyAttack = GetComponentInChildren<EnemyAttack>();
 
         Physics.IgnoreLayerCollision(8, 4, false);
         //EventSystem.Current.RegisterListener<DamageEvent>(OnAttacked);
@@ -64,7 +63,7 @@ public class EnemySM : StateMachine
 
     public void DisableElite()
     {
-        GetComponent<EnemyParticleController>().StopParticleSystem();
+        EnemyParticleController.StopParticleSystem();
         Transition<Chase_BasicEnemy>();
         Elite = false;
     }

@@ -71,7 +71,7 @@ public class Fireball : Ability
 
     private void DealDamage(GameObject damagedGameObject, int damage)
     {
-        DamageEvent damageEvent = new DamageEvent(damagedGameObject + " has dealt " + damage + " damage to " + damagedGameObject, damage, gameObject, damagedGameObject, "Fire");
+        DamageEvent damageEvent = new DamageEvent(damagedGameObject + " has dealt " + damage + " damage to " + damagedGameObject, damage, gameObject, damagedGameObject);
         EventManager.Current.FireEvent(damageEvent);
     }
 }
