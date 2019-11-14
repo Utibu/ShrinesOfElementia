@@ -63,6 +63,7 @@ public class MovementInput : MonoBehaviour
     [SerializeField] private float distanceToGround;
     [SerializeField] private float desiredRotationSpeed;
     [SerializeField] private LayerMask groundcheckMask;
+    [SerializeField] private LayerMask waterGroundCheckMask;
 
     //For Debugging
     public GameObject RespawnLocation;
@@ -93,6 +94,7 @@ public class MovementInput : MonoBehaviour
         breakUpdate = false;
         hasGlide = false;
         airTime = 0;
+        
     }
 
     private void Update()
@@ -392,7 +394,15 @@ public class MovementInput : MonoBehaviour
     }
     private bool CheckDistanceFromGround(float distance)
     {
-        return Physics.Raycast(transform.position, Vector3.down, distance, groundcheckMask);
+        if (Player.Instance.GetComponent<AbilityManager>().hasWater)
+        {
+            return Physics.Raycast(transform.position, Vector3.down, distance, waterGroundCheckMask); //temporary solution
+
+        }
+        else
+        {
+            return Physics.Raycast(transform.position, Vector3.down, distance, groundcheckMask);
+        }
     }
 
     private bool IsGrounded()

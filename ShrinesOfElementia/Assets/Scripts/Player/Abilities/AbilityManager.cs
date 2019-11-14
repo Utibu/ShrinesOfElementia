@@ -59,7 +59,7 @@ public class AbilityManager : MonoBehaviour
 
     [Header("Elemental Abilities (Serialized For Testing)")]
     [SerializeField] private bool hasFire;
-    [SerializeField] private bool hasWater;
+    public bool hasWater; //temporary public
     [SerializeField] private bool hasEarth;
     [SerializeField] private bool hasWind;
     [SerializeField] private bool noCooldown;
