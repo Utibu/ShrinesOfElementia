@@ -65,7 +65,7 @@ public class Giant : StateMachine
     #endregion StompCooldownVariables
 
     [Header("Leap")]
-    [SerializeField] private int leapDamage;
+    public int LeapDamage;
     public float leapRange;
     [SerializeField] private float leapCooldown;
 
