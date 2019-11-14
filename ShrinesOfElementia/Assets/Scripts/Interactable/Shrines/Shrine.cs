@@ -1,4 +1,5 @@
 ﻿//Author: Joakim Ljung
+//Co-author: Niklas Almqvist
 
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ public class Shrine : Interactable
     private string element;
     [SerializeField] private Animator shrineAnimationController;
     [SerializeField] private GameObject beacon;
+    [SerializeField] private string firstUnlockableText;
+    [SerializeField] private string secondUnlockableText;
     //[SerializeField] private RectTransform shrinePanel;
     private enum SHRINETYPES
     {
@@ -57,6 +60,7 @@ public class Shrine : Interactable
         ShrineEvent shrineEvent = new ShrineEvent(element + " shrine activated", element);
         EventManager.Current.FireEvent(shrineEvent);
         shrineAnimationController.SetTrigger("IsTaken");
+        Player.Instance.GetComponent<ShrineUnlockComponent>().ShowUnlockableCanvas(firstUnlockableText, secondUnlockableText);
         //shrinePanel.gameObject.SetActive(true);
         //Player.Instance.GetComponent<MovementInput>().TakeInput = false;
         beacon.SetActive(false);
