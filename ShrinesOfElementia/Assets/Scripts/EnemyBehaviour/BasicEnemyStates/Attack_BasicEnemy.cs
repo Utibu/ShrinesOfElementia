@@ -21,7 +21,7 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
     public override void Initialize(StateMachine stateMachine)
     {
         base.Initialize(stateMachine);
-        //EventSystem.Current.RegisterListener<DamageEvent>(OnAttacked);
+        EventManager.Current.RegisterListener<DamageEvent>(OnAttacked);
     }
 
 
@@ -128,7 +128,19 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         owner.Animator.SetTrigger("ShouldAttack");
     }
 
+
     
+        private void OnAttacked(DamageEvent ev)
+    {
+        if (ev.TargetGameObject.Equals(owner))
+        {
+            Debug.Log("get pushed back");
+            Vector3 newPosition = owner.transform.position += ev.InstigatorGameObject.transform.forward * 4f;
+            owner.Agent.updateRotation = false;
+            owner.Agent.SetDestination(newPosition);
+        }
+    }
+
     /*
     private void OnAttacked(DamageEvent ev)
     {

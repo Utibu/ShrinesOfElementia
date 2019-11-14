@@ -17,6 +17,8 @@ public class EnemyAttack : MonoBehaviour
         attackCollider = GetComponent<Collider>();
         animator = GetComponentInParent<Animator>();
         print(attackCollider.gameObject.name);
+
+        
     }
     
     private void OnCollisionEnter(Collision collision)
@@ -39,6 +41,8 @@ public class EnemyAttack : MonoBehaviour
             EventManager.Current.FireEvent(damageEvent);
         }
     }
+
+
     
 
     /*
