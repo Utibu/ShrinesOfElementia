@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DamageEventListener : MonoBehaviour
 {
+
+    [SerializeField] private int elementalDamageBonus;
     private void Start()
     {
         EventManager.Current.RegisterListener<DamageEvent>(OnDamageEvent);
@@ -11,29 +13,31 @@ public class DamageEventListener : MonoBehaviour
 
     private void OnDamageEvent(DamageEvent damageEvent)
     {
-        //deal damage
-        damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= damageEvent.Damage;
-
-
-
-        //OBS: Jag kommer styra upp detta helvete till kod så snart jag vet att det faktiskt fungerar, har dock inte bestäms system för detta än
-        if (damageEvent.TargetGameObject.name.Equals("WindEliteEnemy") && damageEvent.InstigatorGameObject.name.Equals("Fireball(Clone)"))
+        
+        if (damageEvent.DamageType.Equals("Melee"))
         {
-            damageEvent.TargetGameObject.GetComponent<EnemySM>().Elite = false;
-            damageEvent.TargetGameObject.GetComponent<EnemySM>().Transition<Chase_BasicEnemy>();
+            //deal melee damage
+            damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= damageEvent.Damage;
         }
-        else if (damageEvent.TargetGameObject.name.Equals("EarthEliteEnemy") && damageEvent.InstigatorGameObject.name.Equals("WindBlade(Clone)"))
+        else if (damageEvent.TargetGameObject.GetComponent<EnemyValues>().ElementalType.Equals("Earth") && damageEvent.DamageType.Equals("Wind"))
         {
-            damageEvent.TargetGameObject.GetComponent<EnemySM>().Elite = false;
-            damageEvent.TargetGameObject.GetComponent<EnemySM>().Transition<Chase_BasicEnemy>();
+            damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= damageEvent.Damage + elementalDamageBonus;
+            damageEvent.TargetGameObject.GetComponent<EnemySM>().DisableElite();
         }
-        else if (damageEvent.TargetGameObject.name.Equals("WaterEliteEnemy") && damageEvent.InstigatorGameObject.name.Equals("EarthSpikes 2(Clone)"))
+        else if (damageEvent.TargetGameObject.GetComponent<EnemyValues>().ElementalType.Equals("Water") && damageEvent.DamageType.Equals("Earth"))
         {
-            damageEvent.TargetGameObject.GetComponent<EnemySM>().Elite = false;
-            damageEvent.TargetGameObject.GetComponent<EnemySM>().Transition<Chase_BasicEnemy>();
+            damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= damageEvent.Damage + elementalDamageBonus;
+            damageEvent.TargetGameObject.GetComponent<EnemySM>().DisableElite();
         }
-        else {
-            Debug.Log("HFIUEZEFIZUSEG" + damageEvent.InstigatorGameObject.name + " " + damageEvent.TargetGameObject.name);
+        else if (damageEvent.TargetGameObject.GetComponent<EnemyValues>().ElementalType.Equals("Fire") && damageEvent.DamageType.Equals("Water"))
+        {
+            damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= damageEvent.Damage + elementalDamageBonus;
+            damageEvent.TargetGameObject.GetComponent<EnemySM>().DisableElite();
+        }
+        else if(damageEvent.TargetGameObject.GetComponent<EnemyValues>().ElementalType.Equals("Wind") && damageEvent.DamageType.Equals("Fire")) // else: this damage is ordinary melee
+        {
+            damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= damageEvent.Damage + elementalDamageBonus;
+            damageEvent.TargetGameObject.GetComponent<EnemySM>().DisableElite();
         }
         
 

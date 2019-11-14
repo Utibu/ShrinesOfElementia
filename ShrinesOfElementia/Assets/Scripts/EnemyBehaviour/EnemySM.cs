@@ -56,12 +56,17 @@ public class EnemySM : StateMachine
         patrolPoints[1] = pp2;
     }
 
-    public void setSpawnArea(GameObject SpawnArea)
+    public void SetSpawnArea(GameObject SpawnArea)
     {
         this.SpawnArea = SpawnArea;
     }
 
-
+    public void DisableElite()
+    {
+        GetComponent<EnemyParticleController>().StopParticleSystem();
+        Transition<Chase_BasicEnemy>();
+        Elite = false;
+    }
 
     // temporary placement for pushback.
     /*

@@ -80,7 +80,7 @@ public class SpawnBasic : MonoBehaviour
         GameObject point1 = patrolPoints[Random.Range(0, patrolPoints.Length)];
         GameObject point2 = patrolPoints[Random.Range(0, patrolPoints.Length)];
         g.GetComponent<EnemySM>().SetPatrolPoints(point1, point2);
-        g.GetComponent<EnemySM>().setSpawnArea(this.gameObject);
+        g.GetComponent<EnemySM>().SetSpawnArea(this.gameObject);
         spawnlings.Add(g);
 
     }
@@ -96,7 +96,7 @@ public class SpawnBasic : MonoBehaviour
         GameObject point1 = patrolPoints[Random.Range(0, patrolPoints.Length)];
         GameObject point2 = patrolPoints[Random.Range(0, patrolPoints.Length)];
         g.GetComponent<EnemySM>().SetPatrolPoints(point1, point2);
-        g.GetComponent<EnemySM>().setSpawnArea(this.gameObject);
+        g.GetComponent<EnemySM>().SetSpawnArea(this.gameObject);
         spawnlings.Add(g);
 
     }
