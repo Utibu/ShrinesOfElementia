@@ -75,7 +75,11 @@ public class HealthComponent : MonoBehaviour
     private void Die()
     {
         // Death event (?) Ful lösning bara för nu:
-        if (gameObject.CompareTag("Enemy"))
+        if(gameObject.name == "Giant")
+        {
+            Destroy(gameObject);
+        }
+        else if (gameObject.CompareTag("Enemy"))
         {
             GetComponent<EnemySM>().Transition<Die_BasicEnemy>();
         }
