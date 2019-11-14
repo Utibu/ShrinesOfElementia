@@ -180,6 +180,14 @@ public class PlayerInput : MonoBehaviour
             
         }
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if(movementInput.RespawnLocation != null)
+            {
+                Player.Instance.MovementInput.MoveTo(movementInput.RespawnLocation.transform.position);
+            }
+        }
+
         if (attackIndex > 0)
         {
             resetTimer += Time.deltaTime;
