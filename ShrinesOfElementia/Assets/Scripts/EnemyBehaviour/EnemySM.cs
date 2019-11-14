@@ -1,4 +1,5 @@
 ﻿//Author: Sofia Kauko
+//Co-author: Niklas Almqvist
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -72,8 +73,10 @@ public class EnemySM : StateMachine
     /*
     public void OnAttacked(DamageEvent ev)
     {
+
         if (ev.TargetGameObject.Equals(gameObject)) { 
             //pushback when attacked(damaged)
+            
             Debug.Log("get pushed back");
             Vector3 newPosition = transform.position + ev.InstigatorGameObject.transform.forward * 4f;
             Agent.updateRotation = false;
@@ -81,8 +84,16 @@ public class EnemySM : StateMachine
             Agent.SetDestination(newPosition);
 
             transform.position += ev.InstigatorGameObject.transform.forward * 2f;
+            
         }
+        
     }
     */
+
+    public void EnemyAttacked()
+    {
+        Animator.SetTrigger("IsHurt");
+    }
+
 
 }

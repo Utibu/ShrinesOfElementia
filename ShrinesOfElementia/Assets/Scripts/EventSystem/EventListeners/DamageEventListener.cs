@@ -1,4 +1,5 @@
 ﻿// Author: Bilal El Medkouri
+//Co-author: Niklas Almqvist
 
 using UnityEngine;
 
@@ -14,7 +15,12 @@ public class DamageEventListener : MonoBehaviour
 
     private void OnDamageEvent(DamageEvent damageEvent)
     {
-        
+
+        if (damageEvent.TargetGameObject.GetComponent<EnemySM>() != null)
+        {
+            damageEvent.TargetGameObject.GetComponent<EnemySM>().EnemyAttacked();
+        }
+
         if (damageEvent.DamageType.Equals("Melee"))
         {
             //deal melee damage

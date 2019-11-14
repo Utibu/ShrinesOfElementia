@@ -107,6 +107,7 @@ public class MovementInput : MonoBehaviour
         //moveVector *= runSpeed;
         //print(moveVector);
 
+        print(playerInput.x + " " + playerInput.y);
 
         if (isDodging)
         {
@@ -122,13 +123,14 @@ public class MovementInput : MonoBehaviour
             {
                 if(playerInput.x == 0 && playerInput.y == 0)
                 {
-                    moveVector = new Vector3(-1f, 0.0f, -1f);
+                    moveVector = new Vector3(0.0f, 0.0f, -1f);
+
                 }
                 else
                 {
                     moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
-                    moveVector.Normalize();
                 }
+                moveVector.Normalize();
                 moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
                 moveVector.y = 0.0f;
                 moveVector *= dodgeLength;
