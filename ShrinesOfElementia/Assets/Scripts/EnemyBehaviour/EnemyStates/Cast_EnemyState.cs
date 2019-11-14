@@ -84,7 +84,6 @@ public class Cast_EnemyState : BasicEnemyBaseState
             //Attack player when too close to cast
             owner.Transition<Attack_BasicEnemy>();
             */
-
             //Evade player when too close to cast
             owner.Transition<Flee_EnemyState>();
         }
