@@ -1,4 +1,6 @@
-﻿// Author: Joakim Ljung, Co-author Sofia Kauko
+﻿// Author: Joakim Ljung
+// Co-Authors: Sofia Kauko, Bilal El Medkouri
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
