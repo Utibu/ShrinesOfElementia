@@ -79,7 +79,6 @@ public class Cast_EnemyState : BasicEnemyBaseState
 
             owner.Animator.SetTrigger("ShouldCast");
             countdown = castTime;
-            // go to idle or play some "summoning new spell" animation
         }
         else if (distanceToPlayer > castRange * 1.1)
         {

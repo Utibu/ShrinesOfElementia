@@ -86,7 +86,7 @@ public class EnemySpellManager : MonoBehaviour
     {
         Debug.Log("earth cast");
         Quaternion spikesRotation = Quaternion.Euler(-90, transform.rotation.eulerAngles.y, 0);
-        GameObject earthSpikes = Instantiate(spellPrefab, transform.position + transform.forward * 3f, spikesRotation);
+        GameObject earthSpikes = Instantiate(spellPrefab, transform.position + transform.forward * 1f, spikesRotation);
         earthSpikes.GetComponent<EarthSpikes>().Caster = gameObject;
         earthSpikes.GetComponent<ParticleSystem>().Play();
     }
@@ -96,7 +96,7 @@ public class EnemySpellManager : MonoBehaviour
         Debug.Log("wind cast");
         GameObject windBlade = Instantiate(spellPrefab, transform.position + Vector3.up.normalized + transform.forward * 3f, this.GetComponent<EnemySM>().Agent.transform.rotation);
         windBlade.GetComponent<WindBlade>().Caster = gameObject;
-        windBlade.GetComponent<Rigidbody>().AddForce(transform.forward * windBladeSpeed, ForceMode.VelocityChange);
+        windBlade.GetComponent<Rigidbody>().AddForce(aim * windBladeSpeed, ForceMode.VelocityChange);
     }
 
 }
