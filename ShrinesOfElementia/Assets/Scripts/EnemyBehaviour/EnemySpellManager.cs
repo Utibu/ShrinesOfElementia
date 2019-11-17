@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class EnemySpellManager : MonoBehaviour
 {
+    private Vector3 aim;
+
     [SerializeField] private string elementType;
     private float fireballSpeed = 13f;
     private Vector3 fireballSpawnLocation;
@@ -52,16 +54,21 @@ public class EnemySpellManager : MonoBehaviour
         spells[elementType]();
     }
 
+    public void SetAim(Vector3 aim)
+    {
+        this.aim = aim.normalized;
+    }
+
     private void CastFire()
     {
         //alter spawn location to avoid colliding with its own collider
         fireballSpawnLocation = transform.position + Vector3.up.normalized * 1.5f + gameObject.transform.forward * 2f;
-        Vector3 oldAim = gameObject.transform.forward * fireballSpeed;
+        Vector3 direction = aim * fireballSpeed;
         //cast spell
         Debug.Log("Firespell cast");
         GameObject fireball = Instantiate(spellPrefab, fireballSpawnLocation, this.GetComponent<EnemySM>().Agent.transform.rotation);
         fireball.GetComponent<Fireball>().Caster = gameObject;
-        fireball.GetComponent<Rigidbody>().AddForce(oldAim, ForceMode.VelocityChange);
+        fireball.GetComponent<Rigidbody>().AddForce(direction, ForceMode.VelocityChange);
     }
 
 

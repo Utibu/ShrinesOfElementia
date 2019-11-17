@@ -30,10 +30,12 @@ public class Cast_EnemyState : BasicEnemyBaseState
         base.Initialize(stateMachine);
 
         //Prepare functions to cast the right spell
+        /*
         spells.Add("Fire", CastFire);
         spells.Add("Water", CastWater);
         spells.Add("Earth", CastEarth);
         spells.Add("Wind", CastWind);
+        */
 
         //get nessecary variables
         EnemySpellManager spelldata = owner.GetComponent<EnemySpellManager>();
@@ -70,6 +72,11 @@ public class Cast_EnemyState : BasicEnemyBaseState
         {
             Debug.Log("Element type: " + elementType);
             //spells[elementType]();
+
+            //get vector to use as aim when casting, is needed.
+            Vector3 aim = owner.Player.transform.position - owner.transform.position;
+            owner.GetComponent<EnemySpellManager>().SetAim(aim);
+
             owner.Animator.SetTrigger("ShouldCast");
             countdown = castTime;
             // go to idle or play some "summoning new spell" animation
@@ -78,7 +85,7 @@ public class Cast_EnemyState : BasicEnemyBaseState
         {
             owner.Transition<Chase_BasicEnemy>();
         }
-        else if(distanceToPlayer <= 5f)
+        else if(distanceToPlayer <= 1.5f)
         {
             /*
             //Attack player when too close to cast
@@ -95,9 +102,10 @@ public class Cast_EnemyState : BasicEnemyBaseState
         owner.Agent.isStopped = false;
     }
 
-
+    /*
     private void CastFire()
     {
+        
         //alter spawn location to avoid colliding with its own collider
         fireballSpawnLocation = owner.transform.position + Vector3.up.normalized * 1.5f + owner.gameObject.transform.forward * 2f;
         Vector3 oldAim = owner.gameObject.transform.forward * fireballSpeed;
@@ -106,8 +114,8 @@ public class Cast_EnemyState : BasicEnemyBaseState
         GameObject fireball = Instantiate(spellPrefab, fireballSpawnLocation, Quaternion.identity);
         fireball.GetComponent<Fireball>().Caster = owner.gameObject;
         fireball.GetComponent<Rigidbody>().AddForce(oldAim, ForceMode.VelocityChange);
+        
     }
-
 
     // could to separeate states for each but there would be a lot of kodupprepning
     private void CastWater()
@@ -135,5 +143,6 @@ public class Cast_EnemyState : BasicEnemyBaseState
         windBlade.GetComponent<WindBlade>().Caster = owner.gameObject;
         windBlade.GetComponent<Rigidbody>().AddForce(owner.transform.forward * windBladeSpeed, ForceMode.VelocityChange);
     }
+    */
 
 }
