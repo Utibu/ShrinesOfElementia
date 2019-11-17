@@ -46,26 +46,22 @@ public class SpawnBasic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         //first, fill upp enemies until limit is almost met
-        if(currentSpawnCount < spawnLimit - eliteSpawnLimit)
+        if(currentSpawnCount < spawnLimit) // total nr of active enemies are too few
         {
             countdown -= Time.deltaTime;
-            if (currentSpawnCount < spawnLimit - eliteSpawnLimit && countdown <= 0)
-            {
-                countdown = spawnRate;
-                spawnNew();
-            }
-        }
 
-        //Then, add Greater Elementals for the remaining positions
-        if (currentSpawnCount < spawnLimit)
-        {
-            countdown -= Time.deltaTime;
-            if (currentSpawnCount < spawnLimit && countdown <= 0)
+            if (countdown <= 0)  // time to spawn
             {
                 countdown = spawnRate;
-                spawnNewElite();
+                if (currentEliteSpawnCount < eliteSpawnLimit) // we are missing elites
+                {
+                    spawnNewElite();
+                }
+                else                                         // we are missing basics
+                {
+                    spawnNew();
+                }
             }
         }
     }
@@ -88,6 +84,7 @@ public class SpawnBasic : MonoBehaviour
 
     private void spawnNewElite()
     {
+        currentEliteSpawnCount += 1;
         currentSpawnCount += 1;
         //fix random x,z within spawn area later
 
@@ -120,6 +117,10 @@ public class SpawnBasic : MonoBehaviour
         {
             if (ev.SpawnArea.GetInstanceID().Equals(this.gameObject.GetInstanceID()))
             {
+                if (ev.Elite)
+                {
+                    currentEliteSpawnCount -= 1;
+                }
                 currentSpawnCount -= 1;
             }
         }
