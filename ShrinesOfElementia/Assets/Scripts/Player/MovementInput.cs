@@ -100,15 +100,18 @@ public class MovementInput : MonoBehaviour
     private void Update()
     {
         playerInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
+        print(IsGrounded());
+        Debug.DrawRay(transform.position, Vector3.down * 35f, Color.cyan, 2f);
         //TEST STUFF
-        //moveVector = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-        //moveVector.Normalize();
-        //moveVector = camera.transform.TransformDirection(moveVector);
-        //moveVector.y = 0.0f;
-        //moveVector *= runSpeed;
-        //print(moveVector);
-
+        if (IsGrounded())
+        {
+            moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
+            moveVector.Normalize();
+            moveVector = camera.transform.TransformDirection(moveVector);
+            moveVector.y = 0.0f;
+            moveVector *= defaultSpeed;
+            //print(moveVector);
+        }
 
         if (isDodging)
         {
@@ -220,6 +223,7 @@ public class MovementInput : MonoBehaviour
         }
 
         //print(moveVector);
+
         controller.Move(moveVector * Time.deltaTime);
         //Debug.Log(animator.GetBool("IsGrounded"));
     }
