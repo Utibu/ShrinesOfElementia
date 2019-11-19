@@ -68,6 +68,8 @@ public class MovementInput : MonoBehaviour
     //For Debugging
     public GameObject RespawnLocation;
 
+    [SerializeField] private bool newMovement;
+
 
     private float airTime;
 
@@ -107,7 +109,7 @@ public class MovementInput : MonoBehaviour
         //playerInput.y = Mathf.Lerp(savedValues.y, playerInput.y, 0.1f);
 
         //TEST STUFF
-        if (IsGrounded())
+        if (IsGrounded() && newMovement)
         {
             moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
             moveVector = CameraRelativeFlatten(moveVector, Vector3.up);
