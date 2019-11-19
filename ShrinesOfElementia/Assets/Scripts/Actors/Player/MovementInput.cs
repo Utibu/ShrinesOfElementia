@@ -99,7 +99,13 @@ public class MovementInput : MonoBehaviour
 
     private void Update()
     {
-        playerInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector3 savedValues = new Vector3(playerInput.x, 0.0f, playerInput.y);
+        playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        //more test stuff
+        //playerInput.x = Mathf.Lerp(savedValues.x, playerInput.x, 0.1f);
+        //playerInput.y = Mathf.Lerp(savedValues.y, playerInput.y, 0.1f);
+
         //TEST STUFF
         if (IsGrounded())
         {
@@ -167,11 +173,6 @@ public class MovementInput : MonoBehaviour
             faceCameraDirection = false;
         }
         
-        InputMagnitude();
-
-        ApplyGravity();
-
-        CheckFallDamage();
 
 
         
@@ -207,7 +208,7 @@ public class MovementInput : MonoBehaviour
         }
 
 
-        //retarded temporary shit to prevent crownsurf.
+        //temporary stuff to prevent crowdsurf.
         if (isPushed)
         {
             pushTimer -= Time.deltaTime;
@@ -222,13 +223,18 @@ public class MovementInput : MonoBehaviour
                 gameObject.transform.position += pushVector * Time.deltaTime;
             }
         }
+        InputMagnitude();
+
+        ApplyGravity();
+
+        CheckFallDamage();
 
         //print(moveVector);
 
         controller.Move(moveVector * Time.deltaTime);
         //Debug.Log(animator.GetBool("IsGrounded"));
     }
-
+    /*
     #region BilalMovementInput
     public void UpdateMovementInput()
     {
@@ -328,7 +334,7 @@ public class MovementInput : MonoBehaviour
         }
 
 
-        //retarded temporary shit to prevent crownsurf.
+        //temporary stuff to prevent crowdsurf :)).
         if (isPushed)
         {
             pushTimer -= Time.deltaTime;
@@ -349,6 +355,9 @@ public class MovementInput : MonoBehaviour
         //Debug.Log(animator.GetBool("IsGrounded"));
     }
     #endregion BilalMovementInput
+    */
+
+
     private void PlayerMoveAndRotation()
     {
         Vector3 forward = camera.transform.forward;
@@ -381,15 +390,15 @@ public class MovementInput : MonoBehaviour
         //print(player.Animator.GetFloat("InputX") + " " + player.Animator.GetFloat("InputZ"));
 
 
-        animator.SetFloat("InputZ", playerInput.y);
-        animator.SetFloat("InputX", playerInput.x);
+        animator.SetFloat("InputX", playerInput.x, 0.15f, Time.deltaTime);
+        animator.SetFloat("InputZ", playerInput.y, 0.15f, Time.deltaTime);
         
         
 
         speed = new Vector2(playerInput.x, playerInput.y).sqrMagnitude;
         //print(speed);
 
-        animator.SetFloat("InputMagnitude", speed, 0.0f, Time.deltaTime);
+        animator.SetFloat("InputMagnitude", speed, 0.15f, Time.deltaTime);
         
         if(speed > allowPlayerRotation || animator.GetBool("InCombat"))
         {
@@ -444,7 +453,7 @@ public class MovementInput : MonoBehaviour
 
     }
 
-
+    
     private void CheckFallDamage()
     {
         
@@ -470,6 +479,7 @@ public class MovementInput : MonoBehaviour
             velocityOnImpact = 0;
         }
     }
+    
     
     public void OnDodge()
     {
