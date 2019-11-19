@@ -100,15 +100,15 @@ public class MovementInput : MonoBehaviour
     private void Update()
     {
         playerInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        print(IsGrounded());
-        Debug.DrawRay(transform.position, Vector3.down * 35f, Color.cyan, 2f);
         //TEST STUFF
         if (IsGrounded())
         {
             moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
+            moveVector = CameraRelativeFlatten(moveVector, Vector3.up);
             moveVector.Normalize();
-            moveVector = camera.transform.TransformDirection(moveVector);
-            moveVector.y = 0.0f;
+            //moveVector = camera.transform.TransformDirection(moveVector);
+            //moveVector.y = 0.0f;
+            //moveVector.Normalize();
             moveVector *= defaultSpeed;
             //print(moveVector);
         }
@@ -189,6 +189,7 @@ public class MovementInput : MonoBehaviour
         {
             if (!isGliding && IsGrounded())
             {
+                print("jumping");
                 animator.SetTrigger("OnJump");
                 moveVector.y = jumpSpeed;
                 //animator.SetBool("IsGrounded", false);   Jumping animation (not good)
@@ -429,13 +430,15 @@ public class MovementInput : MonoBehaviour
         {
             moveVector.y -= gravity * glideGravityMultiplier;
         }
-        else if (CheckDistanceFromGround(0.05f) && moveVector.y < 0.005f)
+        else if (CheckDistanceFromGround(0.05f) && moveVector.y < 0.001f)
         {
-           animator.SetBool("IsGrounded", true);   //Jumping animation (not good)
-           moveVector.y = -gravity * Time.deltaTime;
+            print("gravity applied near ground");
+            animator.SetBool("IsGrounded", true);   //Jumping animation (not good)
+            moveVector.y = -gravity * Time.deltaTime;
         }
         else
         {
+            print("gravity applied");
             moveVector.y -= gravity * Time.deltaTime;
         }
 
@@ -489,7 +492,13 @@ public class MovementInput : MonoBehaviour
         }
         return;
     }
-    
+
+    //Code from: https://gamedev.stackexchange.com/questions/125945/camera-relative-movement-is-pushing-into-off-the-ground-instead-of-parallel/125954#125954?newreg=bdca6bbf7889474cbb8e7eabbfd2f130
+    Vector3 CameraRelativeFlatten(Vector3 input, Vector3 localUp)
+    {
+        Quaternion flatten = Quaternion.LookRotation(-localUp, camera.transform.forward) * Quaternion.Euler(Vector3.right * -90f);
+        return flatten * input;
+    }
 
     public void ActivateGlide()
     {
