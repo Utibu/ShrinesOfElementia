@@ -21,7 +21,8 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
     public override void Initialize(StateMachine stateMachine)
     {
         base.Initialize(stateMachine);
-        EventManager.Current.RegisterListener<DamageEvent>(OnAttacked);
+        //EventManager.Current.RegisterListener<DamageEvent>(OnAttacked);
+        //EventManager.Current.RegisterListener<AttackEvent>(Dodge);
     }
 
 
@@ -40,17 +41,22 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
     {
 
         base.HandleUpdate();
-
-        
-
-        if (cooldown <= 0)
-        {
-            Attack();
-        }
         cooldown -= Time.deltaTime;
 
+        if (cooldown <= 0 && distanceToPlayer < attackRange)
+        {
+            Attack();
+            
+        }
+        else if (cooldown <= 0)
+        {
+            owner.transform.LookAt(owner.Player.transform);
+            owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
+            owner.transform.position += owner.transform.forward * 4f * Time.deltaTime;
+        }
 
-       
+
+
 
         // state transition checks
         if (distanceToPlayer  > attackRange * 2f)
@@ -129,7 +135,19 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
     }
 
 
-    
+   private void Dodge(AttackEvent ev)
+    {
+        if (Random.Range(1f, 5f) < 3f && owner.Elite == false) // pretty big chance to dodge. break this out to enemyValues if this works
+        {
+            if (distanceToPlayer < attackRange)
+            {
+                owner.Transition<Dodge_BasicEnemy>();
+            }
+            
+        }
+    }
+
+
         private void OnAttacked(DamageEvent ev)
     {
         if (ev.TargetGameObject.Equals(owner))
@@ -140,20 +158,5 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
             owner.Agent.SetDestination(newPosition);
         }
     }
-
-    /*
-    private void OnAttacked(DamageEvent ev)
-    {
-        if (ev.TargetGameObject.Equals(owner.gameObject))
-        {
-            //pushback when attacked(damaged)
-            Debug.Log("get pushed back");
-            Vector3 newPosition = owner.transform.position += ev.InstigatorGameObject.transform.forward * 4f;
-            owner.Agent.updateRotation = false;
-            owner.Agent.SetDestination(newPosition);
-        }
-        
-    }
-    */
 
 }

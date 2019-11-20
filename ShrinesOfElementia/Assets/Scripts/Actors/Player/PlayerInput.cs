@@ -474,6 +474,9 @@ public class PlayerInput : MonoBehaviour
         attackIndex = (attackIndex + 1) % lightAttacks.Length;
         resetTimer = 0f;
 
+        //send event when attacking to give enemies chance to dodge
+        EventManager.Current.FireEvent(new AttackEvent("...and the player strikes again"));
+
         //print(attackIndex);
 
         //print(resetTimer + "     " + lightAttackTimer);

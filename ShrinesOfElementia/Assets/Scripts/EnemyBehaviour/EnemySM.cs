@@ -40,6 +40,8 @@ public class EnemySM : StateMachine
         Physics.IgnoreLayerCollision(8, 4, false);
         //EventSystem.Current.RegisterListener<DamageEvent>(OnAttacked);
 
+        EventManager.Current.RegisterListener<AttackEvent>(Dodge);
+        
     }
 
 
@@ -94,5 +96,28 @@ public class EnemySM : StateMachine
         Animator.SetTrigger("IsHurt");
     }
 
+
+    private void Dodge(AttackEvent ev)
+    {
+        float range = GetComponent<EnemyValues>().AttackRange;
+        if (Random.Range(1f, 10f) > 6f && Vector3.Distance(gameObject.transform.position, Player.transform.position) < range)
+        {
+            if (!Elite)
+            {
+
+                Transition<Dodge_BasicEnemy>();
+            }
+            else
+            {
+
+                // flee transition here?
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.Current.UnregisterListener<AttackEvent>(Dodge);
+    }
 
 }

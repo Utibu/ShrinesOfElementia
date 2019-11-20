@@ -8,12 +8,13 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
 {
 
     private Vector3 startPosition;
-    private float chaseSpeed = 3.5f;
+    private float chaseSpeed;
 
 
     public override void Initialize(StateMachine stateMachine)
     {
         base.Initialize(stateMachine);
+        chaseSpeed = speed * 1.5f;
     }
 
 
@@ -67,5 +68,6 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
     {
         base.Leave();
         Debug.Log("Leaving chase state");
+        owner.Agent.speed = speed;
     }
 }
