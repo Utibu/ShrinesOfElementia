@@ -35,6 +35,13 @@ public class MovementInput : MonoBehaviour
     //[SerializeField] private bool isGrounded;   Old code, didn't work. Keeping just in case.
     private Player player;
 
+    [Header("Movement")]
+    [SerializeField] private float defaultSpeed;
+    [SerializeField] private float runSpeed;
+    [SerializeField] private float animationDamping;
+    [SerializeField] private bool newMovement;
+    private float movementSpeed;
+
     [Header("Jump")]
     [SerializeField] private float gravity;
     [SerializeField] private float jumpSpeed;
@@ -47,8 +54,6 @@ public class MovementInput : MonoBehaviour
 
 
     [Header("Movement Speed")]
-    [SerializeField] private float defaultSpeed;
-    [SerializeField] private float runSpeed;
 
     [Header("Dodge")]
     [SerializeField] private float dodgeLength;
@@ -68,7 +73,6 @@ public class MovementInput : MonoBehaviour
     //For Debugging
     public GameObject RespawnLocation;
 
-    [SerializeField] private bool newMovement;
 
 
     private float airTime;
@@ -101,15 +105,33 @@ public class MovementInput : MonoBehaviour
 
     private void Update()
     {
+
+        //print(moveVector.y);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            movementSpeed = runSpeed;
+        }
+        else
+        {
+            movementSpeed = defaultSpeed;
+        }
+
         Vector3 savedValues = new Vector3(playerInput.x, 0.0f, playerInput.y);
-        playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (newMovement)
+        {
+            playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        }
+        else
+        {
+            playerInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        }
 
         //more test stuff
         //playerInput.x = Mathf.Lerp(savedValues.x, playerInput.x, 0.1f);
         //playerInput.y = Mathf.Lerp(savedValues.y, playerInput.y, 0.1f);
 
         //TEST STUFF
-        if (IsGrounded() && newMovement)
+        if ((IsGrounded() || controller.isGrounded) && newMovement)
         {
             moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
             moveVector = CameraRelativeFlatten(moveVector, Vector3.up);
@@ -117,7 +139,7 @@ public class MovementInput : MonoBehaviour
             //moveVector = camera.transform.TransformDirection(moveVector);
             //moveVector.y = 0.0f;
             //moveVector.Normalize();
-            moveVector *= defaultSpeed;
+            moveVector *= movementSpeed;
             //print(moveVector);
         }
 
@@ -183,8 +205,10 @@ public class MovementInput : MonoBehaviour
         {
             isGliding = false;
             animator.SetBool("IsGliding", false);
-            moveVector.x = 0;
-            moveVector.z = 0;
+            moveVector = Vector3.zero;
+            //moveVector.x = 0;
+            //moveVector.z = 0;
+
             fromGlide = false;
         }
 
@@ -392,15 +416,15 @@ public class MovementInput : MonoBehaviour
         //print(player.Animator.GetFloat("InputX") + " " + player.Animator.GetFloat("InputZ"));
 
 
-        animator.SetFloat("InputX", playerInput.x, 0.15f, Time.deltaTime);
-        animator.SetFloat("InputZ", playerInput.y, 0.15f, Time.deltaTime);
+        animator.SetFloat("InputX", playerInput.x, animationDamping, Time.deltaTime);
+        animator.SetFloat("InputZ", playerInput.y, animationDamping, Time.deltaTime);
         
         
 
         speed = new Vector2(playerInput.x, playerInput.y).sqrMagnitude;
         //print(speed);
 
-        animator.SetFloat("InputMagnitude", speed, 0.15f, Time.deltaTime);
+        animator.SetFloat("InputMagnitude", speed, animationDamping, Time.deltaTime);
         
         if(speed > allowPlayerRotation || animator.GetBool("InCombat"))
         {
@@ -443,13 +467,11 @@ public class MovementInput : MonoBehaviour
         }
         else if (CheckDistanceFromGround(0.05f) && moveVector.y < 0.001f)
         {
-            print("gravity applied near ground");
             animator.SetBool("IsGrounded", true);   //Jumping animation (not good)
             moveVector.y = -gravity * Time.deltaTime;
         }
         else
         {
-            print("gravity applied");
             moveVector.y -= gravity * Time.deltaTime;
         }
 
