@@ -3025,14 +3025,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87325553da97e604f8c688987152557b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultSpeed: 6
+  runSpeed: 8.5
+  animationDamping: 0.1
+  newMovement: 1
   gravity: 20
   jumpSpeed: 7
   glideSpeed: 13
   glideStrength: 10
   glideGravityMultiplier: 0.65
   glideDistanceFromGround: 1.6
-  defaultSpeed: 6
-  runSpeed: 6
   dodgeLength: 10
   dodgeDuration: 0.5
   maxAirTime: 0.75
@@ -3047,7 +3049,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1303
   RespawnLocation: {fileID: 0}
-  newMovement: 1
 --- !u!114 &7136816392229135849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21066,9 +21067,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 4
   m_FollowOffset: {x: 0, y: 2.5, z: -4.41}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -21122,7 +21123,7 @@ MonoBehaviour:
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
   m_HorizontalDamping: 0
-  m_VerticalDamping: 1
+  m_VerticalDamping: 0.3
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0
@@ -21199,7 +21200,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 65
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -21285,7 +21286,7 @@ MonoBehaviour:
   m_Strategy: 0
   m_MaximumEffort: 4
   m_SmoothingTime: 0
-  m_Damping: 0.35
+  m_Damping: 0.21
   m_DampingWhenOccluded: 1.25
   m_OptimalTargetDistance: 0
 --- !u!114 &8552680708173425439
@@ -21310,7 +21311,7 @@ MonoBehaviour:
   m_Follow: {fileID: 147971961009367260}
   m_CommonLens: 1
   m_Lens:
-    FieldOfView: 65
+    FieldOfView: 70
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -21384,9 +21385,9 @@ MonoBehaviour:
     m_Radius: 0.94
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
-  - {fileID: 8552680707344450561}
-  - {fileID: 8552680707454828083}
-  - {fileID: 8552680709056822656}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &8552680707634663116
 MonoBehaviour:
   m_ObjectHideFlags: 0

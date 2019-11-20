@@ -105,8 +105,7 @@ public class MovementInput : MonoBehaviour
 
     private void Update()
     {
-
-        //print(moveVector.y);
+        //Temporary garbage
         if (Input.GetKey(KeyCode.LeftShift))
         {
             movementSpeed = runSpeed;
@@ -114,7 +113,7 @@ public class MovementInput : MonoBehaviour
         else
         {
             movementSpeed = defaultSpeed;
-        }
+        }//
 
         Vector3 savedValues = new Vector3(playerInput.x, 0.0f, playerInput.y);
         if (newMovement)
@@ -198,6 +197,11 @@ public class MovementInput : MonoBehaviour
         }
         
 
+        ApplyGravity();
+
+        InputMagnitude();
+
+        CheckFallDamage();
 
         
 
@@ -205,7 +209,6 @@ public class MovementInput : MonoBehaviour
         {
             isGliding = false;
             animator.SetBool("IsGliding", false);
-            moveVector = Vector3.zero;
             //moveVector.x = 0;
             //moveVector.z = 0;
 
@@ -216,7 +219,6 @@ public class MovementInput : MonoBehaviour
         {
             if (!isGliding && IsGrounded())
             {
-                print("jumping");
                 animator.SetTrigger("OnJump");
                 moveVector.y = jumpSpeed;
                 //animator.SetBool("IsGrounded", false);   Jumping animation (not good)
@@ -249,13 +251,9 @@ public class MovementInput : MonoBehaviour
                 gameObject.transform.position += pushVector * Time.deltaTime;
             }
         }
-        InputMagnitude();
-
-        ApplyGravity();
-
-        CheckFallDamage();
 
         //print(moveVector);
+
 
         controller.Move(moveVector * Time.deltaTime);
         //Debug.Log(animator.GetBool("IsGrounded"));
@@ -467,7 +465,7 @@ public class MovementInput : MonoBehaviour
         }
         else if (CheckDistanceFromGround(0.05f) && moveVector.y < 0.001f)
         {
-            animator.SetBool("IsGrounded", true);   //Jumping animation (not good)
+            //animator.SetBool("IsGrounded", true);   //Jumping animation (not good)
             moveVector.y = -gravity * Time.deltaTime;
         }
         else
