@@ -139,7 +139,6 @@ public class MovementInput : MonoBehaviour
             //moveVector.y = 0.0f;
             //moveVector.Normalize();
             moveVector *= movementSpeed;
-            //print(moveVector);
         }
 
         if (isDodging)
@@ -164,8 +163,7 @@ public class MovementInput : MonoBehaviour
                     moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
                 }
                 moveVector.Normalize();
-                moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
-                moveVector.y = 0.0f;
+                moveVector = CameraRelativeFlatten(moveVector, Vector3.up);
                 moveVector *= dodgeLength;
             }
         }
@@ -221,7 +219,7 @@ public class MovementInput : MonoBehaviour
             {
                 animator.SetTrigger("OnJump");
                 moveVector.y = jumpSpeed;
-                //animator.SetBool("IsGrounded", false);   Jumping animation (not good)
+                animator.SetBool("IsGrounded", false);   //Jumping animation (not good)
             }
             else if (!isGliding && !CheckDistanceFromGround(glideDistanceFromGround) && hasGlide)
             {
