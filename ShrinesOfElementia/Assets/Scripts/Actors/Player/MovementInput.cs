@@ -103,7 +103,7 @@ public class MovementInput : MonoBehaviour
 
     private void Update()
     {
-        print(moveVector.y);
+
 
         //Temporary garbage
         if (Input.GetKey(KeyCode.LeftShift))

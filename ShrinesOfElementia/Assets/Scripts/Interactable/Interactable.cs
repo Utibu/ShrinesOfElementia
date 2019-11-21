@@ -8,6 +8,7 @@ public class Interactable : MonoBehaviour
 {
     protected bool isInteractable;
     protected BoxCollider boxCollider;
+    [SerializeField] protected int experience;
     [SerializeField] protected Canvas interactCanvas;
 
 
@@ -44,7 +45,7 @@ public class Interactable : MonoBehaviour
 
     protected virtual void OnInteract()
     {
-
+        EventManager.Current.FireEvent(new ExperienceEvent(experience + " gained", experience));
     }
 
     protected virtual void Disable()

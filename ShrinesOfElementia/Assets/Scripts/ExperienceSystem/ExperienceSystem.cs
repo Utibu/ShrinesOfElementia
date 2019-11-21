@@ -65,15 +65,23 @@ public class ExperienceSystem : MonoBehaviour
 
     private void Awake()
     {
+        print("start of awake");
         // Prevents multiple instances
-        if (Instance == null) { Instance = this; }
-        else { Debug.Log("Warning: multiple " + this + " in scene!"); }
+        //if (Instance == null) { Instance = this; }
+        //else { Debug.Log("Warning: multiple " + this + " in scene!"); }
 
         CurrentExperience = 0;
 
         CurrentLevel = 1;
 
         MaxExperience = CalculateMaxExperience();
+        EventManager.Current.RegisterListener<ExperienceEvent>(ExperienceGained);
+        print("end of awake");
+    }
+
+    private void Update()
+    {
+        //print(CurrentExperience);
     }
 
     private int CalculateMaxExperience()
@@ -96,5 +104,11 @@ public class ExperienceSystem : MonoBehaviour
         Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
         CurrentLevel++;
         MaxExperience = CalculateMaxExperience();
+    }
+
+    private void ExperienceGained(ExperienceEvent eve)
+    {
+        print(eve.Experience);
+        CurrentExperience += eve.Experience;
     }
 }
