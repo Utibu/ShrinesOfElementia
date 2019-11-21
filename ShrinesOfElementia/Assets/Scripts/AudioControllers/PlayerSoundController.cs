@@ -12,7 +12,7 @@ public class PlayerSoundController : MonoBehaviour
     [SerializeField] private AudioClip enemyHitClip;
     [SerializeField] private AudioClip footstepClip;
     [SerializeField] private AudioClip parryClip;
-    [SerializeField] private AudioClip BlockClip;
+    [SerializeField] private AudioClip blockClip;
     [SerializeField] private AudioClip hurtClip;
 
     private float footstepTimer = 0f;
@@ -52,6 +52,11 @@ public class PlayerSoundController : MonoBehaviour
     {
         playerAudioSource.PlayOneShot(hurtClip);
         Debug.LogWarning("Playing clip");
+    }
+
+    public void PlayBlockClip()
+    {
+        playerAudioSource.PlayOneShot(blockClip);
     }
 
     private void Update()
