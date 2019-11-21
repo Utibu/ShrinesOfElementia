@@ -20,26 +20,43 @@ public class ExperienceSystem : MonoBehaviour
         get => currentExperience;
         set
         {
-            // Gör mer här
-            currentExperience = value;
+            if (value > MaxExperience)
+            {
+                int excessExperience = value - MaxExperience;
+                //LevelUp();
+                CurrentExperience = excessExperience;
+            }
+            else if (value == MaxExperience)
+            {
+                //LevelUp();
+                currentExperience = value;
+            }
+            else
+            {
+                currentExperience = value;
+            }
+
+            //expBarController.CurrentExperience = currentExperience;
         }
     }
+
     public int MaxExperience
     {
         get => maxExperience;
         set
         {
-            // Gör mer här
             maxExperience = value;
+            //expBarController.MaxExperience = maxExperience;
         }
     }
+
     public int CurrentLevel
     {
         get => currentLevel;
         set
         {
-            // Gör mer här
             currentLevel = value;
+            //someUIThing.CurrentLevel = currentLevel;
         }
     }
 
@@ -65,4 +82,11 @@ public class ExperienceSystem : MonoBehaviour
         return newMaxExperience;
     }
     */
+
+    private void LevelUp()
+    {
+        //Gör till event av något slag
+        Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
+        CurrentLevel++;
+    }
 }
