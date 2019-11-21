@@ -112,7 +112,12 @@ public class MovementInput : MonoBehaviour
         }
         else
         {
-            movementSpeed = defaultSpeed;
+            if (true)
+            {
+                movementSpeed = defaultSpeed;
+            }
+            
+
         }//
 
         Vector3 savedValues = new Vector3(playerInput.x, 0.0f, playerInput.y);
@@ -156,7 +161,7 @@ public class MovementInput : MonoBehaviour
                 if(playerInput.x == 0 && playerInput.y == 0)
                 {
                     moveVector = new Vector3(0.0f, 0.0f, -1f);
-
+                    Vector3 fixThis = player.transform.forward;
                 }
                 else
                 {
@@ -220,6 +225,7 @@ public class MovementInput : MonoBehaviour
                 animator.SetTrigger("OnJump");
                 moveVector.y = jumpSpeed;
                 animator.SetBool("IsGrounded", false);   //Jumping animation (not good)
+                //too little too late
             }
             else if (!isGliding && !CheckDistanceFromGround(glideDistanceFromGround) && hasGlide)
             {
