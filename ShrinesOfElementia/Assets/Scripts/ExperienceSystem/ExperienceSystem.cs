@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class ExperienceSystem : MonoBehaviour
 {
+    // Components
+    public static ExperienceSystem Instance { get; private set; }
+
     [Header("Experience")]
     [SerializeField] private int currentExperience;
     [SerializeField] private int maxExperience;
@@ -62,6 +65,10 @@ public class ExperienceSystem : MonoBehaviour
 
     private void Awake()
     {
+        // Prevents multiple instances
+        if (Instance == null) { Instance = this; }
+        else { Debug.Log("Warning: multiple " + this + " in scene!"); }
+
         CurrentExperience = 0;
 
         CurrentLevel = 1;
