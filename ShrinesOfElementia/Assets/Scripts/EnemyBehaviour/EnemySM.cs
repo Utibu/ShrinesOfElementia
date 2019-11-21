@@ -12,6 +12,8 @@ public class EnemySM : StateMachine
     public Player Player { get; private set; }
     public EnemyParticleController EnemyParticleController { get; private set; }
     public Animator Animator { get; private set; }
+    public Collider Collider { get; private set; }
+    
 
     [SerializeField] private GameObject[] patrolPoints;
     public GameObject[] PatrolPoints { get => patrolPoints; }
@@ -24,18 +26,19 @@ public class EnemySM : StateMachine
     protected override void Awake()
     {
         base.Awake();
+        Agent = GetComponent<NavMeshAgent>();
+        Agent.baseOffset = 0.5f;
+        EnemyParticleController = GetComponent<EnemyParticleController>();
+        Animator = GetComponent<Animator>();
+        EnemyAttack = GetComponentInChildren<EnemyAttack>();
+        Collider = GetComponent<Collider>();
     }
 
     protected override void Start()
     {
         base.Start();
-        //Init Components.
-        Agent = GetComponent<NavMeshAgent>();
-        Agent.baseOffset = 0.5f;
         Player = Player.Instance;
-        EnemyParticleController = GetComponent<EnemyParticleController>();
-        Animator = GetComponent<Animator>();
-        EnemyAttack = GetComponentInChildren<EnemyAttack>();
+        //Init Components.
 
         Physics.IgnoreLayerCollision(8, 4, false);
         //EventSystem.Current.RegisterListener<DamageEvent>(OnAttacked);

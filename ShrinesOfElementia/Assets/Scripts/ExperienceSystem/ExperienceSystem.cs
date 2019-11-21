@@ -26,13 +26,13 @@ public class ExperienceSystem : MonoBehaviour
             if (value > MaxExperience)
             {
                 int excessExperience = value - MaxExperience;
-                //LevelUp();
+                LevelUp();
                 CurrentExperience = excessExperience;
             }
             else if (value == MaxExperience)
             {
-                //LevelUp();
-                currentExperience = value;
+                LevelUp();
+                currentExperience = 0;
             }
             else
             {
@@ -95,5 +95,6 @@ public class ExperienceSystem : MonoBehaviour
         //Gör till event av något slag
         Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
         CurrentLevel++;
+        MaxExperience = CalculateMaxExperience();
     }
 }
