@@ -41,7 +41,7 @@ public class EnemySM : StateMachine
         //EventSystem.Current.RegisterListener<DamageEvent>(OnAttacked);
 
         EventManager.Current.RegisterListener<AttackEvent>(Dodge);
-        
+
     }
 
 
@@ -97,27 +97,31 @@ public class EnemySM : StateMachine
     }
 
 
-    private void Dodge(AttackEvent ev)
+    public void Dodge(AttackEvent ev)
     {
         float range = GetComponent<EnemyValues>().AttackRange;
         if (Random.Range(1f, 10f) > 6f && Vector3.Distance(gameObject.transform.position, Player.transform.position) < range)
         {
             if (!Elite)
             {
-
                 Transition<Dodge_BasicEnemy>();
             }
             else
             {
-
                 // flee transition here?
             }
         }
     }
 
+    public void MoveAway()
+    {
+        Transition<Dodge_BasicEnemy>();
+    }
+
+    
     private void OnDestroy()
     {
         EventManager.Current.UnregisterListener<AttackEvent>(Dodge);
     }
-
+    
 }

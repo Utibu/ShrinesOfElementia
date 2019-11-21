@@ -24,7 +24,7 @@ public class Dodge_BasicEnemy : BasicEnemyBaseState
         countdown = dodgeTimeout;
 
         //calc new point
-        newPosition = owner.transform.right * Random.Range(1.5f, 2f);
+        newPosition = owner.transform.right * Random.Range(1.2f, 1.7f);
         if (Random.Range(0f, 2f) < 1f)
         {
             newPosition *= -1f; //instead, dodge to (player) left. 
@@ -43,7 +43,7 @@ public class Dodge_BasicEnemy : BasicEnemyBaseState
         }
 
         //move enemy
-        owner.transform.position += newPosition * 4f * Time.deltaTime;
+        owner.transform.position += newPosition * 4.5f * Time.deltaTime;
         owner.transform.LookAt(owner.Player.transform);
     }
 

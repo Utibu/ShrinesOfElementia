@@ -20,6 +20,7 @@ public class BasicEnemyBaseState : State
     protected float speed;
     protected GameObject orb;
     protected float orbDropChance;
+    
 
     //greater elemental values
     protected float castRange;
@@ -65,20 +66,6 @@ public class BasicEnemyBaseState : State
 
         //old
         distanceToPlayer = Vector3.Distance(owner.transform.position, owner.Player.transform.position);
-
-        //replace with raycast 
-        /*
-        RaycastHit hit;
-        Physics.Raycast(owner.transform.position, owner.Player.transform.position, out hit, sightRange, 8); // 5 = ignore UI elements, 8 = ignore enemy layer
-        if (hit.transform != null && hit.transform.gameObject.CompareTag("Player"))
-        {
-            canSeePlayer = true;
-        }
-        else
-        {
-            canSeePlayer = false;
-        }
-        */
 
         
 

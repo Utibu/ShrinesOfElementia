@@ -8,21 +8,16 @@ using UnityEngine;
 public class Attack_BasicEnemy : BasicEnemyBaseState
 {
 
-    [SerializeField] private float basicAttackDamage = 20;
-    [SerializeField]private float attackSpeed = 2.1f;
+    
     private float cooldown;
     private float dodgeCooldown; // do some dodge cooldown timer too? a 10% chanse of dodging each PlayerDamage Event. (add forward force/vector of damaging obj to event) 
-
-
-    private bool pushPlayer;
-    private float pushTimer = 0;
+    
     
 
     public override void Initialize(StateMachine stateMachine)
     {
         base.Initialize(stateMachine);
-        //EventManager.Current.RegisterListener<DamageEvent>(OnAttacked);
-        //EventManager.Current.RegisterListener<AttackEvent>(Dodge);
+        
     }
 
 
@@ -32,8 +27,8 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         Debug.Log("Entering attack state.");
         cooldown = 0;
         Debug.Log("cooldown: " + cooldown);
-        owner.Agent.SetDestination(owner.transform.position);
-        
+        //owner.Agent.SetDestination(owner.transform.position);
+        owner.Agent.isStopped = true;
     }
 
 
@@ -43,72 +38,38 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         base.HandleUpdate();
         cooldown -= Time.deltaTime;
 
-        if (cooldown <= 0 && distanceToPlayer < attackRange)
+        if (cooldown <= 0 && distanceToPlayer <= attackRange)
         {
+           
             Attack();
             
+            
         }
-        else if (cooldown <= 0)
+        /*
+        else if (cooldown <= 0 && distanceToPlayer > attackRange) // too far away to strike, close in to target instead
         {
             owner.transform.LookAt(owner.Player.transform);
             owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
-            owner.transform.position += owner.transform.forward * 4f * Time.deltaTime;
+            owner.transform.position += owner.transform.forward * 2.5f * Time.deltaTime;
         }
-
-
-
+        */
+        else if(owner.GetComponent<EnemyValues>().GoBack == false && distanceToPlayer > attackRange)
+        {
+            owner.transform.LookAt(owner.Player.transform);
+            owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
+            owner.transform.position += owner.transform.forward * 6f * Time.deltaTime;
+            //owner.transform.position += owner.transform.forward * 10.5f * Time.deltaTime;
+        }
+        else if (owner.GetComponent<EnemyValues>().GoBack == true) // temporary until i find away to see from state is animation has finished/ gone halfay and so on.
+        {
+            owner.transform.position += owner.transform.forward * -2.5f * Time.deltaTime;
+        }
 
         // state transition checks
         if (distanceToPlayer  > attackRange * 2f)
         {
             owner.Transition<Chase_BasicEnemy>();
         }
-
-        
-        Debug.DrawLine(owner.transform.position, owner.transform.position + owner.transform.up * 3);
-        RaycastHit hit;
-        if (Physics.Raycast(owner.transform.position, owner.transform.position + owner.transform.up * 3))
-        {
-
-            owner.Player.GetComponent<MovementInput>().AddPush(owner.transform.forward * 20f);
-
-            //owner.Player.transform.position += owner.transform.forward * 2f;
-            //pushTimer = 1.3f;
-        }
-
-        /*
-        if (pushTimer > 0)
-        {
-            pushTimer -= Time.deltaTime;
-            owner.Player.transform.position += (owner.transform.forward * 20f) * Time.deltaTime;
-        }
-        */
-
-        /*
-        RaycastHit hit;
-        Physics.Raycast(owner.transform.position, Vector3.up, out hit, 3f, 8);
-        if (hit.transform != null && hit.transform.CompareTag("Player")) // om player är på enemy == true
-        {
-            //push off player + move aside
-            owner.Player.GetComponent<MovementInput>().AddPush(owner.transform.forward * 2f);
-
-            //owner.transform.position += owner.Player.transform.forward * 2f;
-            Debug.Log("player är på enemy");
-        }
-        // seems like raycast is in a completely wrong direction and i ant see why. 
-        // simpler version: 
-        Debug.DrawRay(owner.transform.position, Vector3.up * 5f);
-        if (Physics.Raycast(owner.transform.position, Vector3.up, 3f, 8)) // om player är på enemy == true
-        {
-            //push off player + move aside
-            owner.Player.GetComponent<MovementInput>().AddPush(owner.transform.forward * 2f);
-
-            //owner.transform.position += owner.Player.transform.forward * 2f;
-            Debug.Log("player är på enemy");
-        }
-        */
-
-
 
     }
 
@@ -117,46 +78,23 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
     {
         base.Leave();
         Debug.Log("Leaving attack state");
+        owner.Agent.isStopped = false;
     }
 
     private void Attack()
     {
         
         Debug.Log("Attacking!!");
-        // rotate enemy towards target
-        //owner.Agent.updateRotation = true;
         owner.transform.LookAt(owner.Player.transform);
         owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
 
-        cooldown = attackSpeed;
+        cooldown = atkCooldown;
 
         owner.EnemyAttack.gameObject.SetActive(true);
         owner.Animator.SetTrigger("ShouldAttack");
     }
 
 
-   private void Dodge(AttackEvent ev)
-    {
-        if (Random.Range(1f, 5f) < 3f && owner.Elite == false) // pretty big chance to dodge. break this out to enemyValues if this works
-        {
-            if (distanceToPlayer < attackRange)
-            {
-                owner.Transition<Dodge_BasicEnemy>();
-            }
-            
-        }
-    }
-
-
-        private void OnAttacked(DamageEvent ev)
-    {
-        if (ev.TargetGameObject.Equals(owner))
-        {
-            Debug.Log("get pushed back");
-            Vector3 newPosition = owner.transform.position += ev.InstigatorGameObject.transform.forward * 4f;
-            owner.Agent.updateRotation = false;
-            owner.Agent.SetDestination(newPosition);
-        }
-    }
+    
 
 }

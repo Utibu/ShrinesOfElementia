@@ -25,10 +25,8 @@ public class MovementInput : MonoBehaviour
     private Vector3 moveVector = Vector3.zero;
     float velocityOnImpact = 0;
 
-    //just temporary placement
-    private bool isPushed;
-    private float pushTimer;
-    private Vector3 pushVector;
+    
+
 
 
 
@@ -240,27 +238,12 @@ public class MovementInput : MonoBehaviour
         }
 
 
-        //temporary stuff to prevent crowdsurf.
-        if (isPushed)
-        {
-            pushTimer -= Time.deltaTime;
-            if (pushTimer <= 0)
-            {
-                isPushed = false;
-                //moveVector -= pushVector; 
-            }
-            else if (pushTimer > 0)
-            {
-                //moveVector += pushVector * Time.deltaTime;
-                gameObject.transform.position += pushVector * Time.deltaTime;
-            }
-        }
-
-        //print(moveVector);
-
+       
 
         controller.Move(moveVector * Time.deltaTime);
         //Debug.Log(animator.GetBool("IsGrounded"));
+       
+
     }
     /*
     #region BilalMovementInput
@@ -436,15 +419,27 @@ public class MovementInput : MonoBehaviour
     }
     private bool CheckDistanceFromGround(float distance)
     {
+        RaycastHit hit;
+        bool onGround;
         if (Player.Instance.GetComponent<AbilityManager>().hasWater)
         {
-            return Physics.Raycast(transform.position, Vector3.down, distance, waterGroundCheckMask); //temporary solution
-
+             onGround = Physics.Raycast(transform.position, Vector3.down, out hit, distance, waterGroundCheckMask); //temporary solution
         }
         else
         {
-            return Physics.Raycast(transform.position, Vector3.down, distance, groundcheckMask);
+             onGround =  Physics.Raycast(transform.position, Vector3.down, out hit, distance, groundcheckMask);
+            
         }
+
+        if (onGround && hit.collider.CompareTag("Enemy"))
+        {
+            Debug.Log(hit.collider.name + " " + hit.collider.tag);
+            hit.collider.gameObject.GetComponent<EnemySM>().MoveAway();
+            controller.Move(Vector3.forward * 0.2f);
+        }
+        
+        return onGround;
+            
     }
 
     private bool IsGrounded()
@@ -518,16 +513,6 @@ public class MovementInput : MonoBehaviour
     }
 
     
-    public void AddPush(Vector3 push)
-    {
-        if(isPushed == false)
-        {
-            isPushed = true;
-            pushTimer = 1.5f;
-            pushVector = push;
-        }
-        return;
-    }
 
     //Code from: https://gamedev.stackexchange.com/questions/125945/camera-relative-movement-is-pushing-into-off-the-ground-instead-of-parallel/125954#125954?newreg=bdca6bbf7889474cbb8e7eabbfd2f130
     Vector3 CameraRelativeFlatten(Vector3 input, Vector3 localUp)

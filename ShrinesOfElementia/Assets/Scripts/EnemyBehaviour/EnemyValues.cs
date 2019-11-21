@@ -29,8 +29,19 @@ public class EnemyValues : MonoBehaviour
     public float CastRange { get => castRange; set => castRange = value; }
     public float OrbDropChance { get => orbDropChance; set => orbDropChance = value; }
     public GameObject Orb { get => orb; set => orb = value; }
-    
 
+    public bool GoBack = false;
+
+
+    public void ToggleGoBack()
+    {
+        if(GoBack == false)
+        {
+            GoBack = true;
+            return;
+        }
+        GoBack = false;
+    }
 
     // Start is called before the first frame update
     void Start()
