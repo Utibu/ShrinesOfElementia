@@ -38,6 +38,10 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         base.HandleUpdate();
         cooldown -= Time.deltaTime;
 
+        //is player facing enemy?
+        Vector3 direction = owner.transform.position - owner.Player.transform.position;
+        float angle = Vector3.Angle(direction, owner.Player.transform.forward);
+
         if (cooldown <= 0 && distanceToPlayer <= attackRange)
         {
            
@@ -53,17 +57,24 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
             owner.transform.position += owner.transform.forward * 2.5f * Time.deltaTime;
         }
         */
+        else if (owner.GetComponent<EnemyValues>().GoBack == true && distanceToPlayer < attackRange * 1.5f)
+        {
+            owner.transform.position += owner.transform.forward * -2.9f * Time.deltaTime;
+        }
+        else if (angle < 140 && owner.GetComponent<EnemyValues>().GoBack == false && distanceToPlayer > attackRange)
+        {
+            owner.transform.LookAt(owner.Player.transform);
+            owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
+            owner.transform.position += owner.transform.forward * 3.5f * Time.deltaTime;
+        }
         else if(owner.GetComponent<EnemyValues>().GoBack == false && distanceToPlayer > attackRange)
         {
             owner.transform.LookAt(owner.Player.transform);
             owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
             owner.transform.position += owner.transform.forward * 6f * Time.deltaTime;
-            //owner.transform.position += owner.transform.forward * 10.5f * Time.deltaTime;
         }
-        else if (owner.GetComponent<EnemyValues>().GoBack == true) // temporary until i find away to see from state is animation has finished/ gone halfay and so on.
-        {
-            owner.transform.position += owner.transform.forward * -2.5f * Time.deltaTime;
-        }
+        
+        
 
         // state transition checks
         if (distanceToPlayer  > attackRange * 2f)
