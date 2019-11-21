@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : StateMachine
 {
     // Components
     public static Player Instance { get; private set; }
@@ -26,6 +26,6 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
 
         // Put this back when Player is turned into a State Machine
-        //base.Awake();
+        base.Awake();
     }
 }

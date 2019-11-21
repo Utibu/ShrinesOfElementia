@@ -3,6 +3,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+// This needs to be picked apart. All of the cooldowns and damage values etc needs to be in separate scripts.
 public class Giant : StateMachine
 {
     // Components
