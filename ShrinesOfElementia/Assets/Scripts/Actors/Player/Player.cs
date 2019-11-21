@@ -11,7 +11,7 @@ public class Player : StateMachine
     public HealthComponent Health { get; private set; }
     public Animator Animator { get; private set; }
 
-    private void Awake()
+    protected override void Awake()
     {
         // Prevents multiple instances
         if (Instance == null) { Instance = this; }

@@ -10,6 +10,8 @@ public class Sword : MonoBehaviour
     [SerializeField] private GameObject hitParticleSystem;
     private Vector3 hitPoint;
 
+
+    /*  Attack detection with collider (no trigger)
     private void OnCollisionEnter(Collision collision)
     {
         print("hit");
@@ -25,6 +27,23 @@ public class Sword : MonoBehaviour
             }
 
             DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + damage + " damage to " + collision.gameObject, damage, gameObject, collision.gameObject);
+            EventManager.Current.FireEvent(damageEvent);
+        }
+    }
+    */
+
+    //Attack detection with trigger
+    private void OnTriggerEnter(Collider other)
+    {
+        print("hit");
+
+        if (other.gameObject.CompareTag("Enemy")) //Should fix later. Attacks should be normalized
+        {
+            hitPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position); //used to find impact point
+            GameObject go = (GameObject)Instantiate(hitParticleSystem, hitPoint, Quaternion.identity);
+            Destroy(go, 1f);
+
+            DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + damage + " damage to " + other.gameObject, damage, gameObject, other.gameObject);
             EventManager.Current.FireEvent(damageEvent);
         }
     }
