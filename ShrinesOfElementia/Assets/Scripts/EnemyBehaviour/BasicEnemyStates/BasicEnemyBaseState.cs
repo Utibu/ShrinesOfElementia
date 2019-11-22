@@ -9,6 +9,7 @@ public class BasicEnemyBaseState : State
     
     //reference to statemachine of enemy this state belongs to.
     protected EnemySM owner;
+    private EnemyValues enemyValues;
 
     protected float distanceToPlayer;
     protected bool canSeePlayer;
@@ -20,6 +21,7 @@ public class BasicEnemyBaseState : State
     protected float speed;
     protected GameObject orb;
     protected float orbDropChance;
+    protected float experienceAmount;
     
 
     //greater elemental values
@@ -31,17 +33,18 @@ public class BasicEnemyBaseState : State
     public override void Initialize(StateMachine stateMachine)
     {
         owner = (EnemySM)stateMachine;  // cast to subtype. 
+        enemyValues = owner.GetComponent<EnemyValues>();
 
         //Set enemy values
-        attackRange = owner.GetComponent<EnemyValues>().AttackRange;
-        sightRange = owner.GetComponent<EnemyValues>().SightRange;
-        atkCooldown = owner.GetComponent<EnemyValues>().AtkCooldown;
-        damage = owner.GetComponent<EnemyValues>().Damage;
-        castRange = owner.GetComponent<EnemyValues>().CastRange;
-        speed = owner.GetComponent<EnemyValues>().Speed;
-        orb = owner.GetComponent<EnemyValues>().Orb;
-        orbDropChance = owner.GetComponent<EnemyValues>().OrbDropChance;
-
+        attackRange = enemyValues.AttackRange;
+        sightRange = enemyValues.SightRange;
+        atkCooldown = enemyValues.AtkCooldown;
+        damage = enemyValues.Damage;
+        castRange = enemyValues.CastRange;
+        speed = enemyValues.Speed;
+        orb = enemyValues.Orb;
+        orbDropChance = enemyValues.OrbDropChance;
+        experienceAmount = enemyValues.ExperienceAmount;
     }
 
     public virtual void Start()

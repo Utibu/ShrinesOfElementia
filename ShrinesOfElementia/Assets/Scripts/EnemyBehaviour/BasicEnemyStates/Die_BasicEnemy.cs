@@ -22,7 +22,7 @@ public class Die_BasicEnemy : BasicEnemyBaseState
     {
         base.Enter();
         timer = dyingTime;
-
+        EventManager.Current.FireEvent(new ExperienceEvent(experienceAmount + " xp gained", experienceAmount));
         owner.gameObject.GetComponent<Collider>().enabled = false;
         GameObject gameobject = owner.GetComponent<GameObject>();
         EventManager.Current.FireEvent(new EnemyDeathEvent(gameobject, owner.SpawnArea, owner.Elite));

@@ -13,6 +13,7 @@ public class EnemyValues : MonoBehaviour
     [SerializeField] private float attackRange;
     [SerializeField] private float orbDropChance;
     [SerializeField] private GameObject orb;
+    [SerializeField] private float experienceAmount;
 
     //If enemy is elite
     [SerializeField] private float castRange;
@@ -29,6 +30,7 @@ public class EnemyValues : MonoBehaviour
     public float CastRange { get => castRange; set => castRange = value; }
     public float OrbDropChance { get => orbDropChance; set => orbDropChance = value; }
     public GameObject Orb { get => orb; set => orb = value; }
+    public float ExperienceAmount { get => experienceAmount; set => experienceAmount = value; }
 
     public bool GoBack = false;
 

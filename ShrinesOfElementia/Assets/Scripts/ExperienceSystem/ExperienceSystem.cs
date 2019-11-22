@@ -3,29 +3,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ExperienceSystem : MonoBehaviour
 {
     // Components
     public static ExperienceSystem Instance { get; private set; }
 
+    [SerializeField] private Image experienceMeter;
+
     [Header("Experience")]
-    [SerializeField] private int currentExperience;
-    [SerializeField] private int maxExperience;
+    [SerializeField] private float currentExperience;
+    [SerializeField] private float maxExperience;
 
     [Header("Level")]
-    [SerializeField] private int currentLevel;
-    [SerializeField] private int maxLevel;
+    [SerializeField] private float currentLevel;
+    [SerializeField] private float maxLevel;
 
     // Bygg ut alla properties så att de faktiskt gör något vid get och set. Åtminstone set!
-    public int CurrentExperience
+    public float CurrentExperience
     {
         get => currentExperience;
         set
         {
             if (value > MaxExperience)
             {
-                int excessExperience = value - MaxExperience;
+                float excessExperience = value - MaxExperience;
                 LevelUp();
                 CurrentExperience = excessExperience;
             }
@@ -40,10 +43,11 @@ public class ExperienceSystem : MonoBehaviour
             }
 
             //expBarController.CurrentExperience = currentExperience;
+            UpdateExperienceMeter();
         }
     }
 
-    public int MaxExperience
+    public float MaxExperience
     {
         get => maxExperience;
         set
@@ -53,7 +57,7 @@ public class ExperienceSystem : MonoBehaviour
         }
     }
 
-    public int CurrentLevel
+    public float CurrentLevel
     {
         get => currentLevel;
         set
@@ -79,14 +83,9 @@ public class ExperienceSystem : MonoBehaviour
         print("end of awake");
     }
 
-    private void Update()
+    private float CalculateMaxExperience()
     {
-        //print(CurrentExperience);
-    }
-
-    private int CalculateMaxExperience()
-    {
-        int newMaxExperience = 10 * CurrentLevel * CurrentLevel + 90;
+        float newMaxExperience = 10 * CurrentLevel * CurrentLevel + 90;
         return newMaxExperience;
     }
 
@@ -110,5 +109,11 @@ public class ExperienceSystem : MonoBehaviour
     {
         print(eve.Experience);
         CurrentExperience += eve.Experience;
+    }
+
+    private void UpdateExperienceMeter()
+    {
+        print("updating experience");
+        experienceMeter.fillAmount = CurrentExperience / MaxExperience;
     }
 }
