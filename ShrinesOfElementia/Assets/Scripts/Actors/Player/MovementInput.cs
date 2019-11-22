@@ -8,30 +8,45 @@ using UnityEngine;
 public class MovementInput : MonoBehaviour
 {
 
-    private Vector2 playerInput;
-    private Vector3 desiredMoveDirection;
-    private bool faceCameraDirection;
-    public bool FaceCameraDirection { set { faceCameraDirection = value; } }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Components
+    private Player player;
     private Animator animator;
-    private float speed;
-    private float allowPlayerRotation;
     private CameraReference camera;
     private CharacterController controller;
+
+    // Variables
+    private Vector2 playerInput;
+    private Vector3 desiredMoveDirection;
+
+    private bool faceCameraDirection;
+    public bool FaceCameraDirection { set { faceCameraDirection = value; } }
+    
+    private float speed;
+    private float allowPlayerRotation;
+    
     private float dodgeTimer = 0.0f;
-    private bool isDodging;
     private bool isGliding;
     private bool fromGlide;
     private bool hasGlide;
     private Vector3 moveVector = Vector3.zero;
-    float velocityOnImpact = 0;
+    float velocityOnImpact = 0f;
 
     
-
-
-
-
-    //[SerializeField] private bool isGrounded;   Old code, didn't work. Keeping just in case.
-    private Player player;
 
     [Header("Movement")]
     [SerializeField] private float defaultSpeed;
@@ -67,41 +82,36 @@ public class MovementInput : MonoBehaviour
     [SerializeField] private LayerMask waterGroundCheckMask;
 
     //For Debugging
-    public GameObject RespawnLocation;
-
-
+    public GameObject RespawnLocation; // ?
 
     private float airTime;
 
-    public float DefaultSpeed { get { return defaultSpeed; } }
-    public float RunSpeed { get { return runSpeed; } }
-    public bool IsDodging { get { return isDodging; } }
+    public bool IsDodging { get; set; }
 
-    private bool breakUpdate;
-    private bool takeInput = true;
-    public bool TakeInput { set { takeInput = value; } }
+    private void Awake()
+    {
+        controller = GetComponent<CharacterController>();
 
+        Cursor.lockState = CursorLockMode.Locked;
 
+        Physics.IgnoreLayerCollision(9, 4, true);
+
+        fromGlide = false;
+        hasGlide = false;
+        airTime = 0f;
+    }
 
     private void Start()
     {
         player = Player.Instance;
         animator = player.Animator;
-        camera = CameraReference.Instance;
-        controller = GetComponent<CharacterController>();
-        //Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Physics.IgnoreLayerCollision(9, 4, true);
-        fromGlide = false;
-        breakUpdate = false;
-        hasGlide = false;
-        airTime = 0;
-        
+
+        camera = CameraReference.Instance;        
     }
 
     private void Update()
     {
-        // Maybe add a sprint state?
+        // Sprint
         if (Input.GetKey(KeyCode.LeftShift))
         {
             movementSpeed = runSpeed;
@@ -111,7 +121,6 @@ public class MovementInput : MonoBehaviour
             movementSpeed = defaultSpeed;
         }
 
-        Vector3 savedValues = new Vector3(playerInput.x, 0.0f, playerInput.y);
         if (newMovement)
         {
             playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -122,23 +131,22 @@ public class MovementInput : MonoBehaviour
         }
 
 
+        // Movement
         if ((IsGrounded() || controller.isGrounded) && newMovement)
         {
             moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
             moveVector = CameraRelativeFlatten(moveVector, Vector3.up);
             moveVector.Normalize();
-            //moveVector = camera.transform.TransformDirection(moveVector);
-            //moveVector.y = 0.0f;
-            //moveVector.Normalize();
             moveVector *= movementSpeed;
         }
 
-        if (isDodging)
+        // Dodge
+        if (IsDodging)
         {
             dodgeTimer += Time.deltaTime;
             if (dodgeTimer >= dodgeDuration)
             {
-                isDodging = false;
+                IsDodging = false;
                 dodgeTimer = 0.0f;
                 moveVector.x = 0.0f;
                 moveVector.z = 0.0f;
@@ -148,7 +156,6 @@ public class MovementInput : MonoBehaviour
                 if(playerInput.x == 0 && playerInput.y == 0)
                 {
                     moveVector = new Vector3(0.0f, 0.0f, -1f);
-                    Vector3 fixThis = player.transform.forward;
                 }
                 else
                 {
@@ -160,16 +167,13 @@ public class MovementInput : MonoBehaviour
             }
         }
 
+        // Glide
         else if (isGliding)
         {
             moveVector = new Vector3(playerInput.x, glideStrength, playerInput.y);
             moveVector.Normalize();
 
-            
-            float saveY = moveVector.y; // test
-            //moveVector = CameraReference.Instance.transform.TransformDirection(moveVector);
             moveVector += Vector3.ProjectOnPlane(CameraReference.Instance.transform.forward, Vector3.up);
-            //moveVector.y = saveY; // test
 
             moveVector.Normalize(); 
             moveVector *= glideSpeed;
@@ -177,6 +181,7 @@ public class MovementInput : MonoBehaviour
             velocityOnImpact = 0;
         }
 
+        // Maybe move this to a separate script?
         if (animator.GetBool("InCombat"))
         {
             faceCameraDirection = true;
@@ -194,24 +199,24 @@ public class MovementInput : MonoBehaviour
         CheckFallDamage();
 
         
-
+        // Remove when the state machine is done
         if (IsGrounded() && fromGlide)
         {
             isGliding = false;
             animator.SetBool("IsGliding", false);
-            //moveVector.x = 0;
-            //moveVector.z = 0;
 
             fromGlide = false;
         }
 
+        // Jump
+        // Maybe add "better jump"
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!isGliding && IsGrounded())
             {
                 animator.SetTrigger("OnJump");
                 moveVector.y = jumpSpeed;
-                animator.SetBool("IsGrounded", false);   //Jumping animation (not good)
+                animator.SetBool("IsGrounded", false);
             }
             else if (!isGliding && !CheckDistanceFromGround(glideDistanceFromGround) && hasGlide)
             {
@@ -224,12 +229,15 @@ public class MovementInput : MonoBehaviour
                 animator.SetBool("IsGliding", false);
             }
         }
-        controller.Move(moveVector * Time.deltaTime);
-        //Debug.Log(animator.GetBool("IsGrounded"));
-       
 
+        // This is what actually moves the character
+        controller.Move(moveVector * Time.deltaTime);
     }
-    private void PlayerMoveAndRotation()
+
+    /// <summary>
+    /// Rotates the player
+    /// </summary>
+    private void PlayerRotation()
     {
         Vector3 forward = camera.transform.forward;
         Vector3 right = camera.transform.right;
@@ -243,40 +251,37 @@ public class MovementInput : MonoBehaviour
         if (animator.GetBool("InCombat"))
         {
             transform.rotation = Quaternion.LookRotation(forward, Vector3.zero);
-
         }
         else
         {
             desiredMoveDirection = forward * playerInput.y + right * playerInput.x;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), desiredRotationSpeed);
         }
-
     }
 
+    /// <summary>
+    /// Gets the input magnitude from the controller/keyboard and turns that into a float that
+    /// is used by the animator to determine which animation to use. (Idle, walk, or run.)
+    /// 
+    /// If we're not going to implement controller support, we could change/remove this.
+    /// </summary>
     private void InputMagnitude()
     {
-        
-
-        //print("X: " + inputX + "Z: " + inputZ);
-        //print(player.Animator.GetFloat("InputX") + " " + player.Animator.GetFloat("InputZ"));
-
-
         animator.SetFloat("InputX", playerInput.x, animationDamping, Time.deltaTime);
         animator.SetFloat("InputZ", playerInput.y, animationDamping, Time.deltaTime);
-        
-        
-
+       
         speed = new Vector2(playerInput.x, playerInput.y).sqrMagnitude;
-        //print(speed);
 
         animator.SetFloat("InputMagnitude", speed, animationDamping, Time.deltaTime);
         
         if(speed > allowPlayerRotation || animator.GetBool("InCombat"))
         {
-            PlayerMoveAndRotation();
+            PlayerRotation();
         }
 
     }
+
+
     private bool CheckDistanceFromGround(float distance)
     {
         RaycastHit hit;
@@ -288,18 +293,16 @@ public class MovementInput : MonoBehaviour
         else
         {
              onGround =  Physics.Raycast(transform.position, Vector3.down, out hit, distance, groundcheckMask);
-            
         }
 
         if (onGround && hit.collider.CompareTag("Enemy"))
         {
             Debug.Log(hit.collider.name + " " + hit.collider.tag);
-            hit.collider.gameObject.GetComponent<EnemySM>().MoveAway();
+            hit.collider.gameObject.GetComponent<EnemySM>().MoveAway(); // No get components in live code like this.
             controller.Move(Vector3.forward * 0.2f);
         }
         
         return onGround;
-            
     }
 
     private bool IsGrounded()
@@ -322,9 +325,10 @@ public class MovementInput : MonoBehaviour
         {
             moveVector.y -= gravity * glideGravityMultiplier;
         }
+
+        // Invert this. We don't want to always check for the scenario that occurs the most often
         else if (CheckDistanceFromGround(0.05f) && moveVector.y < 0.001f)
         {
-            //animator.SetBool("IsGrounded", true);   //Jumping animation (not good)
             moveVector.y = -gravity * Time.deltaTime;
         }
         else
@@ -366,7 +370,7 @@ public class MovementInput : MonoBehaviour
     {
         if (IsGrounded())
         {
-            isDodging = true;
+            IsDodging = true;
             player.Animator.SetTrigger("OnDodge");
             EventManager.Current.FireEvent(new DodgeEvent("stamina drained", 15));
         }
@@ -387,9 +391,9 @@ public class MovementInput : MonoBehaviour
         hasGlide = true;
     }
 
+    // Used by killzones to move the player
     public void MoveTo(Vector3 position)
     {
-        breakUpdate = true;
         controller.enabled = false;
         controller.transform.position = position;
         controller.enabled = true;
