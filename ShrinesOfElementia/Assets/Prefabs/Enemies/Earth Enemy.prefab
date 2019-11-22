@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 7202856131699650255}
   - component: {fileID: 3473340798920619752}
   - component: {fileID: 8685354514147251875}
+  - component: {fileID: -1492206733603342502}
   m_Layer: 8
   m_Name: Earth Enemy
   m_TagString: Enemy
@@ -231,6 +232,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Elite: 0
+  Disabled: 0
+  disabledTime: 10
 --- !u!114 &1645787787283239507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,7 +422,22 @@ MonoBehaviour:
   attackRange: 1.2
   orbDropChance: 35
   orb: {fileID: 4681701038757555463, guid: af02dac8b69ca504482fab8b278c3c95, type: 3}
+  experienceAmount: 0
   castRange: 0
+  GoBack: 0
+--- !u!114 &-1492206733603342502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607963751363283681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60103b110f2d18347b338334f9d84185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementalAdvantageDamageBonus: 10
 --- !u!1 &1824365924522002240
 GameObject:
   m_ObjectHideFlags: 0

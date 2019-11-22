@@ -10,7 +10,7 @@ public class DamageEvent : DebugEvent
     public GameObject InstigatorGameObject { get; }
     public GameObject TargetGameObject { get; }
 
-    //public string DamageType;
+    //public string DamageType { get; }
 
     public DamageEvent(string eventDescription, int damage, GameObject instigatorGameObject, GameObject targetGameObject) : base(eventDescription)
     {

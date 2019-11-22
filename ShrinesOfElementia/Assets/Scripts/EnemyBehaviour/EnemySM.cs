@@ -22,6 +22,11 @@ public class EnemySM : StateMachine
 
     //fix  this later
     public bool Elite;
+    public bool Disabled = false;
+
+    //temporary timer. Create event based timer system or so maybeee
+    [SerializeField] private float disabledTime;
+    private float countdown;
 
     protected override void Awake()
     {
@@ -42,7 +47,6 @@ public class EnemySM : StateMachine
 
         Physics.IgnoreLayerCollision(8, 4, false);
         //EventSystem.Current.RegisterListener<DamageEvent>(OnAttacked);
-
         EventManager.Current.RegisterListener<AttackEvent>(Dodge);
 
     }
@@ -51,7 +55,14 @@ public class EnemySM : StateMachine
     protected override void Update()
     {
         base.Update();
-
+        if (Disabled)
+        {
+            countdown -= Time.deltaTime;
+            if(countdown <= 0)
+            {
+                RestoreEnemy();
+            }
+        }
     }
 
 
@@ -66,35 +77,30 @@ public class EnemySM : StateMachine
         this.SpawnArea = SpawnArea;
     }
 
-    public void DisableElite()
+    public void DisableEnemy()
     {
+        Disabled = true;
+        countdown = disabledTime;
         EnemyParticleController.StopParticleSystem();
         Transition<Chase_BasicEnemy>();
-        Elite = false;
     }
 
-    // temporary placement for pushback.
-    /*
-    public void OnAttacked(DamageEvent ev)
+    public void RestoreEnemy()
     {
-
-        if (ev.TargetGameObject.Equals(gameObject)) { 
-            //pushback when attacked(damaged)
-            
-            Debug.Log("get pushed back");
-            Vector3 newPosition = transform.position + ev.InstigatorGameObject.transform.forward * 4f;
-            Agent.updateRotation = false;
-            //Agent.speed *= 2;
-            Agent.SetDestination(newPosition);
-
-            transform.position += ev.InstigatorGameObject.transform.forward * 2f;
-            
+        Disabled = false;
+        EnemyParticleController.EnableParticleSystem();
+        if (Elite)
+        {
+            Transition<Flee_EnemyState>();
         }
-        
+        else
+        {
+            Transition<Idle_BasicEnemy>();
+        }
     }
-    */
+    
 
-    public void EnemyAttacked()
+    public void EnemyAttacked() // healtComponent better placement? EnemyValues? 
     {
         Animator.SetTrigger("IsHurt");
     }
@@ -126,5 +132,25 @@ public class EnemySM : StateMachine
     {
         EventManager.Current.UnregisterListener<AttackEvent>(Dodge);
     }
-    
+
+    // temporary placement for pushback.
+    /*
+    public void OnAttacked(DamageEvent ev)
+    {
+
+        if (ev.TargetGameObject.Equals(gameObject)) { 
+            //pushback when attacked(damaged)
+            
+            Debug.Log("get pushed back");
+            Vector3 newPosition = transform.position + ev.InstigatorGameObject.transform.forward * 4f;
+            Agent.updateRotation = false;
+            //Agent.speed *= 2;
+            Agent.SetDestination(newPosition);
+
+            transform.position += ev.InstigatorGameObject.transform.forward * 2f;
+            
+        }
+        
+    }
+    */
 }

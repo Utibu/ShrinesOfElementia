@@ -56,7 +56,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
         {
             owner.Transition<Attack_BasicEnemy>();
         }
-        else if(owner.Elite && distanceToPlayer <= castRange)
+        else if(owner.Elite && owner.Disabled == false && distanceToPlayer <= castRange)
         {
             owner.Transition<Cast_EnemyState>();
         }

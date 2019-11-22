@@ -9823,6 +9823,7 @@ GameObject:
   - component: {fileID: 4273780737708586009}
   - component: {fileID: 7532801025938140222}
   - component: {fileID: 2705455428289011035}
+  - component: {fileID: 985137851413132390}
   m_Layer: 8
   m_Name: Water Enemy
   m_TagString: Enemy
@@ -9914,6 +9915,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Elite: 0
+  Disabled: 0
+  disabledTime: 6
 --- !u!114 &5651218012939012229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10102,7 +10105,22 @@ MonoBehaviour:
   attackRange: 1.2
   orbDropChance: 35
   orb: {fileID: 4681701038757555463, guid: af02dac8b69ca504482fab8b278c3c95, type: 3}
+  experienceAmount: 0
   castRange: 0
+  GoBack: 0
+--- !u!114 &985137851413132390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5686508187872907319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3266f3e87d5e631439714a4875cc6471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementalAdvantageDamageBonus: 10
 --- !u!1 &6121746136000996873
 GameObject:
   m_ObjectHideFlags: 0

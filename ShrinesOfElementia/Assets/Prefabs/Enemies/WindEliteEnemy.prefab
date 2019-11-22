@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 3343794356400336461}
   - component: {fileID: 8992086663926792458}
   - component: {fileID: 5843396640896974301}
+  - component: {fileID: 6172905784280016604}
   m_Layer: 8
   m_Name: WindEliteEnemy
   m_TagString: Enemy
@@ -143,6 +144,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Elite: 1
+  Disabled: 0
+  disabledTime: 6
 --- !u!114 &613405477875469046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,10 +348,25 @@ MonoBehaviour:
   speed: 4
   atkCooldown: 2
   sightRange: 15
-  attackRange: 1.2
+  attackRange: 1.5
   orbDropChance: 80
   orb: {fileID: 4681701038757555463, guid: af02dac8b69ca504482fab8b278c3c95, type: 3}
+  experienceAmount: 0
   castRange: 14
+  GoBack: 0
+--- !u!114 &6172905784280016604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577833831253201476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d341c196a69329c45bb03d0d8ab2f660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementalAdvantageDamageBonus: 10
 --- !u!1 &1304538052730463354
 GameObject:
   m_ObjectHideFlags: 0
@@ -10435,25 +10453,15 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 1220187668063691765, guid: 184444fcd2106c24697b408e5174cd0c,
+    - target: {fileID: 5571489614852029018, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 148211077782718411, guid: 184444fcd2106c24697b408e5174cd0c,
+    - target: {fileID: 5214969163171619938, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_Layer
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4662297150879508740, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
@@ -10470,22 +10478,32 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5571489614852029018, guid: 184444fcd2106c24697b408e5174cd0c,
+    - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 148211077782718411, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 5214969163171619938, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1483070178001281548, guid: 184444fcd2106c24697b408e5174cd0c,
+    - target: {fileID: 1220187668063691765, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5469755725530458883, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483070178001281548, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_Layer
       value: 8

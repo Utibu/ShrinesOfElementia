@@ -1,5 +1,5 @@
 ﻿// Author: Bilal El Medkouri
-// Co-Author: Joakim Ljung
+// Co-Author: Joakim Ljung, Sofia Kauko
 
 using UnityEngine;
 
@@ -73,5 +73,7 @@ public class Fireball : Ability
     {
         DamageEvent damageEvent = new DamageEvent(damagedGameObject + " has dealt " + damage + " damage to " + damagedGameObject, damage, gameObject, damagedGameObject);
         EventManager.Current.FireEvent(damageEvent);
+
+        EventManager.Current.FireEvent(new FireAbilityEvent("fireAbility activated", damagedGameObject, gameObject.transform.position, aoeRadius));
     }
 }

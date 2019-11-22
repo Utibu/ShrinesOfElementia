@@ -1,4 +1,5 @@
 ﻿//Author: Joakim Ljung
+//co-author: Sofia Kauko
 
 using System.Collections;
 using System.Collections.Generic;
@@ -37,6 +38,7 @@ public class EarthSpikes : Ability
             //print(other.gameObject.name);
             //print("trigger particle");
             EventManager.Current.FireEvent(new DamageEvent("damage dealt", 20, gameObject, other.gameObject));
+            EventManager.Current.FireEvent(new EarthAbilityEvent("earthAbility activated", other.gameObject, gameObject.transform.position, boxCollider.size.magnitude));
         }
     }
     /*

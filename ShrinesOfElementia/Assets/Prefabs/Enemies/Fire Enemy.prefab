@@ -15026,6 +15026,7 @@ GameObject:
   - component: {fileID: 844825524}
   - component: {fileID: 6036624984709815187}
   - component: {fileID: 2630556935375015997}
+  - component: {fileID: 6319811729987239063}
   m_Layer: 8
   m_Name: Fire Enemy
   m_TagString: Enemy
@@ -15117,6 +15118,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Elite: 0
+  Disabled: 0
+  disabledTime: 6
 --- !u!114 &8440498011063795496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15305,7 +15308,22 @@ MonoBehaviour:
   attackRange: 1.2
   orbDropChance: 35
   orb: {fileID: 4681701038757555463, guid: af02dac8b69ca504482fab8b278c3c95, type: 3}
+  experienceAmount: 0
   castRange: 0
+  GoBack: 0
+--- !u!114 &6319811729987239063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8477197259440531354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b34fd252671274294f2f447fefd2bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReviveTime: 10
 --- !u!1 &8837430643871623739
 GameObject:
   m_ObjectHideFlags: 0
