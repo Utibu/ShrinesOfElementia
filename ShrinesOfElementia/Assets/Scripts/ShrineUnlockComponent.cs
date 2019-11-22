@@ -1,5 +1,4 @@
 ﻿// Author: Niklas Almqvist
-// Co-Author: Joakim Ljung
 
 using System.Collections;
 using System.Collections.Generic;
@@ -12,11 +11,6 @@ public class ShrineUnlockComponent : MonoBehaviour
     [SerializeField] private Text firstUnlockText;
     [SerializeField] private Text secondUnlockText;
     [SerializeField] private float timeOpen;
-
-    [SerializeField] private Image fireIcon;
-    [SerializeField] private Image waterIcon;
-    [SerializeField] private Image windIcon;
-    [SerializeField] private Image earthIcon;
 
     public void ShowUnlockableCanvas(string firstText, string secondText)
     {
