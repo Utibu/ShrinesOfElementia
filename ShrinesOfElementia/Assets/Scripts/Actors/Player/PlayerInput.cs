@@ -23,7 +23,6 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField] private float sprintStaminaDrain;
 
-    [SerializeField] private RectTransform shrinePanel; //TEMPORARY, REMOVE AFTER POC
 
     private void Start()
     {

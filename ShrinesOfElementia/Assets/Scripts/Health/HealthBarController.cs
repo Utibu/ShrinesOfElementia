@@ -1,4 +1,5 @@
 ﻿// Author: Bilal El Medkouri
+// Co-Author: Joakim Ljung
 
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ public class HealthBarController : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] private Slider healthSlider;
+    [SerializeField] private Image healthImage;
     [SerializeField] private Text healthText;
     private int currentHealth, maxHealth;
 
@@ -35,7 +37,14 @@ public class HealthBarController : MonoBehaviour
     private void Start()
     {
         // Initiates the health values
-        healthSlider.maxValue = maxHealth;
+        if(healthSlider != null)
+        {
+            healthSlider.maxValue = maxHealth;
+        }
+        else if(healthImage != null)
+        {
+            healthImage.fillAmount = 1f;
+        }
         UpdateHealthBar();
     }
 
@@ -45,6 +54,14 @@ public class HealthBarController : MonoBehaviour
         healthText.text = CurrentHealth + "/" + MaxHealth;
 
         // Slider setter
-        healthSlider.value = CurrentHealth;
+        if(healthSlider != null)
+        {
+            healthSlider.value = CurrentHealth;
+        }
+        else
+        {
+            print(currentHealth);
+            healthImage.fillAmount = CurrentHealth / 100f;
+        }
     }
 }
