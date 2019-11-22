@@ -56,6 +56,7 @@ public class Shrine : Interactable
 
     protected override void OnInteract()
     {
+        base.OnInteract();
         Disable();
         ShrineEvent shrineEvent = new ShrineEvent(element + " shrine activated", element);
         EventManager.Current.FireEvent(shrineEvent);

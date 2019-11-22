@@ -51,8 +51,6 @@ public class MovementInput : MonoBehaviour
     [SerializeField] private float glideDistanceFromGround;
 
 
-    [Header("Movement Speed")]
-
     [Header("Dodge")]
     [SerializeField] private float dodgeLength;
     [SerializeField] private float dodgeDuration;
@@ -336,7 +334,7 @@ public class MovementInput : MonoBehaviour
 
     }
 
-    
+    //Flytta ut
     private void CheckFallDamage()
     {
         
@@ -383,6 +381,7 @@ public class MovementInput : MonoBehaviour
         return flatten * input;
     }
 
+    //Gör property i ability manager eller nåt bättre (?)
     public void ActivateGlide()
     {
         hasGlide = true;
