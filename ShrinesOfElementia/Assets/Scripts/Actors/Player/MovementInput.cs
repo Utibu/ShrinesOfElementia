@@ -103,9 +103,7 @@ public class MovementInput : MonoBehaviour
 
     private void Update()
     {
-
-
-        //Temporary garbage
+        // Maybe add a sprint state?
         if (Input.GetKey(KeyCode.LeftShift))
         {
             movementSpeed = runSpeed;
@@ -113,7 +111,7 @@ public class MovementInput : MonoBehaviour
         else
         {
             movementSpeed = defaultSpeed;
-        }//
+        }
 
         Vector3 savedValues = new Vector3(playerInput.x, 0.0f, playerInput.y);
         if (newMovement)
@@ -125,11 +123,7 @@ public class MovementInput : MonoBehaviour
             playerInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
 
-        //more test stuff
-        //playerInput.x = Mathf.Lerp(savedValues.x, playerInput.x, 0.1f);
-        //playerInput.y = Mathf.Lerp(savedValues.y, playerInput.y, 0.1f);
 
-        //TEST STUFF
         if ((IsGrounded() || controller.isGrounded) && newMovement)
         {
             moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);

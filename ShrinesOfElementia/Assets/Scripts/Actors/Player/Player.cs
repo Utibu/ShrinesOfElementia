@@ -25,7 +25,6 @@ public class Player : StateMachine
         //Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        // Put this back when Player is turned into a State Machine
         base.Awake();
     }
 }
