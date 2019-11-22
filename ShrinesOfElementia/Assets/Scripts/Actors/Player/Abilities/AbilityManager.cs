@@ -286,4 +286,9 @@ public class AbilityManager : MonoBehaviour
                 break;
         }
     }
+
+    private void AbilityCastComplete()
+    {
+        Player.Instance.Animator.SetTrigger("CastComplete");
+    }
 }
