@@ -31,6 +31,10 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         owner.Agent.isStopped = true;
     }
 
+    private void testTimer()
+    {
+        Debug.Log("TIMER WORKS");
+    }
 
     public override void HandleUpdate()
     {
@@ -46,7 +50,7 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         {
            
             Attack();
-            
+            Timer timer = new Timer(3, testTimer);
             
         }
         /*
