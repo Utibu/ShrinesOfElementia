@@ -24,6 +24,15 @@ public class WindSensitive : ElementalWeakness
 
     public void OnDestroy()
     {
-        EventManager.Current.UnregisterListener<WindAbilityEvent>(ReactToWind);
+        try
+        {
+            EventManager.Current.UnregisterListener<WindAbilityEvent>(ReactToWind);
+
+        }
+        catch (System.NullReferenceException exeption)
+        {
+            Debug.Log("Null reference caught: " + exeption.StackTrace);
+        }
+        
     }
 }

@@ -33,5 +33,6 @@ public class WaterSensitive : ElementalWeakness
         {
             Debug.Log("Null reference caught: " + exeption.StackTrace);
         }
+
     }
 }

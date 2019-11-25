@@ -130,7 +130,15 @@ public class EnemySM : StateMachine
     
     private void OnDestroy()
     {
-        EventManager.Current.UnregisterListener<AttackEvent>(Dodge);
+        try
+        {
+            EventManager.Current.UnregisterListener<AttackEvent>(Dodge);
+        }
+        catch (System.NullReferenceException exception)
+        {
+            Debug.Log("Null reference exception caught, " + exception.StackTrace);
+        }
+        
     }
 
     // temporary placement for pushback.

@@ -24,6 +24,15 @@ public class EarthSensitive : ElementalWeakness
 
     public void OnDestroy()
     {
-        EventManager.Current.UnregisterListener<EarthAbilityEvent>(ReactToEarth);
+        try
+        {
+            EventManager.Current.UnregisterListener<EarthAbilityEvent>(ReactToEarth);
+
+        }
+        catch (System.NullReferenceException exeption)
+        {
+            Debug.Log("Null reference caught: " + exeption.StackTrace);
+        }
+        
     }
 }
