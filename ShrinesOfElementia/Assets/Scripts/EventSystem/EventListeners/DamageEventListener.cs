@@ -21,6 +21,11 @@ public class DamageEventListener : MonoBehaviour
             damageEvent.TargetGameObject.GetComponent<EnemySM>().EnemyAttacked();
         }
 
+        if (damageEvent.TargetGameObject.CompareTag("Player"))
+        {
+            damageEvent.TargetGameObject.GetComponent<MovementInput>().SlowDown();
+        }
+
         /*
         if (damageEvent.DamageType.Equals("Melee"))
         {

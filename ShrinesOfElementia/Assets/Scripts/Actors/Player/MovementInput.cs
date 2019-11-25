@@ -46,12 +46,15 @@ public class MovementInput : MonoBehaviour
     private Vector3 moveVector = Vector3.zero;
     float velocityOnImpact = 0f;
 
+    private bool isStaggered = false;
+
     
 
     [Header("Movement")]
     [SerializeField] private float defaultSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float animationDamping;
+    [SerializeField] private float staggerSpeed;
     [SerializeField] private bool newMovement;
     private float movementSpeed;
 
@@ -112,10 +115,15 @@ public class MovementInput : MonoBehaviour
     private void Update()
     {
         // Sprint
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (isStaggered)
+        {
+            movementSpeed = staggerSpeed;
+        }
+        else if (Input.GetKey(KeyCode.LeftShift))
         {
             movementSpeed = runSpeed;
         }
+
         else
         {
             movementSpeed = defaultSpeed;
@@ -376,7 +384,13 @@ public class MovementInput : MonoBehaviour
         }
     }
 
-    
+    //slow down when hit, called frpm dmageEventListener
+    public void SlowDown()
+    {
+        //movementSpeed *= 0.7f;
+        //movementSpeed = defaultSpeed;
+        isStaggered = true;
+    }
 
     //Code from: https://gamedev.stackexchange.com/questions/125945/camera-relative-movement-is-pushing-into-off-the-ground-instead-of-parallel/125954#125954?newreg=bdca6bbf7889474cbb8e7eabbfd2f130
     Vector3 CameraRelativeFlatten(Vector3 input, Vector3 localUp)
