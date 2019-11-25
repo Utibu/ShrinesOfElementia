@@ -15,19 +15,32 @@ public class AbilityIndicator : MonoBehaviour
     }
     private void Update()
     {
+        //for testing, remove when not needed anymore
         if (Input.GetKey(KeyCode.T))
         {
             ShowIndicator();
+        }
+        else
+        {
+            HideIndicator();
         }
     }
 
     private void ShowIndicator()
     {
+        indicator.SetActive(true);
         RaycastHit hit;
         if (Physics.Raycast(CameraReference.Instance.transform.position, CameraReference.Instance.transform.forward, out hit, indicatorRange, layerMask))
         {
-            GameObject indicatorObject = Instantiate(indicator, hit.point, Quaternion.Euler(hit.point));
-            indicatorObject.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
+            print(Quaternion.Euler(hit.normal));
+            indicator.transform.position = new Vector3(hit.point.x, hit.point.y + 0.01f, hit.point.z);
+            indicator.transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
         }
     }
+
+    private void HideIndicator()
+    {
+        indicator.SetActive(false);
+    }
 }
+ 
