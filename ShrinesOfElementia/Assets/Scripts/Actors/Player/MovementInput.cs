@@ -380,6 +380,7 @@ public class MovementInput : MonoBehaviour
         if (!isStaggered)
         {
             Debug.Log("PLAYER IS STAGGERED");
+            player.Animator.SetTrigger("OnStagger");
             isStaggered = true;
             TimerManager.Current.SetNewTimer(gameObject, 0.9f, Recover);
             /*
