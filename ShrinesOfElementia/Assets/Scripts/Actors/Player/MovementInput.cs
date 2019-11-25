@@ -25,7 +25,7 @@ public class MovementInput : MonoBehaviour
     private bool faceCameraDirection;
     public bool FaceCameraDirection { set { faceCameraDirection = value; } }
     
-    private float speed;
+    private float animationSpeed;
     private float allowPlayerRotation;
     
     private float dodgeTimer = 0.0f;
@@ -268,11 +268,11 @@ public class MovementInput : MonoBehaviour
         animator.SetFloat("InputX", playerInput.x, animationDamping, Time.deltaTime);
         animator.SetFloat("InputZ", playerInput.y, animationDamping, Time.deltaTime);
        
-        speed = new Vector2(playerInput.x, playerInput.y).sqrMagnitude;
+        animationSpeed = new Vector2(playerInput.x, playerInput.y).sqrMagnitude;
 
-        animator.SetFloat("InputMagnitude", speed, animationDamping, Time.deltaTime);
+        animator.SetFloat("InputMagnitude", animationSpeed, animationDamping, Time.deltaTime);
         
-        if(speed > allowPlayerRotation || animator.GetBool("InCombat"))
+        if(animationSpeed > allowPlayerRotation || animator.GetBool("InCombat"))
         {
             PlayerRotation();
         }

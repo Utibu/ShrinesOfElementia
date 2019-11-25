@@ -15,14 +15,17 @@ public class AbilityIndicator : MonoBehaviour
     }
     private void Update()
     {
-        //for testing, remove when not needed anymore
-        if (Input.GetKey(KeyCode.T))
+        if (indicator != null)
         {
-            ShowIndicator();
-        }
-        else
-        {
-            HideIndicator();
+            //for testing, remove when not needed anymore
+            if (Input.GetKey(KeyCode.T))
+            {
+                ShowIndicator();
+            }
+            else
+            {
+                HideIndicator();
+            }
         }
     }
 
