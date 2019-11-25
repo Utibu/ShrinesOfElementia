@@ -72,7 +72,7 @@ public class Shield : MonoBehaviour
         if(currentBlockAmount >= maxBlockAmount)
         {
             print("out of block juice");
-            gameObject.GetComponentInParent<Animator>().SetTrigger("OnStagger");
+            gameObject.GetComponentInParent<Animator>().SetTrigger("OnBlockStagger");
             isStaggered = true;
             currentBlockAmount = 0;
             staggerTimer = staggerTime;
