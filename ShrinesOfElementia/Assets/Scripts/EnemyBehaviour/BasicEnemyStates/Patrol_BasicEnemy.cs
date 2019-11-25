@@ -20,6 +20,7 @@ public class Patrol_BasicEnemy : BasicEnemyBaseState
     {
         base.Start(); //for later
         currentTargetIndex = 0;
+        owner.Agent.speed = speed;
     }
     public override void Enter()
     {

@@ -48,6 +48,7 @@ public class EnemySM : StateMachine
         Physics.IgnoreLayerCollision(8, 4, false);
         //EventSystem.Current.RegisterListener<DamageEvent>(OnAttacked);
         EventManager.Current.RegisterListener<AttackEvent>(Dodge);
+        EventManager.Current.RegisterListener<EarthAbilityEvent>(Stun);
 
     }
 
@@ -120,6 +121,11 @@ public class EnemySM : StateMachine
                 // flee transition here?
             }
         }
+    }
+
+    public void Stun(EarthAbilityEvent ev)
+    {
+        Transition<Stun_EnemyState>();
     }
 
     public void MoveAway()
