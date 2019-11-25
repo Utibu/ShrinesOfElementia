@@ -27,7 +27,6 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         Debug.Log("Entering attack state.");
         cooldown = 0;
         Debug.Log("cooldown: " + cooldown);
-        //owner.Agent.SetDestination(owner.transform.position);
         owner.Agent.isStopped = true;
     }
 

@@ -24,7 +24,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
         base.Enter();
         //Debug.Log("Entering chase state.");
         //modify agent to chase settings
-        owner.Agent.speed = chaseSpeed;
+        owner.Agent.speed = speed * 1.5f;
         startPosition = owner.transform.position;
         //owner.transform.rot
         timer = 0f;
@@ -54,6 +54,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
         }
         else if (distanceToPlayer <= attackRange)
         {
+            owner.Agent.speed = 0.2f;
             owner.Transition<Attack_BasicEnemy>();
         }
         else if(owner.Elite && owner.Disabled == false && distanceToPlayer <= castRange)
@@ -67,6 +68,6 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
     {
         base.Leave();
         Debug.Log("Leaving chase state");
-        owner.Agent.speed = speed;
+        
     }
 }
