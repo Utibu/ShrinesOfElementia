@@ -381,10 +381,12 @@ public class MovementInput : MonoBehaviour
         {
             Debug.Log("PLAYER IS STAGGERED");
             isStaggered = true;
-
+            TimerManager.Current.SetNewTimer(gameObject, 0.9f, Recover);
+            /*
             //initialize timer prefab and set its variables. 
             GameObject timer = Instantiate(timerObject, player.transform);
             timer.GetComponent<Timer>().SetVariables(gameObject, 0.9f, Recover); // could be done with = new Timer(...) ?
+            */
         }
         
         
