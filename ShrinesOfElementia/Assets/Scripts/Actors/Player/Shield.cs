@@ -35,6 +35,8 @@ public class Shield : MonoBehaviour
     {
         blockMeter.value = currentBlockAmount;
 
+        
+
         if(currentBlockAmount > 0)
         {
             blockMeter.gameObject.SetActive(true);
