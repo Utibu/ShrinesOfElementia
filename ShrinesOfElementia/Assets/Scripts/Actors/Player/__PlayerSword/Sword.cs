@@ -1,4 +1,5 @@
 ﻿// Author: Bilal El Medkouri
+//co-Author Sofia Kauko
 
 using System.Collections;
 using System.Collections.Generic;
@@ -58,5 +59,16 @@ public class Sword : MonoBehaviour
     public void SetDamage(int damage)
     {
         this.damage += damage;
+    }
+
+
+    public void SetActive()
+    {
+        GetComponent<Collider>().enabled = true;
+    }
+
+    public void SetDisabled()
+    {
+        GetComponent<Collider>().enabled = false;
     }
 }
