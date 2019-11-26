@@ -26,6 +26,12 @@ public class Giant : StateMachine
     [SerializeField] private float sweepCooldown;
 
 
+    [Header("Fireball")]
+    public float FireballMinRange;
+    public float FireballCooldown;
+    [HideInInspector]public bool FireballAvaliable;
+
+
     #region SweepCooldownVariables
     private float sweepTimer;
     private bool sweepAvailable;
@@ -101,6 +107,8 @@ public class Giant : StateMachine
         Agent = GetComponent<NavMeshAgent>();
         Animator = GetComponent<Animator>();
         HealthComponent = GetComponent<HealthComponent>();
+
+        FireballAvaliable = true;
 
         sweepTimer = sweepCooldown;
         SweepAvailable = false;
