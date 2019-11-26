@@ -131,6 +131,13 @@ public class PlayerInput : MonoBehaviour
         }
 
         // Mouse buttons, 0 - Primary Button, 1 - Secondary Button, 2 - Middle Click
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if(movementInput.RespawnLocation != null)
+            {
+                Player.Instance.MovementInput.MoveTo(movementInput.RespawnLocation.transform.position);
+            }
+        }
 
         // Left click / Primary button
         if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length && !isBlocking && staminaManager.CurrentStamina > 0)
@@ -143,13 +150,6 @@ public class PlayerInput : MonoBehaviour
             
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if(movementInput.RespawnLocation != null)
-            {
-                Player.Instance.MovementInput.MoveTo(movementInput.RespawnLocation.transform.position);
-            }
-        }
 
         if (attackIndex > 0)
         {
@@ -222,13 +222,11 @@ public class PlayerInput : MonoBehaviour
         if (player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")) {
             player.Animator.SetBool("InCombat", true);
         }
-        // Temporary fix to stop animations from repeating
 
         player.Animator.SetTrigger(lightAttacks[attackIndex]);
         attackIndex = (attackIndex + 1) % lightAttacks.Length;
         resetTimer = 0f;
 
-        //send event when attacking to give enemies chance to dodge
         EventManager.Current.FireEvent(new AttackEvent("...and the player strikes again"));
     }
 }
