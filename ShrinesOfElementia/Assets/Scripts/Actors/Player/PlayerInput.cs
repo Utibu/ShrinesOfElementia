@@ -38,7 +38,6 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.K))
         {
             // Deals 10 damage to the player
@@ -63,8 +62,20 @@ public class PlayerInput : MonoBehaviour
             // activate projector
             //abilityIndicator.ShowIndicator();
             abilityManager.ToggleAim();
-            
         }
+
+        //Wind blade
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            abilityManager.CheckWindBlade();
+        }
+
+        //Earth spikes
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            abilityManager.CheckEarthSpikes();
+        }
+
         else if (Input.GetKeyUp(KeyCode.Alpha2))
         {
             abilityManager.CheckGeyser();
@@ -86,17 +97,6 @@ public class PlayerInput : MonoBehaviour
             Physics.IgnoreLayerCollision(9, 4, true);
         }
 
-        //Wind blade
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            abilityManager.CheckWindBlade();
-        }
-
-        //Earth spikes
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            abilityManager.CheckEarthSpikes();
-        }
 
         
 

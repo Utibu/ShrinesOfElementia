@@ -8,6 +8,7 @@ public class AbilityIndicator : MonoBehaviour
     [SerializeField] private float indicatorRange;
     [SerializeField] private float indicatorDistanceFromGround;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private GameObject[] indicators;
 
     private void Update()
     {

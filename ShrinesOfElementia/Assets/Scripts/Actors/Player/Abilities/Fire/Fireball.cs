@@ -36,6 +36,11 @@ public class Fireball : Ability
         }
     }
 
+    protected override void CastAbility()
+    {
+        base.CastAbility();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (hasDealtDamage == true)

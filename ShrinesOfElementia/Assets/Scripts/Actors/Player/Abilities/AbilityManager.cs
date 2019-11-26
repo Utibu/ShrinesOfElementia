@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class AbilityManager : MonoBehaviour
 {
     private AbilityIndicator abilityIndicator;
+    [SerializeField] private Ability[] abilities;
 
     [Header("Health")]
     [SerializeField] private int healthRegeneration;
