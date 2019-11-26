@@ -10,9 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7594324640779035312}
   - component: {fileID: 7594324640779035313}
-  - component: {fileID: 7594324640779035319}
   - component: {fileID: 7594324640779035318}
-  - component: {fileID: 7594324640779035317}
   m_Layer: 0
   m_Name: BurnDamageSphere
   m_TagString: Untagged
@@ -45,21 +43,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7594324640779035319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7594324640779035314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 071f7d61b73216a4e966dbfd25ce1ee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DamagePerTick: 1
 --- !u!108 &7594324640779035318
 Light:
   m_ObjectHideFlags: 0
@@ -71,8 +56,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.9245283, g: 0.32240033, b: 0.20496617, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 2
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -103,7 +88,7 @@ Light:
       e33: 1
     m_UseCullingMatrixOverride: 0
   m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
+  m_DrawHalo: 1
   m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:
@@ -120,16 +105,3 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &7594324640779035317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7594324640779035314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 071f7d61b73216a4e966dbfd25ce1ee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DamagePerTick: 2
