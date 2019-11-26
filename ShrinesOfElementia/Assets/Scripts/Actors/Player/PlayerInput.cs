@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour
     private Player player;
     private MovementInput movementInput;
     private AbilityManager abilityManager;
+    private AbilityIndicator abilityIndicator;
 
     private StaminaManager staminaManager;
     private bool invincible;
@@ -29,6 +30,7 @@ public class PlayerInput : MonoBehaviour
         player = Player.Instance;
         movementInput = player.GetComponent<MovementInput>();
         abilityManager = GetComponent<AbilityManager>();
+        abilityIndicator = GetComponent<AbilityIndicator>();
         lightAttacks = new string[] { "LightAttack1", "LightAttack2" };
         isAttacking = false;
         staminaManager = GetComponent<StaminaManager>();
@@ -59,12 +61,14 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKey(KeyCode.Alpha2))
         {
             // activate projector
+            //abilityIndicator.ShowIndicator();
             abilityManager.ToggleAim();
             
         }
         else if (Input.GetKeyUp(KeyCode.Alpha2))
         {
             abilityManager.CheckGeyser();
+            //abilityIndicator.HideIndicator();
             abilityManager.ToggleAim();
         }
 

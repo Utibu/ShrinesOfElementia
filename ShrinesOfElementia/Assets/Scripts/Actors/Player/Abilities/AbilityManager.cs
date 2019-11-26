@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class AbilityManager : MonoBehaviour
 {
+    private AbilityIndicator abilityIndicator;
+
     [Header("Health")]
     [SerializeField] private int healthRegeneration;
     [SerializeField] private float regenerationInterval;
@@ -68,6 +70,7 @@ public class AbilityManager : MonoBehaviour
     
     private void Start()
     {
+        abilityIndicator = GetComponent<AbilityIndicator>();
         fireballTimer = 0.0f;
         geyserTimer = 0.0f;
         windBladeTimer = 0.0f;
@@ -143,11 +146,11 @@ public class AbilityManager : MonoBehaviour
         if (hasWater && geyserTimer <= 0f)
         {
             Player.Instance.Animator.SetBool("InCombat", true);
-            indicatorProjector.SetActive(true);
+            abilityIndicator.ShowIndicator();
         }
         else
         {
-            indicatorProjector.SetActive(false);
+            abilityIndicator.HideIndicator();
         }
     }
     public void CheckGeyser()
@@ -159,6 +162,7 @@ public class AbilityManager : MonoBehaviour
          */
         if (hasWater && geyserTimer <= 0f)
         {
+            /*
             RaycastHit hit;
             Debug.DrawRay(indicatorProjector.transform.position, indicatorProjector.transform.forward);
             if (Physics.Raycast(indicatorProjector.transform.position, indicatorProjector.transform.forward, out hit, geyserRange, layerMask))
@@ -172,6 +176,9 @@ public class AbilityManager : MonoBehaviour
                 geyserSpawnLocation = hit.point;
 
             }
+            */
+
+            geyserSpawnLocation = GetComponent<AbilityIndicator>().GetIndicatorPoint();
 
             print("in cast");
             geyserTimer = geyserCooldown;
