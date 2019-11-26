@@ -245,16 +245,20 @@ public class MovementInput : MonoBehaviour
 
         forward.Normalize();
         right.Normalize();
+
+        //transform.rotation = Quaternion.LookRotation(forward, Vector3.zero);
+
         
-        if (animator.GetBool("InCombat"))
-        {
-            transform.rotation = Quaternion.LookRotation(forward, Vector3.zero);
-        }
-        else
+        if(animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint"))
         {
             desiredMoveDirection = forward * playerInput.y + right * playerInput.x;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), desiredRotationSpeed);
         }
+        else
+        {
+            transform.rotation = Quaternion.LookRotation(forward, Vector3.zero);
+        }
+        
     }
 
     /// <summary>

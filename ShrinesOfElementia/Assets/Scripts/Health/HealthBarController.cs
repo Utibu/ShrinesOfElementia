@@ -60,7 +60,6 @@ public class HealthBarController : MonoBehaviour
         }
         else
         {
-            print(currentHealth);
             healthImage.fillAmount = CurrentHealth / 100f;
         }
     }
