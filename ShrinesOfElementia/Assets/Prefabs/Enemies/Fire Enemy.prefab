@@ -15026,7 +15026,7 @@ GameObject:
   - component: {fileID: 844825524}
   - component: {fileID: 6036624984709815187}
   - component: {fileID: 2630556935375015997}
-  - component: {fileID: 6319811729987239063}
+  - component: {fileID: 3697703934756902698}
   m_Layer: 8
   m_Name: Fire Enemy
   m_TagString: Enemy
@@ -15082,7 +15082,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -15112,6 +15112,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ac69904588d146e4c8210fe95167c292, type: 2}
   - {fileID: 11400000, guid: 9abe6c50ac334804a9dc4c539c7b4b46, type: 2}
   - {fileID: 11400000, guid: 462d7c66ae9b6b348820e794bc10ff92, type: 2}
+  - {fileID: 11400000, guid: d97153e33f7e52f4fbfaa6f523e16f90, type: 2}
   currentState: {fileID: 0}
   lastState: {fileID: 0}
   patrolPoints:
@@ -15311,7 +15312,7 @@ MonoBehaviour:
   experienceAmount: 0
   castRange: 0
   GoBack: 0
---- !u!114 &6319811729987239063
+--- !u!114 &3697703934756902698
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15320,10 +15321,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8477197259440531354}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00b34fd252671274294f2f447fefd2bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a90d3bcf719bb04ba10dca1dd4d01b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReviveTime: 10
+  elementalAdvantageDamageBonus: 10
 --- !u!1 &8837430643871623739
 GameObject:
   m_ObjectHideFlags: 0
@@ -15491,6 +15492,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662297150879508740, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662297150879508740, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662297150879508740, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 148211077782718411, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}

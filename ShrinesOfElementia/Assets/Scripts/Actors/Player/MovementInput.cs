@@ -11,23 +11,12 @@ public class MovementInput : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     // Components
     private Player player;
     private Animator animator;
     private CameraReference camera;
     private CharacterController controller;
+    
 
     // Variables
     private Vector2 playerInput;
@@ -36,7 +25,7 @@ public class MovementInput : MonoBehaviour
     private bool faceCameraDirection;
     public bool FaceCameraDirection { set { faceCameraDirection = value; } }
     
-    private float speed;
+    private float animationSpeed;
     private float allowPlayerRotation;
     
     private float dodgeTimer = 0.0f;
@@ -47,6 +36,7 @@ public class MovementInput : MonoBehaviour
     float velocityOnImpact = 0f;
 
     private bool isStaggered = false;
+    [SerializeField] private GameObject timerObject;
 
     
 
@@ -278,11 +268,11 @@ public class MovementInput : MonoBehaviour
         animator.SetFloat("InputX", playerInput.x, animationDamping, Time.deltaTime);
         animator.SetFloat("InputZ", playerInput.y, animationDamping, Time.deltaTime);
        
-        speed = new Vector2(playerInput.x, playerInput.y).sqrMagnitude;
+        animationSpeed = new Vector2(playerInput.x, playerInput.y).sqrMagnitude;
 
-        animator.SetFloat("InputMagnitude", speed, animationDamping, Time.deltaTime);
+        animator.SetFloat("InputMagnitude", animationSpeed, animationDamping, Time.deltaTime);
         
-        if(speed > allowPlayerRotation || animator.GetBool("InCombat"))
+        if(animationSpeed > allowPlayerRotation || animator.GetBool("InCombat"))
         {
             PlayerRotation();
         }
@@ -387,9 +377,26 @@ public class MovementInput : MonoBehaviour
     //slow down when hit, called frpm dmageEventListener
     public void SlowDown()
     {
-        //movementSpeed *= 0.7f;
-        //movementSpeed = defaultSpeed;
-        isStaggered = true;
+        if (!isStaggered)
+        {
+            Debug.Log("PLAYER IS STAGGERED");
+            player.Animator.SetTrigger("OnStagger");
+            isStaggered = true;
+            TimerManager.Current.SetNewTimer(gameObject, 0.9f, Recover);
+            /*
+            //initialize timer prefab and set its variables. 
+            GameObject timer = Instantiate(timerObject, player.transform);
+            timer.GetComponent<Timer>().SetVariables(gameObject, 0.9f, Recover); // could be done with = new Timer(...) ?
+            */
+        }
+        
+        
+    }
+
+    public void Recover()
+    {
+        isStaggered = false;
+        Debug.Log("PLAYER RECOVERED FROM STAGGER");
     }
 
     //Code from: https://gamedev.stackexchange.com/questions/125945/camera-relative-movement-is-pushing-into-off-the-ground-instead-of-parallel/125954#125954?newreg=bdca6bbf7889474cbb8e7eabbfd2f130

@@ -26,7 +26,16 @@ public class FireSensitive : ElementalWeakness
 
     public void OnDestroy()
     {
-        EventManager.Current.UnregisterListener<FireAbilityEvent>(ReactToFire);
+        try
+        {
+
+            EventManager.Current.UnregisterListener<FireAbilityEvent>(ReactToFire);
+        }
+        catch (System.NullReferenceException exeption)
+        {
+            Debug.Log("Null reference caught: " + exeption.StackTrace);
+        }
+        
     }
 
 }

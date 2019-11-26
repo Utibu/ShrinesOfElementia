@@ -27,14 +27,10 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         Debug.Log("Entering attack state.");
         cooldown = 0;
         Debug.Log("cooldown: " + cooldown);
-        //owner.Agent.SetDestination(owner.transform.position);
         owner.Agent.isStopped = true;
     }
 
-    private void testTimer()
-    {
-        Debug.Log("TIMER WORKS");
-    }
+    
 
     public override void HandleUpdate()
     {
@@ -50,7 +46,7 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         {
            
             Attack();
-            Timer timer = new Timer(3, testTimer);
+            
             
         }
         /*

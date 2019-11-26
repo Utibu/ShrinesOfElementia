@@ -5,21 +5,13 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    private float time;
-    private float countdown = 0f;
+    private GameObject owner;
+    private float time = 100f;
+    private float countdown = 100f; // if 0, the destroy in update will happen before SetVariables(). no bueno 
     private System.Action functionToCall;
 
-    public Timer(float duration, System.Action functionToCall)
-    {
-        this.time = duration;
-        this.functionToCall = functionToCall;
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -27,8 +19,22 @@ public class Timer : MonoBehaviour
         countdown -= Time.deltaTime;
         if(countdown < 0)
         {
-            functionToCall();
+            if(owner != null)
+            {
+                Debug.Log("CALLING FROM TIMER");
+                functionToCall();
+            }
             Destroy(this.gameObject);
         }
+    }
+
+    //initialize timer duration and action. Wanted to do this with a constructor of course but seems to not go well with instantiate(). 
+    public void SetVariables(GameObject owner, float duration, System.Action functionToCall)
+    {
+        this.owner = owner;
+        this.time = duration;
+        this.functionToCall = functionToCall;
+
+        countdown = time;
     }
 }

@@ -15,19 +15,43 @@ public class AbilityIndicator : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKey(KeyCode.T))
+        if (indicator != null)
         {
-            ShowIndicator();
+            //for testing, remove when not needed anymore
+            if (Input.GetKey(KeyCode.T))
+            {
+                ShowIndicator();
+            }
+            else
+            {
+                HideIndicator();
+            }
         }
     }
 
     private void ShowIndicator()
     {
+        indicator.SetActive(true);
         RaycastHit hit;
         if (Physics.Raycast(CameraReference.Instance.transform.position, CameraReference.Instance.transform.forward, out hit, indicatorRange, layerMask))
         {
-            GameObject indicatorObject = Instantiate(indicator, hit.point, Quaternion.Euler(hit.point));
-            indicatorObject.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
+            Quaternion rayRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+            if(rayRotation.eulerAngles.x < 30f || rayRotation.eulerAngles.x > -30f || rayRotation.eulerAngles.z < 30f || rayRotation.eulerAngles.z > -30f)
+            {
+                indicator.transform.position = new Vector3(hit.point.x, hit.point.y + 0.01f, hit.point.z);
+                indicator.transform.rotation = rayRotation;
+                print(rayRotation.eulerAngles);
+            }
+            else
+            {
+                print("angle too steep");
+            }
         }
     }
+
+    private void HideIndicator()
+    {
+        indicator.SetActive(false);
+    }
 }
+ 

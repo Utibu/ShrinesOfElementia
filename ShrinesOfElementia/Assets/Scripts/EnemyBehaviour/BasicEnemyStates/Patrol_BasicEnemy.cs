@@ -8,7 +8,6 @@ public class Patrol_BasicEnemy : BasicEnemyBaseState
 {
     
     private int currentTargetIndex;
-    private float patrolSpeed = 2.0f;
     private float distanceToPatrolPoint;
     
 
@@ -21,11 +20,12 @@ public class Patrol_BasicEnemy : BasicEnemyBaseState
     {
         base.Start(); //for later
         currentTargetIndex = 0;
+        owner.Agent.speed = speed;
     }
     public override void Enter()
     {
         base.Enter();
-        owner.Agent.speed = patrolSpeed;
+        owner.Agent.speed = speed;
         owner.Agent.SetDestination(owner.PatrolPoints[currentTargetIndex].transform.position);
     }
 
