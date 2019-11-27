@@ -125,7 +125,18 @@ public class EnemySM : StateMachine
 
     public void Stun(EarthAbilityEvent ev)
     {
-        Transition<Stun_EnemyState>();
+        try // tror det är fixat men bara för att vara säker
+        {
+            if (ev.Target.GetInstanceID().Equals(gameObject.GetInstanceID()))
+            {
+                Transition<Stun_EnemyState>();
+            }
+        }
+        catch (System.NullReferenceException)
+        {
+
+        }
+        
     }
 
     public void MoveAway()

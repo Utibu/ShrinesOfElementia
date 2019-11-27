@@ -37,8 +37,6 @@ public class Cast_EnemyState : BasicEnemyBaseState
     public override void HandleUpdate()
     {
         base.HandleUpdate();
-        owner.transform.LookAt(owner.Player.transform);
-        owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
 
         //tick down spell channel
         countdown -= Time.deltaTime;
@@ -46,9 +44,7 @@ public class Cast_EnemyState : BasicEnemyBaseState
         //spellcast:
         if (countdown <= 0)
         {
-            //get vector to use as aim when casting, is needed.
-            Vector3 aim = owner.Player.transform.position - owner.transform.position;
-            owner.GetComponent<EnemySpellManager>().SetAim(aim);
+            
 
             owner.Animator.SetTrigger("ShouldCast");
             countdown = castTime;
@@ -62,6 +58,15 @@ public class Cast_EnemyState : BasicEnemyBaseState
             
             //Evade player when too close to cast
             owner.Transition<Flee_EnemyState>();
+        }
+        else if (countdown > castTime/10)
+        {
+            //when elite is about to cast it can no longer move and look for player, therefore only update rotation while there is some time left.
+            owner.transform.LookAt(owner.Player.transform);
+            owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
+            //get vector to use as aim when casting, is needed.
+            Vector3 aim = owner.Player.transform.position - owner.transform.position;
+            owner.GetComponent<EnemySpellManager>().SetAim(aim);
         }
     }
 

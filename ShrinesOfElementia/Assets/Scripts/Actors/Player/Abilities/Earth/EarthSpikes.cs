@@ -9,41 +9,44 @@ public class EarthSpikes : Ability
 {
     private ParticleSystem particles;
     private BoxCollider boxCollider;
+    private ArrayList victims;
 
     private void Start()
     {
         particles = GetComponent<ParticleSystem>();
         boxCollider = GetComponent<BoxCollider>();
+        victims = new ArrayList();
+        particles.GetComponent<ParticleSystem>().Play();
+        TimerManager.Current.SetNewTimer(gameObject, 2f, RemoveSpikes);
     }
 
-    protected override void CastAbility()
+    protected override void CastAbility() // behöver optimering, helst så detta kan avändas från enemy också. 
     {
         base.CastAbility();
         Quaternion spikesRotation = Quaternion.Euler(-90f, gameObject.transform.rotation.eulerAngles.y, 0f);
         GameObject earthSpikes = Instantiate(AbilityPrefab, caster.transform.position + caster.transform.forward * 2f, spikesRotation);
         earthSpikes.GetComponent<EarthSpikes>().Caster = gameObject;
         print(earthSpikes.GetComponent<EarthSpikes>().Caster);
-        earthSpikes.GetComponent<ParticleSystem>().Play();
+        //earthSpikes.GetComponent<ParticleSystem>().Play();
+        //TimerManager.Current.SetNewTimer(gameObject, 2f, RemoveSpikes);
+    }
+
+    public void RemoveSpikes()
+    {
+        Destroy(gameObject);
     }
 
     private void Update()
     {
-        /*
-        if (particles.IsAlive())
-        {
-            boxCollider.enabled = true;
-        }
-        else
-        {
-            boxCollider.enabled = false;
-        }
-        */
+        
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) && other.gameObject.tag != Caster.tag)
+        victims.Add(other.gameObject);
+        if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) && other.gameObject.tag != Caster.tag && !victims.Contains(other.gameObject))
         {
+            
             //print(caster.name);
             //print(other.gameObject.name);
             //print("trigger particle");

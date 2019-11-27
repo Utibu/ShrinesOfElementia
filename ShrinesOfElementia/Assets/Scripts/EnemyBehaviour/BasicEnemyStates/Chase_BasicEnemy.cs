@@ -40,7 +40,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
         if(timer > 2.5f)
         {
             timer = 0f;
-            owner.Agent.speed *= Random.Range(0.6f, 1.4f);
+            owner.Agent.speed *= Random.Range(0.7f, 1.4f);
         }
 
         //do the chasing
@@ -55,6 +55,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
         else if (distanceToPlayer <= attackRange)
         {
             owner.Agent.speed = 0.2f;
+            owner.Agent.SetDestination(owner.transform.position);
             owner.Transition<Attack_BasicEnemy>();
         }
         else if(owner.Elite && owner.Disabled == false && distanceToPlayer <= castRange)

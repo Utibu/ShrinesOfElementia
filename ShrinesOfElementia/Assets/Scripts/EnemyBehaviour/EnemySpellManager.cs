@@ -86,7 +86,8 @@ public class EnemySpellManager : MonoBehaviour
     {
         Debug.Log("earth cast");
         Quaternion spikesRotation = Quaternion.Euler(-90, transform.rotation.eulerAngles.y, 0);
-        GameObject earthSpikes = Instantiate(spellPrefab, transform.position + transform.forward * 1f, spikesRotation);
+        Vector3 originPosition = transform.position + (transform.forward.normalized * 0.5f) + (transform.up * -1f);
+        GameObject earthSpikes = Instantiate(spellPrefab, originPosition, spikesRotation);
         earthSpikes.GetComponent<EarthSpikes>().Caster = gameObject;
         earthSpikes.GetComponent<ParticleSystem>().Play();
     }

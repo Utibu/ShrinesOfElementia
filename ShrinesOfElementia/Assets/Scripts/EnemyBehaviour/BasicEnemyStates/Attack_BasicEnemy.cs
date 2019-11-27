@@ -42,21 +42,10 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         Vector3 direction = owner.transform.position - owner.Player.transform.position;
         float angle = Vector3.Angle(direction, owner.Player.transform.forward);
 
-        if (cooldown <= 0 && distanceToPlayer <= attackRange)
+        if (cooldown <= 0 && distanceToPlayer <= attackRange * 1.2f) // *1.2f bc enemies otherwise have a hard time hitting while "running"
         {
-           
             Attack();
-            
-            
         }
-        /*
-        else if (cooldown <= 0 && distanceToPlayer > attackRange) // too far away to strike, close in to target instead
-        {
-            owner.transform.LookAt(owner.Player.transform);
-            owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
-            owner.transform.position += owner.transform.forward * 2.5f * Time.deltaTime;
-        }
-        */
         else if (owner.GetComponent<EnemyValues>().GoBack == true && distanceToPlayer < attackRange * 1.5f)
         {
             owner.transform.position += owner.transform.forward * -2.9f * Time.deltaTime;
