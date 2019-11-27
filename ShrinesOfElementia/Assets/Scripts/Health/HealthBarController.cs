@@ -60,7 +60,7 @@ public class HealthBarController : MonoBehaviour
         }
         else
         {
-            healthImage.fillAmount = CurrentHealth / 100f;
+            healthImage.fillAmount = CurrentHealth / (float)MaxHealth;
         }
     }
 }
