@@ -387,6 +387,7 @@ public class MovementInput : MonoBehaviour
             player.Animator.SetTrigger("OnStagger");
             isStaggered = true;
             TimerManager.Current.SetNewTimer(gameObject, 0.9f, Recover);
+            animator.speed -= 0.4f;
             /*
             //initialize timer prefab and set its variables. 
             GameObject timer = Instantiate(timerObject, player.transform);
@@ -400,6 +401,7 @@ public class MovementInput : MonoBehaviour
     public void Recover()
     {
         isStaggered = false;
+        animator.speed += 0.4f;
         Debug.Log("PLAYER RECOVERED FROM STAGGER");
     }
 
