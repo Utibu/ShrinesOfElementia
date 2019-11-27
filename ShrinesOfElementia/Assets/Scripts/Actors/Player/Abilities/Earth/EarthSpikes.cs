@@ -45,8 +45,8 @@ public class EarthSpikes : Ability
     
     private void OnTriggerEnter(Collider other)
     {
-        victims.Add(other.gameObject);
-        if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) && other.gameObject.tag != Caster.tag && !victims.Contains(other.gameObject))
+        
+        if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) && other.gameObject.tag != Caster.tag && !victims.Contains(other.gameObject)) 
         {
             
             //print(caster.name);
@@ -54,6 +54,7 @@ public class EarthSpikes : Ability
             //print("trigger particle");
             EventManager.Current.FireEvent(new DamageEvent("damage dealt", damage, gameObject, other.gameObject));
             EventManager.Current.FireEvent(new EarthAbilityEvent("earthAbility activated", other.gameObject, gameObject.transform.position, boxCollider.size.magnitude));
+            victims.Add(other.gameObject);
         }
     }
     /*

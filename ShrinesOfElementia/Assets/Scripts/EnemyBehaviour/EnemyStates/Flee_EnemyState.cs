@@ -19,7 +19,7 @@ public class Flee_EnemyState : BasicEnemyBaseState
     public override void Enter()
     {
         base.Enter();
-        owner.Agent.speed *= 1.7f;
+        owner.Agent.speed *= 2f;
         owner.Agent.SetDestination(owner.Player.transform.right * -1.5f + owner.Player.transform.forward * 3f);
         countdown = fleeTimer;
     }

@@ -44,8 +44,6 @@ public class Cast_EnemyState : BasicEnemyBaseState
         //spellcast:
         if (countdown <= 0)
         {
-            
-
             owner.Animator.SetTrigger("ShouldCast");
             countdown = castTime;
         }
@@ -53,7 +51,7 @@ public class Cast_EnemyState : BasicEnemyBaseState
         {
             owner.Transition<Chase_BasicEnemy>();
         }
-        else if(distanceToPlayer <= 1.5f)
+        else if(distanceToPlayer <= 2f)
         {
             
             //Evade player when too close to cast
