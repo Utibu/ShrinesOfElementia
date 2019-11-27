@@ -605,6 +605,7 @@ MonoBehaviour:
   runSpeed: 8
   animationDamping: 0.1
   staggerSpeed: 2
+  staggerAnimationSlow: 0.4
   newMovement: 1
   gravity: 20
   jumpSpeed: 7
@@ -2321,7 +2322,7 @@ GameObject:
   - component: {fileID: 6888489262155708162}
   m_Layer: 0
   m_Name: NewPlayer+Camera
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3043,7 +3044,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860557101473406979}
-  m_LocalRotation: {x: 0.08715841, y: 0.00000003387523, z: -0.0000000029637899, w: 0.9961945}
+  m_LocalRotation: {x: 0.08715841, y: 0.00000003376209, z: -0.000000002953891, w: 0.9961945}
   m_LocalPosition: {x: 134.87, y: 29.44, z: 210.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3483,7 +3484,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860557101802413803}
-  m_LocalRotation: {x: 0.034838013, y: 0.002747948, z: -0.07858578, w: 0.9962947}
+  m_LocalRotation: {x: 0.034838, y: 0.00274796, z: -0.0785856, w: 0.9962947}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3593,7 +3594,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860557101912777925}
-  m_LocalRotation: {x: -0.000000014901159, y: 0.0000000045323367, z: -0.011140019,
+  m_LocalRotation: {x: -0.000000014901159, y: -0.000000044690974, z: -0.011140011,
     w: 0.99993795}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -4200,7 +4201,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860557102441031530}
-  m_LocalRotation: {x: -0.034606922, y: -0.0002858422, z: -0.00825314, w: 0.99936694}
+  m_LocalRotation: {x: -0.034606926, y: -0.00028581303, z: -0.008253139, w: 0.9993669}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6001,6 +6002,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: New_main_character
+      objectReference: {fileID: 0}
+    - target: {fileID: 247519071762001826, guid: f9377076756158442b6fedd39d019759,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3833694199926283697, guid: f9377076756158442b6fedd39d019759,
         type: 3}
