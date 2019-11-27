@@ -2,6 +2,7 @@
 // Co-Author: Joakim Ljung, Sofia Kauko
 
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// Handles the fireball prefab
@@ -12,6 +13,9 @@ public class Fireball : Ability
     [SerializeField] private int directHitDamage;
     [SerializeField] private int aoeDamage;
     [SerializeField] private float aoeRadius, maxRange;
+    private ArrayList affected;
+    private GameObject patientZero;
+
 
     private Vector3 spawnPosition, currentPosition;
 
@@ -21,6 +25,7 @@ public class Fireball : Ability
     {
         spawnPosition = gameObject.transform.position;
         currentPosition = spawnPosition;
+        affected = new ArrayList();
 
         hasDealtDamage = false;
     }
@@ -62,13 +67,19 @@ public class Fireball : Ability
 
     private void AreaOfEffect()
     {
+        
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, aoeRadius);
         int i = 0;
         while (i < hitColliders.Length)
         {
             if ((hitColliders[i].gameObject.CompareTag("Enemy") || hitColliders[i].gameObject.CompareTag("Player")) && hitColliders[i].gameObject.CompareTag(caster.tag) == false) //.tag != caster.tag)
             {
-                DealDamage(hitColliders[i].gameObject, aoeDamage);
+                // already affested enemmies or the already hit onw should not be damaged.
+                if (!affected.Contains(hitColliders[i].gameObject) && !hitColliders[i].gameObject.Equals(patientZero)) 
+                {
+                    DealDamage(hitColliders[i].gameObject, aoeDamage);
+                    affected.Add(hitColliders[i].gameObject);
+                }
             }
             i++;
         }
@@ -76,6 +87,7 @@ public class Fireball : Ability
 
     private void DealDamage(GameObject damagedGameObject, int damage)
     {
+        patientZero = damagedGameObject;
         DamageEvent damageEvent = new DamageEvent(damagedGameObject + " has dealt " + damage + " damage to " + damagedGameObject, damage, gameObject, damagedGameObject);
         EventManager.Current.FireEvent(damageEvent);
 
