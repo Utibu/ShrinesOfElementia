@@ -57,7 +57,7 @@ public class Cast_EnemyState : BasicEnemyBaseState
             //Evade player when too close to cast
             owner.Transition<Flee_EnemyState>();
         }
-        else if (countdown > castTime/10)
+        else if (countdown > castTime/9)
         {
             //when elite is about to cast it can no longer move and look for player, therefore only update rotation while there is some time left.
             owner.transform.LookAt(owner.Player.transform);
