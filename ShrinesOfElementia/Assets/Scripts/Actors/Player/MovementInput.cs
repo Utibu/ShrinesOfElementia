@@ -45,6 +45,7 @@ public class MovementInput : MonoBehaviour
     [SerializeField] private float runSpeed;
     [SerializeField] private float animationDamping;
     [SerializeField] private float staggerSpeed;
+    [SerializeField] private float staggerAnimationSlow = 0.4f;
     [SerializeField] private bool newMovement;
     private float movementSpeed;
 
@@ -387,7 +388,7 @@ public class MovementInput : MonoBehaviour
             player.Animator.SetTrigger("OnStagger");
             isStaggered = true;
             TimerManager.Current.SetNewTimer(gameObject, 0.9f, Recover);
-            animator.speed -= 0.4f;
+            animator.speed -= staggerAnimationSlow;
             /*
             //initialize timer prefab and set its variables. 
             GameObject timer = Instantiate(timerObject, player.transform);
@@ -401,7 +402,7 @@ public class MovementInput : MonoBehaviour
     public void Recover()
     {
         isStaggered = false;
-        animator.speed += 0.4f;
+        animator.speed += staggerAnimationSlow;
         Debug.Log("PLAYER RECOVERED FROM STAGGER");
     }
 

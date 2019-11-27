@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class EarthSpikes : Ability
 {
+    [SerializeField] private int damage = 30;
+
     private ParticleSystem particles;
     private BoxCollider boxCollider;
     private ArrayList victims;
@@ -50,7 +52,7 @@ public class EarthSpikes : Ability
             //print(caster.name);
             //print(other.gameObject.name);
             //print("trigger particle");
-            EventManager.Current.FireEvent(new DamageEvent("damage dealt", 20, gameObject, other.gameObject));
+            EventManager.Current.FireEvent(new DamageEvent("damage dealt", damage, gameObject, other.gameObject));
             EventManager.Current.FireEvent(new EarthAbilityEvent("earthAbility activated", other.gameObject, gameObject.transform.position, boxCollider.size.magnitude));
         }
     }
