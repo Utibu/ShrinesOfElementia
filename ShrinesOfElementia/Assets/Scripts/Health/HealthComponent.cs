@@ -31,6 +31,7 @@ public class HealthComponent : MonoBehaviour
         get => currentHealth;
         set
         {
+            print(value);
             // Adding health
 
             if (value > MaxHealth)
@@ -84,7 +85,8 @@ public class HealthComponent : MonoBehaviour
         }
         else if (gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("DeathScreen");
+            EventManager.Current.FireEvent(new PlayerDeathEvent("Player died", gameObject));
+            //SceneManager.LoadScene("DeathScreen");
         }
     }
 }
