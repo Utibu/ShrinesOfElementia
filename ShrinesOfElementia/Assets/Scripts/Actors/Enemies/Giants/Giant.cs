@@ -16,6 +16,8 @@ public class Giant : StateMachine
     public bool Phase2Active { get; set; }
     public bool Phase3Active { get; set; }
 
+
+    // Move all attacks to a manager of some sorts
     [Header("Basic Attack")]
     [SerializeField] private int basicAttackDamage;
     public float basicAttackRange;
@@ -24,13 +26,6 @@ public class Giant : StateMachine
     [SerializeField] private int sweepDamage;
     public float sweepRange;
     [SerializeField] private float sweepCooldown;
-
-
-    [Header("Fireball")]
-    public float FireballMinRange;
-    public float FireballCooldown;
-    [HideInInspector]public bool FireballAvaliable;
-
 
     #region SweepCooldownVariables
     private float sweepTimer;
@@ -108,8 +103,6 @@ public class Giant : StateMachine
         Animator = GetComponent<Animator>();
         HealthComponent = GetComponent<HealthComponent>();
 
-        FireballAvaliable = true;
-
         sweepTimer = sweepCooldown;
         SweepAvailable = false;
 
@@ -135,6 +128,7 @@ public class Giant : StateMachine
         base.Update();
     }
 
+    // Move this to the manager mentioned above
     protected void CountDownCooldowns()
     {
         // Sweep
@@ -168,6 +162,7 @@ public class Giant : StateMachine
         }
     }
 
+    // This doesn't need to be here, since I've made a static reference to the giant
     private void OnBossAreaEnter()
     {
         print("BossAreaEntered");
@@ -180,11 +175,13 @@ public class Giant : StateMachine
         BossEvents.Instance.OnBossFightAreaTriggerEnter -= OnBossAreaEnter;
     }
 
+    // Animation Manager?
     private void StopAttacking()
     {
         Animator.SetBool("IsAttacking", false);
     }
 
+    // Not sure what to do with this. Maybe break out and create a reference instead.
     public float DistanceToPlayer()
     {
         return Vector3.Distance(gameObject.transform.position, Player.Instance.transform.position);

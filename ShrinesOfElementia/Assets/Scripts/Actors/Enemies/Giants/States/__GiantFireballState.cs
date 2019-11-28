@@ -1,14 +1,12 @@
 ﻿//Author: Sofia Kauko
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "Giant States/Attack States/FireballState")]
+//[CreateAssetMenu(menuName = "Giant States/Attack States/FireballState")]
 public class GiantFireballState : GiantCombatState
 {
 
-    [SerializeField]private GameObject fireballPrefab;
+    [SerializeField] private GameObject fireballPrefab;
     private float fireballSpeed = 9f;
     public override void Enter()
     {
@@ -19,8 +17,8 @@ public class GiantFireballState : GiantCombatState
         owner.transform.LookAt(Player.Instance.transform);
 
         //set avaliability to false and a timer that resets avaliability after 10 seconds.
-        owner.FireballAvaliable = false;
-        TimerManager.Current.SetNewTimer(owner.gameObject, owner.FireballCooldown, ResetFireball);
+        //owner.FireballAvaliable = false;
+        //TimerManager.Current.SetNewTimer(owner.gameObject, owner.FireballCooldown, ResetFireball);
         base.Enter();
     }
 
@@ -35,7 +33,7 @@ public class GiantFireballState : GiantCombatState
 
         Vector3 fireballSpawnLocation = owner.transform.position + Vector3.up.normalized * 1.5f + owner.gameObject.transform.forward * 2f;
         Vector3 direction = owner.transform.forward * fireballSpeed;
-        
+
         GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation, owner.transform.rotation);
         fireball.GetComponent<Fireball>().Caster = owner.gameObject;
         fireball.GetComponent<Rigidbody>().AddForce(direction, ForceMode.VelocityChange);
@@ -44,7 +42,7 @@ public class GiantFireballState : GiantCombatState
 
     public void ResetFireball()
     {
-        owner.FireballAvaliable = true;
+        //owner.FireballAvaliable = true;
     }
 
     public override void Leave()

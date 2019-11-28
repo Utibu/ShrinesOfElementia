@@ -24,12 +24,6 @@ public class GiantBattleState : GiantBaseState
             owner.Transition<GiantStompState>();
         }
 
-        //Fireball
-        else if (owner.FireballAvaliable && owner.FireballMinRange < owner.DistanceToPlayer())
-        {
-            owner.Transition<GiantFireballState>();
-        }
-
         // Sweep
         else if (owner.SweepAvailable && owner.sweepRange >= owner.DistanceToPlayer())
         {

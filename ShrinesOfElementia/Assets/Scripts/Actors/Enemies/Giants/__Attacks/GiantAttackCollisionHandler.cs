@@ -6,14 +6,8 @@ using UnityEngine;
 public class GiantAttackCollisionHandler : MonoBehaviour
 {
     [SerializeField] private int damage;
-    private Collider attackCollider;
     private bool playerHit;
     private Vector3 hitPoint;
-
-    private void Awake()
-    {
-        attackCollider = GetComponent<BoxCollider>();
-    }
 
     /*  Attack collision with collider (no trigger)
     private void OnCollisionEnter(Collision collision)
