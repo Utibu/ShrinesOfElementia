@@ -19,13 +19,13 @@ public class Giant : StateMachine
 
     // Move all attacks to a manager of some sorts
     [Header("Basic Attack")]
-    [SerializeField] private int basicAttackDamage;
-    public float basicAttackRange;
+    [SerializeField] protected int basicAttackDamage;
+    public float BasicAttackRange;
 
     [Header("Sweep")]
-    [SerializeField] private int sweepDamage;
-    public float sweepRange;
-    [SerializeField] private float sweepCooldown;
+    [SerializeField] protected int sweepDamage;
+    public float SweepRange;
+    [SerializeField] protected float sweepCooldown;
 
     #region SweepCooldownVariables
     private float sweepTimer;
@@ -49,8 +49,8 @@ public class Giant : StateMachine
 
     [Header("Stomp")]
     public int StompDamage;
-    public float stompRange;
-    [SerializeField] private float stompCooldown;
+    public float StompRange;
+    [SerializeField] protected float stompCooldown;
 
     #region StompCooldownVariables
     private float stompTimer;
@@ -72,8 +72,8 @@ public class Giant : StateMachine
 
     [Header("Leap")]
     public int LeapDamage;
-    public float leapRange;
-    [SerializeField] private float leapCooldown;
+    public float LeapRange;
+    [SerializeField] protected float leapCooldown;
 
     #region LeapCooldownVariables
     private float leapTimer;
@@ -103,13 +103,8 @@ public class Giant : StateMachine
         Animator = GetComponent<Animator>();
         HealthComponent = GetComponent<HealthComponent>();
 
-        sweepTimer = sweepCooldown;
         SweepAvailable = false;
-
-        stompTimer = stompCooldown;
         StompAvailable = false;
-
-        leapTimer = leapCooldown;
         LeapAvailable = false;
 
         base.Awake();
@@ -129,7 +124,7 @@ public class Giant : StateMachine
     }
 
     // Move this to the manager mentioned above
-    protected void CountDownCooldowns()
+    protected virtual void CountDownCooldowns()
     {
         // Sweep
         if (sweepAvailable == false && sweepTimer <= 0f)
@@ -163,26 +158,26 @@ public class Giant : StateMachine
     }
 
     // This doesn't need to be here, since I've made a static reference to the giant
-    private void OnBossAreaEnter()
+    protected virtual void OnBossAreaEnter()
     {
         print("BossAreaEntered");
         Transition<GiantPhaseOneState>();
         BossEvents.Instance.OnBossFightAreaTriggerEnter -= OnBossAreaEnter;
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         BossEvents.Instance.OnBossFightAreaTriggerEnter -= OnBossAreaEnter;
     }
 
     // Animation Manager?
-    private void StopAttacking()
+    protected virtual void StopAttacking()
     {
         Animator.SetBool("IsAttacking", false);
     }
 
     // Not sure what to do with this. Maybe break out and create a reference instead.
-    public float DistanceToPlayer()
+    public virtual float DistanceToPlayer()
     {
         return Vector3.Distance(gameObject.transform.position, Player.Instance.transform.position);
     }

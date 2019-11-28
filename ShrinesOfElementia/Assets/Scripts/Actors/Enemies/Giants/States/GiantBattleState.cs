@@ -1,13 +1,10 @@
 ﻿// Author: Bilal El Medkouri
 
-using UnityEngine;
-
-[CreateAssetMenu(menuName = "Giant States/BattleState")]
 public class GiantBattleState : GiantBaseState
 {
     public override void HandleUpdate()
     {
-        if (owner.Phase3Active && owner.LeapAvailable && owner.leapRange >= owner.DistanceToPlayer())
+        if (owner.Phase3Active && owner.LeapAvailable && owner.LeapRange >= owner.DistanceToPlayer())
         {
             owner.LeapAvailable = false;
             owner.Transition<GiantLeapState>();
@@ -18,21 +15,21 @@ public class GiantBattleState : GiantBaseState
 
 
         // Stomp
-        else if (owner.Phase2Active && owner.StompAvailable && owner.stompRange >= owner.DistanceToPlayer())
+        else if (owner.Phase2Active && owner.StompAvailable && owner.StompRange >= owner.DistanceToPlayer())
         {
             owner.StompAvailable = false;
             owner.Transition<GiantStompState>();
         }
 
         // Sweep
-        else if (owner.SweepAvailable && owner.sweepRange >= owner.DistanceToPlayer())
+        else if (owner.SweepAvailable && owner.SweepRange >= owner.DistanceToPlayer())
         {
             owner.SweepAvailable = false;
             owner.Transition<GiantSweepState>();
         }
 
         // Basic Attack
-        else if (owner.basicAttackRange >= owner.DistanceToPlayer())
+        else if (owner.BasicAttackRange >= owner.DistanceToPlayer())
         {
             owner.Transition<GiantAttackState>();
         }

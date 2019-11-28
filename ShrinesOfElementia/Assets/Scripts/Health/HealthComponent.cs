@@ -1,8 +1,6 @@
 ﻿// Author: Bilal El Medkouri
-// Co-Author: Joakim Ljung
+// Co-Authors: Joakim Ljung & Sofia Kauko
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -76,7 +74,7 @@ public class HealthComponent : MonoBehaviour
     private void Die()
     {
         // Death event (?) Ful lösning bara för nu:
-        if(gameObject.name == "Giant")
+        if (gameObject.name == "Giant")
         {
             Giant.Instance.Animator.SetTrigger("Die");
         }
