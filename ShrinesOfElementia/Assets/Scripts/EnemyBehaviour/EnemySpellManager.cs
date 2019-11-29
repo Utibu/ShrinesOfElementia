@@ -15,7 +15,7 @@ public class EnemySpellManager : MonoBehaviour
 
     //Earth
     //Wind
-    private float windBladeSpeed = 10f;
+    private float windBladeSpeed = 14f;
 
 
     private Dictionary<string, System.Action> spells = new Dictionary<string, System.Action>();
