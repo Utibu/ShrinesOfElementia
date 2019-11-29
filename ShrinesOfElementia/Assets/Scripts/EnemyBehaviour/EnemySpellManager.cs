@@ -30,8 +30,8 @@ public class EnemySpellManager : MonoBehaviour
     public float CastTime { get => castTime; set => castTime = value; }
     
 
-    [SerializeField] private float spellSpeedModifier;
-    public float SpellSpeedModifier { get => spellSpeedModifier; set => spellSpeedModifier = value; }
+    [SerializeField] private float spellDelayModifier;
+    public float SpellSpeedModifier { get => spellDelayModifier; set => spellDelayModifier = value; }
 
 
     // Start is called before the first frame update
@@ -51,7 +51,9 @@ public class EnemySpellManager : MonoBehaviour
 
     public void CastAbility()
     {
-        spells[elementType]();
+        //add indicator
+        System.Action SpellcastMethod = spells[elementType];
+        TimerManager.Current.SetNewTimer(gameObject, spellDelayModifier, SpellcastMethod);
     }
 
     public void SetAim(Vector3 aim)

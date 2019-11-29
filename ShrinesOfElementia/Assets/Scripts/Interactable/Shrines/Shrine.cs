@@ -13,6 +13,9 @@ public class Shrine : Interactable
     [SerializeField] private GameObject beacon;
     [SerializeField] private string firstUnlockableText;
     [SerializeField] private string secondUnlockableText;
+
+    [SerializeField] private float channelTime;
+    GameObject channelTimer;
     //[SerializeField] private RectTransform shrinePanel;
     private enum SHRINETYPES
     {
@@ -51,7 +54,21 @@ public class Shrine : Interactable
 
     protected override void OnTriggerStay(Collider other)
     {
-        base.OnTriggerStay(other);
+        if (other.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.E))
+        {
+            if(channelTimer == null)
+            {
+                Player.Instance.GetComponent<Animator>().SetTrigger(""); // Add some channel animation
+                channelTimer = TimerManager.Current.SetNewTimer(gameObject, channelTime, OnInteract);
+            }
+        }
+
+        else if (other.gameObject.tag == "Player" && Input.anyKeyDown && channelTimer != null)
+        {
+            Destroy(channelTimer);
+            channelTimer = null;
+        }        
+        
     }
 
     protected override void OnInteract()

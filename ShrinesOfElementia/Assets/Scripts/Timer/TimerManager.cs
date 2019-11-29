@@ -20,11 +20,12 @@ public class TimerManager : MonoBehaviour
     }
 
 
-    public void SetNewTimer(GameObject owner, float duration, System.Action action)
+    public GameObject SetNewTimer(GameObject owner, float duration, System.Action action)
     {
         //initialize timer prefab and set its variables. 
         GameObject timer = Instantiate(timerObject, gameObject.transform);
-        timer.GetComponent<Timer>().SetVariables(owner, duration, action); // could be done with = new Timer(...) ?
+        timer.GetComponent<Timer>().SetVariables(owner, duration, action);
+        return timer; 
     }
 
    

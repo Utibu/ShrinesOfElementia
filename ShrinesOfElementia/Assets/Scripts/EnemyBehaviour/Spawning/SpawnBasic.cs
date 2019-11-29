@@ -116,7 +116,6 @@ public class SpawnBasic : MonoBehaviour
         // whats the fookin problem here 
         //spawnlings.Remove(ev.Enemy);
 
-        Debug.Log("enemy removed from spawnling list.");
         if(ev.SpawnArea != null)
         {
             if (ev.SpawnArea.GetInstanceID().Equals(this.gameObject.GetInstanceID()))
@@ -127,6 +126,7 @@ public class SpawnBasic : MonoBehaviour
                 }
                 currentSpawnCount -= 1;
             }
+
         }
         
     }

@@ -31,7 +31,7 @@ public class HealthComponent : MonoBehaviour
         get => currentHealth;
         set
         {
-            print(value);
+            //print(value);
             // Adding health
 
             if (value > MaxHealth)

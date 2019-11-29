@@ -109,7 +109,10 @@ public class EnemySM : StateMachine
         {
             foreach(GameObject friend in SpawnArea.GetComponent<SpawnBasic>().Spawnlings)
             {
-                friend.GetComponent<EnemySM>().Transition<Chase_BasicEnemy>();
+                if (friend != null)
+                {
+                    friend.GetComponent<EnemySM>().Transition<Chase_BasicEnemy>();
+                }
             }
         }
     }
