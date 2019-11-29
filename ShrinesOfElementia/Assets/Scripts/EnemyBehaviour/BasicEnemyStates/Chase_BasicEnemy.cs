@@ -9,6 +9,8 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
 
     private Vector3 startPosition;
     private float chaseSpeed;
+    private float chaseStamina = 7f;
+    private float timeInChase;
 
     private float timer;
 
@@ -28,6 +30,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
         startPosition = owner.transform.position;
         //owner.transform.rot
         timer = 0f;
+        timeInChase = 0;
     }
 
 
@@ -35,7 +38,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
     public override void HandleUpdate()
     {
         base.HandleUpdate();
-
+        timeInChase += Time.deltaTime;
         timer += Time.deltaTime;
         if(timer > 2.5f)
         {
@@ -47,7 +50,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
         owner.Agent.SetDestination(Player.Instance.transform.position);
 
         //State transition checks:
-        if (distanceToPlayer > sightRange* 1.4)
+        if (distanceToPlayer > sightRange*3f || timeInChase > chaseStamina)
         {
             owner.Agent.SetDestination(startPosition); // walk back and idle
             owner.Transition<Idle_BasicEnemy>();

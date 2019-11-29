@@ -18,12 +18,16 @@ public class SpawnBasic : MonoBehaviour
     private int currentEliteSpawnCount;
     private float countdown;
 
-    private ArrayList spawnlings = new ArrayList();
+    //private ArrayList spawnlings = new ArrayList();
+
+    public ArrayList Spawnlings { get; private set; }
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+        Spawnlings = new ArrayList();
         //EventSystem.Current.RegisterListener<ShrineEvent>(increaseEnemyActivity);
         EventManager.Current.RegisterListener<EnemyDeathEvent>(OnEnemyDeath);
         currentSpawnCount = 0;
@@ -77,7 +81,7 @@ public class SpawnBasic : MonoBehaviour
         GameObject point2 = patrolPoints[Random.Range(0, patrolPoints.Length)];
         g.GetComponent<EnemySM>().SetPatrolPoints(point1, point2);
         g.GetComponent<EnemySM>().SetSpawnArea(this.gameObject);
-        spawnlings.Add(g);
+        Spawnlings.Add(g);
 
     }
 
@@ -94,7 +98,7 @@ public class SpawnBasic : MonoBehaviour
         GameObject point2 = patrolPoints[Random.Range(0, patrolPoints.Length)];
         g.GetComponent<EnemySM>().SetPatrolPoints(point1, point2);
         g.GetComponent<EnemySM>().SetSpawnArea(this.gameObject);
-        spawnlings.Add(g);
+        Spawnlings.Add(g);
 
     }
 

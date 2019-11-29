@@ -104,6 +104,14 @@ public class EnemySM : StateMachine
     public void EnemyAttacked() // healtComponent better placement? EnemyValues? 
     {
         Animator.SetTrigger("IsHurt");
+        Transition<Chase_BasicEnemy>();
+        if (Elite)
+        {
+            foreach(GameObject friend in SpawnArea.GetComponent<SpawnBasic>().Spawnlings)
+            {
+                friend.GetComponent<EnemySM>().Transition<Chase_BasicEnemy>();
+            }
+        }
     }
 
 
