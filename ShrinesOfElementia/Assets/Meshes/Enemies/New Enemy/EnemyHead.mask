@@ -8,4 +8,32 @@ AvatarMask:
   m_PrefabAsset: {fileID: 0}
   m_Name: EnemyHead
   m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-  m_Elements: []
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Enemy_Base:BasicEnemyLowpoly
+    m_Weight: 0
+  - m_Path: Enemy_Base:Root
+    m_Weight: 0
+  - m_Path: Enemy_Base:Root/Enemy_Base:Upper_Body
+    m_Weight: 0
+  - m_Path: Enemy_Base:Root/Enemy_Base:Upper_Body/Enemy_Base:Head
+    m_Weight: 1
+  - m_Path: Enemy_Base:Root/Enemy_Base:Upper_Body/Enemy_Base:Left_Arm
+    m_Weight: 0
+  - m_Path: Enemy_Base:Root/Enemy_Base:Upper_Body/Enemy_Base:Left_Arm/Enemy_Base:Left_Hand
+    m_Weight: 1
+  - m_Path: Enemy_Base:Root/Enemy_Base:Upper_Body/Enemy_Base:Lower_Body
+    m_Weight: 0
+  - m_Path: Enemy_Base:Root/Enemy_Base:Upper_Body/Enemy_Base:Right_Arm
+    m_Weight: 0
+  - m_Path: Enemy_Base:Root/Enemy_Base:Upper_Body/Enemy_Base:Right_Arm/Enemy_Base:Right_Hand
+    m_Weight: 1
+  - m_Path: Enemy_Base:Root/Enemy_Base:Upper_Body/Enemy_Base:Stones
+    m_Weight: 0
+  - m_Path: Enemy_Base:Root/Enemy_Base:Upper_Body/Enemy_Base:Stones/Enemy_Base:Left_Stone
+    m_Weight: 1
+  - m_Path: Enemy_Base:Root/Enemy_Base:Upper_Body/Enemy_Base:Stones/Enemy_Base:Lower_Stone
+    m_Weight: 1
+  - m_Path: Enemy_Base:Root/Enemy_Base:Upper_Body/Enemy_Base:Stones/Enemy_Base:Right_Stone
+    m_Weight: 1
