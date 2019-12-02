@@ -2519,7 +2519,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Enchanted Land SDF_2 Material
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
-  m_ShaderKeywords: UNDERLAY_ON
+  m_ShaderKeywords: BEVEL_ON UNDERLAY_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -2530,15 +2530,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 3d767f3c197309c42a7991358d169704, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Cube:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 8900000, guid: 1cde0e200e792cb4491204276a656490, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FaceTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 4d5dd331793bc724482cc216f52144c5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -2550,16 +2550,16 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Ambient: 0.5
+    - _Ambient: 0
     - _Bevel: 0.5
     - _BevelClamp: 0
-    - _BevelOffset: 0
+    - _BevelOffset: -0.05
     - _BevelRoundness: 0
-    - _BevelWidth: 0
-    - _BumpFace: 0
-    - _BumpOutline: 0
+    - _BevelWidth: 0.15
+    - _BumpFace: 0.3
+    - _BumpOutline: 0.05
     - _ColorMask: 15
-    - _Diffuse: 0.5
+    - _Diffuse: 0.3
     - _FaceDilate: 0
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
@@ -2568,23 +2568,23 @@ Material:
     - _GlowOuter: 0.531
     - _GlowPower: 0.3
     - _GradientScale: 6
-    - _LightAngle: 3.1416
+    - _LightAngle: 3.5
     - _MaskSoftnessX: 0
     - _MaskSoftnessY: 0
-    - _OutlineSoftness: 0
+    - _OutlineSoftness: 0.275
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.2
+    - _OutlineWidth: 0.28
     - _PerspectiveFilter: 0.875
-    - _Reflectivity: 10
+    - _Reflectivity: 9
     - _ScaleRatioA: 0.8333333
     - _ScaleRatioB: 0.6770833
-    - _ScaleRatioC: 0.3463342
+    - _ScaleRatioC: 0.4091138
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
-    - _Sharpness: 0
-    - _SpecularPower: 2
+    - _Sharpness: 0.275
+    - _SpecularPower: 3
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -2593,9 +2593,9 @@ Material:
     - _TextureHeight: 512
     - _TextureWidth: 512
     - _UnderlayDilate: -0.045
-    - _UnderlayOffsetX: 0.6
+    - _UnderlayOffsetX: 1
     - _UnderlayOffsetY: -1
-    - _UnderlaySoftness: 1
+    - _UnderlaySoftness: 0.7
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
     - _WeightBold: 0.75
@@ -2604,10 +2604,10 @@ Material:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
-    - _GlowColor: {r: 0.8609065, g: 0.9056604, b: 0.23495908, a: 0.5}
+    - _GlowColor: {r: 0, g: 0, b: 0, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0.10586507, g: 0.11406695, b: 0.122641504, a: 1}
+    - _ReflectFaceColor: {r: 0.6089564, g: 0.6226415, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _UnderlayColor: {r: 0, g: 0, b: 0, a: 1}
