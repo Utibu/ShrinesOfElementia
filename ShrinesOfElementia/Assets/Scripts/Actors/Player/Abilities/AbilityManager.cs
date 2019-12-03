@@ -237,29 +237,33 @@ public class AbilityManager : MonoBehaviour
         earthSpikes.GetComponent<ParticleSystem>().Play();
     }
 
-    private void EnableFireAbilities()
+    public void EnableFireAbilities()
     {
         hasFire = true;
         fireParticles.SetActive(true);
         sword.GetComponent<Sword>().SetDamage(damageIncrease);
+        fireballCooldownButton.GetComponent<Image>().fillAmount = 0f;
     }
 
-    private void EnableWaterAbilities()
+    public void EnableWaterAbilities()
     {
         hasWater = true;
         Physics.IgnoreLayerCollision(9, 4, false);
+        geyserCooldownButton.GetComponent<Image>().fillAmount = 0f;
     }
 
-    private void EnableEarthAbilities()
+    public void EnableEarthAbilities()
     {
         hasEarth = true;
         healthRegeneration *= healthRegenerationIncrease;
+        earthSpikesCooldownButton.GetComponent<Image>().fillAmount = 0f;
     }
 
-    private void EnableWindAbilities()
+    public void EnableWindAbilities()
     {
         hasWind = true;
         Player.Instance.GetComponent<MovementInput>().ActivateGlide();
+        windBladeCooldownButton.GetComponent<Image>().fillAmount = 0f;
     }
 
 
@@ -278,19 +282,15 @@ public class AbilityManager : MonoBehaviour
         {
             case "Fire":
                 EnableFireAbilities();
-                fireballCooldownButton.GetComponent<Image>().fillAmount = 0f;
                 break;
             case "Water":
                 EnableWaterAbilities();
-                geyserCooldownButton.GetComponent<Image>().fillAmount = 0f;
                 break;
             case "Earth":
                 EnableEarthAbilities();
-                earthSpikesCooldownButton.GetComponent<Image>().fillAmount = 0f;
                 break;
             case "Wind":
                 EnableWindAbilities();
-                windBladeCooldownButton.GetComponent<Image>().fillAmount = 0f;
                 break;
         }
     }

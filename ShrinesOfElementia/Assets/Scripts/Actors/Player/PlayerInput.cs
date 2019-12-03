@@ -211,6 +211,10 @@ public class PlayerInput : MonoBehaviour
         {
             invincible = !invincible;
         }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            GameManager.Current.Save();
+        }
         if (invincible)
         {
             Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;

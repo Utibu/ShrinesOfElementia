@@ -4,6 +4,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class HealthComponent : MonoBehaviour
 {
     public bool IsInvulnerable { get { return isInvulnerable; } set { isInvulnerable = value; } }
@@ -89,4 +90,7 @@ public class HealthComponent : MonoBehaviour
             //SceneManager.LoadScene("DeathScreen");
         }
     }
+
+
+
 }
