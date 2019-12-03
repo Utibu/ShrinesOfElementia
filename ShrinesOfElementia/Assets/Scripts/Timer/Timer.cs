@@ -21,7 +21,6 @@ public class Timer : MonoBehaviour
         {
             if(owner != null)
             {
-                Debug.Log("CALLING FROM TIMER");
                 functionToCall();
             }
             Destroy(this.gameObject);

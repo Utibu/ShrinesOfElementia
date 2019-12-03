@@ -78,6 +78,7 @@ public class HealthComponent : MonoBehaviour
         // Death event (?) Ful lösning bara för nu:
         if (gameObject.name == "Giant")
         {
+            GameManager.Current.OnBossDeath();
             Giant.Instance.Animator.SetTrigger("Die");
         }
         else if (gameObject.CompareTag("Enemy"))

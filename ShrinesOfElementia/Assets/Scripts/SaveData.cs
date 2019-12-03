@@ -15,6 +15,10 @@ public class SaveData
     public bool WaterUnlocked;
     public bool WindUnlocked;
     public bool EarthUnlocked;
-    
+    public float SpawnX;
+    public float SpawnY;
+    public float SpawnZ;
+
+
 
 }
