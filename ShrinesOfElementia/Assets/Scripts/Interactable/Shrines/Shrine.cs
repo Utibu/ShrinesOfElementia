@@ -1,5 +1,5 @@
 ﻿//Author: Joakim Ljung
-//Co-author: Niklas Almqvist
+//Co-author: Niklas Almqvist, Sofia Kauko
 
 using System.Collections;
 using System.Collections.Generic;
@@ -65,6 +65,7 @@ public class Shrine : Interactable
 
         else if (other.gameObject.tag == "Player" && Input.anyKeyDown && channelTimer != null)
         {
+            Player.Instance.Animator.SetTrigger("ToNeutral");
             Destroy(channelTimer);
             channelTimer = null;
         }        

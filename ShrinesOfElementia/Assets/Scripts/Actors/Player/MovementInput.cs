@@ -36,7 +36,6 @@ public class MovementInput : MonoBehaviour
     float velocityOnImpact = 0f;
 
     private bool isStaggered = false;
-    [SerializeField] private GameObject timerObject;
 
     
 
