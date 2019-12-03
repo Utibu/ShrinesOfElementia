@@ -58,7 +58,7 @@ public class Shrine : Interactable
         {
             if(channelTimer == null)
             {
-                Player.Instance.GetComponent<Animator>().SetTrigger(""); // Add some channel animation
+                Player.Instance.Animator.SetTrigger("OnPray"); // Add some channel animation
                 channelTimer = TimerManager.Current.SetNewTimer(gameObject, channelTime, OnInteract);
             }
         }
