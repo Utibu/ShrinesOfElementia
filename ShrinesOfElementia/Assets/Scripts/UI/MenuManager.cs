@@ -1,4 +1,5 @@
 ﻿//Author: Joakim Ljung
+//co-Author: Sofia Kauko
 
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +16,13 @@ public class MenuManager : MonoBehaviour
 
     public void OnStart()
     {
-        SceneManager.LoadScene(1);
+        GameManager.Current.LoadNewGame();
+        //SceneManager.LoadScene(1);
+    }
+
+    public void OnContinue()
+    {
+        GameManager.Current.LoadFromSave();
     }
 
     public void OnQuit()

@@ -1,6 +1,7 @@
 ﻿//Author: Sofia Kauko
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -36,49 +37,79 @@ public class GameManager : MonoBehaviour
 
     //things that i put here for now but might be better to move to separate scripts later.
     public GameObject[] bosses;
-    public GameObject BossSpawnPoint;
+    public GameObject spawnPointBoss;
 
     // Start is called before the first frame update
     void Start()
     {
-        //load alll variables from save, register listeners
-        Load();
+
+        //secure gamobject
+        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(spawnPointBoss);
+        /*
+        //register listeners        
+        EventManager.Current.RegisterListener<ShrineEvent>(RegisterShrine);
+        EventManager.Current.RegisterListener<PlayerDeathEvent>(OnBossDeath);
+        */
+    }
+    
+    public void LoadNewGame()
+    {
+        SetDataToDefault();
+        SceneManager.LoadScene(1);
+        SceneManager.sceneLoaded += SetUpGame;
+        
+    }
+
+    public void LoadFromSave()
+    {
+        //Load from save
+        LoadVariablesFromSave();
+
+        SceneManager.LoadScene(1);
+        SceneManager.sceneLoaded += SetUpGame;
+    }
+
+    private void SetUpGame(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Shrines aquired: " + FireUnlocked + " " + EarthUnlocked + " " + WaterUnlocked + " " + WindUnlocked);
+
+        //register listeners        
         EventManager.Current.RegisterListener<ShrineEvent>(RegisterShrine);
         EventManager.Current.RegisterListener<PlayerDeathEvent>(OnBossDeath);
 
-
-        //prepare game world (spawn the right boss for level, unlock previosly unlocked shrines from last level...)
         LoadBoss();
-        TimerManager.Current.SetNewTimer(gameObject, 0.2f, LoadAbilities);
-
-
-        
-
+        TimerManager.Current.SetNewTimer(gameObject, 1f, LoadAbilities); // Event seems to not be heard if sent too early... 
     }
-    
+
     private void LoadAbilities()
     {
         if (FireUnlocked)
         {
             EventManager.Current.FireEvent(new ShrineEvent("Fire enabled from gameManager", "Fire"));
+            Debug.Log("SHRINE EVENT SENT FROM GAMEMANAGER");
         }
         if (WaterUnlocked)
         {
             EventManager.Current.FireEvent(new ShrineEvent("Water enabled from gameManager", "Water"));
+            Debug.Log("SHRINE EVENT SENT FROM GAMEMANAGER");
         }
         if (WindUnlocked)
         {
             EventManager.Current.FireEvent(new ShrineEvent("Wind enabled from gameManager", "Wind"));
+            Debug.Log("SHRINE EVENT SENT FROM GAMEMANAGER");
         }
         if (EarthUnlocked)
         {
             EventManager.Current.FireEvent(new ShrineEvent("Earth enabled from gameManager", "Earth"));
+            Debug.Log("SHRINE EVENT SENT FROM GAMEMANAGER");
         }
     }
     public void LoadBoss()
     {
         //load boss and spawn enemies according to nr of srines unlocked and what level is laoding.
-        Instantiate(bosses[Level], BossSpawnPoint.transform);
+        
+        Instantiate(bosses[Level], spawnPointBoss.transform);
     }
 
     private void RegisterShrine(ShrineEvent ev)
@@ -100,6 +131,10 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Element not valid");
                 break;
         }
+
+
+        Save();
+
     }
 
     public void OnBossDeath(PlayerDeathEvent ev) // creating boss death event later
@@ -141,7 +176,7 @@ public class GameManager : MonoBehaviour
         bf.Serialize(file, data);
         file.Close();
     }
-    private void Load()
+    private void LoadVariablesFromSave()
     {
         if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
         {
@@ -166,6 +201,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void SetDataToDefault()
+    {
+        Level = 0;
+        PlayerLevel = 1;
+        PlayerDeaths = 0;
+        FireUnlocked = false;
+        WaterUnlocked = false;
+        WindUnlocked = false;
+        EarthUnlocked = false;
+    }
 
+    
 
 }

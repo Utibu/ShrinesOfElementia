@@ -85,6 +85,7 @@ public class AbilityManager : MonoBehaviour
             windBladeCooldown = 1f;
             earthSpikesCooldown = 1f;
         }
+
     }
 
     private void Update()
