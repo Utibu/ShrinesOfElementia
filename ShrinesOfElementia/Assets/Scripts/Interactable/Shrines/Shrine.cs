@@ -59,6 +59,7 @@ public class Shrine : Interactable
             if(channelTimer == null)
             {
                 Player.Instance.Animator.SetTrigger("OnPray"); // Add some channel animation
+                Player.Instance.Animator.SetBool("InCombat", false); // stops player from rotating to face camera.forward
                 channelTimer = TimerManager.Current.SetNewTimer(gameObject, channelTime, OnInteract);
             }
         }
@@ -76,6 +77,7 @@ public class Shrine : Interactable
     {
         base.OnInteract();
         Disable();
+        Player.Instance.Animator.SetTrigger("ToNeutral");
         ShrineEvent shrineEvent = new ShrineEvent(element + " shrine activated", element);
         EventManager.Current.FireEvent(shrineEvent);
         shrineAnimationController.SetTrigger("IsTaken");
