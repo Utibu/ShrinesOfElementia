@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
         LoadBoss();
         //move player to last saved checkpoint
         Player.Instance.transform.position = NearestCheckpoint;
+        Player.Instance.Health.CurrentHealth = PlayerHP;
         TimerManager.Current.SetNewTimer(gameObject, 1f, LoadAbilities); // Event seems to not be heard if sent too early...
         
     }
@@ -179,7 +180,6 @@ public class GameManager : MonoBehaviour
         PlayerXP = 0;
 
     }
-
     public void OnPlayerXPEvent(ExperienceEvent ev)
     {
         PlayerXP += (int)ev.Experience;
@@ -192,6 +192,9 @@ public class GameManager : MonoBehaviour
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
         SaveData data = new SaveData();
+
+        //get HP from Player
+        PlayerHP = Player.Instance.Health.CurrentHealth;
 
         //set save variables
         data.Level = Level;
@@ -247,6 +250,8 @@ public class GameManager : MonoBehaviour
     {
         Level = 0;
         PlayerLevel = 1;
+        PlayerXP = 0;
+        PlayerHP = 150; // generalize
         PlayerDeaths = 0;
         FireUnlocked = false;
         WaterUnlocked = false;
