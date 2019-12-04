@@ -103,8 +103,12 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
             && staminaManager.CurrentStamina > 0) 
         {
-            player.Animator.SetBool("InCombat", false);
-            player.Animator.SetTrigger("IsSprinting");
+            if(Input.GetAxis("Vertical") > 0)
+            {
+                player.Animator.SetBool("InCombat", false);
+                player.Animator.SetTrigger("IsSprinting");
+            }
+            
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift) || (player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint") 
@@ -120,6 +124,8 @@ public class PlayerInput : MonoBehaviour
             movementInput.OnDodge();
         }
 
+
+        //what is this?  
         if((player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1")
             || player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2")))
         {
@@ -129,6 +135,7 @@ public class PlayerInput : MonoBehaviour
         {
             //isAttacking = false;
         }
+
 
         // Mouse buttons, 0 - Primary Button, 1 - Secondary Button, 2 - Middle Click
         if (Input.GetKeyDown(KeyCode.R))

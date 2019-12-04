@@ -109,11 +109,14 @@ public class MovementInput : MonoBehaviour
         {
             movementSpeed = staggerSpeed;
         }
+        else if (playerInput.y < 0)
+        {
+            movementSpeed = defaultSpeed / 2;
+        }
         else if (Input.GetKey(KeyCode.LeftShift))
         {
             movementSpeed = runSpeed;
         }
-
         else
         {
             movementSpeed = defaultSpeed;
