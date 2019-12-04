@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     public int Level { get; set; }
     public int PlayerLevel { get; set; }
+    public int PlayerXP { get; set; }
+    public int PlayerHP { get; set; }
     public int PlayerDeaths { get; set; }
     public bool FireUnlocked { get; set; }
     public bool WaterUnlocked { get; set; }
@@ -76,6 +78,7 @@ public class GameManager : MonoBehaviour
         //register listeners        
         EventManager.Current.RegisterListener<ShrineEvent>(RegisterShrine);
         EventManager.Current.RegisterListener<PlayerDeathEvent>(RespawnPlayer);
+        EventManager.Current.RegisterListener<ExperienceEvent>(OnPlayerXPEvent);
 
 
         //load boss and abilities
@@ -173,8 +176,14 @@ public class GameManager : MonoBehaviour
     public void OnPlayerLevelUp() 
     {
         PlayerLevel += 1;
+        PlayerXP = 0;
+
     }
 
+    public void OnPlayerXPEvent(ExperienceEvent ev)
+    {
+        PlayerXP += (int)ev.Experience;
+    }
     
 
     
@@ -187,6 +196,8 @@ public class GameManager : MonoBehaviour
         //set save variables
         data.Level = Level;
         data.PlayerLevel = PlayerLevel;
+        data.PlayerXP = PlayerXP;
+        data.PlayerHP = PlayerHP;
         data.PlayerDeaths = PlayerDeaths;
         data.FireUnlocked = FireUnlocked;
         data.WaterUnlocked = WaterUnlocked;
@@ -216,6 +227,8 @@ public class GameManager : MonoBehaviour
             //get Variables from save:
             Level = Level;
             PlayerLevel = data.PlayerLevel;
+            PlayerXP = data.PlayerXP;
+            PlayerHP = data.PlayerHP;
             PlayerDeaths = data.PlayerDeaths;
             FireUnlocked = data.FireUnlocked;
             WaterUnlocked = data.WaterUnlocked;

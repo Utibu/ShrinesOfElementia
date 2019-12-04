@@ -330,7 +330,7 @@ MonoBehaviour:
   spellPrefab: {fileID: 1339032902255765298, guid: b2f35920e0dbf694aa5f4a5fe3bd1d88,
     type: 3}
   castTime: 8
-  spellSpeedModifier: 1
+  spellDelayModifier: 0.7
 --- !u!114 &6367339482368482128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,8 +344,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementalType: Earth
-  health: 100
-  damage: 15
+  health: 150
+  damage: 30
   speed: 4
   atkCooldown: 2
   sightRange: 14
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60103b110f2d18347b338334f9d84185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementalAdvantageDamageBonus: 10
+  elementalAdvantageDamageBonus: 20
 --- !u!1 &1673053726290594267
 GameObject:
   m_ObjectHideFlags: 0

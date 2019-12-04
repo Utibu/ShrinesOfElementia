@@ -5249,7 +5249,7 @@ MonoBehaviour:
   spellPrefab: {fileID: 7657389444824941636, guid: 345c3bf3e79235e4b83c4ad44bfcd7bc,
     type: 3}
   castTime: 5
-  spellSpeedModifier: 10
+  spellDelayModifier: 0
 --- !u!114 &6156860049884484638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5263,9 +5263,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementalType: Fire
-  health: 100
-  damage: 15
-  speed: 4
+  health: 150
+  damage: 30
+  speed: 4.5
   atkCooldown: 2
   sightRange: 15
   attackRange: 1.5
@@ -5286,7 +5286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a90d3bcf719bb04ba10dca1dd4d01b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementalAdvantageDamageBonus: 10
+  elementalAdvantageDamageBonus: 20
 --- !u!1 &3862847822991046969
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,12 +8,16 @@ public class Geyser : Ability
     [Header("Attributes")]
     [SerializeField] private int damage;
     [SerializeField] private float knockUpForce;
+    private bool canDealDmg = true;
+
+   
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) && other.gameObject.tag != caster.tag)
+        if (canDealDmg && (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) && other.gameObject.tag != caster.tag)
         {
             DealDamage(other.gameObject, damage);
+            canDealDmg = false;
 
             KnockUp(other);
         }
@@ -24,6 +28,8 @@ public class Geyser : Ability
         DamageEvent damageEvent = new DamageEvent(damagedGameObject + " has dealt " + damage + " damage to " + damagedGameObject, damage, gameObject, damagedGameObject);
         EventManager.Current.FireEvent(damageEvent);
     }
+
+   
 
     private void KnockUp(Collider colliderHit)
     {
