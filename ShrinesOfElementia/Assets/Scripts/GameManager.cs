@@ -239,7 +239,7 @@ public class GameManager : MonoBehaviour
         WaterUnlocked = false;
         WindUnlocked = false;
         EarthUnlocked = false;
-        //NearestCheckpoint = PlayerStartingPoint.transform.position;
+        NearestCheckpoint = PlayerStartingPoint.transform.position;
     }
 
     
