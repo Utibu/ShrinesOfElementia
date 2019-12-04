@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour
     public void LoadNewGame()
     {
         SetDataToDefault();
-        Save(); //save so that no previous save file remains after player has chosen new game.
         SceneManager.LoadScene(1);
         SceneManager.sceneLoaded += SetUpGame;
         
