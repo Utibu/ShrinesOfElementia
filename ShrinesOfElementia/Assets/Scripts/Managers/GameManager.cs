@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
 
     //References to relevant stuff
     public AchievementManager Achievements { get; private set; }
-    
+
+    private bool SaveDataExists = false;
 
     //variables
     public int Level { get; set; }
@@ -56,6 +57,14 @@ public class GameManager : MonoBehaviour
 
         gameObject.AddComponent<AchievementManager>();
         Achievements = GetComponent<AchievementManager>();
+
+        //check if game has a save
+        LoadVariablesFromSave();
+        if (!SaveDataExists)
+        {
+            MenuManager.Current.DisableContinueButton();
+        }
+        
        
     }
     
@@ -74,7 +83,6 @@ public class GameManager : MonoBehaviour
     {
         //Load from save
         LoadVariablesFromSave();
-
         SceneManager.LoadScene(1);
         SceneManager.sceneLoaded += SetUpGame;
 
@@ -207,6 +215,7 @@ public class GameManager : MonoBehaviour
         PlayerHP = Player.Instance.Health.CurrentHealth;
 
         //set save variables
+        data.ContainsSaveData = true;
         data.Level = Level;
         data.PlayerLevel = PlayerLevel;
         data.PlayerXP = PlayerXP;
@@ -256,6 +265,9 @@ public class GameManager : MonoBehaviour
             SaveData data = (SaveData)bf.Deserialize(file);
             file.Close();
 
+            //makes sure gameManager knows if data is a save or just default null + 0
+            SaveDataExists = data.ContainsSaveData;
+
             //get Variables from save:
             Level = Level;
             PlayerLevel = data.PlayerLevel;
@@ -273,6 +285,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            SaveDataExists = false;
             Debug.Log("SAVEFILE DOES NOT EXIST");
         }
     }
