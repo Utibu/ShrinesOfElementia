@@ -9,6 +9,9 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
 
+    [SerializeField] private GameObject startMenu;
+    [SerializeField] private GameObject OptionsMenu;
+    [SerializeField] private GameObject ExtrasMenu;
     [SerializeField] private GameObject continueButton;
 
     private static MenuManager current;
@@ -30,16 +33,29 @@ public class MenuManager : MonoBehaviour
         Cursor.visible = true;
     }
 
-    //when new game is klicked
-    public void OnStart()
-    {
-        GameManager.Current.LoadNewGame();
-        //SceneManager.LoadScene(1);
-    }
-
+    //On Click functions
     public void OnContinue()
     {
         GameManager.Current.LoadFromSave();
+    }
+
+    public void OnStart()
+    {
+        GameManager.Current.LoadNewGame();
+    }
+
+    public void OnExtras()
+    {
+        ExtrasMenu.SetActive(true);
+        startMenu.SetActive(false);
+        OptionsMenu.SetActive(false);
+    }
+
+    public void OnOptions()
+    {
+        ExtrasMenu.SetActive(false);
+        startMenu.SetActive(false);
+        OptionsMenu.SetActive(true);
     }
 
     public void OnQuit()
@@ -52,6 +68,15 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void OnBack()
+    {
+        ExtrasMenu.SetActive(false);
+        startMenu.SetActive(true);
+        OptionsMenu.SetActive(false);
+    }
+
+
+    //other functions
     public void DisableContinueButton()
     {
         continueButton.SetActive(false);

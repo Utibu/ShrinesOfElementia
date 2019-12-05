@@ -81,8 +81,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadFromSave()
     {
-        //Load from save
-        LoadVariablesFromSave();
+        //Loaded already in start, just init the rest.
+        //LoadVariablesFromSave();
         SceneManager.LoadScene(1);
         SceneManager.sceneLoaded += SetUpGame;
 
