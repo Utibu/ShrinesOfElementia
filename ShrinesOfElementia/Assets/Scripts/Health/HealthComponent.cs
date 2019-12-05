@@ -75,7 +75,7 @@ public class HealthComponent : MonoBehaviour
 
     private void Die()
     {
-        // Death event (?) Ful lösning bara för nu:
+        
         if (gameObject.name == "Giant")
         {
             GameManager.Current.OnBossDeath();

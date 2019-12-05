@@ -24,8 +24,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //References to relevant stuff
+    public AchievementManager Achievements { get; private set; }
+    
 
-
+    //variables
     public int Level { get; set; }
     public int PlayerLevel { get; set; }
     public int PlayerXP { get; set; }
@@ -50,6 +53,9 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         DontDestroyOnLoad(spawnPointBoss);
         DontDestroyOnLoad(PlayerStartingPoint);
+
+        gameObject.AddComponent<AchievementManager>();
+        Achievements = GetComponent<AchievementManager>();
        
     }
     
@@ -58,6 +64,9 @@ public class GameManager : MonoBehaviour
         SetDataToDefault();
         SceneManager.LoadScene(1);
         SceneManager.sceneLoaded += SetUpGame;
+
+        //init  acievement manager default
+        Achievements.InitializeToDefault();
         
     }
 
@@ -68,6 +77,8 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene(1);
         SceneManager.sceneLoaded += SetUpGame;
+
+        
     }
 
     private void SetUpGame(Scene scene, LoadSceneMode mode)
@@ -210,6 +221,25 @@ public class GameManager : MonoBehaviour
         data.SpawnY = NearestCheckpoint.y;
         data.SpawnZ = NearestCheckpoint.z;
 
+        //save achievement data
+        data.SpeedRunner = Achievements.SpeedRunner;
+        data.Elementalist = Achievements.Elementalist;
+        data.FlightExpert = Achievements.FlightExpert;
+        data.KillcountHundred = Achievements.KillcountHundred;
+        data.currentKills = Achievements.currentKills;
+        bool fireKilled;
+        Achievements.SlayedGiants.TryGetValue("Fire", out fireKilled); 
+        data.SlayedFireGiant = fireKilled;
+        bool waterKilled;
+        Achievements.SlayedGiants.TryGetValue("Fire", out waterKilled);
+        data.SlayedWaterGiant = waterKilled;
+        bool windKilled;
+        Achievements.SlayedGiants.TryGetValue("Fire", out windKilled);
+        data.SlayedWindGiant = windKilled;
+        bool earthKilled;
+        Achievements.SlayedGiants.TryGetValue("Fire", out earthKilled);
+        data.SlayedEarthGiant = earthKilled;
+
 
         Debug.Log("SAVING: shrine:" + data.FireUnlocked + " " + data.EarthUnlocked + " " + data.WaterUnlocked + " " + data.WindUnlocked);
         //stream to file
@@ -237,7 +267,9 @@ public class GameManager : MonoBehaviour
             WindUnlocked = data.WindUnlocked;
             EarthUnlocked = data.EarthUnlocked;
             NearestCheckpoint = new Vector3(data.SpawnX, data.SpawnY, data.SpawnZ);
-            Debug.Log(data.SpawnX + " " +  data.SpawnY +" "+  data.SpawnZ);
+
+            //init acievementmanager with savedata
+            Achievements.InitializeFromSave(data);
         }
         else
         {
