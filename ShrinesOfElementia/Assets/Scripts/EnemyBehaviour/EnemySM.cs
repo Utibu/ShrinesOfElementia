@@ -32,7 +32,7 @@ public class EnemySM : StateMachine
     {
         base.Awake();
         Agent = GetComponent<NavMeshAgent>();
-        Agent.baseOffset = 0.5f;
+        //Agent.baseOffset = 0.5f;
         EnemyParticleController = GetComponent<EnemyParticleController>();
         Animator = GetComponent<Animator>();
         EnemyAttack = GetComponentInChildren<EnemyAttack>();

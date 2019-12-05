@@ -10,6 +10,7 @@ public class Die_BasicEnemy : BasicEnemyBaseState
 
     private float dyingTime = 1.0f;
     private float timer;
+    [SerializeField] private AnimationClip deathAnimation;
 
 
     public override void Initialize(StateMachine stateMachine)
@@ -22,16 +23,18 @@ public class Die_BasicEnemy : BasicEnemyBaseState
     {
         base.Enter();
         timer = dyingTime;
+        owner.Animator.SetTrigger("OnDeath");
         EventManager.Current.FireEvent(new ExperienceEvent(experienceAmount + " xp gained", experienceAmount));
         owner.gameObject.GetComponent<Collider>().enabled = false;
         GameObject gameobject = owner.GetComponent<GameObject>();
         EventManager.Current.FireEvent(new EnemyDeathEvent(gameobject, owner.SpawnArea, owner.Elite));
+        owner.Agent.enabled = false;
         if (Random.Range(0f,100f) < orbDropChance )
         {
             GameObject.Instantiate(orb, owner.transform.position + owner.Player.transform.forward * 3f, new Quaternion(0, 0, 0, 0));
         }
-        
-        Destroy(owner.gameObject, 0.2f);
+
+        Destroy(owner.gameObject, deathAnimation.length + 1.0f);
 
     }
 

@@ -31,6 +31,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
         //owner.transform.rot
         timer = 0f;
         timeInChase = 0;
+        owner.Animator.SetBool("isChasing", true);
     }
 
 
@@ -71,6 +72,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
     public override void Leave()
     {
         base.Leave();
+        owner.Animator.SetBool("isChasing", false);
         Debug.Log("Leaving chase state");
         
     }
