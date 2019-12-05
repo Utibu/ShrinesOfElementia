@@ -73,13 +73,13 @@ GameObject:
   - component: {fileID: 6137999317873132722}
   - component: {fileID: 6137999317873132750}
   - component: {fileID: 6137999317873132725}
-  - component: {fileID: 6137999317873132720}
   - component: {fileID: 6137999317873132721}
   - component: {fileID: 6137999317873132723}
   - component: {fileID: 6137999317873132724}
   - component: {fileID: 6137999317873132726}
   - component: {fileID: 6137999317873132727}
   - component: {fileID: 6137999317873132728}
+  - component: {fileID: 3145460740497583581}
   m_Layer: 8
   m_Name: Fire Elemental
   m_TagString: Enemy
@@ -250,19 +250,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6137999317873132720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2742517134119725010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60103b110f2d18347b338334f9d84185, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementalAdvantageDamageBonus: 10
 --- !u!114 &6137999317873132721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9dd492abdcefd4985cf4788f00a2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementalType: Earth
+  elementalType: Fire
   health: 100
   damage: 20
   speed: 4
@@ -378,6 +365,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3145460740497583581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2742517134119725010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a90d3bcf719bb04ba10dca1dd4d01b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementalAdvantageDamageBonus: 10
 --- !u!1 &2854276686605467998
 GameObject:
   m_ObjectHideFlags: 0
