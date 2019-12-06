@@ -43,6 +43,7 @@ public class Die_BasicEnemy : BasicEnemyBaseState
         owner.Agent.enabled = false;
         owner.Collider.enabled = false;
         owner.enabled = false;
+        owner.GetComponent<HealthComponent>().Canvas.SetActive(false);
     }
 
     public override void HandleUpdate()
