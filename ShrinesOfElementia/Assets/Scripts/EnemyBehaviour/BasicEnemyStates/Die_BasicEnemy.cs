@@ -28,7 +28,7 @@ public class Die_BasicEnemy : BasicEnemyBaseState
         owner.gameObject.GetComponent<Collider>().enabled = false;
         GameObject gameobject = owner.GetComponent<GameObject>();
         EventManager.Current.FireEvent(new EnemyDeathEvent(gameobject, owner.SpawnArea, owner.Elite));
-        owner.Agent.enabled = false;
+        DisableComponents();
         if (Random.Range(0f,100f) < orbDropChance )
         {
             GameObject.Instantiate(orb, owner.transform.position + owner.Player.transform.forward * 3f, new Quaternion(0, 0, 0, 0));
@@ -38,6 +38,12 @@ public class Die_BasicEnemy : BasicEnemyBaseState
 
     }
 
+    private void DisableComponents()
+    {
+        owner.Agent.enabled = false;
+        owner.Collider.enabled = false;
+        owner.enabled = false;
+    }
 
     public override void HandleUpdate()
     {
