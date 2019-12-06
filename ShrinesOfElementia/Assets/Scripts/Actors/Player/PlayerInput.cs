@@ -22,6 +22,7 @@ public class PlayerInput : MonoBehaviour
     private bool isAttacking;
     private float attackSpeed;
     private bool canAttack = true;
+    private bool canBlock = true;
 
     [SerializeField] private float sprintStaminaDrain;
 
@@ -98,8 +99,10 @@ public class PlayerInput : MonoBehaviour
             Physics.IgnoreLayerCollision(9, 4, true);
         }
 
-
-        
+        if (!player.Animator.GetBool("CanBlock"))
+        {
+            //print("Can't block");
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
             && staminaManager.CurrentStamina > 0) 
@@ -126,16 +129,13 @@ public class PlayerInput : MonoBehaviour
         }
 
 
-        //what is this?  
         if((player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1")
             || player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2")))
         {
-            //isAttacking = true;
+            //player.Animator.SetBool("CanBlock", true);
+            print("is attacking");
         }
-        else
-        {
-            //isAttacking = false;
-        }
+       
 
 
         // Mouse buttons, 0 - Primary Button, 1 - Secondary Button, 2 - Middle Click
@@ -149,14 +149,19 @@ public class PlayerInput : MonoBehaviour
 
 
         // Left click / Primary button
-        if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length && !isBlocking && canAttack && !movementInput.IsStaggered)
+        if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length && !isBlocking && canAttack && !movementInput.IsStaggered && canAttack)
         {
             if(!player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1")
             || !player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2"))
             {
-                if (attackIndex == 1)
+                if(attackIndex == 0)
                 {
-                    TimerManager.Current.SetNewTimer(gameObject, 0.7f, AttackTimerEnd);
+                    TimerManager.Current.SetNewTimer(gameObject, 0.25f, AttackTimerEnd);
+                    canAttack = false;
+                }
+                else if(attackIndex == 1)
+                {
+                    TimerManager.Current.SetNewTimer(gameObject, 0.9f, AttackTimerEnd);
                     canAttack = false;
                 }
                 LightAttack();
@@ -184,7 +189,10 @@ public class PlayerInput : MonoBehaviour
 
         // Holding down right click / Secondary button
 
-        isBlocking = Input.GetMouseButton(1);
+        if (player.Animator.GetBool("CanBlock"))
+        {
+            isBlocking = Input.GetMouseButton(1);
+        }
         player.Animator.SetBool("IsBlocking", isBlocking);
 
         if (isBlocking == true && staminaManager.CurrentStamina > 0 && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")) // Start blocking
@@ -234,8 +242,15 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    private void CancelAttack()
+    {
+        GetComponent<WeaponController>().SwordCollider.enabled = false;
+        player.Animator.SetBool("CanBlock", true);
+    }
+
     private void LightAttack()
     {
+        player.Animator.SetBool("CanBlock", false);
         if (player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")) {
             player.Animator.SetBool("InCombat", true);
         }
