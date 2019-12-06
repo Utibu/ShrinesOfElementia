@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class HealthComponent : MonoBehaviour
 {
     public bool IsInvulnerable { get { return isInvulnerable; } set { isInvulnerable = value; } }
+    public GameObject Canvas { get { return canvas; } set { canvas = value; } }
     [SerializeField] private bool isInvulnerable;
 
     [Header("UI reference")]
@@ -87,6 +88,7 @@ public class HealthComponent : MonoBehaviour
         }
         else if (gameObject.CompareTag("Player"))
         {
+            Debug.Log("Playerdied");
             EventManager.Current.FireEvent(new PlayerDeathEvent("Player died", gameObject));
             //SceneManager.LoadScene("DeathScreen");
         }

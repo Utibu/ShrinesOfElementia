@@ -35,7 +35,7 @@ public class MovementInput : MonoBehaviour
     private Vector3 moveVector = Vector3.zero;
     float velocityOnImpact = 0f;
 
-    private bool isStaggered = false;
+    public bool IsStaggered { get; set; }
 
     
 
@@ -99,13 +99,14 @@ public class MovementInput : MonoBehaviour
         player = Player.Instance;
         animator = player.Animator;
 
-        camera = CameraReference.Instance;        
+        camera = CameraReference.Instance;
+        IsStaggered = false;
     }
 
     private void Update()
     {
         // Sprint
-        if (isStaggered)
+        if (IsStaggered)
         {
             movementSpeed = staggerSpeed;
         }
@@ -384,11 +385,11 @@ public class MovementInput : MonoBehaviour
     //slow down when hit, called frpm dmageEventListener
     public void SlowDown()
     {
-        if (!isStaggered)
+        if (!IsStaggered)
         {
             Debug.Log("PLAYER IS STAGGERED");
             player.Animator.SetTrigger("OnStagger");
-            isStaggered = true;
+            IsStaggered = true;
             TimerManager.Current.SetNewTimer(gameObject, 0.7f, Recover);
             animator.speed -= staggerAnimationSlow;
             
@@ -399,7 +400,7 @@ public class MovementInput : MonoBehaviour
 
     public void Recover()
     {
-        isStaggered = false;
+        IsStaggered = false;
         animator.speed += staggerAnimationSlow;
         Debug.Log("PLAYER RECOVERED FROM STAGGER");
     }

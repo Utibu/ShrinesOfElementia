@@ -10,8 +10,8 @@ public class MenuManager : MonoBehaviour
 {
 
     [SerializeField] private GameObject startMenu;
-    [SerializeField] private GameObject OptionsMenu;
-    [SerializeField] private GameObject ExtrasMenu;
+    [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject extrasMenu;
     [SerializeField] private GameObject continueButton;
 
     private static MenuManager current;
@@ -46,16 +46,16 @@ public class MenuManager : MonoBehaviour
 
     public void OnExtras()
     {
-        ExtrasMenu.SetActive(true);
+        extrasMenu.SetActive(true);
         startMenu.SetActive(false);
-        OptionsMenu.SetActive(false);
+        optionsMenu.SetActive(false);
     }
 
     public void OnOptions()
     {
-        ExtrasMenu.SetActive(false);
+        extrasMenu.SetActive(false);
         startMenu.SetActive(false);
-        OptionsMenu.SetActive(true);
+        optionsMenu.SetActive(true);
     }
 
     public void OnQuit()
@@ -70,10 +70,12 @@ public class MenuManager : MonoBehaviour
 
     public void OnBack()
     {
-        ExtrasMenu.SetActive(false);
+        extrasMenu.SetActive(false);
         startMenu.SetActive(true);
-        OptionsMenu.SetActive(false);
+        optionsMenu.SetActive(false);
     }
+
+ 
 
 
     //other functions
@@ -81,4 +83,6 @@ public class MenuManager : MonoBehaviour
     {
         continueButton.SetActive(false);
     }
+
+    
 }
