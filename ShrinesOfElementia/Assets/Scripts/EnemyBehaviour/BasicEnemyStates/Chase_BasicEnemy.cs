@@ -9,6 +9,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
 
     private Vector3 startPosition;
     private float chaseSpeed;
+    private float earlyChaseSpeed; // a boosted speed for the first few secs
     private float chaseStamina = 7f;
     private float timeInChase;
 
@@ -18,20 +19,25 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
     {
         base.Initialize(stateMachine);
         chaseSpeed = speed * 1.5f;
+        earlyChaseSpeed = speed * 2.5f;
+        
     }
 
 
     public override void Enter()
     {
         base.Enter();
+
         //Debug.Log("Entering chase state.");
         //modify agent to chase settings
-        owner.Agent.speed = speed * 1.5f;
+        owner.Agent.speed = earlyChaseSpeed;
         startPosition = owner.transform.position;
         //owner.transform.rot
         timer = 0f;
         timeInChase = 0;
         owner.Animator.SetBool("isChasing", true);
+        TimerManager.Current.SetNewTimer(owner.gameObject, 4f, SlowDownChase);
+        owner.Agent.acceleration *= 4f;
     }
 
 
@@ -41,11 +47,12 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
         base.HandleUpdate();
         timeInChase += Time.deltaTime;
         timer += Time.deltaTime;
-        if(timer > 2.5f)
+        if(timer > 3.5f)
         {
             timer = 0f;
             owner.Agent.speed *= Random.Range(0.7f, 1.4f);
         }
+        
 
         //do the chasing
         owner.Agent.SetDestination(Player.Instance.transform.position);
@@ -69,11 +76,17 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
 
     }
 
+    private void SlowDownChase()
+    {
+        owner.Agent.speed = chaseSpeed;
+    }
+
     public override void Leave()
     {
         base.Leave();
         owner.Animator.SetBool("isChasing", false);
         Debug.Log("Leaving chase state");
+        owner.Agent.acceleration /= 4f;
         
     }
 }

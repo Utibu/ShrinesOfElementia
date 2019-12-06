@@ -28,6 +28,7 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         cooldown = 0;
         Debug.Log("cooldown: " + cooldown);
         owner.Agent.isStopped = true;
+        owner.GetComponent<EnemyValues>().SetGoBackFalse();
     }
 
     
@@ -42,26 +43,37 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
         Vector3 direction = owner.transform.position - owner.Player.transform.position;
         float angle = Vector3.Angle(direction, owner.Player.transform.forward);
 
-        if (cooldown <= 0 && distanceToPlayer <= attackRange * 1.2f) // *1.2f bc enemies otherwise have a hard time hitting while "running"
+        if (cooldown <= 0 && distanceToPlayer <= attackRange * 1.8) // *1.2f bc enemies otherwise have a hard time hitting while "running"
         {
             Attack();
         }
-        else if (owner.GetComponent<EnemyValues>().GoBack == true && distanceToPlayer < attackRange * 1.5f)
+        else if (owner.GetComponent<EnemyValues>().GoBack == true && distanceToPlayer < attackRange * 1.7f)
         {
-            owner.transform.position += owner.transform.forward * -2.9f * Time.deltaTime;
+            owner.transform.position += owner.transform.forward * -3f * Time.deltaTime;
         }
+
+        //player is turned towards enemy
         else if (angle < 140 && owner.GetComponent<EnemyValues>().GoBack == false && distanceToPlayer > attackRange)
         {
             owner.transform.LookAt(owner.Player.transform);
             owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
-            owner.transform.position += owner.transform.forward * 3.5f * Time.deltaTime;
+            owner.transform.position += owner.transform.forward * 4.5f * Time.deltaTime;
         }
+
+        //player is turned away from enemy (fleeing)
         else if(owner.GetComponent<EnemyValues>().GoBack == false && distanceToPlayer > attackRange)
         {
             owner.transform.LookAt(owner.Player.transform);
             owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
             owner.transform.position += owner.transform.forward * 6f * Time.deltaTime;
         }
+
+        /*
+        else if (distanceToPlayer > attackRange)
+        {
+            owner.GetComponent<EnemyValues>().SetGoBackFalse();
+        }
+        */
         
         
 

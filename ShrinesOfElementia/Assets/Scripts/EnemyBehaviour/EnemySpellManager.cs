@@ -109,7 +109,7 @@ public class EnemySpellManager : MonoBehaviour
     private void CastWind()
     {
         Debug.Log("wind cast");
-        GameObject windBlade = Instantiate(spellPrefab, transform.position + Vector3.up.normalized + transform.forward * 1f + transform.up * -0.3f, this.GetComponent<EnemySM>().Agent.transform.rotation);
+        GameObject windBlade = Instantiate(spellPrefab, transform.position + Vector3.up.normalized + transform.forward * 1f + transform.up * -0.2f, this.GetComponent<EnemySM>().Agent.transform.rotation);
         windBlade.GetComponent<WindBlade>().Caster = gameObject;
         windBlade.GetComponent<Rigidbody>().AddForce(spellAim * windBladeSpeed, ForceMode.VelocityChange);
     }

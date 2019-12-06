@@ -32,9 +32,10 @@ public class EnemyValues : MonoBehaviour
     public GameObject Orb { get => orb; set => orb = value; }
     public float ExperienceAmount { get => experienceAmount; set => experienceAmount = value; }
 
-    public bool GoBack = false;
+    public bool GoBack;
 
 
+    //called from atack animation, to specify when the enemy should approach before an attack, and when it should back away after hitting
     public void ToggleGoBack()
     {
         if(GoBack == false)
@@ -45,10 +46,19 @@ public class EnemyValues : MonoBehaviour
         GoBack = false;
     }
 
+    public void SetGoBackTrue()
+    {
+        GoBack = true;
+    }
+    public void SetGoBackFalse()
+    {
+        GoBack = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     

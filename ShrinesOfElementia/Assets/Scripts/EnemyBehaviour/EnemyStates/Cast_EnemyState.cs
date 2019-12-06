@@ -10,6 +10,8 @@ public class Cast_EnemyState : BasicEnemyBaseState
 
     private float castTime;
     private float countdown;
+
+    private float originalStoppingDistance;
    
 
     public override void Initialize(StateMachine stateMachine)
@@ -25,7 +27,9 @@ public class Cast_EnemyState : BasicEnemyBaseState
     {
         base.Enter();
         //stop and rotate / aim to player
-        owner.Agent.destination = owner.transform.position;
+        //owner.Agent.destination = owner.transform.position;
+        originalStoppingDistance = owner.Agent.stoppingDistance;
+        owner.Agent.stoppingDistance =  2 * (castRange/3);
         
 
         //set timer
@@ -72,6 +76,7 @@ public class Cast_EnemyState : BasicEnemyBaseState
     {
         base.Leave();
         owner.Agent.isStopped = false;
+        owner.Agent.stoppingDistance = originalStoppingDistance;
     }
 
     
