@@ -59,24 +59,28 @@ public class GameManager : MonoBehaviour
         gameObject.AddComponent<AchievementManager>();
         Achievements = GetComponent<AchievementManager>();
 
+
+        Debug.Log("start function -  deaths: " + PlayerDeaths);
         //check if game has a save
         LoadVariablesFromSave();
         if (!SaveDataExists)
         {
             MenuManager.Current.DisableContinueButton();
         }
-        
-       
+
     }
     
     public void LoadNewGame()
     {
+        //init  acievement manager default
+        Achievements.InitializeToDefault();
+        //set data to default
         SetDataToDefault();
+
+        //load scene
         SceneManager.LoadScene(1);
         SceneManager.sceneLoaded += SetUpGame;
 
-        //init  acievement manager default
-        Achievements.InitializeToDefault();
         
     }
 
@@ -93,20 +97,25 @@ public class GameManager : MonoBehaviour
     //Called from both new game and continue with save. Prepares gameworld according to previosly loaded data.(if no save, default data.)
     private void SetUpGame(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Shrines aquired: " + FireUnlocked + " " + EarthUnlocked + " " + WaterUnlocked + " " + WindUnlocked);
+        if(scene.buildIndex == 1) // set up game world if game world was loaded.
+        {
+            Debug.Log("Shrines aquired: " + FireUnlocked + " " + EarthUnlocked + " " + WaterUnlocked + " " + WindUnlocked);
 
-        //register listeners        
-        EventManager.Current.RegisterListener<ShrineEvent>(RegisterShrine);
-        EventManager.Current.RegisterListener<PlayerDeathEvent>(OnPlayerDeath);
-        EventManager.Current.RegisterListener<ExperienceEvent>(OnPlayerXPEvent);
+            //register listeners        
+            EventManager.Current.RegisterListener<ShrineEvent>(RegisterShrine);
+            EventManager.Current.RegisterListener<PlayerDeathEvent>(OnPlayerDeath);
+            EventManager.Current.RegisterListener<ExperienceEvent>(OnPlayerXPEvent);
 
-        //prepare player position and HP
-        Player.Instance.transform.position = NearestCheckpoint;
-        Player.Instance.Health.CurrentHealth = PlayerHP;
+            //prepare player position and HP
+            Player.Instance.transform.position = NearestCheckpoint;
+            Player.Instance.Health.CurrentHealth = PlayerHP;
 
-        //load boss and player abilities
-        LoadBoss();
-        TimerManager.Current.SetNewTimer(gameObject, 1f, LoadAbilities); // Event seems to not be heard if sent too early...
+            //load boss and player abilities
+            LoadBoss();
+            TimerManager.Current.SetNewTimer(gameObject, 1f, LoadAbilities); // Event seems to not be heard if sent too early...
+            Debug.Log("set up game finished -  deaths: " + PlayerDeaths);
+        }
+        
         
     }
 
@@ -192,7 +201,8 @@ public class GameManager : MonoBehaviour
     public void OnPlayerDeath(PlayerDeathEvent ev)
     {
         PlayerDeaths += 1;
-        if(PlayerDeaths > MaxAllowedDeaths)
+        Debug.Log("OnPlayer death called -  deaths: " + PlayerDeaths);
+        if (PlayerDeaths > MaxAllowedDeaths)
         {
             DeleteSave();
             SceneManager.LoadScene(2);
@@ -307,6 +317,7 @@ public class GameManager : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
         //create empty savedata to override with. Ik, dumb solution but its safe.
         SaveData data = new SaveData();
+        data.PlayerDeaths = 0;
         //stream to file
         bf.Serialize(file, data);
         file.Close();

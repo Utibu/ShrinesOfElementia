@@ -87,6 +87,7 @@ public class HealthComponent : MonoBehaviour
         }
         else if (gameObject.CompareTag("Player"))
         {
+            Debug.Log("Playerdied");
             EventManager.Current.FireEvent(new PlayerDeathEvent("Player died", gameObject));
             //SceneManager.LoadScene("DeathScreen");
         }
