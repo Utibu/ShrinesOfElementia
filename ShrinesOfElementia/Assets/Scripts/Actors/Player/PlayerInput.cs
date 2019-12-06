@@ -21,6 +21,7 @@ public class PlayerInput : MonoBehaviour
     private int attackIndex = 0;
     private bool isAttacking;
     private float attackSpeed;
+    private bool canAttack = true;
 
     [SerializeField] private float sprintStaminaDrain;
 
@@ -146,17 +147,22 @@ public class PlayerInput : MonoBehaviour
             }
         }
 
+
         // Left click / Primary button
-        if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length && !isBlocking && staminaManager.CurrentStamina > 0)
+        if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length && !isBlocking && canAttack && !movementInput.IsStaggered)
         {
             if(!player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1")
             || !player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2"))
             {
+                if (attackIndex == 1)
+                {
+                    TimerManager.Current.SetNewTimer(gameObject, 0.7f, AttackTimerEnd);
+                    canAttack = false;
+                }
                 LightAttack();
             }
             
         }
-
 
         if (attackIndex > 0)
         {
@@ -239,5 +245,10 @@ public class PlayerInput : MonoBehaviour
         resetTimer = 0f;
 
         EventManager.Current.FireEvent(new AttackEvent("...and the player strikes again"));
+    }
+
+    private void AttackTimerEnd()
+    {
+        canAttack = true;
     }
 }
