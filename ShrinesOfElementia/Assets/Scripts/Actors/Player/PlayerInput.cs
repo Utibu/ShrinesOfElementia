@@ -149,7 +149,7 @@ public class PlayerInput : MonoBehaviour
 
 
         // Left click / Primary button
-        if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length && !isBlocking && canAttack)
+        if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length && !isBlocking && canAttack && !movementInput.IsStaggered)
         {
             if(!player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1")
             || !player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2"))
