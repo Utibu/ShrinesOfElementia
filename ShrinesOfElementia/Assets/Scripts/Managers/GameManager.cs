@@ -26,8 +26,12 @@ public class GameManager : MonoBehaviour
 
     //References to relevant stuff
     public AchievementManager Achievements { get; private set; }
-
+    [SerializeField] private int MaxAllowedDeaths;
     private bool SaveDataExists = false;
+    //things that i put here for now but might be better to move to separate scripts later.
+    public GameObject[] bosses;
+    public GameObject spawnPointBoss;
+    public GameObject PlayerStartingPoint;
 
     //variables
     public int Level { get; set; }
@@ -42,10 +46,7 @@ public class GameManager : MonoBehaviour
     public Vector3 NearestCheckpoint { get; set; }
 
 
-    //things that i put here for now but might be better to move to separate scripts later.
-    public GameObject[] bosses;
-    public GameObject spawnPointBoss;
-    public GameObject PlayerStartingPoint;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -89,21 +90,22 @@ public class GameManager : MonoBehaviour
         
     }
 
+    //Called from both new game and continue with save. Prepares gameworld according to previosly loaded data.(if no save, default data.)
     private void SetUpGame(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Shrines aquired: " + FireUnlocked + " " + EarthUnlocked + " " + WaterUnlocked + " " + WindUnlocked);
 
         //register listeners        
         EventManager.Current.RegisterListener<ShrineEvent>(RegisterShrine);
-        EventManager.Current.RegisterListener<PlayerDeathEvent>(RespawnPlayer);
+        EventManager.Current.RegisterListener<PlayerDeathEvent>(OnPlayerDeath);
         EventManager.Current.RegisterListener<ExperienceEvent>(OnPlayerXPEvent);
 
-
-        //load boss and abilities
-        LoadBoss();
-        //move player to last saved checkpoint
+        //prepare player position and HP
         Player.Instance.transform.position = NearestCheckpoint;
         Player.Instance.Health.CurrentHealth = PlayerHP;
+
+        //load boss and player abilities
+        LoadBoss();
         TimerManager.Current.SetNewTimer(gameObject, 1f, LoadAbilities); // Event seems to not be heard if sent too early...
         
     }
@@ -180,16 +182,23 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void RespawnPlayer(PlayerDeathEvent ev)
+    private void RespawnPlayer()
     {
-        Debug.Log(ev.Player.name + " Is respawning from GameManager");
         Vector3 spawnpoint = CheckpointManager.Current.FindNearestSpawnPoint();
+        Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
         Player.Instance.transform.position = spawnpoint;
     }
 
-    public void OnPlayerDeath()
+    public void OnPlayerDeath(PlayerDeathEvent ev)
     {
         PlayerDeaths += 1;
+        if(PlayerDeaths > MaxAllowedDeaths)
+        {
+            DeleteSave();
+            SceneManager.LoadScene(2);
+            return;
+        }
+        RespawnPlayer();
     }
 
     public void OnPlayerLevelUp() 
@@ -288,6 +297,19 @@ public class GameManager : MonoBehaviour
             SaveDataExists = false;
             Debug.Log("SAVEFILE DOES NOT EXIST");
         }
+    }
+
+
+    private void DeleteSave()
+    {
+        Debug.Log("overriding (deleting) savedata");
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
+        //create empty savedata to override with. Ik, dumb solution but its safe.
+        SaveData data = new SaveData();
+        //stream to file
+        bf.Serialize(file, data);
+        file.Close();
     }
 
     private void SetDataToDefault()
