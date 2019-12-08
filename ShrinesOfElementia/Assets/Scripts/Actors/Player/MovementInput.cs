@@ -402,6 +402,7 @@ public class MovementInput : MonoBehaviour
     {
         IsStaggered = false;
         animator.speed += staggerAnimationSlow;
+        animator.SetBool("CanBlock", true);
         Debug.Log("PLAYER RECOVERED FROM STAGGER");
     }
 

@@ -149,7 +149,7 @@ public class PlayerInput : MonoBehaviour
 
 
         // Left click / Primary button
-        if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length && !isBlocking && canAttack && !movementInput.IsStaggered && canAttack)
+        if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length && !isBlocking && canAttack && !movementInput.IsStaggered)
         {
             if(!player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1")
             || !player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2"))
@@ -189,13 +189,10 @@ public class PlayerInput : MonoBehaviour
 
         // Holding down right click / Secondary button
 
-        if (player.Animator.GetBool("CanBlock"))
-        {
-            isBlocking = Input.GetMouseButton(1);
-        }
+        isBlocking = Input.GetMouseButton(1);
         player.Animator.SetBool("IsBlocking", isBlocking);
 
-        if (isBlocking == true && staminaManager.CurrentStamina > 0 && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")) // Start blocking
+        if (isBlocking == true && staminaManager.CurrentStamina > 0 && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint") && player.Animator.GetBool("CanBlock")) // Start blocking
         {
             player.Animator.SetBool("InCombat", true);
 
@@ -210,6 +207,7 @@ public class PlayerInput : MonoBehaviour
         else if ((blockTrigger == true && isBlocking == false) || staminaManager.CurrentStamina <= 0) // Resets the trigger if the player isn't blocking
         {
             blockTrigger = false;
+            player.Animator.SetBool("CanBlock", true);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha7))
