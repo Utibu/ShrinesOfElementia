@@ -15,7 +15,7 @@ public class MovementInput : MonoBehaviour
     private Player player;
     private Animator animator;
 
-    //should be private, and set to camera.Instance in start.
+    //should be private, and set to camera.Instance in start. this was just quickfix bc error mayhem // ymer
     public CameraReference cameraCamCamTheGlam;
     private CharacterController controller;
     
@@ -38,6 +38,9 @@ public class MovementInput : MonoBehaviour
     float velocityOnImpact = 0f;
 
     public bool IsStaggered { get; set; }
+
+    //Achievements
+    private GameObject glideTimer;
 
     
 
@@ -80,6 +83,7 @@ public class MovementInput : MonoBehaviour
     [SerializeField] private float desiredRotationSpeed;
     [SerializeField] private LayerMask groundcheckMask;
     [SerializeField] private LayerMask waterGroundCheckMask;
+   
 
     //For Debugging
     public GameObject RespawnLocation; // ?
@@ -216,6 +220,9 @@ public class MovementInput : MonoBehaviour
             animator.SetBool("IsGliding", false);
 
             fromGlide = false;
+
+            //destroy glideTimer so flightExpert never sets to true.
+            Destroy(glideTimer);
         }
 
         // Jump
@@ -232,6 +239,7 @@ public class MovementInput : MonoBehaviour
             {
                 isGliding = true;
                 animator.SetBool("IsGliding", true);
+                glideTimer = TimerManager.Current.SetNewTimer(gameObject, 15f, AchievementManager.Current.FlightExpertTrue);
             }
             else if (isGliding && !IsGrounded() && hasGlide)
             {

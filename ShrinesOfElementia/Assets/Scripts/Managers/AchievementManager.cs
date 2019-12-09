@@ -8,6 +8,7 @@ public class AchievementManager : MonoBehaviour
     
     //Speedrunner: finish gamerun within 5 minutes
     public bool SpeedRunner { get; set; }
+    private bool SpeedRunnerTimerActive;
     [SerializeField]private float maxRunTime;
     private GameObject speedrunnerTimer;
 
@@ -49,7 +50,7 @@ public class AchievementManager : MonoBehaviour
     public void InitializeToDefault()
     {
         //set up speedrunner achievement
-        SpeedRunner = true; //is level finishes before this bool changes to false, player met the speedrunenr achievement goal
+        SpeedRunnerTimerActive = true; //is level finishes before this bool changes to false, player met the speedrunenr achievement goal
 
         // set up Elementalist
         collectedElements = new ArrayList();
@@ -94,7 +95,7 @@ public class AchievementManager : MonoBehaviour
     {
         if(level == 1)
         {
-            speedrunnerTimer = TimerManager.Current.SetNewTimer(gameObject, maxRunTime, SetSpeedRunnerFalse);
+            speedrunnerTimer = TimerManager.Current.SetNewTimer(gameObject, maxRunTime, SpeedRunnerOutOfTime);
 
             EventManager.Current.RegisterListener<ShrineEvent>(AddCollectedShrine);
             EventManager.Current.RegisterListener<EnemyDeathEvent>(IncreaseKillcount);
@@ -119,9 +120,14 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-    private void SetSpeedRunnerFalse()
+    private void SpeedRunnerOutOfTime()
     {
-        SpeedRunner = false;
+        SpeedRunnerTimerActive = false;
+    }
+
+    public void FlightExpertTrue()
+    {
+        FlightExpert = true;
     }
 
 
@@ -137,10 +143,12 @@ public class AchievementManager : MonoBehaviour
     private void UnlockGiantslayer(BossDeathEvent ev)
     {
         SlayedGiants[ev.ElementType] = true;
-
         if (!SlayedGiants.ContainsValue(false))
         {
             GiantBane = true;
         }
+
+        //if boss killed and speedrunnertimer = active, congratulations
+        SpeedRunner = true;
     }
 }
