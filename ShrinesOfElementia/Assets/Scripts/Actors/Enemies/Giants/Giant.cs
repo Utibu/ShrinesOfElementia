@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 // This needs to be picked apart. All of the cooldowns and damage values etc needs to be in separate scripts.
+[RequireComponent(typeof(GiantAbilityManager)/*, typeof(GiantAuraManager)*/)]
 public class Giant : StateMachine
 {
     // Components
@@ -11,6 +12,9 @@ public class Giant : StateMachine
     public Animator Animator { get; set; }
     public NavMeshAgent Agent { get; set; }
     public HealthComponent HealthComponent { get; set; }
+    public GiantAbilityManager GiantAbilityManager { get; set; }
+    //public GiantAuraManager GiantAuraManager { get; set; }
+
 
     // Bools for phases
     public bool Phase2Active { get; set; }
@@ -126,6 +130,9 @@ public class Giant : StateMachine
     // Move this to the manager mentioned above
     protected virtual void CountDownCooldowns()
     {
+        GiantAbilityManager.Instance.CountDownCooldown();
+        //GiantAuraManager.Instance.CountDownCooldown();
+
         // Sweep
         if (sweepAvailable == false && sweepTimer <= 0f)
         {
