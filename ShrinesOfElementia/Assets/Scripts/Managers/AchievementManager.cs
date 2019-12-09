@@ -25,9 +25,20 @@ public class AchievementManager : MonoBehaviour
 
     //Giantslayer: one achievement per giant killed 
     public Dictionary<string, bool> SlayedGiants { get; set; }
-    
-    
-    
+
+    private static AchievementManager current;
+    public static AchievementManager Current
+    {
+        get
+        {
+            if (current == null)
+            {
+                current = GameObject.FindObjectOfType<AchievementManager>();
+            }
+            return current;
+        }
+    }
+
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -36,6 +47,11 @@ public class AchievementManager : MonoBehaviour
         EventManager.Current.RegisterListener<BossDeathEvent>(UnlockGiantslayer);
 
         SlayedGiants = new Dictionary<string, bool>();
+        //set up Giantslayer. This needs to be set up already in start because menumanager will need to access this before continue/start new is chosen.
+        SlayedGiants.Add("Fire", false);
+        SlayedGiants.Add("Water", false);
+        SlayedGiants.Add("Wind", false);
+        SlayedGiants.Add("Earth", false);
     }
 
     public void InitializeToDefault()
@@ -49,11 +65,7 @@ public class AchievementManager : MonoBehaviour
         //set up Elementals hater her! : KillcountHundred
         currentKills = 0;
 
-        //set up Giantslayer
-        SlayedGiants.Add("Fire", false);
-        SlayedGiants.Add("Water", false);
-        SlayedGiants.Add("Wind", false);
-        SlayedGiants.Add("Earth", false);
+        
     }
 
     //if Gamemanager loads game from save:
@@ -86,6 +98,7 @@ public class AchievementManager : MonoBehaviour
 
     private void AddCollectedShrine(ShrineEvent ev)
     {
+        Elementalist = true;
         //add element if its not already in list. (some shrine events fire several times :/ )
         if (!collectedElements.Equals(ev.Element))
         {

@@ -12,7 +12,19 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject startMenu;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject extrasMenu;
+    [SerializeField] private GameObject creditsPanel;
     [SerializeField] private GameObject continueButton;
+
+    //Achievements panel
+    [SerializeField] private GameObject achievementsPanel;
+    [SerializeField] private GameObject flightmasterIcon;
+    [SerializeField] private GameObject speedrunnerIcon;
+    [SerializeField] private GameObject elementalistIcon;
+    [SerializeField] private GameObject hundredKillsIcon;
+    [SerializeField] private GameObject fireGiantIcon;
+    [SerializeField] private GameObject waterGiantIcon;
+    [SerializeField] private GameObject windGiantIcon;
+    [SerializeField] private GameObject earthGiantIcon;
 
     private static MenuManager current;
     public static MenuManager Current
@@ -73,8 +85,61 @@ public class MenuManager : MonoBehaviour
         extrasMenu.SetActive(false);
         startMenu.SetActive(true);
         optionsMenu.SetActive(false);
+        creditsPanel.SetActive(false);
+        achievementsPanel.SetActive(false);
     }
 
+    public void OnCredits()
+    {
+        creditsPanel.SetActive(true);
+    }
+
+    public void OnAchievements()
+    {
+        Debug.Log("ON ACHIEVEMENTS");
+        achievementsPanel.SetActive(true);
+        //activate icons depending on what is unlocked
+        if (AchievementManager.Current.FlightExpert)
+        {
+            flightmasterIcon.SetActive(true);
+            Debug.Log("icon activated");
+        }
+        if (AchievementManager.Current.Elementalist)
+        {
+            elementalistIcon.SetActive(true);
+            Debug.Log("icon activated");
+        }
+        if (AchievementManager.Current.SpeedRunner)
+        {
+            speedrunnerIcon.SetActive(true);
+            Debug.Log("icon activated");
+        }
+        if (AchievementManager.Current.KillcountHundred)
+        {
+            hundredKillsIcon.SetActive(true);
+            Debug.Log("icon activated");
+        }
+        if (AchievementManager.Current.SlayedGiants["Fire"])
+        {
+            fireGiantIcon.SetActive(true);
+            Debug.Log("icon activated");
+        }
+        if (AchievementManager.Current.SlayedGiants["Water"])
+        {
+            waterGiantIcon.SetActive(true);
+            Debug.Log("icon activated");
+        }
+        if (AchievementManager.Current.SlayedGiants["Wind"])
+        {
+            windGiantIcon.SetActive(true);
+            Debug.Log("icon activated");
+        }
+        if (AchievementManager.Current.SlayedGiants["Earth"])
+        {
+            earthGiantIcon.SetActive(true);
+            Debug.Log("icon activated");
+        }
+    }
  
 
 

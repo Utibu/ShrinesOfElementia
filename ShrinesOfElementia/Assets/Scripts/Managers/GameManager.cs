@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    SaveData saveData;
+
     //References to relevant stuff
     public AchievementManager Achievements { get; private set; }
     [SerializeField] private int MaxAllowedDeaths;
@@ -61,9 +63,15 @@ public class GameManager : MonoBehaviour
 
 
         Debug.Log("start function -  deaths: " + PlayerDeaths);
+
         //check if game has a save
         LoadVariablesFromSave();
-        if (!SaveDataExists)
+
+        if (SaveDataExists)
+        {
+            AchievementManager.Current.InitializeFromSave(saveData);
+        }
+        else
         {
             MenuManager.Current.DisableContinueButton();
         }
@@ -281,26 +289,23 @@ public class GameManager : MonoBehaviour
             Debug.Log("SAVEFILE EXISTS");
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
-            SaveData data = (SaveData)bf.Deserialize(file);
+            saveData = (SaveData)bf.Deserialize(file);
             file.Close();
 
             //makes sure gameManager knows if data is a save or just default null + 0
-            SaveDataExists = data.ContainsSaveData;
+            SaveDataExists = saveData.ContainsSaveData;
 
             //get Variables from save:
             Level = Level;
-            PlayerLevel = data.PlayerLevel;
-            PlayerXP = data.PlayerXP;
-            PlayerHP = data.PlayerHP;
-            PlayerDeaths = data.PlayerDeaths;
-            FireUnlocked = data.FireUnlocked;
-            WaterUnlocked = data.WaterUnlocked;
-            WindUnlocked = data.WindUnlocked;
-            EarthUnlocked = data.EarthUnlocked;
-            NearestCheckpoint = new Vector3(data.SpawnX, data.SpawnY, data.SpawnZ);
-
-            //init acievementmanager with savedata
-            Achievements.InitializeFromSave(data);
+            PlayerLevel = saveData.PlayerLevel;
+            PlayerXP = saveData.PlayerXP;
+            PlayerHP = saveData.PlayerHP;
+            PlayerDeaths = saveData.PlayerDeaths;
+            FireUnlocked = saveData.FireUnlocked;
+            WaterUnlocked = saveData.WaterUnlocked;
+            WindUnlocked = saveData.WindUnlocked;
+            EarthUnlocked = saveData.EarthUnlocked;
+            NearestCheckpoint = new Vector3(saveData.SpawnX, saveData.SpawnY, saveData.SpawnZ);
         }
         else
         {

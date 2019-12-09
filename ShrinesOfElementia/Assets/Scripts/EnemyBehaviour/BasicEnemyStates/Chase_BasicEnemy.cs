@@ -19,7 +19,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
     {
         base.Initialize(stateMachine);
         chaseSpeed = speed * 1.5f;
-        earlyChaseSpeed = speed * 2.5f;
+        earlyChaseSpeed = speed * 2f;
         
     }
 
