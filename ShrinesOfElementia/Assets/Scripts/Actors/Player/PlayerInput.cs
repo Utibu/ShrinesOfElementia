@@ -263,6 +263,7 @@ public class PlayerInput : MonoBehaviour
 
     private void AttackTimerEnd()
     {
-        canAttack = true;
+        if(player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Sword and Shield Slash 2"))
+            canAttack = true;
     }
 }
