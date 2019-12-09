@@ -244,6 +244,7 @@ public class PlayerInput : MonoBehaviour
     {
         GetComponent<WeaponController>().SwordCollider.enabled = false;
         player.Animator.SetBool("CanBlock", true);
+        attackIndex = 0;
     }
 
     private void LightAttack()
