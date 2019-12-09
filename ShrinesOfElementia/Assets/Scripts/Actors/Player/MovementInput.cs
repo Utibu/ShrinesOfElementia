@@ -43,10 +43,15 @@ public class MovementInput : MonoBehaviour
     [SerializeField] private float defaultSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float animationDamping;
-    [SerializeField] private float staggerSpeed;
-    [SerializeField] private float staggerAnimationSlow = 0.4f;
     [SerializeField] private bool newMovement;
     private float movementSpeed;
+
+    [Header("Stagger")]
+    [SerializeField] private float staggerSpeed;
+    [SerializeField] private float staggerAnimationSlow = 0.4f;
+    [SerializeField] private AnimationClip staggerAnimation;
+    private float staggerDuration;
+
 
     [Header("Jump")]
     [SerializeField] private float gravity;
@@ -98,6 +103,7 @@ public class MovementInput : MonoBehaviour
     {
         player = Player.Instance;
         animator = player.Animator;
+        staggerDuration = staggerAnimation.length;
 
         camera = CameraReference.Instance;
         IsStaggered = false;
@@ -390,12 +396,12 @@ public class MovementInput : MonoBehaviour
             Debug.Log("PLAYER IS STAGGERED");
             player.Animator.SetTrigger("OnStagger");
             IsStaggered = true;
-            TimerManager.Current.SetNewTimer(gameObject, 0.7f, Recover);
+            TimerManager.Current.SetNewTimer(gameObject, staggerDuration/3, Recover);
             animator.speed -= staggerAnimationSlow;
-            
+            GetComponent<WeaponController>().SwordCollider.enabled = false;
         }
-        
-        
+
+
     }
 
     public void Recover()
