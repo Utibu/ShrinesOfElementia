@@ -30,6 +30,7 @@ public class SaveData
     public bool SlayedWaterGiant;
     public bool SlayedWindGiant;
     public bool SlayedEarthGiant;
+    public bool GiantBane;
 
 
 

@@ -25,6 +25,7 @@ public class AchievementManager : MonoBehaviour
 
     //Giantslayer: one achievement per giant killed 
     public Dictionary<string, bool> SlayedGiants { get; set; }
+    public bool GiantBane { get; set; }
 
     private static AchievementManager current;
     public static AchievementManager Current
@@ -42,16 +43,7 @@ public class AchievementManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        EventManager.Current.RegisterListener<ShrineEvent>(AddCollectedShrine);
-        EventManager.Current.RegisterListener<EnemyDeathEvent>(IncreaseKillcount);
-        EventManager.Current.RegisterListener<BossDeathEvent>(UnlockGiantslayer);
-
-        SlayedGiants = new Dictionary<string, bool>();
-        //set up Giantslayer. This needs to be set up already in start because menumanager will need to access this before continue/start new is chosen.
-        SlayedGiants.Add("Fire", false);
-        SlayedGiants.Add("Water", false);
-        SlayedGiants.Add("Wind", false);
-        SlayedGiants.Add("Earth", false);
+        InitializeToDefault();
     }
 
     public void InitializeToDefault()
@@ -65,7 +57,14 @@ public class AchievementManager : MonoBehaviour
         //set up Elementals hater her! : KillcountHundred
         currentKills = 0;
 
-        
+        //set up Giantslayer. 
+        SlayedGiants = new Dictionary<string, bool>();
+        SlayedGiants.Add("Fire", false);
+        SlayedGiants.Add("Water", false);
+        SlayedGiants.Add("Wind", false);
+        SlayedGiants.Add("Earth", false);
+        GiantBane = false;
+
     }
 
     //if Gamemanager loads game from save:
@@ -77,12 +76,16 @@ public class AchievementManager : MonoBehaviour
         //set up Elementals hater her! : KillcountHundred
         currentKills = data.currentKills;
 
+        //set up elementalist
+        Elementalist = data.Elementalist;
+
         //set up Giantslayer
         SlayedGiants = new Dictionary<string, bool>();
         SlayedGiants.Add("Fire", data.SlayedFireGiant);
         SlayedGiants.Add("Water", data.SlayedWaterGiant);
         SlayedGiants.Add("Wind", data.SlayedWindGiant);
         SlayedGiants.Add("Earth", data.SlayedEarthGiant);
+        GiantBane = data.GiantBane;
     }
 
 
@@ -92,6 +95,10 @@ public class AchievementManager : MonoBehaviour
         if(level == 1)
         {
             speedrunnerTimer = TimerManager.Current.SetNewTimer(gameObject, maxRunTime, SetSpeedRunnerFalse);
+
+            EventManager.Current.RegisterListener<ShrineEvent>(AddCollectedShrine);
+            EventManager.Current.RegisterListener<EnemyDeathEvent>(IncreaseKillcount);
+            EventManager.Current.RegisterListener<BossDeathEvent>(UnlockGiantslayer);
         }
     }
     
@@ -100,7 +107,7 @@ public class AchievementManager : MonoBehaviour
     {
         Elementalist = true;
         //add element if its not already in list. (some shrine events fire several times :/ )
-        if (!collectedElements.Equals(ev.Element))
+        if (!collectedElements.Contains(ev.Element))
         {
             collectedElements.Add(ev.Element);
 
@@ -117,6 +124,7 @@ public class AchievementManager : MonoBehaviour
         SpeedRunner = false;
     }
 
+
     private void IncreaseKillcount(EnemyDeathEvent ev)
     {
         currentKills += 1;
@@ -128,10 +136,11 @@ public class AchievementManager : MonoBehaviour
 
     private void UnlockGiantslayer(BossDeathEvent ev)
     {
-        if (SlayedGiants.ContainsKey(ev.ElementType))
-        {
-            return;
-        }
+        SlayedGiants[ev.ElementType] = true;
 
+        if (!SlayedGiants.ContainsValue(false))
+        {
+            GiantBane = true;
+        }
     }
 }

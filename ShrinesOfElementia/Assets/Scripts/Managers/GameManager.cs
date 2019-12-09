@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    SaveData saveData;
+    private SaveData saveData;
 
     //References to relevant stuff
     public AchievementManager Achievements { get; private set; }
@@ -100,6 +100,12 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += SetUpGame;
 
         
+    }
+
+    public void LoadAchievements()
+    {
+        LoadVariablesFromSave();
+        AchievementManager.Current.InitializeFromSave(saveData);
     }
 
     //Called from both new game and continue with save. Prepares gameworld according to previosly loaded data.(if no save, default data.)
@@ -275,6 +281,7 @@ public class GameManager : MonoBehaviour
         bool earthKilled;
         Achievements.SlayedGiants.TryGetValue("Fire", out earthKilled);
         data.SlayedEarthGiant = earthKilled;
+        data.GiantBane = Achievements.GiantBane;
 
 
         Debug.Log("SAVING: shrine:" + data.FireUnlocked + " " + data.EarthUnlocked + " " + data.WaterUnlocked + " " + data.WindUnlocked);
@@ -306,6 +313,9 @@ public class GameManager : MonoBehaviour
             WindUnlocked = saveData.WindUnlocked;
             EarthUnlocked = saveData.EarthUnlocked;
             NearestCheckpoint = new Vector3(saveData.SpawnX, saveData.SpawnY, saveData.SpawnZ);
+
+            //init achievement data
+            AchievementManager.Current.InitializeFromSave(saveData);
         }
         else
         {

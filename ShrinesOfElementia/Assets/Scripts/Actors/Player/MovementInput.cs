@@ -14,7 +14,9 @@ public class MovementInput : MonoBehaviour
     // Components
     private Player player;
     private Animator animator;
-    private CameraReference camera;
+
+    //should be private, and set to camera.Instance in start.
+    public CameraReference cameraCamCamTheGlam;
     private CharacterController controller;
     
 
@@ -105,7 +107,7 @@ public class MovementInput : MonoBehaviour
         animator = player.Animator;
         staggerDuration = staggerAnimation.length;
 
-        camera = CameraReference.Instance;
+        //cameraCamCamTheGlam = CameraReference.Instance;
         IsStaggered = false;
     }
 
@@ -247,8 +249,8 @@ public class MovementInput : MonoBehaviour
     /// </summary>
     private void PlayerRotation()
     {
-        Vector3 forward = camera.transform.forward;
-        Vector3 right = camera.transform.right;
+        Vector3 forward = cameraCamCamTheGlam.transform.forward;
+        Vector3 right = cameraCamCamTheGlam.transform.right;
 
         forward.y = 0f;
         right.y = 0f;
@@ -415,7 +417,7 @@ public class MovementInput : MonoBehaviour
     //Code from: https://gamedev.stackexchange.com/questions/125945/camera-relative-movement-is-pushing-into-off-the-ground-instead-of-parallel/125954#125954?newreg=bdca6bbf7889474cbb8e7eabbfd2f130
     Vector3 CameraRelativeFlatten(Vector3 input, Vector3 localUp)
     {
-        Quaternion flatten = Quaternion.LookRotation(-localUp, camera.transform.forward) * Quaternion.Euler(Vector3.right * -90f);
+        Quaternion flatten = Quaternion.LookRotation(-localUp, cameraCamCamTheGlam.transform.forward) * Quaternion.Euler(Vector3.right * -90f);
         return flatten * input;
     }
 

@@ -25,6 +25,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject waterGiantIcon;
     [SerializeField] private GameObject windGiantIcon;
     [SerializeField] private GameObject earthGiantIcon;
+    [SerializeField] private GameObject giantBaneIcon;
 
     private static MenuManager current;
     public static MenuManager Current
@@ -98,6 +99,9 @@ public class MenuManager : MonoBehaviour
     {
         Debug.Log("ON ACHIEVEMENTS");
         achievementsPanel.SetActive(true);
+
+        GameManager.Current.LoadAchievements();
+
         //activate icons depending on what is unlocked
         if (AchievementManager.Current.FlightExpert)
         {
@@ -138,6 +142,10 @@ public class MenuManager : MonoBehaviour
         {
             earthGiantIcon.SetActive(true);
             Debug.Log("icon activated");
+        }
+        if(AchievementManager.Current.GiantBane)
+        {
+            giantBaneIcon.SetActive(true);
         }
     }
  
