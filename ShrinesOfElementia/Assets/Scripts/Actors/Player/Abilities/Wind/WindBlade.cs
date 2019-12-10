@@ -37,11 +37,18 @@ public class WindBlade : Ability
 
             enemiesHit.Add(other.gameObject);
         }
+
+        else if (other.gameObject.CompareTag("Vines") && !enemiesHit.Contains(other.gameObject))
+        {
+            EventManager.Current.FireEvent(new WindAbilityEvent("WindAbility activated", other.gameObject, transform.position, effectRange));
+        }
         
         else if (other.gameObject.CompareTag("Shield"))
         {
             EventManager.Current.FireEvent(new BlockEvent("wind blocked", 30f));
             Destroy(this.gameObject);
         }
+
+
     }
 }

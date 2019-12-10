@@ -99,7 +99,7 @@ public class GiantAbilityManager : MonoBehaviour
 
     private void CastEarth()
     {
-
+        GameObject vines = GameObject.Instantiate(giantAbility, abilityPositionGiant, abilityRotation);
     }
 
 

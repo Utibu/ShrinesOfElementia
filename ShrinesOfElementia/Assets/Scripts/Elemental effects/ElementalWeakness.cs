@@ -17,6 +17,8 @@ public class ElementalWeakness : MonoBehaviour
             enemy.DisableEnemy();
         }
 
+        
+
         //deal that extra elemental damage to anything w a healthcomponent
         HealthComponent health;
         if (gameObject.TryGetComponent<HealthComponent>(out health))

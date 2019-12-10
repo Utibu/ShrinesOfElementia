@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 2257621934806268261}
   - component: {fileID: 7066052772609573715}
   - component: {fileID: 3545213497162153898}
+  - component: {fileID: 7370210881358800843}
+  - component: {fileID: 1033546079906255185}
   m_Layer: 0
-  m_Name: VinesLowPoly
-  m_TagString: Untagged
+  m_Name: Vines
+  m_TagString: Vines
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,3 +80,28 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7370210881358800843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2958854960170077046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9af0f3fda34b9304cbc73aa0d0d19ce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1033546079906255185
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2958854960170077046}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4, y: 3.2622132, z: 0.1}
+  m_Center: {x: 0.000014543533, y: -0.0056584477, z: 0.00071577355}
