@@ -118,6 +118,7 @@ public class MovementInput : MonoBehaviour
 
     private void Update()
     {
+        print(controller.isGrounded);
         // Sprint
         if (IsStaggered)
         {
@@ -204,7 +205,7 @@ public class MovementInput : MonoBehaviour
 
         
         // Remove when the state machine is done
-        if (IsGrounded() && fromGlide)
+        if (controller.isGrounded && fromGlide)
         {
             isGliding = false;
             animator.SetBool("IsGliding", false);
