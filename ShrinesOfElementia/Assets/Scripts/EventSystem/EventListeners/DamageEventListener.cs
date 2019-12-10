@@ -19,6 +19,11 @@ public class DamageEventListener : MonoBehaviour
         if (damageEvent.TargetGameObject.GetComponent<EnemySM>() != null)
         {
             damageEvent.TargetGameObject.GetComponent<EnemySM>().EnemyAttacked();
+
+            if(damageEvent.TargetGameObject?.GetComponent<ActivateCanvasOnDamage>().CanvasIsActive == false)
+            {
+                damageEvent.TargetGameObject.GetComponent<ActivateCanvasOnDamage>().ActivateCanvas();
+            }
         }
 
         if (damageEvent.TargetGameObject.CompareTag("Player"))
