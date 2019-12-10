@@ -16,7 +16,6 @@ public class PlayerInput : MonoBehaviour
     public bool IsBlocking { get { return isBlocking; } }
 
     private float resetTimer = 0;
-    [SerializeField] private float lightAttackTimer; // Temporary fix
     private string[] lightAttacks;
     private int attackIndex = 0;
     private bool isAttacking;
@@ -24,8 +23,10 @@ public class PlayerInput : MonoBehaviour
     private bool canAttack = true;
     private bool canBlock = true;
 
-    [SerializeField] private float sprintStaminaDrain;
-
+    
+    [SerializeField] private float lightAttackTimer; // Temporary fix
+    [SerializeField] private float lightAttack1;
+    [SerializeField] private float lightAttack2;
 
     private void Start()
     {
@@ -156,12 +157,12 @@ public class PlayerInput : MonoBehaviour
             {
                 if(attackIndex == 0)
                 {
-                    TimerManager.Current.SetNewTimer(gameObject, 0.25f, AttackTimerEnd);
+                    TimerManager.Current.SetNewTimer(gameObject, lightAttack1, AttackTimerEnd);
                     canAttack = false;
                 }
                 else if(attackIndex == 1)
                 {
-                    TimerManager.Current.SetNewTimer(gameObject, 0.9f, AttackTimerEnd);
+                    TimerManager.Current.SetNewTimer(gameObject, lightAttack2, AttackTimerEnd);
                     canAttack = false;
                 }
                 LightAttack();
