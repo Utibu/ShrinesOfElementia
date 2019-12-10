@@ -118,7 +118,6 @@ public class MovementInput : MonoBehaviour
 
     private void Update()
     {
-        print(controller.isGrounded);
         // Sprint
         if (IsStaggered)
         {

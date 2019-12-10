@@ -29,18 +29,19 @@ public class WindBlade : Ability
 
     private void OnTriggerEnter(Collider other)
     {
+
         if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) && !enemiesHit.Contains(other.gameObject) && other.gameObject.tag != caster.tag)
         {
-            if (other.gameObject.CompareTag("Shield"))
-            {
-                Destroy(this.gameObject);
-                return;
-            }
             EventManager.Current.FireEvent(new DamageEvent("Wind blade dealt " + damage + "to " + other.gameObject, damage, gameObject, other.gameObject));
             EventManager.Current.FireEvent(new WindAbilityEvent("WindAbility activated", other.gameObject, transform.position, effectRange));
 
             enemiesHit.Add(other.gameObject);
         }
         
+        else if (other.gameObject.CompareTag("Shield"))
+        {
+            EventManager.Current.FireEvent(new BlockEvent("wind blocked", 30f));
+            Destroy(this.gameObject);
+        }
     }
 }

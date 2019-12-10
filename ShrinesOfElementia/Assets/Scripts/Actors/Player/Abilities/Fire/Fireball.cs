@@ -58,7 +58,16 @@ public class Fireball : Ability
             hasDealtDamage = true;
         }
 
-        AreaOfEffect();
+        if (!collision.gameObject.CompareTag("Shield"))
+        {
+            AreaOfEffect();
+        }
+
+        else
+        {
+            EventManager.Current.FireEvent(new BlockEvent("fire blocked", 30f));
+        }
+        
 
         print("Fireball hit " + collision.gameObject);
 
