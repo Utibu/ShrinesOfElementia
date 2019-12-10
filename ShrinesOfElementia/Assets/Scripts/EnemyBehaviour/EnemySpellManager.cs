@@ -1,5 +1,5 @@
 ﻿//Author: Sofia Kauko
-//Co-author: Niklas Almqvist
+//Co-authors: Niklas Almqvist & Bilal El Medkouri
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +35,8 @@ public class EnemySpellManager : MonoBehaviour
     private Vector3 spellPosition;
     private Quaternion spellRotation;
     private Vector3 spellAim;
+
+    [SerializeField] private GameObject groundTargetIndicator = null;
 
     private void Start()
     {
@@ -75,7 +77,7 @@ public class EnemySpellManager : MonoBehaviour
         Debug.Log("Waterspell cast");
         spellPosition = Player.Instance.transform.position + Vector3.up * -3f;
 
-        // Add event or something for a target indicator
+        Instantiate(groundTargetIndicator, Player.Instance.transform.position, Quaternion.Euler(-90, transform.rotation.eulerAngles.y, 0));
 
         TimerManager.Current.SetNewTimer(gameObject, spellDelayModifier, CastWaterWithDelay);
         
@@ -84,7 +86,7 @@ public class EnemySpellManager : MonoBehaviour
     {
         GameObject geyser = Instantiate(spellPrefab, spellPosition, Quaternion.identity);
         geyser.GetComponent<Geyser>().Caster = gameObject;
-        EventManager.Current.FireEvent(new GeyserCastEvent(spellPosition, 6f)); //6f is range of extinguish. put this in geysher prefab script later.
+        EventManager.Current.FireEvent(new GeyserCastEvent(spellPosition, 6f)); //6f is range of extinguish. put this in geyser prefab script later.
     }
 
     private void CastEarth()
