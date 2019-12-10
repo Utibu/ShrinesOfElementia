@@ -28,5 +28,6 @@ public class GiantChaseState : GiantBattleState
     public override void Leave()
     {
         owner.Animator.SetBool("IsRunning", false);
+        
     }
 }

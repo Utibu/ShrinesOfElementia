@@ -12,7 +12,7 @@ public class Giant : StateMachine
     public Animator Animator { get; set; }
     public NavMeshAgent Agent { get; set; }
     public HealthComponent HealthComponent { get; set; }
-    public GiantAbilityManager GiantAbilityManager { get; set; }
+    public GiantAbilityManager GiantAbilityManagerRef { get; set; }
     //public GiantAuraManager GiantAuraManager { get; set; }
 
 
@@ -106,6 +106,7 @@ public class Giant : StateMachine
         Agent = GetComponent<NavMeshAgent>();
         Animator = GetComponent<Animator>();
         HealthComponent = GetComponent<HealthComponent>();
+        GiantAbilityManagerRef = GetComponent<GiantAbilityManager>();
 
         SweepAvailable = false;
         StompAvailable = false;
@@ -116,7 +117,7 @@ public class Giant : StateMachine
 
     protected override void Start()
     {
-        BossEvents.Instance.OnBossFightAreaTriggerEnter += OnBossAreaEnter;
+        //BossEvents.Instance.OnBossFightAreaTriggerEnter += OnBossAreaEnter;
         print("Subscribed to BossFightAreaTriggerEnter");
     }
 
@@ -164,6 +165,12 @@ public class Giant : StateMachine
         }
     }
 
+    public void StartBattle()
+    {
+        print("BossAreaEntered");
+        Transition<GiantPhaseOneState>();
+    }
+
     // This doesn't need to be here, since I've made a static reference to the giant
     protected virtual void OnBossAreaEnter()
     {
@@ -174,7 +181,7 @@ public class Giant : StateMachine
 
     protected virtual void OnDestroy()
     {
-        BossEvents.Instance.OnBossFightAreaTriggerEnter -= OnBossAreaEnter;
+        //BossEvents.Instance.OnBossFightAreaTriggerEnter -= OnBossAreaEnter;
     }
 
     // Animation Manager?

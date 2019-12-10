@@ -2,6 +2,8 @@
 
 public class GiantBattleState : GiantBaseState
 {
+
+
     public override void HandleUpdate()
     {
         // Aura
@@ -19,24 +21,22 @@ public class GiantBattleState : GiantBaseState
             owner.Transition<GiantCastAbilityState>();
         }
         */
-        if (owner.Phase3Active && owner.LeapAvailable && owner.LeapRange >= owner.DistanceToPlayer())
-        {
-            owner.LeapAvailable = false;
-            owner.Transition<GiantLeapState>();
-        }
 
-        // Stomp
-        else if (owner.Phase2Active && owner.StompAvailable && owner.StompRange >= owner.DistanceToPlayer())
-        {
-            owner.StompAvailable = false;
-            owner.Transition<GiantStompState>();
-        }
+        
+
 
         // Sweep
-        else if (owner.SweepAvailable && owner.SweepRange >= owner.DistanceToPlayer())
+        if (owner.SweepAvailable && owner.SweepRange >= owner.DistanceToPlayer())
         {
             owner.SweepAvailable = false;
             owner.Transition<GiantSweepState>();
+        }
+
+        // Stomp
+        else if (owner.StompAvailable && owner.StompRange >= owner.DistanceToPlayer())  // owner.Phase2Active && 
+        {
+            owner.StompAvailable = false;
+            owner.Transition<GiantStompState>();
         }
 
         // Basic Attack
@@ -45,10 +45,34 @@ public class GiantBattleState : GiantBaseState
             owner.Transition<GiantAttackState>();
         }
 
+        //Leap
+        else if ( owner.LeapAvailable && owner.LeapRange >= owner.DistanceToPlayer())  // owner.Phase3Active &&
+        {
+            owner.LeapAvailable = false;
+            owner.Transition<GiantLeapState>();
+        }
+
+        //cast ability
+        else if (owner.GiantAbilityManagerRef.Ready && owner.GiantAbilityManagerRef.AbilityRange >= owner.DistanceToPlayer() && owner.DistanceToPlayer() >= 7f)
+        {
+            owner.Transition<GiantCastAbilityState>();
+        }
+
         // Chase
         else
         {
             owner.Transition<GiantChaseState>();
         }
+
+        
+        
+        
+
     }
+
+
+
+
+
+
 }

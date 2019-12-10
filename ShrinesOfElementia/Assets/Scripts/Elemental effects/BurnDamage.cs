@@ -13,6 +13,8 @@ public class BurnDamage : MonoBehaviour
     private HealthComponent burnvictim;
     private bool isActive = true;
 
+    public bool IsActive { get => isActive; set => isActive = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,13 +49,24 @@ public class BurnDamage : MonoBehaviour
             isActive = false;
             GetComponent<Light>().enabled = false;
             TimerManager.Current.SetNewTimer(gameObject, DisableDuration, EnableBurn);
+
+
+            // is gameobject is a firegiant, transition it to the enable burn state after the disableDuration is done.
+            if(GetComponentInParent<Giant>() != null)
+            {
+                Debug.Log("BurnDamage script fire animation timer");
+                System.Action animateEnableBurn = gameObject.GetComponent<Giant>().Transition<GiantCastAuraState>;
+                TimerManager.Current.SetNewTimer(gameObject, DisableDuration - 2f,  animateEnableBurn);
+            }
         }
     }
 
-    private void EnableBurn()
+    public void EnableBurn()
     {
         isActive = true;
         GetComponent<Light>().enabled = true;
+
+        
     }
 
     private void OnDestroy()

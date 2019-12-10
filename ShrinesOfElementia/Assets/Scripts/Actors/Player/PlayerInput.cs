@@ -129,14 +129,14 @@ public class PlayerInput : MonoBehaviour
             movementInput.OnDodge();
         }
 
-
+        /*
         if((player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1")
             || player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2")))
         {
             //player.Animator.SetBool("CanBlock", true);
             print("is attacking");
         }
-       
+       */
 
 
         // Mouse buttons, 0 - Primary Button, 1 - Secondary Button, 2 - Middle Click

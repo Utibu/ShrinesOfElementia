@@ -12,18 +12,18 @@ public class BossHealthBarHandler : MonoBehaviour
     }
     private void Start()
     {
-        BossEvents.Instance.OnBossFightAreaTriggerEnter += OnBossAreaEnter;
+        //BossEvents.Instance.OnBossFightAreaTriggerEnter += OnBossAreaEnter;
         print(gameObject + " subscribed to BossFightAreaTriggerEnter");
     }
 
-    private void OnBossAreaEnter()
+    public void OnBossAreaEnter()
     {
         bossHealthBar.SetActive(true);
-        BossEvents.Instance.OnBossFightAreaTriggerEnter -= OnBossAreaEnter;
+        //BossEvents.Instance.OnBossFightAreaTriggerEnter -= OnBossAreaEnter;
     }
 
     private void OnDestroy()
     {
-        BossEvents.Instance.OnBossFightAreaTriggerEnter -= OnBossAreaEnter;
+        //BossEvents.Instance.OnBossFightAreaTriggerEnter -= OnBossAreaEnter;
     }
 }

@@ -54,7 +54,6 @@ public class Fireball : Ability
         if ((collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player")) && collision.gameObject.CompareTag(caster.tag) == false) //collision.gameObject.tag != caster.tag)
         {
             DealDamage(collision.gameObject, directHitDamage);
-
             hasDealtDamage = true;
         }
 

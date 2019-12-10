@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BossFightTriggerArea : MonoBehaviour
 {
+
+
+
+    /*  gav null references jag inte pallar felsöka. 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -12,4 +16,17 @@ public class BossFightTriggerArea : MonoBehaviour
             BossEvents.Instance.BossFightAreaTriggerEnter();
         }
     }
+
+    */
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Giant.Instance.StartBattle();
+            Giant.Instance.GetComponent<BossHealthBarHandler>().OnBossAreaEnter();
+        }
+    }
+
+
 }

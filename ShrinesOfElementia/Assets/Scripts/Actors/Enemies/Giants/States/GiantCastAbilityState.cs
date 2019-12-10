@@ -13,4 +13,12 @@ public class GiantCastAbilityState : GiantCombatState
 
         base.Enter();
     }
+
+    public override void HandleUpdate()
+    {
+        //temporary solution to the aim at player problem. 
+        owner.transform.LookAt(Player.Instance.transform);
+        base.HandleUpdate();
+        
+    }
 }
