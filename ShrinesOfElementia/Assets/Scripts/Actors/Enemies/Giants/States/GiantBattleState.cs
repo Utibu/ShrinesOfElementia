@@ -12,12 +12,13 @@ public class GiantBattleState : GiantBaseState
         }*/
 
         // Ability
+        /*
         if (GiantAbilityManager.Instance.AbilityAvailable == true && GiantAbilityManager.Instance.AbilityRange >= owner.DistanceToPlayer())
         {
             GiantAbilityManager.Instance.AbilityAvailable = false;
             owner.Transition<GiantCastAbilityState>();
         }
-
+        */
         if (owner.Phase3Active && owner.LeapAvailable && owner.LeapRange >= owner.DistanceToPlayer())
         {
             owner.LeapAvailable = false;

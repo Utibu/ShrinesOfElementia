@@ -52,7 +52,7 @@ public class HealthComponent : MonoBehaviour
                 if (IsInvulnerable == true) { }
                 else if (value <= 0)
                 {
-                    currentHealth = value;
+                    currentHealth = 0;
                     Die();
                 }
                 else
