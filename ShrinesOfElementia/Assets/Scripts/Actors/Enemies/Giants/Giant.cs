@@ -130,7 +130,7 @@ public class Giant : StateMachine
     // Move this to the manager mentioned above
     protected virtual void CountDownCooldowns()
     {
-        GiantAbilityManager.Instance.CountDownCooldown();
+        //GiantAbilityManager.Instance.CountDownCooldown();
         //GiantAuraManager.Instance.CountDownCooldown();
 
         // Sweep
