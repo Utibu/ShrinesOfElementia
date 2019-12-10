@@ -81,6 +81,13 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void OnNextChapter()
+    {
+        GameManager.Current.Level += 1;
+        GameManager.Current.Save();
+
+    }
+
     public void OnBack()
     {
         extrasMenu.SetActive(false);
