@@ -14,7 +14,7 @@ public class Vacuum : DroppableObject
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            droppedObject.transform.position = Vector3.MoveTowards(droppedObject.transform.position, other.transform.position, vacuumSpeed * Time.deltaTime);
+            droppedObject.transform.position = Vector3.MoveTowards(droppedObject.transform.position, other.transform.position + Vector3.up * 1.5f, vacuumSpeed * Time.deltaTime);
         }
     }
     //droppedObject.transform.position = Vector3.MoveTowards(droppedObject.transform.position, vacuumPoint.transform.position, vacuumSpeed * Time.deltaTime);
