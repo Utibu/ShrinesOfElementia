@@ -20,7 +20,6 @@ public class ExperienceSystem : MonoBehaviour
     [SerializeField] private float currentLevel;
     [SerializeField] private float maxLevel;
 
-    // Bygg ut alla properties så att de faktiskt gör något vid get och set. Åtminstone set!
     public float CurrentExperience
     {
         get => currentExperience;
@@ -69,7 +68,6 @@ public class ExperienceSystem : MonoBehaviour
 
     private void Awake()
     {
-        print("start of awake");
         // Prevents multiple instances
         //if (Instance == null) { Instance = this; }
         //else { Debug.Log("Warning: multiple " + this + " in scene!"); }
@@ -79,8 +77,12 @@ public class ExperienceSystem : MonoBehaviour
         CurrentLevel = 1;
 
         MaxExperience = CalculateMaxExperience();
+
+        UpdateExperienceMeter();
+    }
+    private void Start()
+    {
         EventManager.Current.RegisterListener<ExperienceEvent>(ExperienceGained);
-        print("end of awake");
     }
 
     private float CalculateMaxExperience()
@@ -97,18 +99,18 @@ public class ExperienceSystem : MonoBehaviour
     }
     */
 
+    //Gör till event av något slag
     private void LevelUp()
     {
-        //Gör till event av något slag
         Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
         CurrentLevel++;
         MaxExperience = CalculateMaxExperience();
     }
 
-    private void ExperienceGained(ExperienceEvent eve)
+    private void ExperienceGained(ExperienceEvent experienceEvent)
     {
-        print(eve.Experience);
-        CurrentExperience += eve.Experience;
+        print("Experience gained: " + experienceEvent.Experience);
+        CurrentExperience += experienceEvent.Experience;
     }
 
     private void UpdateExperienceMeter()
