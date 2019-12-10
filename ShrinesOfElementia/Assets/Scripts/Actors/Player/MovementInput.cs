@@ -35,7 +35,8 @@ public class MovementInput : MonoBehaviour
     private bool fromGlide;
     private bool hasGlide;
     private Vector3 moveVector = Vector3.zero;
-    float velocityOnImpact = 0f;
+    private float velocityOnImpact = 0f;
+    private bool takeInput = true;
 
     public bool IsStaggered { get; set; }
 
@@ -146,7 +147,7 @@ public class MovementInput : MonoBehaviour
 
 
         // Movement
-        if ((IsGrounded() || controller.isGrounded) && newMovement)
+        if ((IsGrounded() || controller.isGrounded) && newMovement && takeInput)
         {
             moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
             moveVector = CameraRelativeFlatten(moveVector, Vector3.up);
@@ -157,28 +158,17 @@ public class MovementInput : MonoBehaviour
         // Dodge
         if (IsDodging)
         {
-            dodgeTimer += Time.deltaTime;
-            if (dodgeTimer >= dodgeDuration)
+            if(playerInput.x == 0 && playerInput.y == 0)
             {
-                IsDodging = false;
-                dodgeTimer = 0.0f;
-                moveVector.x = 0.0f;
-                moveVector.z = 0.0f;
+                moveVector = new Vector3(0.0f, 0.0f, -1f);
             }
             else
             {
-                if(playerInput.x == 0 && playerInput.y == 0)
-                {
-                    moveVector = new Vector3(0.0f, 0.0f, -1f);
-                }
-                else
-                {
-                    moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
-                }
-                moveVector.Normalize();
-                moveVector = CameraRelativeFlatten(moveVector, Vector3.up);
-                moveVector *= dodgeLength;
+                moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
             }
+            moveVector.Normalize();
+            moveVector = CameraRelativeFlatten(moveVector, Vector3.up);
+            moveVector *= dodgeLength;
         }
 
         // Glide
@@ -393,9 +383,20 @@ public class MovementInput : MonoBehaviour
         if (IsGrounded())
         {
             IsDodging = true;
+            TimerManager.Current.SetNewTimer(gameObject, dodgeDuration, ExitDodge);
             player.Animator.SetTrigger("OnDodge");
             EventManager.Current.FireEvent(new DodgeEvent("stamina drained", 15));
+            takeInput = false;
         }
+    }
+
+    private void ExitDodge()
+    {
+        IsDodging = false;
+        dodgeTimer = 0.0f;
+        moveVector.x = 0.0f;
+        moveVector.z = 0.0f;
+        takeInput = true;
     }
 
     //slow down when hit, called frpm dmageEventListener
