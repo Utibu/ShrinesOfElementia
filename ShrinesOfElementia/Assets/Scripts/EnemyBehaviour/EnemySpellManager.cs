@@ -36,20 +36,12 @@ public class EnemySpellManager : MonoBehaviour
     private Quaternion spellRotation;
     private Vector3 spellAim;
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         spells.Add("Fire", CastFire);
         spells.Add("Water", CastWater);
         spells.Add("Earth", CastEarth);
         spells.Add("Wind", CastWind);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void CastAbility()
@@ -60,7 +52,7 @@ public class EnemySpellManager : MonoBehaviour
 
     public void SetAim(Vector3 aim)
     {
-        this.spellAim = aim.normalized;
+        spellAim = aim.normalized;
     }
 
     private void CastFire()
@@ -68,6 +60,7 @@ public class EnemySpellManager : MonoBehaviour
         //alter spawn location to avoid colliding with its own collider
         fireballSpawnLocation = transform.position + Vector3.up.normalized * 1.5f + gameObject.transform.forward * 2f;
         Vector3 direction = spellAim * fireballSpeed;
+
         //cast spell
         Debug.Log("Firespell cast");
         GameObject fireball = Instantiate(spellPrefab, fireballSpawnLocation, this.GetComponent<EnemySM>().Agent.transform.rotation);
@@ -81,6 +74,8 @@ public class EnemySpellManager : MonoBehaviour
     {
         Debug.Log("Waterspell cast");
         spellPosition = Player.Instance.transform.position + Vector3.up * -3f;
+
+        // Add event or something for a target indicator
 
         TimerManager.Current.SetNewTimer(gameObject, spellDelayModifier, CastWaterWithDelay);
         
