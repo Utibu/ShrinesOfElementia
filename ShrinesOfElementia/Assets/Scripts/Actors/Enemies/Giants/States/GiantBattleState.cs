@@ -40,7 +40,7 @@ public class GiantBattleState : GiantBaseState
         }
 
         //reactivate passive
-        else if (owner.GetComponent<GiantPassiveManager>().IsReady)
+        else if (owner.GetComponent<GiantPassiveManager>().IsReady && owner.GetComponent<GiantPassiveManager>().instantiatedPrefab == null)
         {
             owner.Transition<GiantCastAuraState>();
         }

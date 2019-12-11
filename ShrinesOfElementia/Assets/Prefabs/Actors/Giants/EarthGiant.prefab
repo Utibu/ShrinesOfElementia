@@ -726,6 +726,8 @@ MonoBehaviour:
   isInvulnerable: 0
   canvas: {fileID: 7599309729029534961}
   maxHealth: 100
+  baseHealthIncrease: 0
+  healthIncreasePerLevel: 0
 --- !u!114 &2449953488584068019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,13 +759,13 @@ MonoBehaviour:
   BasicAttackRange: 3
   sweepDamage: 30
   SweepRange: 5
-  sweepCooldown: 8
+  sweepCooldown: 6
   StompDamage: 10
   StompRange: 10
-  stompCooldown: 15
+  stompCooldown: 12
   LeapDamage: 15
   LeapRange: 15
-  leapCooldown: 10
+  leapCooldown: 60
 --- !u!114 &4474479181840825980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,7 +793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ElementalType: Earth
-  giantAbility: {fileID: 1339032902255765298, guid: b2f35920e0dbf694aa5f4a5fe3bd1d88,
+  giantAbility: {fileID: 1846327652056337622, guid: 34cb9d7075b8419428bd699621ac9e2b,
     type: 3}
   AbilityRange: 15
   abilityCooldown: 10
@@ -21363,31 +21365,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4662297150879508740, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4662297150879508740, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4662297150879508740, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 184444fcd2106c24697b408e5174cd0c, type: 3}

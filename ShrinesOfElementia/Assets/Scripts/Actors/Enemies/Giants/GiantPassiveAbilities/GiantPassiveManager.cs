@@ -9,16 +9,18 @@ public class GiantPassiveManager : MonoBehaviour
     [SerializeField] private GameObject giantPassivePrefab;
     [SerializeField] private float timeUntilActivation;
     public float TimeUntilActivation { get => timeUntilActivation; set => timeUntilActivation = value; }
-    public bool IsActive { get; set; }
     public bool IsReady { get; private set; }
-    private GameObject instantiatedPrefab;
+    public GameObject instantiatedPrefab { get; set; }
     
 
     private Dictionary<string, System.Action> passives;
+    private GameObject timer;
 
     // Start is called before the first frame update
     void Start()
     {
+        EventManager.Current.RegisterListener<GeyserCastEvent>(DestroyFirePassive);
+
         IsReady = true;
         passives = new Dictionary<string, System.Action>();
         passives.Add("Fire", CastFirePassive);
@@ -27,21 +29,24 @@ public class GiantPassiveManager : MonoBehaviour
         passives.Add("Earth", CastEarthPassive);
     }
 
-
-    //called from animation or somewher else.
-    private void DisablePassive()
+    void Update()
     {
-        IsActive = false;
-        Destroy(instantiatedPrefab);
+        if(instantiatedPrefab == null && IsReady == false && timer == null)
+        {
+            IsReady = false;
+            timer = TimerManager.Current.SetNewTimer(gameObject, TimeUntilActivation, ResetReady);
+        }
     }
+
+    
 
     //called from animation
     private void ActivatePassive()
     {
-        IsActive = true;
         IsReady = false;
         passives[ElementalType]();
-        TimerManager.Current.SetNewTimer(gameObject, timeUntilActivation, ResetReady);
+
+        
     }
 
     private void ResetReady()
@@ -53,7 +58,15 @@ public class GiantPassiveManager : MonoBehaviour
     private void CastFirePassive()
     {
         Debug.Log("Burn damage Enabled");
-        gameObject.GetComponentInChildren<BurnDamage>().EnableBurn();
+        instantiatedPrefab = GameObject.Instantiate(giantPassivePrefab, gameObject.transform.position, gameObject.transform.rotation);
+        instantiatedPrefab.transform.SetParent(gameObject.transform);
+    }
+    private void DestroyFirePassive(GeyserCastEvent ev)
+    {
+        if (Vector3.Distance(gameObject.transform.position, ev.affectedPosition) < ev.effectRange)
+        {
+            Destroy(instantiatedPrefab);
+        }
     }
 
 
