@@ -5117,8 +5117,9 @@ MonoBehaviour:
   spellPrefab: {fileID: 1339032902255765298, guid: b2f35920e0dbf694aa5f4a5fe3bd1d88,
     type: 3}
   castTime: 6
-  spellDelayModifier: 0.5
-  groundTargetIndicator: {fileID: 0}
+  spellDelayModifier: 1
+  groundTargetIndicator: {fileID: 854054184736769617, guid: 882d1a941ce7f314a99843ec48f3a069,
+    type: 3}
 --- !u!195 &1328150949374816072
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5610,6 +5611,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1605519766404965115}
     m_Modifications:
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4086458299678198103, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5730,22 +5741,7 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.47229713
       objectReference: {fileID: 0}
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4848705264210523711, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5214969163171619938, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_Layer
       value: 8
@@ -5761,6 +5757,11 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5571489614852029018, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214969163171619938, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_Layer
       value: 8
@@ -5796,6 +5797,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8970276876815281923}
     m_Modifications:
+    - target: {fileID: 6706850775248175820, guid: 8b64feb849aba5647b06d2519c3146ad,
+        type: 3}
+      propertyPath: m_Name
+      value: AttackCollider
+      objectReference: {fileID: 0}
     - target: {fileID: 528870615650135336, guid: 8b64feb849aba5647b06d2519c3146ad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5850,11 +5856,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6706850775248175820, guid: 8b64feb849aba5647b06d2519c3146ad,
-        type: 3}
-      propertyPath: m_Name
-      value: AttackCollider
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b64feb849aba5647b06d2519c3146ad, type: 3}

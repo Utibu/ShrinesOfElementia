@@ -26,7 +26,8 @@ public class LerpScaleOverTime : MonoBehaviour
     private void Update()
     {
         float interpolater = (Time.time - startTime) / durationInSeconds;
-        if (Time.time - startTime < durationInSeconds)
+
+        if (Vector3.Distance(startScale, endScale) > 0f)
         {
             objectToScale.transform.localScale = new Vector3(Mathf.Lerp(startScale.x, endScale.x, interpolater),
                 Mathf.Lerp(startScale.y, endScale.y, interpolater),
@@ -41,10 +42,5 @@ public class LerpScaleOverTime : MonoBehaviour
             }
             destructionDelayTimer -= Time.deltaTime;
         }
-
-        print("Timer: " + (Time.time - startTime));
-        print("Start scale: " + startScale);
-        print("Current scale: " + objectToScale.transform.localScale);
-        print("End scale: " + endScale);
     }
 }
