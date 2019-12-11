@@ -39,6 +39,12 @@ public class GiantBattleState : GiantBaseState
             owner.Transition<GiantStompState>();
         }
 
+        //reactivate passive
+        else if (owner.GetComponent<GiantPassiveManager>().IsReady)
+        {
+            owner.Transition<GiantCastAuraState>();
+        }
+
         // Basic Attack
         else if (owner.BasicAttackRange >= owner.DistanceToPlayer())
         {
@@ -57,6 +63,8 @@ public class GiantBattleState : GiantBaseState
         {
             owner.Transition<GiantCastAbilityState>();
         }
+
+        
 
         // Chase
         else

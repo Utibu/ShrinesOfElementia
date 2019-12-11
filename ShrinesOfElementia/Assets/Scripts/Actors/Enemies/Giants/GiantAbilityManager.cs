@@ -99,7 +99,9 @@ public class GiantAbilityManager : MonoBehaviour
 
     private void CastEarth()
     {
-        GameObject vines = GameObject.Instantiate(giantAbility, abilityPositionGiant, abilityRotation);
+        abilityRotation = Quaternion.Euler(-90, transform.rotation.eulerAngles.y, 0);
+        GameObject earthAbility = GameObject.Instantiate(giantAbility, abilityPositionGiant, abilityRotation);
+        earthAbility.GetComponent<EarthSpikes>().Caster = gameObject;
     }
 
 
@@ -113,10 +115,7 @@ public class GiantAbilityManager : MonoBehaviour
         giant.Agent.SetDestination(gameObject.transform.position + gameObject.transform.forward * 2f);
     }
 
-    private void EnableBurn()
-    {
-        gameObject.GetComponentInChildren<BurnDamage>().EnableBurn();
-    }
+    
 
 
 

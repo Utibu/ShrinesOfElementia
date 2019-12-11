@@ -20223,6 +20223,7 @@ GameObject:
   - component: {fileID: 6761178695961733039}
   - component: {fileID: 61311740}
   - component: {fileID: 61311741}
+  - component: {fileID: 8483029551160443508}
   m_Layer: 8
   m_Name: FireGiant
   m_TagString: Enemy
@@ -20403,6 +20404,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossHealthBar: {fileID: 0}
+--- !u!114 &8483029551160443508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4770429795931787876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb74d7bd13a29a4b859d9160eee8828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ElementalType: Fire
+  giantPassivePrefab: {fileID: 19080528378786770}
+  timeUntilActivation: 10
 --- !u!1 &4814925544963678407
 GameObject:
   m_ObjectHideFlags: 0
@@ -21530,11 +21546,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8388131632491716727}
     m_Modifications:
-    - target: {fileID: 7594324640779035314, guid: ea6c54edee6bb4a4eb334a972a8e5571,
-        type: 3}
-      propertyPath: m_Name
-      value: BurnDamageSphere
-      objectReference: {fileID: 0}
     - target: {fileID: 7594324640779035312, guid: ea6c54edee6bb4a4eb334a972a8e5571,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21590,6 +21601,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7594324640779035314, guid: ea6c54edee6bb4a4eb334a972a8e5571,
+        type: 3}
+      propertyPath: m_Name
+      value: BurnDamageSphere
+      objectReference: {fileID: 0}
     - target: {fileID: 7594324640779035313, guid: ea6c54edee6bb4a4eb334a972a8e5571,
         type: 3}
       propertyPath: m_Radius
@@ -21597,6 +21613,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea6c54edee6bb4a4eb334a972a8e5571, type: 3}
+--- !u!1 &19080528378786770 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7594324640779035314, guid: ea6c54edee6bb4a4eb334a972a8e5571,
+    type: 3}
+  m_PrefabInstance: {fileID: 7577235615855776096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &19080528378786768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7594324640779035312, guid: ea6c54edee6bb4a4eb334a972a8e5571,

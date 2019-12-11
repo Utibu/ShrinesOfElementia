@@ -10,7 +10,6 @@ public class GiantCastAuraState : GiantCombatState
         MonoBehaviour.print("Cast Aura");
 
         owner.Agent.isStopped = true;
-        owner.Animator.SetBool("IsAttacking", false);
         owner.Animator.SetTrigger("CastAura");
 
         base.Enter();
