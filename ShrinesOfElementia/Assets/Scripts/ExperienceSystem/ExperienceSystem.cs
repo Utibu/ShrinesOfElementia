@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ExperienceSystem : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ExperienceSystem : MonoBehaviour
     public static ExperienceSystem Instance { get; private set; }
 
     [SerializeField] private Image experienceMeter;
+    [SerializeField] private TextMeshProUGUI levelText;
 
     [Header("Experience")]
     [SerializeField] private float currentExperience;
@@ -79,10 +81,13 @@ public class ExperienceSystem : MonoBehaviour
         MaxExperience = CalculateMaxExperience();
 
         UpdateExperienceMeter();
+
+        UpdateLevelText();
     }
     private void Start()
     {
         EventManager.Current.RegisterListener<ExperienceEvent>(ExperienceGained);
+
     }
 
     private float CalculateMaxExperience()
@@ -102,10 +107,11 @@ public class ExperienceSystem : MonoBehaviour
     //Gör till event av något slag
     private void LevelUp()
     {
-        EventManager.Current.FireEvent(new LevelUpEvent("Level increased to: " + CurrentLevel++));
-        Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
         CurrentLevel++;
+        EventManager.Current.FireEvent(new LevelUpEvent("Level increased to: " + CurrentLevel));
+        Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
         MaxExperience = CalculateMaxExperience();
+        UpdateLevelText();
     }
 
     private void ExperienceGained(ExperienceEvent experienceEvent)
@@ -118,5 +124,10 @@ public class ExperienceSystem : MonoBehaviour
     {
         print("updating experience");
         experienceMeter.fillAmount = CurrentExperience / MaxExperience;
+    }
+
+    private void UpdateLevelText()
+    {
+        levelText.text = "Level " + CurrentLevel;
     }
 }

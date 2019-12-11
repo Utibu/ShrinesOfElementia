@@ -16,6 +16,12 @@ public class HealthComponent : MonoBehaviour
 
     [Header("Health attributes")]
     [SerializeField] private int maxHealth;
+
+    [Header("Level Up")]
+    [SerializeField] private float baseHealthIncrease;
+    [SerializeField] private float healthIncreasePerLevel;
+
+
     public int MaxHealth
     {
         get => maxHealth;
@@ -83,8 +89,9 @@ public class HealthComponent : MonoBehaviour
     private void OnLevelUp(LevelUpEvent eve)
     {
         float newMaxHealth = (float)MaxHealth;
-        newMaxHealth *= 1.1f;
+        newMaxHealth += baseHealthIncrease;
         MaxHealth = (int)newMaxHealth;
+        baseHealthIncrease += healthIncreasePerLevel;
     }
 
     private void Die()
