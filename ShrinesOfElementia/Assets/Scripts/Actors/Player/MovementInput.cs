@@ -206,6 +206,7 @@ public class MovementInput : MonoBehaviour
         // Remove when the state machine is done
         if (controller.isGrounded && fromGlide)
         {
+            print("from glide");
             isGliding = false;
             animator.SetBool("IsGliding", false);
 
@@ -229,7 +230,7 @@ public class MovementInput : MonoBehaviour
             {
                 isGliding = true;
                 animator.SetBool("IsGliding", true);
-                glideTimer = TimerManager.Current.SetNewTimer(gameObject, 15f, AchievementManager.Current.FlightExpertTrue);
+                glideTimer = TimerManager.Current.SetNewTimer(gameObject, 5f, FlightExpertAchieved);
             }
             else if (isGliding && !IsGrounded() && hasGlide)
             {
@@ -293,6 +294,11 @@ public class MovementInput : MonoBehaviour
 
     }
 
+    private void FlightExpertAchieved()
+    {
+        print("Flight expert unlocked");
+        AchievementManager.Current.FlightExpertTrue();
+    }
 
     private bool CheckDistanceFromGround(float distance)
     {
