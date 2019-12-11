@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     private SaveData saveData;
 
     //References to relevant stuff
-    public AchievementManager Achievements { get; private set; }
+    public AchievementManager Achievements;
     [SerializeField] private int MaxAllowedDeaths;
     private bool SaveDataExists = false;
     //things that i put here for now but might be better to move to separate scripts later.
@@ -58,8 +58,10 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(spawnPointBoss);
         DontDestroyOnLoad(PlayerStartingPoint);
 
-        gameObject.AddComponent<AchievementManager>();
-        Achievements = GetComponent<AchievementManager>();
+        //gameObject.AddComponent<AchievementManager>();
+        //Achievements = GetComponent<AchievementManager>();
+
+        //Achievements = AchievementManager.Current;
 
 
         Debug.Log("start function -  deaths: " + PlayerDeaths);
@@ -102,6 +104,13 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void LoadNextLevel()
+    {
+        NearestCheckpoint = PlayerStartingPoint.transform.position; // set up player spawn at basecamp
+        Save();  
+        LoadFromSave();
+    }
+
     public void LoadAchievements()
     {
         LoadVariablesFromSave();
@@ -125,7 +134,7 @@ public class GameManager : MonoBehaviour
             Player.Instance.Health.CurrentHealth = PlayerHP;
 
             //load boss and player abilities
-            LoadBoss();
+            //LoadBoss();
             TimerManager.Current.SetNewTimer(gameObject, 1f, LoadAbilities); // Event seems to not be heard if sent too early...
             Debug.Log("set up game finished -  deaths: " + PlayerDeaths);
         }
