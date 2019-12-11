@@ -67,10 +67,18 @@ public class Shrine : Interactable
         else if (other.gameObject.tag == "Player" && Input.anyKeyDown && channelTimer != null)
         {
             Player.Instance.Animator.SetTrigger("ToNeutral");
+            Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles();
+
             Destroy(channelTimer);
             channelTimer = null;
         }        
         
+    }
+
+    protected void OnTriggerExit(Collider other)
+    {
+        /*Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles();
+        Debug.Log(Player.Instance.GetComponent<ParticleManager>() + " WEEEE");*/
     }
 
     protected override void OnInteract()
@@ -78,6 +86,7 @@ public class Shrine : Interactable
         base.OnInteract();
         Disable();
         Player.Instance.Animator.SetTrigger("ToNeutral");
+        Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles();
         ShrineEvent shrineEvent = new ShrineEvent(element + " shrine activated", element);
         EventManager.Current.FireEvent(shrineEvent);
         shrineAnimationController.SetTrigger("IsTaken");
