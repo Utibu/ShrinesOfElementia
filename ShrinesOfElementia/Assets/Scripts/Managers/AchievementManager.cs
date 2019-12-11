@@ -33,11 +33,26 @@ public class AchievementManager : MonoBehaviour
     {
         get
         {
+            /*
             if (current == null)
             {
                 current = GameObject.FindObjectOfType<AchievementManager>();
             }
+            */
             return current;
+        }
+    }
+
+
+    void Awake()
+    {
+        if (current == null)
+        {
+            current = GameObject.FindObjectOfType<AchievementManager>();
+        }
+        else if (current != this)
+        {
+            Destroy(this.gameObject);
         }
     }
 

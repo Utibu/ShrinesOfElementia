@@ -16,10 +16,16 @@ public class GameManager : MonoBehaviour
     {
         get
         {
+            /*
             if (current == null)
             {
                 current = GameObject.FindObjectOfType<GameManager>();
             }
+            else
+            {
+                Destroy(current.gameObject);
+            }
+            */
             return current;
         }
     }
@@ -30,7 +36,6 @@ public class GameManager : MonoBehaviour
     public AchievementManager Achievements;
     [SerializeField] private int MaxAllowedDeaths;
     private bool SaveDataExists = false;
-    public GameObject PlayerStartingPoint;
 
     //variables
     public int Level { get; set; }
@@ -44,7 +49,17 @@ public class GameManager : MonoBehaviour
     public bool EarthUnlocked { get; set; }
     public Vector3 NearestCheckpoint { get; set; }
 
-
+    void Awake()
+    {
+        if (current == null)
+        {
+            current = GameObject.FindObjectOfType<GameManager>();
+        }
+        else if(current != this)
+        {
+            Destroy(this.gameObject);
+        }
+    }
     
 
     // Start is called before the first frame update
@@ -52,7 +67,6 @@ public class GameManager : MonoBehaviour
     {
         //secure gamobject
         DontDestroyOnLoad(this.gameObject);
-        DontDestroyOnLoad(PlayerStartingPoint);
 
         //gameObject.AddComponent<AchievementManager>();
         //Achievements = GetComponent<AchievementManager>();
@@ -102,7 +116,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        NearestCheckpoint = PlayerStartingPoint.transform.position; // set up player spawn at basecamp
+        //SceneManager.sceneLoaded += SetBaseSpawn;
         PlayerHP = 150;
         Save();  
         LoadFromSave();
