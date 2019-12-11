@@ -2,7 +2,6 @@
 // Co-Authors: Joakim Ljung & Sofia Kauko
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class HealthComponent : MonoBehaviour
@@ -86,13 +85,12 @@ public class HealthComponent : MonoBehaviour
         float newMaxHealth = (float)MaxHealth;
         newMaxHealth *= 1.1f;
         MaxHealth = (int)newMaxHealth;
-        CurrentHealth = MaxHealth;
     }
 
     private void Die()
     {
-        
-        if (gameObject.name == "Giant" || gameObject.name == "FireGiant")  
+
+        if (gameObject.name == "Giant" || gameObject.name == "FireGiant")
         {
             GameManager.Current.OnBossDeath(); // temp
             Giant.Instance.Animator.SetTrigger("Die");
