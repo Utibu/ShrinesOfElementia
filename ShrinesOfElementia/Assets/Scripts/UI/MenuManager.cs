@@ -83,8 +83,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnNextChapter()
     {
-        GameManager.Current.Level += 1;
-        GameManager.Current.Save();
+        GameManager.Current.LoadNextLevel();
 
     }
 

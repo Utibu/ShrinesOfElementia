@@ -1,6 +1,5 @@
 ﻿//Author: Sofia Kauko
 //Co-authors: Niklas Almqvist & Bilal El Medkouri
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,15 +18,15 @@ public class EnemySpellManager : MonoBehaviour
 
     private Dictionary<string, System.Action> spells = new Dictionary<string, System.Action>();
     public string ElementType { get => elementType; set => elementType = value; }
-    
+
 
     [SerializeField] private GameObject spellPrefab;
     public GameObject SpellPrefab { get => spellPrefab; set => spellPrefab = value; }
-    
+
 
     [SerializeField] private float castTime;
     public float CastTime { get => castTime; set => castTime = value; }
-    
+
 
     [SerializeField] private float spellDelayModifier;
     public float SpellSpeedModifier { get => spellDelayModifier; set => spellDelayModifier = value; }
@@ -35,6 +34,8 @@ public class EnemySpellManager : MonoBehaviour
     private Vector3 spellPosition;
     private Quaternion spellRotation;
     private Vector3 spellAim;
+
+    private Vector3 groundTargetIndicatorPosition;
 
     [SerializeField] private GameObject groundTargetIndicator = null;
 
@@ -80,7 +81,7 @@ public class EnemySpellManager : MonoBehaviour
         Instantiate(groundTargetIndicator, Player.Instance.transform.position, Quaternion.Euler(-90, transform.rotation.eulerAngles.y, 0));
 
         TimerManager.Current.SetNewTimer(gameObject, spellDelayModifier, CastWaterWithDelay);
-        
+
     }
     private void CastWaterWithDelay()
     {
@@ -93,8 +94,13 @@ public class EnemySpellManager : MonoBehaviour
     {
         spellRotation = Quaternion.Euler(-90, transform.rotation.eulerAngles.y, 0);
         spellPosition = transform.position + (transform.forward.normalized * 0.5f) + (transform.up * -1f);
+
+        groundTargetIndicatorPosition = transform.position + transform.forward * 6f + new Vector3(0f, -0.3f);
+
+        Instantiate(groundTargetIndicator, groundTargetIndicatorPosition, spellRotation);
+
         TimerManager.Current.SetNewTimer(gameObject, spellDelayModifier, CastEarthWithDelay);
-        
+
     }
     private void CastEarthWithDelay()
     {

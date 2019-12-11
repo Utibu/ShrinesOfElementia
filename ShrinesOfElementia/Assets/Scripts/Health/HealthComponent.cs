@@ -73,6 +73,21 @@ public class HealthComponent : MonoBehaviour
         IsInvulnerable = false;
     }
 
+    private void Start()
+    {
+        if (gameObject.CompareTag("Player"))
+        {
+            EventManager.Current.RegisterListener<LevelUpEvent>(OnLevelUp);
+        }
+    }
+
+    private void OnLevelUp(LevelUpEvent eve)
+    {
+        float newMaxHealth = (float)MaxHealth;
+        newMaxHealth *= 1.1f;
+        MaxHealth = (int)newMaxHealth;
+        CurrentHealth = MaxHealth;
+    }
 
     private void Die()
     {
