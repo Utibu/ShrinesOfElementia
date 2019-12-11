@@ -106,7 +106,6 @@ public class AchievementManager : MonoBehaviour
 
     private void AddCollectedShrine(ShrineEvent ev)
     {
-        Elementalist = true;
         //add element if its not already in list. (some shrine events fire several times :/ )
         if (!collectedElements.Contains(ev.Element))
         {

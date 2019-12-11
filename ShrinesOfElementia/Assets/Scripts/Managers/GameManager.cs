@@ -30,9 +30,6 @@ public class GameManager : MonoBehaviour
     public AchievementManager Achievements;
     [SerializeField] private int MaxAllowedDeaths;
     private bool SaveDataExists = false;
-    //things that i put here for now but might be better to move to separate scripts later.
-    public GameObject[] bosses;
-    public GameObject spawnPointBoss;
     public GameObject PlayerStartingPoint;
 
     //variables
@@ -55,7 +52,6 @@ public class GameManager : MonoBehaviour
     {
         //secure gamobject
         DontDestroyOnLoad(this.gameObject);
-        DontDestroyOnLoad(spawnPointBoss);
         DontDestroyOnLoad(PlayerStartingPoint);
 
         //gameObject.AddComponent<AchievementManager>();
@@ -107,6 +103,7 @@ public class GameManager : MonoBehaviour
     public void LoadNextLevel()
     {
         NearestCheckpoint = PlayerStartingPoint.transform.position; // set up player spawn at basecamp
+        PlayerHP = 150;
         Save();  
         LoadFromSave();
     }
@@ -163,11 +160,6 @@ public class GameManager : MonoBehaviour
 
         
 
-    }
-    public void LoadBoss()
-    {
-        //load boss and spawn enemies according to nr of srines unlocked and what level is laoding.
-        Instantiate(bosses[Level], spawnPointBoss.transform);
     }
 
     private void RegisterShrine(ShrineEvent ev)
