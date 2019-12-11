@@ -108,6 +108,15 @@ public class MenuManager : MonoBehaviour
 
         GameManager.Current.LoadAchievements();
 
+        flightmasterIcon.SetActive(false);
+        speedrunnerIcon.SetActive(false);
+        elementalistIcon.SetActive(false);
+        hundredKillsIcon.SetActive(false);
+        fireGiantIcon.SetActive(false);
+        waterGiantIcon.SetActive(false);
+        earthGiantIcon.SetActive(false);
+        giantBaneIcon.SetActive(false);
+
         //activate icons depending on what is unlocked
         if (AchievementManager.Current.FlightExpert)
         {
@@ -158,9 +167,9 @@ public class MenuManager : MonoBehaviour
 
 
     //other functions
-    public void DisableContinueButton()
+    public void ActivateContinueButton()
     {
-        continueButton.SetActive(false);
+        continueButton.SetActive(true);
     }
 
     

@@ -68,10 +68,11 @@ public class GameManager : MonoBehaviour
         if (SaveDataExists)
         {
             AchievementManager.Current.InitializeFromSave(saveData);
+            MenuManager.Current.ActivateContinueButton();
         }
         else
         {
-            MenuManager.Current.DisableContinueButton();
+            
         }
 
     }
@@ -79,14 +80,15 @@ public class GameManager : MonoBehaviour
     public void LoadNewGame()
     {
         //init  acievement manager default
-        Achievements.InitializeToDefault();
+        Achievements.InitializeToDefault(); // is not finished.
+        DeleteSave(); // just to be sure
         //set data to default
         SetDataToDefault();
 
         //load scene
         SceneManager.LoadScene(1);
+        SceneManager.sceneLoaded += SetBaseSpawn;
         SceneManager.sceneLoaded += SetUpGame;
-
         
     }
 
@@ -96,8 +98,6 @@ public class GameManager : MonoBehaviour
         //LoadVariablesFromSave();
         SceneManager.LoadScene(1);
         SceneManager.sceneLoaded += SetUpGame;
-
-        
     }
 
     public void LoadNextLevel()
@@ -130,13 +130,15 @@ public class GameManager : MonoBehaviour
             Player.Instance.transform.position = NearestCheckpoint;
             Player.Instance.Health.CurrentHealth = PlayerHP;
 
-            //load boss and player abilities
-            //LoadBoss();
+            //load player abilities
             TimerManager.Current.SetNewTimer(gameObject, 1f, LoadAbilities); // Event seems to not be heard if sent too early...
             Debug.Log("set up game finished -  deaths: " + PlayerDeaths);
         }
-        
-        
+    }
+
+    private void SetBaseSpawn(Scene scene, LoadSceneMode mode)
+    {
+        NearestCheckpoint = PlayerSpawn.Current.transform.position;
     }
 
     private void LoadAbilities()
@@ -351,7 +353,6 @@ public class GameManager : MonoBehaviour
         WaterUnlocked = false;
         WindUnlocked = false;
         EarthUnlocked = false;
-        NearestCheckpoint = PlayerStartingPoint.transform.position;
     }
 
     
