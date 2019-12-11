@@ -409,7 +409,7 @@ public class MovementInput : MonoBehaviour
             IsStaggered = true;
             TimerManager.Current.SetNewTimer(gameObject, staggerDuration/3, Recover);
             animator.speed -= staggerAnimationSlow;
-            GetComponent<WeaponController>().SwordCollider.enabled = false;
+            GetComponent<WeaponController>().SetSwordDisabled();
         }
 
 

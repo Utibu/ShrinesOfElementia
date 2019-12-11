@@ -193,7 +193,7 @@ public class PlayerInput : MonoBehaviour
         isBlocking = Input.GetMouseButton(1);
         player.Animator.SetBool("IsBlocking", isBlocking);
 
-        if (isBlocking == true && staminaManager.CurrentStamina > 0 && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint") && player.Animator.GetBool("CanBlock")) // Start blocking
+        if (isBlocking == true  && player.Animator.GetBool("CanBlock")) // Start blocking
         {
             player.Animator.SetBool("InCombat", true);
 
@@ -243,7 +243,7 @@ public class PlayerInput : MonoBehaviour
 
     private void CancelAttack()
     {
-        GetComponent<WeaponController>().SwordCollider.enabled = false;
+        GetComponent<WeaponController>().SetSwordDisabled();
         player.Animator.SetBool("CanBlock", true);
         attackIndex = 0;
     }
