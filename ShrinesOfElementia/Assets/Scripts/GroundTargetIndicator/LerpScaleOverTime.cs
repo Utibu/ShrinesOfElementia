@@ -13,11 +13,14 @@ public class LerpScaleOverTime : MonoBehaviour
     private float startTime;
 
     [SerializeField] private bool destroyThisObjectAfterLerp = true;
-
+    [SerializeField] private float destructionDelayInSecondsAfterLerp = 0f;
+    private float destructionDelayTimer;
     private void Awake()
     {
         startScale = objectToScale.transform.localScale;
         startTime = Time.time;
+
+        destructionDelayTimer = destructionDelayInSecondsAfterLerp;
     }
 
     private void Update()
@@ -32,7 +35,11 @@ public class LerpScaleOverTime : MonoBehaviour
 
         if (destroyThisObjectAfterLerp == true && Time.time - startTime >= durationInSeconds)
         {
-            Destroy(gameObject);
+            if (destructionDelayTimer <= 0f)
+            {
+                Destroy(gameObject);
+            }
+            destructionDelayTimer -= Time.deltaTime;
         }
 
         print("Timer: " + (Time.time - startTime));
