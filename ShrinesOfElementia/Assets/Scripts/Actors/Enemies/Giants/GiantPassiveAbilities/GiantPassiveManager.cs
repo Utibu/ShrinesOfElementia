@@ -73,6 +73,7 @@ public class GiantPassiveManager : MonoBehaviour
     {
         Debug.Log("Vines passive activated");
         instantiatedPrefab = GameObject.Instantiate(giantPassivePrefab, gameObject.transform.position, gameObject.transform.rotation);
+        instantiatedPrefab.transform.SetParent(gameObject.transform);
     }
 
     
