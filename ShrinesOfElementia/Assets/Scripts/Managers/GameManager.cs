@@ -202,6 +202,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Boss died, level int has been increased");
         //go to menu? play cutscene? show UI with "next Chapter"? 
         Save();
+        SceneManager.LoadScene(3);
 
     }
 
