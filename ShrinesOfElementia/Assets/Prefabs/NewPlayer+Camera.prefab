@@ -587,6 +587,8 @@ MonoBehaviour:
   isInvulnerable: 0
   canvas: {fileID: 8079611924600266929}
   maxHealth: 130
+  baseHealthIncrease: 0
+  healthIncreasePerLevel: 0
 --- !u!114 &6958869635361694600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,10 +612,10 @@ MonoBehaviour:
     type: 3}
   gravity: 20
   jumpSpeed: 7
-  glideSpeed: 14
+  glideSpeed: 13
   glideStrength: 10
   glideGravityMultiplier: 0.65
-  glideDistanceFromGround: 1.6
+  glideDistanceFromGround: 1.85
   dodgeLength: 10
   dodgeDuration: 0.5
   maxAirTime: 0.75
@@ -657,6 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experienceMeter: {fileID: 7939159501008062309}
+  levelText: {fileID: 0}
   currentExperience: 0
   maxExperience: 100
   currentLevel: 0
@@ -694,6 +697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sword: {fileID: 1181938364695945110}
   shield: {fileID: 5860557102848142231}
+  levelDamageIncrease: 2
 --- !u!114 &8571599499738322879
 MonoBehaviour:
   m_ObjectHideFlags: 0
