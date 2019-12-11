@@ -102,6 +102,7 @@ public class ExperienceSystem : MonoBehaviour
     //Gör till event av något slag
     private void LevelUp()
     {
+        EventManager.Current.FireEvent(new LevelUpEvent("Level increased to: " + CurrentLevel++));
         Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
         CurrentLevel++;
         MaxExperience = CalculateMaxExperience();
