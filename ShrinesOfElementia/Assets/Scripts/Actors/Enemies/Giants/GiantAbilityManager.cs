@@ -60,7 +60,7 @@ public class GiantAbilityManager : MonoBehaviour
 
     public void SetAim()
     {
-        abilityPositionGiant = gameObject.transform.position + gameObject.transform.forward * 3f + Vector3.up * 2f;
+        abilityPositionGiant = gameObject.transform.position;
         abilityPositionPlayer = Player.Instance.transform.position;
         abilityDirection = gameObject.transform.forward;
         abilityRotation = gameObject.transform.rotation;
@@ -82,6 +82,7 @@ public class GiantAbilityManager : MonoBehaviour
     //break this out if time available
     private void CastFire()
     {
+        abilityPositionGiant += gameObject.transform.forward * 3f + Vector3.up * 2f;
         GameObject fireball = GameObject.Instantiate(giantAbility, abilityPositionGiant, abilityRotation);
         fireball.GetComponent<Fireball>().Caster = gameObject;
         fireball.GetComponent<Rigidbody>().AddForce(abilityDirection * 14f, ForceMode.VelocityChange);
@@ -99,7 +100,6 @@ public class GiantAbilityManager : MonoBehaviour
 
     private void CastEarth()
     {
-        abilityRotation = Quaternion.Euler(-90, transform.rotation.eulerAngles.y, 0);
         GameObject earthAbility = GameObject.Instantiate(giantAbility, abilityPositionGiant, abilityRotation);
         earthAbility.GetComponent<EarthSpikes>().Caster = gameObject;
     }
