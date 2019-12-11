@@ -5,14 +5,10 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    public Collider SwordCollider { get; set; }
     [SerializeField] private GameObject sword;
     [SerializeField] private GameObject shield;
 
-    private void Start()
-    {
-        SwordCollider = sword.GetComponent<BoxCollider>();
-    }
+
 
     public void SetSwordActive()
     {
