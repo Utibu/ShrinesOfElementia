@@ -236,6 +236,10 @@ public class PlayerInput : MonoBehaviour
         {
             GameManager.Current.Save();
         }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            EventManager.Current.FireEvent(new ExperienceEvent("", 10));
+        }
         if (invincible)
         {
             Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;

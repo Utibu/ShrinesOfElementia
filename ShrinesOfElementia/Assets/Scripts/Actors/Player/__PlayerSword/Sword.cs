@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
+    public int getDamage { get { return damage; } }
+
     [SerializeField] private int damage;
     [SerializeField] private GameObject hitParticleSystem;
     private Vector3 hitPoint;
