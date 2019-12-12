@@ -24,10 +24,10 @@ public class Die_BasicEnemy : BasicEnemyBaseState
         base.Enter();
         timer = dyingTime;
         owner.Animator.SetTrigger("OnDeath");
-        EventManager.Current.FireEvent(new ExperienceEvent(experienceAmount + " xp gained", experienceAmount));
+        EventManager.Instance.FireEvent(new ExperienceEvent(experienceAmount + " xp gained", experienceAmount));
         owner.gameObject.GetComponent<Collider>().enabled = false;
         GameObject gameobject = owner.GetComponent<GameObject>();
-        EventManager.Current.FireEvent(new EnemyDeathEvent(gameobject, owner.SpawnArea, owner.Elite));
+        EventManager.Instance.FireEvent(new EnemyDeathEvent(gameobject, owner.SpawnArea, owner.Elite));
         DisableComponents();
         if (Random.Range(0f,100f) < orbDropChance )
         {

@@ -9,7 +9,7 @@ public class GainExpOnU : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.U))
         {
-            EventManager.Current.FireEvent(new ExperienceEvent("", experience));
+            EventManager.Instance.FireEvent(new ExperienceEvent("", experience));
         }
     }
 }

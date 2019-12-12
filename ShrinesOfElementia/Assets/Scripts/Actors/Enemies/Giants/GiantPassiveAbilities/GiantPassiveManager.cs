@@ -19,7 +19,7 @@ public class GiantPassiveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EventManager.Current.RegisterListener<GeyserCastEvent>(DestroyFirePassive);
+        EventManager.Instance.RegisterListener<GeyserCastEvent>(DestroyFirePassive);
 
         IsReady = true;
         passives = new Dictionary<string, System.Action>();
@@ -34,7 +34,7 @@ public class GiantPassiveManager : MonoBehaviour
         if(instantiatedPrefab == null && IsReady == false && timer == null)
         {
             IsReady = false;
-            timer = TimerManager.Current.SetNewTimer(gameObject, TimeUntilActivation, ResetReady);
+            timer = TimerManager.Instance.SetNewTimer(gameObject, TimeUntilActivation, ResetReady);
         }
     }
 

@@ -32,20 +32,20 @@ public class WindBlade : Ability
 
         if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) && !enemiesHit.Contains(other.gameObject) && other.gameObject.tag != caster.tag)
         {
-            EventManager.Current.FireEvent(new DamageEvent("Wind blade dealt " + damage + "to " + other.gameObject, damage, gameObject, other.gameObject));
-            EventManager.Current.FireEvent(new WindAbilityEvent("WindAbility activated", other.gameObject, transform.position, effectRange));
+            EventManager.Instance.FireEvent(new DamageEvent("Wind blade dealt " + damage + "to " + other.gameObject, damage, gameObject, other.gameObject));
+            EventManager.Instance.FireEvent(new WindAbilityEvent("WindAbility activated", other.gameObject, transform.position, effectRange));
 
             enemiesHit.Add(other.gameObject);
         }
 
         else if (other.gameObject.CompareTag("Vines") && !enemiesHit.Contains(other.gameObject))
         {
-            EventManager.Current.FireEvent(new WindAbilityEvent("WindAbility activated", other.gameObject, transform.position, effectRange));
+            EventManager.Instance.FireEvent(new WindAbilityEvent("WindAbility activated", other.gameObject, transform.position, effectRange));
         }
         
         else if (other.gameObject.CompareTag("Shield"))
         {
-            EventManager.Current.FireEvent(new BlockEvent("wind blocked", 30f));
+            EventManager.Instance.FireEvent(new BlockEvent("wind blocked", 30f));
             Destroy(this.gameObject);
         }
 

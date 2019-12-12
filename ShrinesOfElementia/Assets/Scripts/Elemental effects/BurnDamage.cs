@@ -18,7 +18,7 @@ public class BurnDamage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EventManager.Current.RegisterListener<GeyserCastEvent>(PauseBurn);
+        EventManager.Instance.RegisterListener<GeyserCastEvent>(PauseBurn);
         countdown = tickTime;
     }
 
@@ -48,7 +48,7 @@ public class BurnDamage : MonoBehaviour
         {
             isActive = false;
             GetComponent<Light>().enabled = false;
-            TimerManager.Current.SetNewTimer(gameObject, DisableDuration, EnableBurn);
+            TimerManager.Instance.SetNewTimer(gameObject, DisableDuration, EnableBurn);
 
 
             // is gameobject is a firegiant, transition it to the enable burn state after the disableDuration is done.
@@ -56,7 +56,7 @@ public class BurnDamage : MonoBehaviour
             {
                 Debug.Log("BurnDamage script fire animation timer");
                 System.Action animateEnableBurn = gameObject.GetComponent<Giant>().Transition<GiantCastAuraState>;
-                TimerManager.Current.SetNewTimer(gameObject, DisableDuration - 2f,  animateEnableBurn);
+                TimerManager.Instance.SetNewTimer(gameObject, DisableDuration - 2f,  animateEnableBurn);
             }
         }
     }
@@ -72,7 +72,7 @@ public class BurnDamage : MonoBehaviour
     private void OnDestroy()
     {
         try{
-            EventManager.Current.UnregisterListener<GeyserCastEvent>(PauseBurn);
+            EventManager.Instance.UnregisterListener<GeyserCastEvent>(PauseBurn);
         }
         catch (System.NullReferenceException nullRef)
         {

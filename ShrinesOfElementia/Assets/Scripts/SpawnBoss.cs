@@ -11,7 +11,7 @@ public class SpawnBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        level = GameManager.Current.Level;
+        level = GameManager.Instance.Level;
         GameObject.Instantiate(bosses[level], gameObject.transform.position, gameObject.transform.rotation);
     }
 

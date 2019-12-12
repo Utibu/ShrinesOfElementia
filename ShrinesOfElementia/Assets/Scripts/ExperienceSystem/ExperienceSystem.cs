@@ -86,7 +86,7 @@ public class ExperienceSystem : MonoBehaviour
     }
     private void Start()
     {
-        EventManager.Current.RegisterListener<ExperienceEvent>(ExperienceGained);
+        EventManager.Instance.RegisterListener<ExperienceEvent>(ExperienceGained);
 
     }
 
@@ -108,7 +108,7 @@ public class ExperienceSystem : MonoBehaviour
     private void LevelUp()
     {
         CurrentLevel++;
-        EventManager.Current.FireEvent(new LevelUpEvent("Level increased to: " + CurrentLevel));
+        EventManager.Instance.FireEvent(new LevelUpEvent("Level increased to: " + CurrentLevel));
         Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
         MaxExperience = CalculateMaxExperience();
         UpdateLevelText();

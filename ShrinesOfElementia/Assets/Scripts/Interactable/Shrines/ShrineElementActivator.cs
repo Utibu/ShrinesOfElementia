@@ -14,7 +14,7 @@ public class ShrineElementActivator : MonoBehaviour
 
     private void Start()
     {
-        EventManager.Current.RegisterListener<ShrineEvent>(OnShrineEvent);
+        EventManager.Instance.RegisterListener<ShrineEvent>(OnShrineEvent);
     }
 
     private void OnShrineEvent(ShrineEvent shrineEvent)

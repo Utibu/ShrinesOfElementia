@@ -13,7 +13,7 @@ public class GiantFireballState : GiantCombatState
         owner.Animator.SetTrigger("Sweep"); // until we find a proper animation 
 
         //turn to player and cast fireball with a small delay, to match animation better
-        TimerManager.Current.SetNewTimer(owner.gameObject, 0.8f, CastFireball);
+        TimerManager.Instance.SetNewTimer(owner.gameObject, 0.8f, CastFireball);
         owner.transform.LookAt(Player.Instance.transform);
 
         //set avaliability to false and a timer that resets avaliability after 10 seconds.

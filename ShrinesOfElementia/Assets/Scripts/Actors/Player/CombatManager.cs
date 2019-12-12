@@ -15,7 +15,7 @@ public class CombatManager : MonoBehaviour
     private void Start()
     {
         movementInput = GetComponent<MovementInput>();
-        EventManager.Current.RegisterListener<CombatEvent>(OnCombatEvent);
+        EventManager.Instance.RegisterListener<CombatEvent>(OnCombatEvent);
         enemiesAttacking = 0;
     }
 

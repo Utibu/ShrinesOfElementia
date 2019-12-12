@@ -23,7 +23,7 @@ public class Shield : MonoBehaviour
     {
         shieldCollider = GetComponent<BoxCollider>();
         shieldCollider.enabled = false;
-        EventManager.Current.RegisterListener<BlockEvent>(OnBlock);
+        EventManager.Instance.RegisterListener<BlockEvent>(OnBlock);
         blockMeter.value = 0;
         blockMeter.maxValue = maxBlockAmount;
         blockMeter.gameObject.SetActive(false);

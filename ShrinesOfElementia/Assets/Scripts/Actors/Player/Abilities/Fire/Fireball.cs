@@ -64,7 +64,7 @@ public class Fireball : Ability
 
         else
         {
-            EventManager.Current.FireEvent(new BlockEvent("fire blocked", 30f));
+            EventManager.Instance.FireEvent(new BlockEvent("fire blocked", 30f));
         }
         
 
@@ -97,8 +97,8 @@ public class Fireball : Ability
     {
         patientZero = damagedGameObject;
         DamageEvent damageEvent = new DamageEvent(damagedGameObject + " has dealt " + damage + " damage to " + damagedGameObject, damage, gameObject, damagedGameObject);
-        EventManager.Current.FireEvent(damageEvent);
+        EventManager.Instance.FireEvent(damageEvent);
 
-        EventManager.Current.FireEvent(new FireAbilityEvent("fireAbility activated", damagedGameObject, gameObject.transform.position, aoeRadius));
+        EventManager.Instance.FireEvent(new FireAbilityEvent("fireAbility activated", damagedGameObject, gameObject.transform.position, aoeRadius));
     }
 }

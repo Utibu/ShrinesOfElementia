@@ -36,7 +36,7 @@ public class Chase_BasicEnemy : BasicEnemyBaseState
         timer = 0f;
         timeInChase = 0;
         owner.Animator.SetBool("isChasing", true);
-        TimerManager.Current.SetNewTimer(owner.gameObject, 4f, SlowDownChase);
+        TimerManager.Instance.SetNewTimer(owner.gameObject, 4f, SlowDownChase);
         owner.Agent.acceleration *= 4f;
     }
 

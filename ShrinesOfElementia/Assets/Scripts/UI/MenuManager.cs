@@ -1,8 +1,6 @@
-﻿//Author: Joakim Ljung
-//co-Author: Sofia Kauko
+﻿// Main Author: Joakim Ljung
+// Co-Author: Sofia Kauko
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,17 +25,13 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject earthGiantIcon;
     [SerializeField] private GameObject giantBaneIcon;
 
-    private static MenuManager current;
-    public static MenuManager Current
+    public static MenuManager Instance { get; private set; }
+
+    private void Awake()
     {
-        get
-        {
-            if (current == null)
-            {
-                current = GameObject.FindObjectOfType<MenuManager>();
-            }
-            return current;
-        }
+        // Prevents multiple instances
+        if (Instance == null) { Instance = this; }
+        else { Debug.Log("Warning: multiple " + this + " in scene!"); }
     }
 
     private void Start()
@@ -49,12 +43,12 @@ public class MenuManager : MonoBehaviour
     //On Click functions
     public void OnContinue()
     {
-        GameManager.Current.LoadFromSave();
+        GameManager.Instance.LoadFromSave();
     }
 
     public void OnStart()
     {
-        GameManager.Current.LoadNewGame();
+        GameManager.Instance.LoadNewGame();
     }
 
     public void OnExtras()
@@ -83,7 +77,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnNextChapter()
     {
-        GameManager.Current.LoadNextLevel();
+        GameManager.Instance.LoadNextLevel();
 
     }
 
@@ -106,7 +100,7 @@ public class MenuManager : MonoBehaviour
         Debug.Log("ON ACHIEVEMENTS");
         achievementsPanel.SetActive(true);
 
-        GameManager.Current.LoadAchievements();
+        GameManager.Instance.LoadAchievements();
 
         flightmasterIcon.SetActive(false);
         speedrunnerIcon.SetActive(false);
@@ -118,52 +112,52 @@ public class MenuManager : MonoBehaviour
         giantBaneIcon.SetActive(false);
 
         //activate icons depending on what is unlocked
-        if (AchievementManager.Current.FlightExpert)
+        if (AchievementManager.Instance.FlightExpert)
         {
             flightmasterIcon.SetActive(true);
             Debug.Log("icon activated");
         }
-        if (AchievementManager.Current.Elementalist)
+        if (AchievementManager.Instance.Elementalist)
         {
             elementalistIcon.SetActive(true);
             Debug.Log("icon activated");
         }
-        if (AchievementManager.Current.SpeedRunner)
+        if (AchievementManager.Instance.SpeedRunner)
         {
             speedrunnerIcon.SetActive(true);
             Debug.Log("icon activated");
         }
-        if (AchievementManager.Current.KillcountHundred)
+        if (AchievementManager.Instance.KillcountHundred)
         {
             hundredKillsIcon.SetActive(true);
             Debug.Log("icon activated");
         }
-        if (AchievementManager.Current.SlayedGiants["Fire"])
+        if (AchievementManager.Instance.SlayedGiants["Fire"])
         {
             fireGiantIcon.SetActive(true);
             Debug.Log("icon activated");
         }
-        if (AchievementManager.Current.SlayedGiants["Water"])
+        if (AchievementManager.Instance.SlayedGiants["Water"])
         {
             waterGiantIcon.SetActive(true);
             Debug.Log("icon activated");
         }
-        if (AchievementManager.Current.SlayedGiants["Wind"])
+        if (AchievementManager.Instance.SlayedGiants["Wind"])
         {
             windGiantIcon.SetActive(true);
             Debug.Log("icon activated");
         }
-        if (AchievementManager.Current.SlayedGiants["Earth"])
+        if (AchievementManager.Instance.SlayedGiants["Earth"])
         {
             earthGiantIcon.SetActive(true);
             Debug.Log("icon activated");
         }
-        if(AchievementManager.Current.GiantBane)
+        if (AchievementManager.Instance.GiantBane)
         {
             giantBaneIcon.SetActive(true);
         }
     }
- 
+
 
 
     //other functions
@@ -172,5 +166,5 @@ public class MenuManager : MonoBehaviour
         continueButton.SetActive(true);
     }
 
-    
+
 }

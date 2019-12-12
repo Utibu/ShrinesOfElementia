@@ -1,29 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerSpawn : MonoBehaviour
 {
+    public static PlayerSpawn Instance { get; private set; }
 
-    private static PlayerSpawn current;
-    public static PlayerSpawn Current
+    private void Awake()
     {
-        get
-        {
-            if (current == null)
-            {
-                current = GameObject.FindObjectOfType<PlayerSpawn>();
-            }
-            return current;
-        }
+        // Prevents multiple instances
+        if (Instance == null) { Instance = this; }
+        else { Debug.Log("Warning: multiple " + this + " in scene!"); }
     }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-   
 }

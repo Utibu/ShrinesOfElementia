@@ -1,22 +1,17 @@
 ﻿//Author: Sofia Kauko
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TimerManager : MonoBehaviour
 {
     [SerializeField] public GameObject timerObject;
-    private static TimerManager __Current;
-    public static TimerManager Current
+
+    public static TimerManager Instance { get; private set; }
+
+    private void Awake()
     {
-        get
-        {
-            if (__Current == null)
-            {
-                __Current = GameObject.FindObjectOfType<TimerManager>();
-            }
-            return __Current;
-        }
+        // Prevents multiple instances
+        if (Instance == null) { Instance = this; }
+        else { Debug.Log("Warning: multiple " + this + " in scene!"); }
     }
 
 
@@ -25,8 +20,8 @@ public class TimerManager : MonoBehaviour
         //initialize timer prefab and set its variables. 
         GameObject timer = Instantiate(timerObject, gameObject.transform);
         timer.GetComponent<Timer>().SetVariables(owner, duration, action);
-        return timer; 
+        return timer;
     }
 
-   
+
 }

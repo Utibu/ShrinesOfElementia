@@ -13,7 +13,7 @@ public class Checkpoint : MonoBehaviour
         {
             Debug.Log("Checkpoint taken");
             isActive = true;
-            EventManager.Current.FireEvent(new CheckpointEvent("checkpoint activated", gameObject.transform.position));
+            EventManager.Instance.FireEvent(new CheckpointEvent("checkpoint activated", gameObject.transform.position));
         }
     }
 }

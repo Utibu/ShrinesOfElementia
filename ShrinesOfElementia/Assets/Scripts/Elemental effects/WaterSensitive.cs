@@ -7,7 +7,7 @@ public class WaterSensitive : ElementalWeakness
 {
     void Start()
     {
-        EventManager.Current.RegisterListener<GeyserCastEvent>(ReactToWater);
+        EventManager.Instance.RegisterListener<GeyserCastEvent>(ReactToWater);
     }
 
 
@@ -27,7 +27,7 @@ public class WaterSensitive : ElementalWeakness
         try
         {
 
-            EventManager.Current.UnregisterListener<GeyserCastEvent>(ReactToWater);
+            EventManager.Instance.UnregisterListener<GeyserCastEvent>(ReactToWater);
         }
         catch (System.NullReferenceException exeption)
         {

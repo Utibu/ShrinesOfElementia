@@ -33,7 +33,7 @@ public class GiantAttackCollisionHandler : MonoBehaviour
         {
             hitPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position); //used to find impact point
             DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + damage + " damage to " + other.gameObject, damage, gameObject, other.gameObject);
-            EventManager.Current.FireEvent(damageEvent);
+            EventManager.Instance.FireEvent(damageEvent);
         }
     }
 

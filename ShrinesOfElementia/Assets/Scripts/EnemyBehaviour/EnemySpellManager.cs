@@ -80,14 +80,14 @@ public class EnemySpellManager : MonoBehaviour
 
         Instantiate(groundTargetIndicator, Player.Instance.transform.position, Quaternion.Euler(-90, transform.rotation.eulerAngles.y, 0));
 
-        TimerManager.Current.SetNewTimer(gameObject, spellDelayModifier, CastWaterWithDelay);
+        TimerManager.Instance.SetNewTimer(gameObject, spellDelayModifier, CastWaterWithDelay);
 
     }
     private void CastWaterWithDelay()
     {
         GameObject geyser = Instantiate(spellPrefab, spellPosition, Quaternion.identity);
         geyser.GetComponent<Geyser>().Caster = gameObject;
-        EventManager.Current.FireEvent(new GeyserCastEvent(spellPosition, 6f)); //6f is range of extinguish. put this in geyser prefab script later.
+        EventManager.Instance.FireEvent(new GeyserCastEvent(spellPosition, 6f)); //6f is range of extinguish. put this in geyser prefab script later.
     }
 
     private void CastEarth()
@@ -99,7 +99,7 @@ public class EnemySpellManager : MonoBehaviour
 
         Instantiate(groundTargetIndicator, groundTargetIndicatorPosition, spellRotation);
 
-        TimerManager.Current.SetNewTimer(gameObject, spellDelayModifier, CastEarthWithDelay);
+        TimerManager.Instance.SetNewTimer(gameObject, spellDelayModifier, CastEarthWithDelay);
 
     }
     private void CastEarthWithDelay()

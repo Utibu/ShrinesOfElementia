@@ -29,7 +29,7 @@ public class SpawnBasic : MonoBehaviour
     {
         Spawnlings = new ArrayList();
         //EventSystem.Current.RegisterListener<ShrineEvent>(increaseEnemyActivity);
-        EventManager.Current.RegisterListener<EnemyDeathEvent>(OnEnemyDeath);
+        EventManager.Instance.RegisterListener<EnemyDeathEvent>(OnEnemyDeath);
         currentSpawnCount = 0;
         countdown = spawnRate;
 
