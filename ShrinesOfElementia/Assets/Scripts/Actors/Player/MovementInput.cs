@@ -226,7 +226,7 @@ public class MovementInput : MonoBehaviour
                 moveVector.y = jumpSpeed;
                 animator.SetBool("IsGrounded", false);
             }
-            else if (!isGliding && !CheckDistanceFromGround(glideDistanceFromGround) && hasGlide)
+            else if (!isGliding && !CheckGlideDistance(glideDistanceFromGround) && hasGlide)
             {
                 isGliding = true;
                 animator.SetBool("IsGliding", true);
@@ -335,6 +335,11 @@ public class MovementInput : MonoBehaviour
             animator.SetBool("IsGrounded", false);
             return false;
         }
+    }
+
+    private bool CheckGlideDistance(float distance)
+    {
+        return Physics.Raycast(transform.position, CameraRelativeFlatten(new Vector3(0f, -1f, 0.7f).normalized, Vector3.up), distance, waterGroundCheckMask);
     }
 
     private void ApplyGravity()
