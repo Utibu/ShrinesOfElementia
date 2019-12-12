@@ -275,7 +275,7 @@ public class AbilityManager : MonoBehaviour
         regenerationCountdown = 0f;
     }
 
-
+    
 
     private void UnlockElement(ShrineEvent shrineEvent)
     {

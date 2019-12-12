@@ -37,6 +37,7 @@ public class MovementInput : MonoBehaviour
     private Vector3 moveVector = Vector3.zero;
     private float velocityOnImpact = 0f;
     private bool takeInput = true;
+    private bool isCasting = false;
 
     public bool IsStaggered { get; set; }
 
@@ -300,6 +301,16 @@ public class MovementInput : MonoBehaviour
         AchievementManager.Instance.FlightExpertTrue();
     }
 
+    public void StartCasting()
+    {
+        isCasting = true;
+    }
+
+    public void StopCasting()
+    {
+        isCasting = false;
+    }
+
     private bool CheckDistanceFromGround(float distance)
     {
         RaycastHit hit;
@@ -413,7 +424,7 @@ public class MovementInput : MonoBehaviour
     //slow down when hit, called frpm dmageEventListener
     public void SlowDown()
     {
-        if (!IsStaggered)
+        if (!IsStaggered && !isCasting)
         {
             Debug.Log("PLAYER IS STAGGERED");
             player.Animator.SetTrigger("OnStagger");
