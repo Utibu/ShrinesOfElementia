@@ -22,7 +22,7 @@ public class GiantAttackParticleCollisionHandler : MonoBehaviour
             DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + Giant.Instance.StompDamage + " damage to " + other, Giant.Instance.StompDamage, gameObject, other);
             EventManager.Instance.FireEvent(damageEvent);
 
-            hits++;
+            hits += 2;
         }
     }
 }

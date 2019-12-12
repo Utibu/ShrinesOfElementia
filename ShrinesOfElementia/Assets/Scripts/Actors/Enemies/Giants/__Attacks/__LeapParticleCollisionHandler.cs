@@ -1,13 +1,18 @@
 ﻿// Author: Bilal El Medkouri
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class __LeapParticleCollisionHandler : MonoBehaviour
 {
-    // Collides twice at the moment, fix this later
-    // TODO
+    private int hits = 0;
+
+    private void LateUpdate()
+    {
+        if (hits > 0)
+        {
+            hits--;
+        }
+    }
 
     private void OnParticleCollision(GameObject other)
     {
@@ -15,6 +20,8 @@ public class __LeapParticleCollisionHandler : MonoBehaviour
         {
             DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + Giant.Instance.LeapDamage + " damage to " + other, Giant.Instance.LeapDamage, gameObject, other);
             EventManager.Instance.FireEvent(damageEvent);
+
+            hits += 2;
         }
     }
 }

@@ -335,6 +335,31 @@ PrefabInstance:
       propertyPath: bossHealthBar
       value: 
       objectReference: {fileID: 483114271206542295}
+    - target: {fileID: 9043679035943131065, guid: 91b10d13fdcc6b04383775d92b710c04,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043679035943131065, guid: 91b10d13fdcc6b04383775d92b710c04,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043679035943131065, guid: 91b10d13fdcc6b04383775d92b710c04,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7270984730352077443, guid: 91b10d13fdcc6b04383775d92b710c04,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7270984730352077443, guid: 91b10d13fdcc6b04383775d92b710c04,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91b10d13fdcc6b04383775d92b710c04, type: 3}
 --- !u!1001 &163977434
@@ -4436,6 +4461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experienceMeter: {fileID: 7939159501710763746}
+  levelText: {fileID: 0}
   currentExperience: 0
   maxExperience: 100
   currentLevel: 0
@@ -9103,7 +9129,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860557102065387245}
-  m_LocalRotation: {x: -0.034606915, y: -0.0002857579, z: -0.0082530305, w: 0.99936694}
+  m_LocalRotation: {x: -0.034606915, y: -0.00028582642, z: -0.008253021, w: 0.99936694}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9345,7 +9371,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860557102169243500}
-  m_LocalRotation: {x: 0.034837984, y: 0.0027480035, z: -0.078586206, w: 0.9962947}
+  m_LocalRotation: {x: 0.034837984, y: 0.0027479345, z: -0.07858618, w: 0.9962947}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9842,7 +9868,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860557102610941250}
-  m_LocalRotation: {x: -0.000000014901159, y: 0.000000049100066, z: -0.011140024,
+  m_LocalRotation: {x: -0.000000014901159, y: -0.000000014506179, z: -0.011140015,
     w: 0.99993795}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -20018,7 +20044,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860557102918189444}
-  m_LocalRotation: {x: 0.08715847, y: 0.000000033962465, z: -0.0000000029714244, w: 0.9961945}
+  m_LocalRotation: {x: 0.08715847, y: 0.000000036216242, z: -0.0000000031686103, w: 0.9961945}
   m_LocalPosition: {x: 0, y: 2.5, z: -30.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -32279,6 +32305,8 @@ MonoBehaviour:
   isInvulnerable: 0
   canvas: {fileID: 8079611923155173686}
   maxHealth: 100
+  baseHealthIncrease: 0
+  healthIncreasePerLevel: 0
 --- !u!114 &8889696731844129522
 MonoBehaviour:
   m_ObjectHideFlags: 0
