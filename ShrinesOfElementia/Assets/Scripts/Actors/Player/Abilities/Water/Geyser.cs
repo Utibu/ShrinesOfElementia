@@ -18,7 +18,6 @@ public class Geyser : Ability
         {
             DealDamage(other.gameObject, damage);
             canDealDmg = false;
-
             KnockUp(other);
         }
     }

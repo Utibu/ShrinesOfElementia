@@ -20,11 +20,15 @@ public class GiantAbilityManager : MonoBehaviour
     //old stuff
     public static GiantAbilityManager Instance { get; private set; }
     
+
     [SerializeField] private string ElementalType;
     [SerializeField] private GameObject giantAbility;
     [Range(0f, 100f)] public float AbilityRange = 0f;
+    [SerializeField] private float abilityMinRange;
+    public float AbilityMinRange { get => abilityMinRange; set => abilityMinRange = value; }
     [Range(0f, 60f)] [SerializeField] protected float abilityCooldown = 0f;
 
+    /*
     private float abilityTimer = 0f;
     private bool abilityAvailable = true;
     public bool AbilityAvailable
@@ -40,6 +44,7 @@ public class GiantAbilityManager : MonoBehaviour
             }
         }
     }
+    */
 
     protected void Awake() // was virtual.
     {
@@ -69,7 +74,7 @@ public class GiantAbilityManager : MonoBehaviour
     public void CastAbility()
     {
         Ready = false;
-        TimerManager.Instance.SetNewTimer(gameObject, 10f, ResetReady);
+        TimerManager.Instance.SetNewTimer(gameObject, abilityCooldown, ResetReady);
         abilities[ElementalType]();
     }
 
@@ -90,7 +95,7 @@ public class GiantAbilityManager : MonoBehaviour
 
     private void CastWater()
     {
-
+        GameObject water = GameObject.Instantiate(giantAbility, abilityPositionGiant, abilityRotation);
     }
 
     private void CastWind()
@@ -122,7 +127,7 @@ public class GiantAbilityManager : MonoBehaviour
 
 
 
-
+    /*
     public void CountDownCooldown()
     {
         if (AbilityAvailable == false)
@@ -137,4 +142,5 @@ public class GiantAbilityManager : MonoBehaviour
             }
         }
     }
+    */
 }

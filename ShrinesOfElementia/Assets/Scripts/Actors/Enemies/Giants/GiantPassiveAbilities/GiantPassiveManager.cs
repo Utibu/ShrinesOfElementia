@@ -75,7 +75,8 @@ public class GiantPassiveManager : MonoBehaviour
 
     private void CastWaterPassive()
     {
-
+        instantiatedPrefab = GameObject.Instantiate(giantPassivePrefab, gameObject.transform.position, gameObject.transform.rotation);
+        instantiatedPrefab.transform.SetParent(gameObject.transform);
     }
 
 

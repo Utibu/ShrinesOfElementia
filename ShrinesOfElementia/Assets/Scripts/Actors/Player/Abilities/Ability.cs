@@ -12,6 +12,10 @@ public class Ability : MonoBehaviour
     [SerializeField] protected AbilityIndicator abilityIndicator;
     protected Vector3 abilitySpawnLocation;
 
+    public void Start()
+    {
+        caster = gameObject; // if not assigned, will nod cause null ref.
+    }
 
     protected virtual void AimAbility()
     {

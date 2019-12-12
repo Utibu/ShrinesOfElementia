@@ -33,7 +33,7 @@ public class GiantBattleState : GiantBaseState
         }
 
         // Stomp
-        else if (owner.StompAvailable && owner.StompRange >= owner.DistanceToPlayer())  // owner.Phase2Active && 
+        else if (owner.StompAvailable && owner.StompRange >= owner.DistanceToPlayer() && owner.DistanceToPlayer() >= owner.StompRange /2)  // owner.Phase2Active &&  
         {
             owner.StompAvailable = false;
             owner.Transition<GiantStompState>();
@@ -45,7 +45,7 @@ public class GiantBattleState : GiantBaseState
             owner.Transition<GiantCastAuraState>();
         }
 
-        // Basic Attack
+        // Basic Attack, punch
         else if (owner.BasicAttackRange >= owner.DistanceToPlayer())
         {
             owner.Transition<GiantAttackState>();
@@ -59,7 +59,7 @@ public class GiantBattleState : GiantBaseState
         }
 
         //cast ability
-        else if (owner.GiantAbilityManagerRef.Ready && owner.GiantAbilityManagerRef.AbilityRange >= owner.DistanceToPlayer() && owner.DistanceToPlayer() >= 7f)
+        else if (owner.GiantAbilityManagerRef.Ready && owner.GiantAbilityManagerRef.AbilityRange >= owner.DistanceToPlayer() && owner.DistanceToPlayer() >= owner.GiantAbilityManagerRef.AbilityMinRange)
         {
             owner.Transition<GiantCastAbilityState>();
         }
