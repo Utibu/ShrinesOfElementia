@@ -217,6 +217,11 @@ public class MovementInput : MonoBehaviour
             Destroy(glideTimer);
         }
 
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            OnKnockback();
+        }
+
         // Jump
         // Maybe add "better jump"
         if (Input.GetKeyDown(KeyCode.Space))
@@ -309,6 +314,11 @@ public class MovementInput : MonoBehaviour
     public void StopCasting()
     {
         isCasting = false;
+    }
+
+    private void OnKnockback()
+    {
+        moveVector += CameraRelativeFlatten(moveVector += Vector3.back, Vector3.up) * 5f;
     }
 
     private bool CheckDistanceFromGround(float distance)
