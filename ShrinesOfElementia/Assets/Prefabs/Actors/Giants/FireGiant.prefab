@@ -20230,7 +20230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8388131632491716727
 Transform:
   m_ObjectHideFlags: 0
@@ -21332,6 +21332,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1526152880745157326, guid: 0ec0ba51d9776f246a7997d1884e25f2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1530303737666534991, guid: 0ec0ba51d9776f246a7997d1884e25f2,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -21342,16 +21347,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1526152880745157326, guid: 0ec0ba51d9776f246a7997d1884e25f2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1526152880745157321, guid: 0ec0ba51d9776f246a7997d1884e25f2,
-        type: 3}
-      propertyPath: ReviveTime
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 1723790225393860639, guid: 0ec0ba51d9776f246a7997d1884e25f2,
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar
@@ -21361,6 +21356,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ShapeModule.m_Position.y
       value: -0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 1526152880745157321, guid: 0ec0ba51d9776f246a7997d1884e25f2,
+        type: 3}
+      propertyPath: ReviveTime
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ec0ba51d9776f246a7997d1884e25f2, type: 3}
@@ -21377,6 +21377,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8388131632491716727}
     m_Modifications:
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 4086458299678198103, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21482,35 +21487,30 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyCanvas
-      objectReference: {fileID: 0}
     - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.534
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4662297150879508740, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.534
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4662297150879508740, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.534
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4662297150879508740, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 184444fcd2106c24697b408e5174cd0c, type: 3}

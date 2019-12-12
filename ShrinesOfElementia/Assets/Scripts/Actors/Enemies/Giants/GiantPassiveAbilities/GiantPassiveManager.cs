@@ -20,6 +20,8 @@ public class GiantPassiveManager : MonoBehaviour
     void Start()
     {
         EventManager.Instance.RegisterListener<GeyserCastEvent>(DestroyFirePassive);
+        EventManager.Instance.RegisterListener<FireAbilityEvent>(DestroyWindPassive);
+
 
         IsReady = true;
         passives = new Dictionary<string, System.Action>();
@@ -78,7 +80,16 @@ public class GiantPassiveManager : MonoBehaviour
 
     private void CastWindPassive()
     {
-
+        Debug.Log("wind passive activated");
+        instantiatedPrefab = GameObject.Instantiate(giantPassivePrefab, gameObject.transform.position, gameObject.transform.rotation);
+        instantiatedPrefab.transform.SetParent(gameObject.transform);
+    }
+    private void DestroyWindPassive(FireAbilityEvent ev)
+    {
+        if (Vector3.Distance(gameObject.transform.position, ev.PointOfOrigin) < ev.EffectRange * 2)
+        {
+            Destroy(instantiatedPrefab);
+        }
     }
 
 

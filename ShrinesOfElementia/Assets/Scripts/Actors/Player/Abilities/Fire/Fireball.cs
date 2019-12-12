@@ -69,6 +69,7 @@ public class Fireball : Ability
         
 
         print("Fireball hit " + collision.gameObject);
+        EventManager.Instance.FireEvent(new FireAbilityEvent("fireAbility activated", collision.collider.gameObject, gameObject.transform.position, aoeRadius));
 
         Destroy(gameObject);
     }
@@ -98,7 +99,5 @@ public class Fireball : Ability
         patientZero = damagedGameObject;
         DamageEvent damageEvent = new DamageEvent(damagedGameObject + " has dealt " + damage + " damage to " + damagedGameObject, damage, gameObject, damagedGameObject);
         EventManager.Instance.FireEvent(damageEvent);
-
-        EventManager.Instance.FireEvent(new FireAbilityEvent("fireAbility activated", damagedGameObject, gameObject.transform.position, aoeRadius));
     }
 }
