@@ -8,11 +8,13 @@ public class GiantWindAura : MonoBehaviour
     [SerializeField] private int DamagePerTick;
     private float tickTime = 0.5f;
     private float countdown;
+    public GameObject PowerOnParticles;
 
     // Start is called before the first frame update
     void Start()
     {
         countdown = tickTime;
+        PowerOnParticles.GetComponent<ParticleSystem>().Play();
     }
 
     private void OnTriggerStay(Collider other)

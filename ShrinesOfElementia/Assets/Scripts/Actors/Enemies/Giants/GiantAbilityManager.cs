@@ -97,6 +97,7 @@ public class GiantAbilityManager : MonoBehaviour
     {
         abilityPositionGiant += (Vector3.up * 2f + gameObject.transform.forward * 3f);
         GameObject windAbility = GameObject.Instantiate(giantAbility, abilityPositionGiant, abilityRotation);
+        windAbility.GetComponent<GiantWindBlade>().Caster = gameObject;
         windAbility.GetComponent<Rigidbody>().AddForce(abilityDirection * 14f, ForceMode.VelocityChange);
     }
 

@@ -23,7 +23,8 @@ public class GiantWindBlade : Ability
         {
             Destroy(gameObject);
         }
-
+        
+        transform.localScale = new Vector3(transform.localScale.x * 1.02f, transform.localScale.y * 1.02f, transform.localScale.z * 1.02f);
     }
 
     private void OnTriggerEnter(Collider other)
