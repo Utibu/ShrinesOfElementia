@@ -7,7 +7,7 @@ public class WindSensitive : ElementalWeakness
 {
     void Start()
     {
-        EventManager.Current.RegisterListener<WindAbilityEvent>(ReactToWind);
+        EventManager.Instance.RegisterListener<WindAbilityEvent>(ReactToWind);
     }
 
 
@@ -26,7 +26,7 @@ public class WindSensitive : ElementalWeakness
     {
         try
         {
-            EventManager.Current.UnregisterListener<WindAbilityEvent>(ReactToWind);
+            EventManager.Instance.UnregisterListener<WindAbilityEvent>(ReactToWind);
 
         }
         catch (System.NullReferenceException exeption)

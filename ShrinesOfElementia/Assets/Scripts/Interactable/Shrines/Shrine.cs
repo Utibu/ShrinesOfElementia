@@ -60,7 +60,7 @@ public class Shrine : Interactable
             {
                 Player.Instance.Animator.SetTrigger("OnPray"); // Add some channel animation
                 Player.Instance.Animator.SetBool("InCombat", false); // stops player from rotating to face camera.forward
-                channelTimer = TimerManager.Current.SetNewTimer(gameObject, channelTime, OnInteract);
+                channelTimer = TimerManager.Instance.SetNewTimer(gameObject, channelTime, OnInteract);
             }
         }
 
@@ -88,7 +88,7 @@ public class Shrine : Interactable
         Player.Instance.Animator.SetTrigger("ToNeutral");
         Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles();
         ShrineEvent shrineEvent = new ShrineEvent(element + " shrine activated", element);
-        EventManager.Current.FireEvent(shrineEvent);
+        EventManager.Instance.FireEvent(shrineEvent);
         shrineAnimationController.SetTrigger("IsTaken");
         Player.Instance.GetComponent<ShrineUnlockComponent>().ShowUnlockableCanvas(firstUnlockableText, secondUnlockableText);
         //shrinePanel.gameObject.SetActive(true);

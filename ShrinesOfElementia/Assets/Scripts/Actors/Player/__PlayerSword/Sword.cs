@@ -47,7 +47,7 @@ public class Sword : MonoBehaviour
             Destroy(go, 1f);
 
             DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + damage + " damage to " + other.gameObject, damage, gameObject, other.gameObject);
-            EventManager.Current.FireEvent(damageEvent);
+            EventManager.Instance.FireEvent(damageEvent);
         }
     }
 

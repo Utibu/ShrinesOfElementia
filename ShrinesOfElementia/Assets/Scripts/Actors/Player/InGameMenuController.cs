@@ -27,7 +27,7 @@ public class InGameMenuController : MonoBehaviour
 
     public void OnSaveAndExit()
     {
-        GameManager.Current.Save();
+        GameManager.Instance.Save();
         SceneManager.LoadScene(0);
     }
 

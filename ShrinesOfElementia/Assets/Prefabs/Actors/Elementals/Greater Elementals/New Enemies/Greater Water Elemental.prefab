@@ -118,7 +118,7 @@ Animator:
   m_GameObject: {fileID: 1023738744323611776}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b896b83969107de4bb0549d83b090dea, type: 3}
-  m_Controller: {fileID: 9100000, guid: c66587c95dfd103478be0245914ea78b, type: 2}
+  m_Controller: {fileID: 9100000, guid: fb04f19bc09bac04a9d0c3c60264cf5d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -338,6 +338,8 @@ MonoBehaviour:
   isInvulnerable: 0
   canvas: {fileID: 7494926138993052245}
   maxHealth: 50
+  baseHealthIncrease: 0
+  healthIncreasePerLevel: 0
 --- !u!114 &4343489666953683773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5611,6 +5613,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5932777673204327275}
     m_Modifications:
+    - target: {fileID: 6706850775248175820, guid: 8b64feb849aba5647b06d2519c3146ad,
+        type: 3}
+      propertyPath: m_Name
+      value: AttackCollider
+      objectReference: {fileID: 0}
     - target: {fileID: 528870615650135336, guid: 8b64feb849aba5647b06d2519c3146ad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5665,11 +5672,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6706850775248175820, guid: 8b64feb849aba5647b06d2519c3146ad,
-        type: 3}
-      propertyPath: m_Name
-      value: AttackCollider
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b64feb849aba5647b06d2519c3146ad, type: 3}

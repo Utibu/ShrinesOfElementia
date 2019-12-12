@@ -76,7 +76,7 @@ public class AbilityManager : MonoBehaviour
         geyserTimer = 0.0f;
         windBladeTimer = 0.0f;
         earthSpikesTimer = 0.0f;
-        EventManager.Current.RegisterListener<ShrineEvent>(UnlockElement);
+        EventManager.Instance.RegisterListener<ShrineEvent>(UnlockElement);
         indicatorProjector.SetActive(false);
         if (noCooldown)
         {
@@ -196,7 +196,7 @@ public class AbilityManager : MonoBehaviour
         Player.Instance.Animator.SetBool("InCombat", true);
         GameObject geyser = Instantiate(geyserPrefab, geyserSpawnLocation, Quaternion.identity);
         geyser.GetComponent<Geyser>().Caster = gameObject;
-        EventManager.Current.FireEvent(new GeyserCastEvent(geyserSpawnLocation, moistRange));
+        EventManager.Instance.FireEvent(new GeyserCastEvent(geyserSpawnLocation, moistRange));
     }
 
     public void CheckWindBlade()

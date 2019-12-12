@@ -82,7 +82,7 @@ public class HealthComponent : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            EventManager.Current.RegisterListener<LevelUpEvent>(OnLevelUp);
+            EventManager.Instance.RegisterListener<LevelUpEvent>(OnLevelUp);
         }
     }
 
@@ -99,7 +99,7 @@ public class HealthComponent : MonoBehaviour
 
         if (gameObject.name == "Giant" || gameObject.name == "FireGiant")
         {
-            GameManager.Current.OnBossDeath(); // temp
+            GameManager.Instance.OnBossDeath(); // temp
             Giant.Instance.Animator.SetTrigger("Die");
         }
         else if (gameObject.CompareTag("Enemy"))
@@ -109,7 +109,7 @@ public class HealthComponent : MonoBehaviour
         else if (gameObject.CompareTag("Player"))
         {
             Debug.Log("Playerdied");
-            EventManager.Current.FireEvent(new PlayerDeathEvent("Player died", gameObject));
+            EventManager.Instance.FireEvent(new PlayerDeathEvent("Player died", gameObject));
             //SceneManager.LoadScene("DeathScreen");
         }
     }

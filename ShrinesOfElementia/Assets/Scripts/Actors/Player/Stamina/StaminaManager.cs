@@ -53,7 +53,7 @@ public class StaminaManager : MonoBehaviour
     {
         currentStamina = maxStamina;
         regenerationCountdown = 0;
-        EventManager.Current.RegisterListener<DodgeEvent>(OnDodge);
+        EventManager.Instance.RegisterListener<DodgeEvent>(OnDodge);
         staminaSlider.maxValue = maxStamina;
     }
 

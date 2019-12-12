@@ -8,7 +8,7 @@ public class FireSensitive : ElementalWeakness
     
     void Start()
     {
-        EventManager.Current.RegisterListener<FireAbilityEvent>(ReactToFire);
+        EventManager.Instance.RegisterListener<FireAbilityEvent>(ReactToFire);
     }
 
     
@@ -29,7 +29,7 @@ public class FireSensitive : ElementalWeakness
         try
         {
 
-            EventManager.Current.UnregisterListener<FireAbilityEvent>(ReactToFire);
+            EventManager.Instance.UnregisterListener<FireAbilityEvent>(ReactToFire);
         }
         catch (System.NullReferenceException exeption)
         {

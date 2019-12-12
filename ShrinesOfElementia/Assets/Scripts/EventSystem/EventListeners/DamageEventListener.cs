@@ -1,5 +1,5 @@
 ﻿// Author: Bilal El Medkouri
-//Co-author: Niklas Almqvist
+//Co-authors: Niklas Almqvist & Sofia Kauko
 
 using UnityEngine;
 
@@ -10,7 +10,7 @@ public class DamageEventListener : MonoBehaviour
     private int totalDamage;
     private void Start()
     {
-        EventManager.Current.RegisterListener<DamageEvent>(OnDamageEvent);
+        EventManager.Instance.RegisterListener<DamageEvent>(OnDamageEvent);
     }
 
     private void OnDamageEvent(DamageEvent damageEvent)
@@ -20,7 +20,7 @@ public class DamageEventListener : MonoBehaviour
         {
             damageEvent.TargetGameObject.GetComponent<EnemySM>().EnemyAttacked();
 
-            if(damageEvent.TargetGameObject?.GetComponent<ActivateCanvasOnDamage>().CanvasIsActive == false)
+            if (damageEvent.TargetGameObject?.GetComponent<ActivateCanvasOnDamage>().CanvasIsActive == false)
             {
                 damageEvent.TargetGameObject.GetComponent<ActivateCanvasOnDamage>().ActivateCanvas();
             }
@@ -31,7 +31,7 @@ public class DamageEventListener : MonoBehaviour
             damageEvent.TargetGameObject.GetComponent<MovementInput>().SlowDown();
         }
 
-       
+
 
         damageEvent.TargetGameObject.GetComponent<HealthComponent>().CurrentHealth -= damageEvent.Damage;
 

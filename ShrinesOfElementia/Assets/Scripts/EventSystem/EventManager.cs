@@ -1,23 +1,17 @@
 ﻿//Author: Joakim Ljung
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
+    public static EventManager Instance { get; private set; }
 
-    private static EventManager __Current;
-    public static EventManager Current
+    private void Awake()
     {
-        get
-        {
-            if (__Current == null)
-            {
-                __Current = GameObject.FindObjectOfType<EventManager>();
-            }
-            return __Current;
-        }
+        // Prevents multiple instances
+        if (Instance == null) { Instance = this; }
+        else { Debug.Log("Warning: multiple " + this + " in scene!"); }
     }
 
     delegate void EventListener(EventClass e);

@@ -16,7 +16,7 @@ public class Stun_EnemyState : BasicEnemyBaseState
     {
         base.Enter();
         owner.Agent.speed = 0f;
-        TimerManager.Current.SetNewTimer(owner.gameObject, 2f, EndStun);
+        TimerManager.Instance.SetNewTimer(owner.gameObject, 2f, EndStun);
     }
 
 

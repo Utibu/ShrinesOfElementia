@@ -46,7 +46,7 @@ public class Interactable : MonoBehaviour
     protected virtual void OnInteract()
     {
         print("interacted");
-        EventManager.Current.FireEvent(new ExperienceEvent(experience + " gained", experience));
+        EventManager.Instance.FireEvent(new ExperienceEvent(experience + " gained", experience));
     }
 
     protected virtual void Disable()

@@ -30,7 +30,7 @@ public class EnemyAttack : MonoBehaviour
         {
             gameObject.SetActive(false);
             animator.SetTrigger("AttackBlocked");
-            EventManager.Current.FireEvent(new BlockEvent("Damage blocked: ", damage));
+            EventManager.Instance.FireEvent(new BlockEvent("Damage blocked: ", damage));
             print("Player shield hit");
         }
         else if (collision.gameObject.CompareTag("Player"))
@@ -38,7 +38,7 @@ public class EnemyAttack : MonoBehaviour
             gameObject.SetActive(false);
             print("Player hit");
             DamageEvent damageEvent = new DamageEvent(gameObject.name + " did " + damage + " to player", (int)damage, gameObject, collision.gameObject);
-            EventManager.Current.FireEvent(damageEvent);
+            EventManager.Instance.FireEvent(damageEvent);
         }
     }
 

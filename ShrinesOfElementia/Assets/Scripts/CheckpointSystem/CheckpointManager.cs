@@ -1,6 +1,5 @@
-﻿//Author: Joakim Ljung
-//Co-Author: Sofia Kauko
-using System.Collections;
+﻿// Main Author: Joakim Ljung
+// Co-Author: Sofia Kauko
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,24 +8,20 @@ public class CheckpointManager : MonoBehaviour
     private List<Vector3> spawnPoints;
     private Vector3 closestSpawn;
 
-    private static CheckpointManager current;
-    public static CheckpointManager Current
+    public static CheckpointManager Instance { get; private set; }
+
+    private void Awake()
     {
-        get
-        {
-            if (current == null)
-            {
-                current = GameObject.FindObjectOfType<CheckpointManager>();
-            }
-            return current;
-        }
+        // Prevents multiple instances
+        if (Instance == null) { Instance = this; }
+        else { Debug.Log("Warning: multiple " + this + " in scene!"); }
     }
 
     private void Start()
     {
         spawnPoints = new List<Vector3>();
         spawnPoints.Add(Player.Instance.transform.position);
-        EventManager.Current.RegisterListener<CheckpointEvent>(RegisterSpawn);
+        EventManager.Instance.RegisterListener<CheckpointEvent>(RegisterSpawn);
     }
 
     private void RegisterSpawn(CheckpointEvent eve)
@@ -38,20 +33,20 @@ public class CheckpointManager : MonoBehaviour
             //save to gamemanager
             Vector3 point = eve.SpawnPosition;
             Debug.Log(point.x + " " + point.y + " " + point.z);
-            GameManager.Current.SaveLatestCheckpoint(point);
+            GameManager.Instance.SaveLatestCheckpoint(point);
         }
-        
+
     }
 
     public Vector3 FindNearestSpawnPoint()
     {
-        foreach(Vector3 spawn in spawnPoints)
+        foreach (Vector3 spawn in spawnPoints)
         {
-            if(closestSpawn == null)
+            if (closestSpawn == null)
             {
                 closestSpawn = spawn;
             }
-            else if(Vector3.Distance(spawn, Player.Instance.transform.position) < Vector3.Distance(closestSpawn, Player.Instance.transform.position))
+            else if (Vector3.Distance(spawn, Player.Instance.transform.position) < Vector3.Distance(closestSpawn, Player.Instance.transform.position))
             {
                 closestSpawn = spawn;
             }

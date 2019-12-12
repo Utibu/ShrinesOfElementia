@@ -49,7 +49,7 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            GameManager.Current.OnBossDeath();
+            GameManager.Instance.OnBossDeath();
             // Heals the player for 10 hp
             player.Health.CurrentHealth += 30;
         }
@@ -158,12 +158,12 @@ public class PlayerInput : MonoBehaviour
             {
                 if(attackIndex == 0)
                 {
-                    TimerManager.Current.SetNewTimer(gameObject, lightAttack1, AttackTimerEnd);
+                    TimerManager.Instance.SetNewTimer(gameObject, lightAttack1, AttackTimerEnd);
                     canAttack = false;
                 }
                 else if(attackIndex == 1)
                 {
-                    TimerManager.Current.SetNewTimer(gameObject, lightAttack2, AttackTimerEnd);
+                    TimerManager.Instance.SetNewTimer(gameObject, lightAttack2, AttackTimerEnd);
                     canAttack = false;
                 }
                 LightAttack();
@@ -214,19 +214,19 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            EventManager.Current.FireEvent(new ShrineEvent("Fire activated", "Fire"));
+            EventManager.Instance.FireEvent(new ShrineEvent("Fire activated", "Fire"));
         }
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            EventManager.Current.FireEvent(new ShrineEvent("Water activated", "Water"));
+            EventManager.Instance.FireEvent(new ShrineEvent("Water activated", "Water"));
         }
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            EventManager.Current.FireEvent(new ShrineEvent("Earth activated", "Wind"));
+            EventManager.Instance.FireEvent(new ShrineEvent("Earth activated", "Wind"));
         }
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            EventManager.Current.FireEvent(new ShrineEvent("Wind activated", "Earth"));
+            EventManager.Instance.FireEvent(new ShrineEvent("Wind activated", "Earth"));
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -234,11 +234,11 @@ public class PlayerInput : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            GameManager.Current.Save();
+            GameManager.Instance.Save();
         }
         if (Input.GetKeyDown(KeyCode.U))
         {
-            EventManager.Current.FireEvent(new ExperienceEvent("", 10));
+            EventManager.Instance.FireEvent(new ExperienceEvent("", 10));
         }
         if (invincible)
         {
@@ -264,7 +264,7 @@ public class PlayerInput : MonoBehaviour
         attackIndex = (attackIndex + 1) % lightAttacks.Length;
         resetTimer = 0f;
 
-        EventManager.Current.FireEvent(new AttackEvent("...and the player strikes again"));
+        EventManager.Instance.FireEvent(new AttackEvent("...and the player strikes again"));
     }
 
     private void AttackTimerEnd()

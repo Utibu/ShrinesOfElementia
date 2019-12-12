@@ -14,7 +14,7 @@ public class __LeapParticleCollisionHandler : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + Giant.Instance.LeapDamage + " damage to " + other, Giant.Instance.LeapDamage, gameObject, other);
-            EventManager.Current.FireEvent(damageEvent);
+            EventManager.Instance.FireEvent(damageEvent);
         }
     }
 }

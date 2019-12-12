@@ -230,7 +230,7 @@ public class MovementInput : MonoBehaviour
             {
                 isGliding = true;
                 animator.SetBool("IsGliding", true);
-                glideTimer = TimerManager.Current.SetNewTimer(gameObject, 5f, FlightExpertAchieved);
+                glideTimer = TimerManager.Instance.SetNewTimer(gameObject, 5f, FlightExpertAchieved);
             }
             else if (isGliding && !IsGrounded() && hasGlide)
             {
@@ -297,7 +297,7 @@ public class MovementInput : MonoBehaviour
     private void FlightExpertAchieved()
     {
         print("Flight expert unlocked");
-        AchievementManager.Current.FlightExpertTrue();
+        AchievementManager.Instance.FlightExpertTrue();
     }
 
     private bool CheckDistanceFromGround(float distance)
@@ -389,9 +389,9 @@ public class MovementInput : MonoBehaviour
         if (IsGrounded())
         {
             IsDodging = true;
-            TimerManager.Current.SetNewTimer(gameObject, dodgeDuration, ExitDodge);
+            TimerManager.Instance.SetNewTimer(gameObject, dodgeDuration, ExitDodge);
             player.Animator.SetTrigger("OnDodge");
-            EventManager.Current.FireEvent(new DodgeEvent("stamina drained", 15));
+            EventManager.Instance.FireEvent(new DodgeEvent("stamina drained", 15));
             takeInput = false;
         }
     }
@@ -413,7 +413,7 @@ public class MovementInput : MonoBehaviour
             Debug.Log("PLAYER IS STAGGERED");
             player.Animator.SetTrigger("OnStagger");
             IsStaggered = true;
-            TimerManager.Current.SetNewTimer(gameObject, staggerDuration/3, Recover);
+            TimerManager.Instance.SetNewTimer(gameObject, staggerDuration/3, Recover);
             animator.speed -= staggerAnimationSlow;
             GetComponent<WeaponController>().SetSwordDisabled();
         }

@@ -69,7 +69,7 @@ public class GiantAbilityManager : MonoBehaviour
     public void CastAbility()
     {
         Ready = false;
-        TimerManager.Current.SetNewTimer(gameObject, 10f, ResetReady);
+        TimerManager.Instance.SetNewTimer(gameObject, 10f, ResetReady);
         abilities[ElementalType]();
     }
 

@@ -19,7 +19,7 @@ public class EarthSpikes : Ability
         boxCollider = GetComponent<BoxCollider>();
         victims = new ArrayList();
         particles.GetComponent<ParticleSystem>().Play();
-        TimerManager.Current.SetNewTimer(gameObject, 2f, RemoveSpikes);
+        TimerManager.Instance.SetNewTimer(gameObject, 2f, RemoveSpikes);
     }
 
     protected override void CastAbility() // behöver optimering, helst så detta kan avändas från enemy också. 
@@ -52,8 +52,8 @@ public class EarthSpikes : Ability
             //print(caster.name);
             //print(other.gameObject.name);
             //print("trigger particle");
-            EventManager.Current.FireEvent(new DamageEvent("damage dealt", damage, gameObject, other.gameObject));
-            EventManager.Current.FireEvent(new EarthAbilityEvent("earthAbility activated", other.gameObject, gameObject.transform.position, boxCollider.size.magnitude));
+            EventManager.Instance.FireEvent(new DamageEvent("damage dealt", damage, gameObject, other.gameObject));
+            EventManager.Instance.FireEvent(new EarthAbilityEvent("earthAbility activated", other.gameObject, gameObject.transform.position, boxCollider.size.magnitude));
             victims.Add(other.gameObject);
         }
     }

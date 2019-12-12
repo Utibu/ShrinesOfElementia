@@ -1,35 +1,12 @@
 ﻿//Author: Sofia Kauko
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
-using UnityEngine;
-using System;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
 {
-
-    private static GameManager current;
-    public static GameManager Current
-    {
-        get
-        {
-            /*
-            if (current == null)
-            {
-                current = GameObject.FindObjectOfType<GameManager>();
-            }
-            else
-            {
-                Destroy(current.gameObject);
-            }
-            */
-            return current;
-        }
-    }
-
     private SaveData saveData;
 
     //References to relevant stuff
@@ -49,24 +26,21 @@ public class GameManager : MonoBehaviour
     public bool EarthUnlocked { get; set; }
     public Vector3 NearestCheckpoint { get; set; }
 
-    void Awake()
+    public static GameManager Instance { get; private set; }
+
+    private void Awake()
     {
-        if (current == null)
-        {
-            current = GameObject.FindObjectOfType<GameManager>();
-        }
-        else if(current != this)
-        {
-            Destroy(this.gameObject);
-        }
+        // Prevents multiple instances
+        if (Instance == null) { Instance = this; }
+        else { Debug.Log("Warning: multiple " + this + " in scene!"); }
     }
-    
+
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         //secure gamobject
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
 
         //gameObject.AddComponent<AchievementManager>();
         //Achievements = GetComponent<AchievementManager>();
@@ -81,16 +55,16 @@ public class GameManager : MonoBehaviour
 
         if (SaveDataExists)
         {
-            AchievementManager.Current.InitializeFromSave(saveData);
-            MenuManager.Current.ActivateContinueButton();
+            AchievementManager.Instance.InitializeFromSave(saveData);
+            MenuManager.Instance.ActivateContinueButton();
         }
         else
         {
-            
+
         }
 
     }
-    
+
     public void LoadNewGame()
     {
         //init  acievement manager default
@@ -103,7 +77,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(1);
         SceneManager.sceneLoaded += SetBaseSpawn;
         SceneManager.sceneLoaded += SetUpGame;
-        
+
     }
 
     public void LoadFromSave()
@@ -118,69 +92,70 @@ public class GameManager : MonoBehaviour
     {
         //SceneManager.sceneLoaded += SetBaseSpawn;
         PlayerHP = 150;
-        Save();  
+        Save();
         LoadFromSave();
     }
 
     public void LoadAchievements()
     {
         LoadVariablesFromSave();
-        AchievementManager.Current.InitializeFromSave(saveData);
+        AchievementManager.Instance.InitializeFromSave(saveData);
     }
 
     //Called from both new game and continue with save. Prepares gameworld according to previosly loaded data.(if no save, default data.)
     private void SetUpGame(Scene scene, LoadSceneMode mode)
     {
-        if(scene.buildIndex == 1) // set up game world if game world was loaded.
+        if (scene.buildIndex == 1) // set up game world if game world was loaded.
         {
             Debug.Log("Shrines aquired: " + FireUnlocked + " " + EarthUnlocked + " " + WaterUnlocked + " " + WindUnlocked);
 
             //register listeners        
-            EventManager.Current.RegisterListener<ShrineEvent>(RegisterShrine);
-            EventManager.Current.RegisterListener<PlayerDeathEvent>(OnPlayerDeath);
-            EventManager.Current.RegisterListener<ExperienceEvent>(OnPlayerXPEvent);
+            EventManager.Instance.RegisterListener<ShrineEvent>(RegisterShrine);
+            EventManager.Instance.RegisterListener<PlayerDeathEvent>(OnPlayerDeath);
+            EventManager.Instance.RegisterListener<ExperienceEvent>(OnPlayerXPEvent);
 
             //prepare player position and HP
             Player.Instance.transform.position = NearestCheckpoint;
             Player.Instance.Health.CurrentHealth = PlayerHP;
 
             //load player abilities
-            TimerManager.Current.SetNewTimer(gameObject, 1f, LoadAbilities); // Event seems to not be heard if sent too early...
+            TimerManager.Instance.SetNewTimer(gameObject, 1f, LoadAbilities); // Event seems to not be heard if sent too early...
             Debug.Log("set up game finished -  deaths: " + PlayerDeaths);
         }
     }
 
     private void SetBaseSpawn(Scene scene, LoadSceneMode mode)
     {
-        NearestCheckpoint = PlayerSpawn.Current.transform.position;
+        NearestCheckpoint = PlayerSpawn.Instance.transform.position;
     }
 
     private void LoadAbilities()
     {
         if (FireUnlocked)
         {
-            EventManager.Current.FireEvent(new ShrineEvent("Fire enabled from gameManager", "Fire"));
+            EventManager.Instance.FireEvent(new ShrineEvent("Fire enabled from gameManager", "Fire"));
         }
         if (WaterUnlocked)
         {
-            EventManager.Current.FireEvent(new ShrineEvent("Water enabled from gameManager", "Water"));
+            EventManager.Instance.FireEvent(new ShrineEvent("Water enabled from gameManager", "Water"));
         }
         if (WindUnlocked)
         {
-            EventManager.Current.FireEvent(new ShrineEvent("Wind enabled from gameManager", "Wind"));
+            EventManager.Instance.FireEvent(new ShrineEvent("Wind enabled from gameManager", "Wind"));
         }
         if (EarthUnlocked)
         {
-            EventManager.Current.FireEvent(new ShrineEvent("Earth enabled from gameManager", "Earth"));
+            EventManager.Instance.FireEvent(new ShrineEvent("Earth enabled from gameManager", "Earth"));
         }
 
-        
+
 
     }
 
     private void RegisterShrine(ShrineEvent ev)
     {
-        switch (ev.Element){
+        switch (ev.Element)
+        {
             case "Fire":
                 FireUnlocked = true;
                 break;
@@ -213,7 +188,7 @@ public class GameManager : MonoBehaviour
 
 
     //Called from healtrh component each time a boss dies. Level increases and game saves. Add UI to continue or small cutscene or similar.
-    public void OnBossDeath() 
+    public void OnBossDeath()
     {
         Level += 1;
         Debug.Log("Boss died, level int has been increased");
@@ -225,7 +200,7 @@ public class GameManager : MonoBehaviour
 
     private void RespawnPlayer()
     {
-        Vector3 spawnpoint = CheckpointManager.Current.FindNearestSpawnPoint();
+        Vector3 spawnpoint = CheckpointManager.Instance.FindNearestSpawnPoint();
         Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
         Player.Instance.transform.position = spawnpoint;
     }
@@ -243,7 +218,7 @@ public class GameManager : MonoBehaviour
         RespawnPlayer();
     }
 
-    public void OnPlayerLevelUp() 
+    public void OnPlayerLevelUp()
     {
         PlayerLevel += 1;
         PlayerXP = 0;
@@ -253,9 +228,9 @@ public class GameManager : MonoBehaviour
     {
         PlayerXP += (int)ev.Experience;
     }
-    
 
-    
+
+
     public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
@@ -288,7 +263,7 @@ public class GameManager : MonoBehaviour
         data.KillcountHundred = Achievements.KillcountHundred;
         data.currentKills = Achievements.currentKills;
         bool fireKilled;
-        Achievements.SlayedGiants.TryGetValue("Fire", out fireKilled); 
+        Achievements.SlayedGiants.TryGetValue("Fire", out fireKilled);
         data.SlayedFireGiant = fireKilled;
         bool waterKilled;
         Achievements.SlayedGiants.TryGetValue("Fire", out waterKilled);
@@ -333,7 +308,7 @@ public class GameManager : MonoBehaviour
             NearestCheckpoint = new Vector3(saveData.SpawnX, saveData.SpawnY, saveData.SpawnZ);
 
             //init achievement data
-            AchievementManager.Current.InitializeFromSave(saveData);
+            AchievementManager.Instance.InitializeFromSave(saveData);
         }
         else
         {
@@ -369,6 +344,6 @@ public class GameManager : MonoBehaviour
         EarthUnlocked = false;
     }
 
-    
+
 
 }

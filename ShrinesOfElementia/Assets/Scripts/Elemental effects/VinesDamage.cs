@@ -19,9 +19,9 @@ public class VinesDamage : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && damageTickReady)
         {
-            EventManager.Current.FireEvent(new DamageEvent("vines deal damage to player", vinesDamage, gameObject, other.gameObject));
+            EventManager.Instance.FireEvent(new DamageEvent("vines deal damage to player", vinesDamage, gameObject, other.gameObject));
             damageTickReady = false;
-            TimerManager.Current.SetNewTimer(gameObject, timeBetweenDamageTicks, SetDamageTickReady);
+            TimerManager.Instance.SetNewTimer(gameObject, timeBetweenDamageTicks, SetDamageTickReady);
         }
     }
 
@@ -29,9 +29,9 @@ public class VinesDamage : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && damageTickReady)
         {
-            EventManager.Current.FireEvent(new DamageEvent("vines deal damage to player", vinesDamage, gameObject, other.gameObject));
+            EventManager.Instance.FireEvent(new DamageEvent("vines deal damage to player", vinesDamage, gameObject, other.gameObject));
             damageTickReady = false;
-            TimerManager.Current.SetNewTimer(gameObject, timeBetweenDamageTicks, SetDamageTickReady);
+            TimerManager.Instance.SetNewTimer(gameObject, timeBetweenDamageTicks, SetDamageTickReady);
         }
     }
 

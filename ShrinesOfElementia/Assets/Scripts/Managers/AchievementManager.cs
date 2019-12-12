@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class AchievementManager : MonoBehaviour
 {
-    
+
     //Speedrunner: finish gamerun within 5 minutes
     public bool SpeedRunner { get; set; }
     private bool SpeedRunnerTimerActive;
-    [SerializeField]private float maxRunTime;
+    [SerializeField] private float maxRunTime;
     private GameObject speedrunnerTimer;
 
     //Elementalist: get all shrines in 1 run
@@ -28,37 +28,19 @@ public class AchievementManager : MonoBehaviour
     public Dictionary<string, bool> SlayedGiants { get; set; }
     public bool GiantBane { get; set; }
 
-    private static AchievementManager current;
-    public static AchievementManager Current
+
+    public static AchievementManager Instance { get; private set; }
+
+    private void Awake()
     {
-        get
-        {
-            /*
-            if (current == null)
-            {
-                current = GameObject.FindObjectOfType<AchievementManager>();
-            }
-            */
-            return current;
-        }
+        // Prevents multiple instances
+        if (Instance == null) { Instance = this; }
+        else { Debug.Log("Warning: multiple " + this + " in scene!"); }
     }
 
-
-    void Awake()
+    private void Start()
     {
-        if (current == null)
-        {
-            current = GameObject.FindObjectOfType<AchievementManager>();
-        }
-        else if (current != this)
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-    void Start()
-    {
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
         InitializeToDefault();
     }
 
@@ -108,16 +90,16 @@ public class AchievementManager : MonoBehaviour
     //when gamelevel loads, start speedrunner-timer. REMEBER: change int if buildscene order changes. 
     private void OnLevelWasLoaded(int level)
     {
-        if(level == 1)
+        if (level == 1)
         {
-            speedrunnerTimer = TimerManager.Current.SetNewTimer(gameObject, maxRunTime, SpeedRunnerOutOfTime);
+            speedrunnerTimer = TimerManager.Instance.SetNewTimer(gameObject, maxRunTime, SpeedRunnerOutOfTime);
 
-            EventManager.Current.RegisterListener<ShrineEvent>(AddCollectedShrine);
-            EventManager.Current.RegisterListener<EnemyDeathEvent>(IncreaseKillcount);
-            EventManager.Current.RegisterListener<BossDeathEvent>(UnlockGiantslayer);
+            EventManager.Instance.RegisterListener<ShrineEvent>(AddCollectedShrine);
+            EventManager.Instance.RegisterListener<EnemyDeathEvent>(IncreaseKillcount);
+            EventManager.Instance.RegisterListener<BossDeathEvent>(UnlockGiantslayer);
         }
     }
-    
+
 
     private void AddCollectedShrine(ShrineEvent ev)
     {
@@ -148,7 +130,7 @@ public class AchievementManager : MonoBehaviour
     private void IncreaseKillcount(EnemyDeathEvent ev)
     {
         currentKills += 1;
-        if(currentKills >= requiredKills)
+        if (currentKills >= requiredKills)
         {
             KillcountHundred = true;
         }

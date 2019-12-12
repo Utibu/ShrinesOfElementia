@@ -47,8 +47,8 @@ public class EnemySM : StateMachine
 
         Physics.IgnoreLayerCollision(8, 4, false);
         //EventSystem.Current.RegisterListener<DamageEvent>(OnAttacked);
-        EventManager.Current.RegisterListener<AttackEvent>(Dodge);
-        EventManager.Current.RegisterListener<EarthAbilityEvent>(Stun);
+        EventManager.Instance.RegisterListener<AttackEvent>(Dodge);
+        EventManager.Instance.RegisterListener<EarthAbilityEvent>(Stun);
 
     }
 
@@ -160,7 +160,7 @@ public class EnemySM : StateMachine
     {
         try
         {
-            EventManager.Current.UnregisterListener<AttackEvent>(Dodge);
+            EventManager.Instance.UnregisterListener<AttackEvent>(Dodge);
         }
         catch (System.NullReferenceException exception)
         {

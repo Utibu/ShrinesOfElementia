@@ -7,7 +7,7 @@ public class EarthSensitive : ElementalWeakness
 {
     void Start()
     {
-        EventManager.Current.RegisterListener<EarthAbilityEvent>(ReactToEarth);
+        EventManager.Instance.RegisterListener<EarthAbilityEvent>(ReactToEarth);
     }
 
 
@@ -26,7 +26,7 @@ public class EarthSensitive : ElementalWeakness
     {
         try
         {
-            EventManager.Current.UnregisterListener<EarthAbilityEvent>(ReactToEarth);
+            EventManager.Instance.UnregisterListener<EarthAbilityEvent>(ReactToEarth);
 
         }
         catch (System.NullReferenceException exeption)

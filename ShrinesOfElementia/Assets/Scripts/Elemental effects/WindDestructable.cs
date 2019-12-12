@@ -7,7 +7,7 @@ public class WindDestructable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EventManager.Current.RegisterListener<WindAbilityEvent>(OnWindEvent);
+        EventManager.Instance.RegisterListener<WindAbilityEvent>(OnWindEvent);
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class WindDestructable : MonoBehaviour
     private void OnDestroy()
     {
         try{
-            EventManager.Current.UnregisterListener<WindAbilityEvent>(OnWindEvent);
+            EventManager.Instance.UnregisterListener<WindAbilityEvent>(OnWindEvent);
         }
         catch (System.NullReferenceException )
         {

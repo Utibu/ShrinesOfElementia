@@ -11,7 +11,7 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
-        EventManager.Current.RegisterListener<LevelUpEvent>(OnLevelUp);
+        EventManager.Instance.RegisterListener<LevelUpEvent>(OnLevelUp);
     }
 
     public void SetSwordActive()
