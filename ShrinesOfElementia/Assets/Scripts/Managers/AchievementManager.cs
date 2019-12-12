@@ -35,6 +35,7 @@ public class AchievementManager : MonoBehaviour
     {
         // Prevents multiple instances
         if (Instance == null) { Instance = this; }
+        else if (Instance != this) { Destroy(gameObject); }
         else { Debug.Log("Warning: multiple " + this + " in scene!"); }
     }
 
