@@ -82,7 +82,7 @@ public class GiantAbilityManager : MonoBehaviour
     //break this out if time available
     private void CastFire()
     {
-        abilityPositionGiant += gameObject.transform.forward * 3f + Vector3.up * 2f;
+        abilityPositionGiant += gameObject.transform.forward * 5f + Vector3.up * 2f;
         GameObject fireball = GameObject.Instantiate(giantAbility, abilityPositionGiant, abilityRotation);
         fireball.GetComponent<Fireball>().Caster = gameObject;
         fireball.GetComponent<Rigidbody>().AddForce(abilityDirection * 14f, ForceMode.VelocityChange);

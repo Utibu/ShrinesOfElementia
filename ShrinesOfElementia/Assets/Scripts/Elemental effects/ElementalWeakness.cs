@@ -17,7 +17,14 @@ public class ElementalWeakness : MonoBehaviour
             enemy.DisableEnemy();
         }
 
-        
+
+        Giant giant;
+        if (gameObject.TryGetComponent<Giant>(out giant))
+        {
+            //giant.DisableEnemy(); do some in giant sm that stops particles and auras. 
+        }
+
+
 
         //deal that extra elemental damage to anything w a healthcomponent
         HealthComponent health;

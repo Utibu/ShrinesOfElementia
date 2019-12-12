@@ -195,4 +195,21 @@ public class Giant : StateMachine
     {
         return Vector3.Distance(gameObject.transform.position, Player.Instance.transform.position);
     }
+
+
+    public void StopElementalParticles()
+    {
+        foreach(ParticleSystem ps in GetComponentsInChildren<ParticleSystem>())
+        {
+            ps.Stop();
+        }
+    }
+
+    public void StartElementalParticles()
+    {
+        foreach (ParticleSystem ps in GetComponentsInChildren<ParticleSystem>())
+        {
+            ps.Play();
+        }
+    }
 }

@@ -36,6 +36,7 @@ public class GiantPassiveManager : MonoBehaviour
         if(instantiatedPrefab == null && IsReady == false && timer == null)
         {
             IsReady = false;
+            StopElementalParticles();
             timer = TimerManager.Instance.SetNewTimer(gameObject, TimeUntilActivation, ResetReady);
         }
     }
@@ -46,8 +47,8 @@ public class GiantPassiveManager : MonoBehaviour
     private void ActivatePassive()
     {
         IsReady = false;
+        StartElementalParticles();
         passives[ElementalType]();
-
         
     }
 
@@ -100,7 +101,23 @@ public class GiantPassiveManager : MonoBehaviour
         instantiatedPrefab.transform.SetParent(gameObject.transform);
     }
 
-    
+
+    //stop and start the elemental partices when aura is on/off
+    public void StopElementalParticles()
+    {
+        foreach (ParticleSystem ps in GetComponentsInChildren<ParticleSystem>())
+        {
+            ps.Stop();
+        }
+    }
+
+    public void StartElementalParticles()
+    {
+        foreach (ParticleSystem ps in GetComponentsInChildren<ParticleSystem>())
+        {
+            ps.Play();
+        }
+    }
 
 
 }
