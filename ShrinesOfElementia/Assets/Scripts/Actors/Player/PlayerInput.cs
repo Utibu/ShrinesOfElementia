@@ -84,6 +84,7 @@ public class PlayerInput : MonoBehaviour
         {
             abilityManager.CheckGeyser();
             //abilityIndicator.HideIndicator();
+            //print("hiding indicator");
             abilityManager.ToggleAim();
         }
 

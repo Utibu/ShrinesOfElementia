@@ -10,23 +10,6 @@ public class AbilityIndicator : MonoBehaviour
     [SerializeField] private float indicatorRange;
     [SerializeField] private float indicatorDistanceFromGround;
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private GameObject[] indicators;
-
-    private void Update()
-    {
-        if (indicator != null)
-        {
-            //for testing, remove when not needed anymore
-            if (Input.GetKey(KeyCode.Alpha2))
-            {
-                ShowIndicator();
-            }
-            else
-            {
-                HideIndicator();
-            }
-        }
-    }
 
     public Vector3 GetIndicatorPoint()
     {
@@ -39,9 +22,11 @@ public class AbilityIndicator : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(CameraReference.Instance.transform.position, CameraReference.Instance.transform.forward, out hit, indicatorRange, layerMask))
         {
+            
             Quaternion rayRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
             if(rayRotation.eulerAngles.x < 30f || rayRotation.eulerAngles.x > -30f || rayRotation.eulerAngles.z < 30f || rayRotation.eulerAngles.z > -30f) //not working
             {
+                print("showing indicator");
                 indicator.transform.position = new Vector3(hit.point.x, hit.point.y + indicatorDistanceFromGround, hit.point.z);
                 indicator.transform.rotation = rayRotation;
             }
@@ -55,6 +40,7 @@ public class AbilityIndicator : MonoBehaviour
 
     public void HideIndicator()
     {
+        print("hiding indicator");
         indicator.SetActive(false);
     }
 }
