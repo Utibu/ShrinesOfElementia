@@ -6,7 +6,7 @@ public class SpawnBoss : MonoBehaviour
 {
 
     [SerializeField] private GameObject[] bosses = new GameObject[4];
-    private int level;
+    private int level = 0;
 
     // Start is called before the first frame update
     void Start()

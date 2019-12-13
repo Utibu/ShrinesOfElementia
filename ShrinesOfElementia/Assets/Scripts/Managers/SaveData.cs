@@ -13,6 +13,7 @@ public class SaveData
     public int PlayerLevel;
     public int PlayerXP;
     public int PlayerHP;
+    public int PlayerLivesRemaining;
     public int PlayerDeaths;
     public bool FireUnlocked;
     public bool WaterUnlocked;

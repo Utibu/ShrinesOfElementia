@@ -7,18 +7,20 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private SaveData saveData;
+    
 
     //References to relevant stuff
     public AchievementManager Achievements;
     [SerializeField] private int MaxAllowedDeaths;
-    private bool SaveDataExists = false;
+    private bool saveDataExists = false;
+    private SaveData saveData;
 
     //variables
     public int Level { get; set; }
     public int PlayerLevel { get; set; }
     public int PlayerXP { get; set; }
     public int PlayerHP { get; set; }
+    public int PlayerLivesRemaining { get; set; }
     public int PlayerDeaths { get; set; }
     public bool FireUnlocked { get; set; }
     public bool WaterUnlocked { get; set; }
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
     public Vector3 NearestCheckpoint { get; set; }
 
     public static GameManager Instance { get; private set; }
+    public bool SaveDataExists { get => saveDataExists; private set => saveDataExists = value; }
 
     private void Awake()
     {
@@ -54,7 +57,7 @@ public class GameManager : MonoBehaviour
         //check if game has a save
         LoadVariablesFromSave();
 
-        if (SaveDataExists)
+        if (saveDataExists)
         {
             AchievementManager.Instance.InitializeFromSave(saveData);
             MenuManager.Instance.ActivateContinueButton();
@@ -92,7 +95,9 @@ public class GameManager : MonoBehaviour
     public void LoadNextLevel()
     {
         //SceneManager.sceneLoaded += SetBaseSpawn;
+        Level += 1;
         PlayerHP = 150;
+        PlayerLivesRemaining = MaxAllowedDeaths;
         Save();
         LoadFromSave();
     }
@@ -122,12 +127,17 @@ public class GameManager : MonoBehaviour
             //load player abilities
             TimerManager.Instance.SetNewTimer(gameObject, 1f, LoadAbilities); // Event seems to not be heard if sent too early...
             Debug.Log("set up game finished -  deaths: " + PlayerDeaths);
+
+           
         }
     }
 
     private void SetBaseSpawn(Scene scene, LoadSceneMode mode)
     {
-        NearestCheckpoint = PlayerSpawn.Instance.transform.position;
+        if (scene.buildIndex == 1)
+        {
+            NearestCheckpoint = PlayerSpawn.Instance.transform.position;
+        }
     }
 
     private void LoadAbilities()
@@ -191,12 +201,10 @@ public class GameManager : MonoBehaviour
     //Called from healtrh component each time a boss dies. Level increases and game saves. Add UI to continue or small cutscene or similar.
     public void OnBossDeath()
     {
-        Level += 1;
         Debug.Log("Boss died, level int has been increased");
         //go to menu? play cutscene? show UI with "next Chapter"? 
         Save();
         SceneManager.LoadScene(3);
-
     }
 
     private void RespawnPlayer()
@@ -209,8 +217,9 @@ public class GameManager : MonoBehaviour
     public void OnPlayerDeath(PlayerDeathEvent ev)
     {
         PlayerDeaths += 1;
+        PlayerLivesRemaining -= 1;
         Debug.Log("OnPlayer death called -  deaths: " + PlayerDeaths);
-        if (PlayerDeaths > MaxAllowedDeaths)
+        if (PlayerLivesRemaining < 1)
         {
             DeleteSave();
             SceneManager.LoadScene(2);
@@ -230,8 +239,6 @@ public class GameManager : MonoBehaviour
         PlayerXP += (int)ev.Experience;
     }
 
-
-
     public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
@@ -247,12 +254,12 @@ public class GameManager : MonoBehaviour
         data.PlayerLevel = PlayerLevel;
         data.PlayerXP = PlayerXP;
         data.PlayerHP = PlayerHP;
+        data.PlayerLivesRemaining = PlayerLivesRemaining;
         data.PlayerDeaths = PlayerDeaths;
         data.FireUnlocked = FireUnlocked;
         data.WaterUnlocked = WaterUnlocked;
         data.WindUnlocked = WindUnlocked;
         data.EarthUnlocked = EarthUnlocked;
-        //helvete. (vector3 cant serialize, saving float values instead)
         data.SpawnX = NearestCheckpoint.x;
         data.SpawnY = NearestCheckpoint.y;
         data.SpawnZ = NearestCheckpoint.z;
@@ -276,13 +283,13 @@ public class GameManager : MonoBehaviour
         Achievements.SlayedGiants.TryGetValue("Fire", out earthKilled);
         data.SlayedEarthGiant = earthKilled;
         data.GiantBane = Achievements.GiantBane;
-
-
+        
         Debug.Log("SAVING: shrine:" + data.FireUnlocked + " " + data.EarthUnlocked + " " + data.WaterUnlocked + " " + data.WindUnlocked);
         //stream to file
         bf.Serialize(file, data);
         file.Close();
     }
+
     private void LoadVariablesFromSave()
     {
         if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
@@ -294,13 +301,14 @@ public class GameManager : MonoBehaviour
             file.Close();
 
             //makes sure gameManager knows if data is a save or just default null + 0
-            SaveDataExists = saveData.ContainsSaveData;
+            saveDataExists = saveData.ContainsSaveData;
 
             //get Variables from save:
             Level = Level;
             PlayerLevel = saveData.PlayerLevel;
             PlayerXP = saveData.PlayerXP;
             PlayerHP = saveData.PlayerHP;
+            PlayerLivesRemaining = saveData.PlayerLivesRemaining;
             PlayerDeaths = saveData.PlayerDeaths;
             FireUnlocked = saveData.FireUnlocked;
             WaterUnlocked = saveData.WaterUnlocked;
@@ -313,11 +321,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            SaveDataExists = false;
+            saveDataExists = false;
             Debug.Log("SAVEFILE DOES NOT EXIST");
         }
     }
-
 
     private void DeleteSave()
     {
@@ -326,7 +333,6 @@ public class GameManager : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
         //create empty savedata to override with. Ik, dumb solution but its safe.
         SaveData data = new SaveData();
-        data.PlayerDeaths = 0;
         //stream to file
         bf.Serialize(file, data);
         file.Close();
@@ -338,6 +344,7 @@ public class GameManager : MonoBehaviour
         PlayerLevel = 1;
         PlayerXP = 0;
         PlayerHP = 150; // generalize
+        PlayerLivesRemaining = 3;
         PlayerDeaths = 0;
         FireUnlocked = false;
         WaterUnlocked = false;

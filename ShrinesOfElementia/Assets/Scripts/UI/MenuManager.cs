@@ -32,12 +32,26 @@ public class MenuManager : MonoBehaviour
         // Prevents multiple instances
         if (Instance == null) { Instance = this; }
         else { Debug.Log("Warning: multiple " + this + " in scene!"); }
+
+
+
+        //make sure continue button only shows if in menuscene and save exists
+        if (continueButton != null)
+        {
+            continueButton.SetActive(false); // should be false by default.
+            if (GameManager.Instance.SaveDataExists)
+            {
+                continueButton.SetActive(true);
+            }
+        }
+
     }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        
     }
 
     //On Click functions

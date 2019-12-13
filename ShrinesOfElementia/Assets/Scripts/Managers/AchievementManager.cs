@@ -122,12 +122,6 @@ public class AchievementManager : MonoBehaviour
         SpeedRunnerTimerActive = false;
     }
 
-    public void FlightExpertTrue()
-    {
-        FlightExpert = true;
-    }
-
-
     private void IncreaseKillcount(EnemyDeathEvent ev)
     {
         currentKills += 1;

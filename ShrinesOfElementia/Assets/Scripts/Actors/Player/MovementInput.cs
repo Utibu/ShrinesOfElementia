@@ -303,7 +303,7 @@ public class MovementInput : MonoBehaviour
     private void FlightExpertAchieved()
     {
         print("Flight expert unlocked");
-        AchievementManager.Instance.FlightExpertTrue();
+        AchievementManager.Instance.FlightExpert = true;
     }
 
     public void StartCasting()
