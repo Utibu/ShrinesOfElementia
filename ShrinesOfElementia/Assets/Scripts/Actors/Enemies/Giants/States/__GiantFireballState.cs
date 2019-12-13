@@ -35,7 +35,7 @@ public class GiantFireballState : GiantCombatState
         Vector3 direction = owner.transform.forward * fireballSpeed;
 
         GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation, owner.transform.rotation);
-        fireball.GetComponent<Fireball>().Caster = owner.gameObject;
+        fireball.GetComponent<Fireball>().CasterTag = owner.gameObject.tag;
         fireball.GetComponent<Rigidbody>().AddForce(direction, ForceMode.VelocityChange);
         fireball.transform.localScale *= 2f;
     }

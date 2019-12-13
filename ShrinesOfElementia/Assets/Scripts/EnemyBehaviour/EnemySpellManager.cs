@@ -67,7 +67,7 @@ public class EnemySpellManager : MonoBehaviour
         //cast spell
         Debug.Log("Firespell cast");
         GameObject fireball = Instantiate(spellPrefab, fireballSpawnLocation, this.GetComponent<EnemySM>().Agent.transform.rotation);
-        fireball.GetComponent<Fireball>().Caster = gameObject;
+        fireball.GetComponent<Fireball>().CasterTag = gameObject.tag;
         fireball.GetComponent<Rigidbody>().AddForce(direction, ForceMode.VelocityChange);
     }
 
@@ -86,7 +86,7 @@ public class EnemySpellManager : MonoBehaviour
     private void CastWaterWithDelay()
     {
         GameObject geyser = Instantiate(spellPrefab, spellPosition, Quaternion.identity);
-        geyser.GetComponent<Geyser>().Caster = gameObject;
+        geyser.GetComponent<Geyser>().CasterTag = gameObject.tag;
         EventManager.Instance.FireEvent(new GeyserCastEvent(spellPosition, 6f)); //6f is range of extinguish. put this in geyser prefab script later.
     }
 
@@ -105,7 +105,7 @@ public class EnemySpellManager : MonoBehaviour
     private void CastEarthWithDelay()
     {
         GameObject earthSpikes = Instantiate(spellPrefab, spellPosition, spellRotation);
-        earthSpikes.GetComponent<EarthSpikes>().Caster = gameObject;
+        earthSpikes.GetComponent<EarthSpikes>().CasterTag = gameObject.tag;
         earthSpikes.GetComponent<ParticleSystem>().Play();
     }
 
@@ -113,7 +113,7 @@ public class EnemySpellManager : MonoBehaviour
     {
         Debug.Log("wind cast");
         GameObject windBlade = Instantiate(spellPrefab, transform.position + Vector3.up.normalized + transform.forward * 1f + transform.up * -0.2f, this.GetComponent<EnemySM>().Agent.transform.rotation);
-        windBlade.GetComponent<WindBlade>().Caster = gameObject;
+        windBlade.GetComponent<WindBlade>().CasterTag = gameObject.tag;
         windBlade.GetComponent<Rigidbody>().AddForce(spellAim * windBladeSpeed, ForceMode.VelocityChange);
     }
 

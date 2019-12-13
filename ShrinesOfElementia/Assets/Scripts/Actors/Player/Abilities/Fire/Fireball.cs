@@ -51,7 +51,7 @@ public class Fireball : Ability
         if (hasDealtDamage == true)
             return;
 
-        if ((collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player")) && collision.gameObject.CompareTag(caster.tag) == false) //collision.gameObject.tag != caster.tag)
+        if ((collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player")) && collision.gameObject.CompareTag(casterTag) == false) //collision.gameObject.tag != caster.tag)
         {
             DealDamage(collision.gameObject, directHitDamage);
             hasDealtDamage = true;
@@ -81,7 +81,7 @@ public class Fireball : Ability
         int i = 0;
         while (i < hitColliders.Length)
         {
-            if ((hitColliders[i].gameObject.CompareTag("Enemy") || hitColliders[i].gameObject.CompareTag("Player")) && hitColliders[i].gameObject.CompareTag(caster.tag) == false) //.tag != caster.tag)
+            if ((hitColliders[i].gameObject.CompareTag("Enemy") || hitColliders[i].gameObject.CompareTag("Player")) && hitColliders[i].gameObject.CompareTag(casterTag) == false) //.tag != caster.tag)
             {
                 // already affested enemmies or the already hit onw should not be damaged.
                 if (!affected.Contains(hitColliders[i].gameObject) && !hitColliders[i].gameObject.Equals(patientZero)) 

@@ -89,7 +89,7 @@ public class GiantAbilityManager : MonoBehaviour
     {
         abilityPositionGiant += gameObject.transform.forward * 5f + Vector3.up * 2f;
         GameObject fireball = GameObject.Instantiate(giantAbility, abilityPositionGiant, abilityRotation);
-        fireball.GetComponent<Fireball>().Caster = gameObject;
+        fireball.GetComponent<Fireball>().CasterTag = gameObject.tag;
         fireball.GetComponent<Rigidbody>().AddForce(abilityDirection * 14f, ForceMode.VelocityChange);
     }
 
@@ -102,14 +102,14 @@ public class GiantAbilityManager : MonoBehaviour
     {
         abilityPositionGiant += (Vector3.up * 2f + gameObject.transform.forward * 3f);
         GameObject windAbility = GameObject.Instantiate(giantAbility, abilityPositionGiant, abilityRotation);
-        windAbility.GetComponent<GiantWindBlade>().Caster = gameObject;
+        windAbility.GetComponent<GiantWindBlade>().CasterTag = gameObject.tag;
         windAbility.GetComponent<Rigidbody>().AddForce(abilityDirection * 14f, ForceMode.VelocityChange);
     }
 
     private void CastEarth()
     {
         GameObject earthAbility = GameObject.Instantiate(giantAbility, abilityPositionGiant, abilityRotation);
-        earthAbility.GetComponent<EarthSpikes>().Caster = gameObject;
+        earthAbility.GetComponent<EarthSpikes>().CasterTag = gameObject.tag;
     }
 
 

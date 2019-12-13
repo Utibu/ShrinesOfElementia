@@ -26,9 +26,9 @@ public class EarthSpikes : Ability
     {
         base.CastAbility();
         Quaternion spikesRotation = Quaternion.Euler(-90f, gameObject.transform.rotation.eulerAngles.y, 0f);
-        GameObject earthSpikes = Instantiate(AbilityPrefab, caster.transform.position + caster.transform.forward * 2f, spikesRotation);
-        earthSpikes.GetComponent<EarthSpikes>().Caster = gameObject;
-        print(earthSpikes.GetComponent<EarthSpikes>().Caster);
+        GameObject earthSpikes = Instantiate(AbilityPrefab, transform.position + transform.forward * 2f, spikesRotation); //may cause problems since it is transform and not caster.transform
+        earthSpikes.GetComponent<EarthSpikes>().CasterTag = gameObject.tag;
+        print(earthSpikes.GetComponent<EarthSpikes>().CasterTag);
         //earthSpikes.GetComponent<ParticleSystem>().Play();
         //TimerManager.Current.SetNewTimer(gameObject, 2f, RemoveSpikes);
     }
@@ -46,7 +46,7 @@ public class EarthSpikes : Ability
     private void OnTriggerEnter(Collider other)
     {
         
-        if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) && other.gameObject.tag != Caster.tag && !victims.Contains(other.gameObject)) 
+        if ((other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")) && other.gameObject.tag != CasterTag && !victims.Contains(other.gameObject)) 
         {
             
             //print(caster.name);

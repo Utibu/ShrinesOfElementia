@@ -7,15 +7,11 @@ using UnityEngine;
 public class Ability : MonoBehaviour
 {
     public GameObject AbilityPrefab { get { return gameObject; } }
-    public GameObject Caster { get { return caster; } set { caster = value; } }
-    protected GameObject caster;
+    public string CasterTag { get { return casterTag; } set { casterTag = value; } }
+    protected string casterTag = "";
     [SerializeField] protected AbilityIndicator abilityIndicator;
     protected Vector3 abilitySpawnLocation;
 
-    public void Start()
-    {
-        caster = gameObject; // if not assigned, will nod cause null ref.
-    }
 
     protected virtual void AimAbility()
     {
