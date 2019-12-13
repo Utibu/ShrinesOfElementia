@@ -97,10 +97,11 @@ public class HealthComponent : MonoBehaviour
     private void Die()
     {
 
-        if (gameObject.name == "Giant" || gameObject.name == "FireGiant")
+        if (gameObject.name == "EarthGiant" || gameObject.name == "FireGiant" || gameObject.name == "WindGiant" || gameObject.name == "WaterGiant")
         {
-            GameManager.Instance.OnBossDeath(); // temp
-            Giant.Instance.Animator.SetTrigger("Die");
+
+            GetComponent<Giant>().Die();
+            
         }
         else if (gameObject.CompareTag("Enemy"))
         {

@@ -16,12 +16,13 @@ public class GiantAbilityManager : MonoBehaviour
     private Vector3 abilityDirection;
     private Vector3 abilityPositionPlayer;
     private Vector3 abilityPositionGiant;
+    private string ElementalType;
 
     //old stuff
     public static GiantAbilityManager Instance { get; private set; }
     
 
-    [SerializeField] private string ElementalType;
+    
     [SerializeField] private GameObject giantAbility;
     [Range(0f, 100f)] public float AbilityRange = 0f;
     [SerializeField] private float abilityMinRange;
@@ -60,7 +61,7 @@ public class GiantAbilityManager : MonoBehaviour
         abilities.Add("Earth", CastEarth);
 
         Ready = true;
-
+        ElementalType = GetComponent<Giant>().ElementalType;
     }
 
     public void SetAim()

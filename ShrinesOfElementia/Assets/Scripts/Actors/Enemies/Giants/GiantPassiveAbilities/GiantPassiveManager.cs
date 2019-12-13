@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GiantPassiveManager : MonoBehaviour
 {
-    [SerializeField] private string ElementalType;
+    
     [SerializeField] private GameObject giantPassivePrefab;
     [SerializeField] private float timeUntilActivation;
     public float TimeUntilActivation { get => timeUntilActivation; set => timeUntilActivation = value; }
@@ -15,6 +15,7 @@ public class GiantPassiveManager : MonoBehaviour
 
     private Dictionary<string, System.Action> passives;
     private GameObject timer;
+    private string ElementalType;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,7 @@ public class GiantPassiveManager : MonoBehaviour
         EventManager.Instance.RegisterListener<GeyserCastEvent>(DestroyFirePassive);
         EventManager.Instance.RegisterListener<FireAbilityEvent>(DestroyWindPassive);
 
-
+        ElementalType = GetComponent<Giant>().ElementalType;
         IsReady = true;
         passives = new Dictionary<string, System.Action>();
         passives.Add("Fire", CastFirePassive);
