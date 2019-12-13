@@ -49,7 +49,10 @@ public class Fireball : Ability
     private void OnCollisionEnter(Collision collision)
     {
         if (hasDealtDamage == true)
+        {
+            Destroy(gameObject);
             return;
+        }
 
         if ((collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player")) && collision.gameObject.CompareTag(casterTag) == false) //collision.gameObject.tag != caster.tag)
         {
