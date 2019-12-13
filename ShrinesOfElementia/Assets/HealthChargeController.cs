@@ -12,14 +12,12 @@ public class HealthChargeController : MonoBehaviour
     [SerializeField] private Image thirdHealthImage;
     [SerializeField] private Image[] healthImages;
 
-    private void Awake()
-    {
-        EventManager.Instance.RegisterListener<PlayerDeathEvent>(OnPlayerDeath);
-    }
 
     private void Start()
     {
-        foreach(Image healthImage in healthImages)
+        EventManager.Instance.RegisterListener<PlayerDeathEvent>(OnPlayerDeath);
+
+        foreach (Image healthImage in healthImages)
         {
             healthImage.enabled = true;
         }
@@ -27,6 +25,7 @@ public class HealthChargeController : MonoBehaviour
 
     private void OnPlayerDeath(PlayerDeathEvent eve)
     {
+        print("player died, removing health image");
         foreach(Image healthImage in healthImages)
         {
             if (healthImage.IsActive())
