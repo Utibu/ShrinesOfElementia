@@ -25,6 +25,11 @@ public class EliasDemoEventTrigger : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
     {
+        if(!other.CompareTag("Player"))
+        {
+            return;
+        }
+        Debug.Log("ONTRIGGERENTER ELIAS: " + this.gameObject.name);
         if (useSetLevel)
         {
             eliasPlayer.QueueEvent(setLevel.CreateSetLevelEvent(eliasPlayer.Elias));
