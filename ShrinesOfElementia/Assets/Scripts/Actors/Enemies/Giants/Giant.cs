@@ -20,6 +20,8 @@ public class Giant : StateMachine
     public bool Phase2Active { get; set; }
     public bool Phase3Active { get; set; }
 
+    [Header("Giant element")]
+    public string ElementalType;
 
     // Move all attacks to a manager of some sorts
     [Header("Basic Attack")]
@@ -196,20 +198,10 @@ public class Giant : StateMachine
         return Vector3.Distance(gameObject.transform.position, Player.Instance.transform.position);
     }
 
-
-    public void StopElementalParticles()
+    public void Die()
     {
-        foreach(ParticleSystem ps in GetComponentsInChildren<ParticleSystem>())
-        {
-            ps.Stop();
-        }
+        Transition<GiantDeathState>();
     }
 
-    public void StartElementalParticles()
-    {
-        foreach (ParticleSystem ps in GetComponentsInChildren<ParticleSystem>())
-        {
-            ps.Play();
-        }
-    }
+    
 }

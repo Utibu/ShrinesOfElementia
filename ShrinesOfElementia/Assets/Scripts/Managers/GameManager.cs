@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
             EventManager.Instance.RegisterListener<ShrineEvent>(RegisterShrine);
             EventManager.Instance.RegisterListener<PlayerDeathEvent>(OnPlayerDeath);
             EventManager.Instance.RegisterListener<ExperienceEvent>(OnPlayerXPEvent);
+            EventManager.Instance.RegisterListener<BossDeathEvent>(OnBossDeath);
 
             //prepare player position and HP
             Player.Instance.transform.position = NearestCheckpoint;
@@ -183,10 +184,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Element not valid");
                 break;
         }
-
-
         Save();
-
     }
 
 
@@ -199,7 +197,7 @@ public class GameManager : MonoBehaviour
 
 
     //Called from healtrh component each time a boss dies. Level increases and game saves. Add UI to continue or small cutscene or similar.
-    public void OnBossDeath()
+    public void OnBossDeath(BossDeathEvent ev)
     {
         Debug.Log("Boss died, level int has been increased");
         //go to menu? play cutscene? show UI with "next Chapter"? 
