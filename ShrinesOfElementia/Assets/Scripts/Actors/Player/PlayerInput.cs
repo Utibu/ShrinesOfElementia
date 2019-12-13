@@ -268,7 +268,7 @@ public class PlayerInput : MonoBehaviour
         EventManager.Instance.FireEvent(new AttackEvent("...and the player strikes again"));
     }
 
-    private void AttackTimerEnd()
+    public void AttackTimerEnd()
     {
         if(player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Sword and Shield Slash 2"))
             canAttack = true;

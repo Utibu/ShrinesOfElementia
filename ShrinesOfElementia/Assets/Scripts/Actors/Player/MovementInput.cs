@@ -14,6 +14,7 @@ public class MovementInput : MonoBehaviour
     // Components
     private Player player;
     private Animator animator;
+    private PlayerInput playerInput;
 
     //should be private, and set to camera.Instance in start. this was just quickfix bc error mayhem // ymer
     public CameraReference cameraCamCamTheGlam;
@@ -21,7 +22,7 @@ public class MovementInput : MonoBehaviour
     
 
     // Variables
-    private Vector2 playerInput;
+    private Vector2 movementInput;
     private Vector3 desiredMoveDirection;
 
     private bool faceCameraDirection;
@@ -111,6 +112,7 @@ public class MovementInput : MonoBehaviour
     {
         player = Player.Instance;
         animator = player.Animator;
+        playerInput = player.GetComponent<PlayerInput>();
         staggerDuration = staggerAnimation.length;
 
         //cameraCamCamTheGlam = CameraReference.Instance;
@@ -124,7 +126,7 @@ public class MovementInput : MonoBehaviour
         {
             movementSpeed = staggerSpeed;
         }
-        else if (playerInput.y < 0)
+        else if (movementInput.y < 0)
         {
             movementSpeed = defaultSpeed / 2;
         }
@@ -139,18 +141,18 @@ public class MovementInput : MonoBehaviour
 
         if (newMovement)
         {
-            playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
         else
         {
-            playerInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
 
 
         // Movement
         if ((IsGrounded() || controller.isGrounded) && newMovement && takeInput)
         {
-            moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
+            moveVector = new Vector3(movementInput.x, 0.0f, movementInput.y);
             moveVector = CameraRelativeFlatten(moveVector, Vector3.up);
             moveVector.Normalize();
             moveVector *= movementSpeed;
@@ -159,13 +161,13 @@ public class MovementInput : MonoBehaviour
         // Dodge
         if (IsDodging)
         {
-            if(playerInput.x == 0 && playerInput.y == 0)
+            if(movementInput.x == 0 && movementInput.y == 0)
             {
                 moveVector = new Vector3(0.0f, 0.0f, -1f);
             }
             else
             {
-                moveVector = new Vector3(playerInput.x, 0.0f, playerInput.y);
+                moveVector = new Vector3(movementInput.x, 0.0f, movementInput.y);
             }
             moveVector.Normalize();
             moveVector = CameraRelativeFlatten(moveVector, Vector3.up);
@@ -175,7 +177,7 @@ public class MovementInput : MonoBehaviour
         // Glide
         else if (isGliding)
         {
-            moveVector = new Vector3(playerInput.x, glideStrength, playerInput.y);
+            moveVector = new Vector3(movementInput.x, glideStrength, movementInput.y);
             moveVector.Normalize();
 
             moveVector += Vector3.ProjectOnPlane(CameraReference.Instance.transform.forward, Vector3.up);
@@ -268,7 +270,7 @@ public class MovementInput : MonoBehaviour
         
         if(animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint"))
         {
-            desiredMoveDirection = forward * playerInput.y + right * playerInput.x;
+            desiredMoveDirection = forward * movementInput.y + right * movementInput.x;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), desiredRotationSpeed);
         }
         else
@@ -286,10 +288,10 @@ public class MovementInput : MonoBehaviour
     /// </summary>
     private void InputMagnitude()
     {
-        animator.SetFloat("InputX", playerInput.x, animationDamping, Time.deltaTime);
-        animator.SetFloat("InputZ", playerInput.y, animationDamping, Time.deltaTime);
+        animator.SetFloat("InputX", movementInput.x, animationDamping, Time.deltaTime);
+        animator.SetFloat("InputZ", movementInput.y, animationDamping, Time.deltaTime);
        
-        animationSpeed = new Vector2(playerInput.x, playerInput.y).sqrMagnitude;
+        animationSpeed = new Vector2(movementInput.x, movementInput.y).sqrMagnitude;
 
         animator.SetFloat("InputMagnitude", animationSpeed, animationDamping, Time.deltaTime);
         
@@ -436,12 +438,13 @@ public class MovementInput : MonoBehaviour
     {
         if (!IsStaggered && !isCasting)
         {
+            EventManager.Instance.FireEvent(new StaggerEvent("staggered", gameObject));
             Debug.Log("PLAYER IS STAGGERED");
             player.Animator.SetTrigger("OnStagger");
             IsStaggered = true;
             TimerManager.Instance.SetNewTimer(gameObject, staggerDuration/3, Recover);
             animator.speed -= staggerAnimationSlow;
-            GetComponent<WeaponController>().SetSwordDisabled();
+            //GetComponent<WeaponController>().SetSwordDisabled();
         }
 
 
@@ -452,6 +455,8 @@ public class MovementInput : MonoBehaviour
         IsStaggered = false;
         animator.speed += staggerAnimationSlow;
         animator.SetBool("CanBlock", true);
+        //playerInput.AttackTimerEnd();
+        
         Debug.Log("PLAYER RECOVERED FROM STAGGER");
     }
 

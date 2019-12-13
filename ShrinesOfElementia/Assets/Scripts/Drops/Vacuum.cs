@@ -12,7 +12,7 @@ public class Vacuum : DroppableObject
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))// && Player.Instance.Health.CurrentHealth != Player.Instance.Health.MaxHealth)
         {
             droppedObject.transform.position = Vector3.MoveTowards(droppedObject.transform.position, other.transform.position + Vector3.up * 1.5f, vacuumSpeed * Time.deltaTime);
         }
