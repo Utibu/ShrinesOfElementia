@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSoundController : MonoBehaviour
 {
 
-    [SerializeField] private AudioSource playerAudioSource;
+    public AudioSource playerAudioSource;
     [SerializeField] private AudioSource footAudioSource;
     [SerializeField] private AudioClip slashClip;
     [SerializeField] private AudioClip swordHitClip;

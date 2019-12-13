@@ -11,6 +11,7 @@ public class EnemyAttack : MonoBehaviour
     Collider attackCollider;
     Animator animator;
     [SerializeField] private AudioClip hitSoundClip;
+    [SerializeField] private AudioClip blockSoundClip;
     private AudioSource audioSource;
 
     private void Start()
@@ -33,6 +34,10 @@ public class EnemyAttack : MonoBehaviour
             gameObject.SetActive(false);
             animator.SetTrigger("AttackBlocked");
             EventManager.Instance.FireEvent(new BlockEvent("Damage blocked: ", damage));
+            if (blockSoundClip != null && Player.Instance.GetComponent<PlayerSoundController>().playerAudioSource != null)
+            {
+                Player.Instance.GetComponent<PlayerSoundController>().playerAudioSource.PlayOneShot(blockSoundClip, 0.3f);
+            }
             print("Player shield hit");
         }
         else if (collision.gameObject.CompareTag("Player"))
