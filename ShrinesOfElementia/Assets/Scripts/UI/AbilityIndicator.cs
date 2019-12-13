@@ -17,7 +17,7 @@ public class AbilityIndicator : MonoBehaviour
         if (indicator != null)
         {
             //for testing, remove when not needed anymore
-            if (Input.GetKey(KeyCode.T))
+            if (Input.GetKey(KeyCode.Alpha2))
             {
                 ShowIndicator();
             }
@@ -44,7 +44,6 @@ public class AbilityIndicator : MonoBehaviour
             {
                 indicator.transform.position = new Vector3(hit.point.x, hit.point.y + indicatorDistanceFromGround, hit.point.z);
                 indicator.transform.rotation = rayRotation;
-                print(rayRotation.eulerAngles);
             }
             else
             {
