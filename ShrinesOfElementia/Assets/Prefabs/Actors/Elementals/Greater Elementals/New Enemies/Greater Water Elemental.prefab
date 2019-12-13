@@ -118,7 +118,7 @@ Animator:
   m_GameObject: {fileID: 1023738744323611776}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b896b83969107de4bb0549d83b090dea, type: 3}
-  m_Controller: {fileID: 9100000, guid: fb04f19bc09bac04a9d0c3c60264cf5d, type: 2}
+  m_Controller: {fileID: 9100000, guid: cbf50a79c72e89e4ca3e42ba2a2feb9c, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -830,6 +830,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5932777673204327275}
     m_Modifications:
+    - target: {fileID: 6706850775248175820, guid: 8b64feb849aba5647b06d2519c3146ad,
+        type: 3}
+      propertyPath: m_Name
+      value: AttackCollider
+      objectReference: {fileID: 0}
     - target: {fileID: 528870615650135336, guid: 8b64feb849aba5647b06d2519c3146ad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -885,11 +890,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6706850775248175820, guid: 8b64feb849aba5647b06d2519c3146ad,
-        type: 3}
-      propertyPath: m_Name
-      value: AttackCollider
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b64feb849aba5647b06d2519c3146ad, type: 3}
 --- !u!4 &1833159903057956893 stripped
@@ -905,6 +905,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4066281170317373075}
     m_Modifications:
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4086458299678198103, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1025,16 +1035,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.47229713
       objectReference: {fileID: 0}
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1116,6 +1116,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4066281170317373075}
     m_Modifications:
+    - target: {fileID: 1014908122840289110, guid: a3a0374d55ab7444c84e620ee1320845,
+        type: 3}
+      propertyPath: m_Name
+      value: Greater Water Particles
+      objectReference: {fileID: 0}
     - target: {fileID: 6740311606688609317, guid: a3a0374d55ab7444c84e620ee1320845,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1170,11 +1175,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1014908122840289110, guid: a3a0374d55ab7444c84e620ee1320845,
-        type: 3}
-      propertyPath: m_Name
-      value: Greater Water Particles
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3a0374d55ab7444c84e620ee1320845, type: 3}
