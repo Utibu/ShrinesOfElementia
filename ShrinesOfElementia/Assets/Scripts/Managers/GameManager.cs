@@ -79,7 +79,6 @@ public class GameManager : MonoBehaviour
 
         //load scene
         SceneManager.LoadScene(1);
-        SceneManager.sceneLoaded += SetBaseSpawn;
         SceneManager.sceneLoaded += SetUpGame;
 
     }
@@ -87,7 +86,7 @@ public class GameManager : MonoBehaviour
     public void LoadFromSave()
     {
         //Loaded already in start, just init the rest.
-        //LoadVariablesFromSave();
+        LoadVariablesFromSave();
         SceneManager.LoadScene(1);
         SceneManager.sceneLoaded += SetUpGame;
     }
@@ -129,16 +128,17 @@ public class GameManager : MonoBehaviour
             TimerManager.Instance.SetNewTimer(gameObject, 1f, LoadAbilities); // Event seems to not be heard if sent too early...
             Debug.Log("set up game finished -  deaths: " + PlayerDeaths);
 
-           
+
+            if (!saveDataExists)
+            {
+                SetBaseSpawn();
+            }
         }
     }
 
-    private void SetBaseSpawn(Scene scene, LoadSceneMode mode)
+    private void SetBaseSpawn()
     {
-        if (scene.buildIndex == 1)
-        {
-            NearestCheckpoint = PlayerSpawn.Instance.transform.position;
-        }
+        NearestCheckpoint = PlayerSpawn.Instance.transform.position;
     }
 
     private void LoadAbilities()
