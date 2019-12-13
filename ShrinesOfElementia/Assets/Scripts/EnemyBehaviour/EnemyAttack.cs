@@ -10,13 +10,15 @@ public class EnemyAttack : MonoBehaviour
     private float damage;
     Collider attackCollider;
     Animator animator;
+    [SerializeField] private AudioClip hitSoundClip;
+    private AudioSource audioSource;
 
     private void Start()
     {
         damage = 10;
         attackCollider = GetComponent<Collider>();
         animator = GetComponentInParent<Animator>();
-
+        audioSource = GetComponentInParent<AudioSource>();
 
         
     }
@@ -38,6 +40,10 @@ public class EnemyAttack : MonoBehaviour
             gameObject.SetActive(false);
             print("Player hit");
             DamageEvent damageEvent = new DamageEvent(gameObject.name + " did " + damage + " to player", (int)damage, gameObject, collision.gameObject);
+            if(hitSoundClip != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(hitSoundClip, 0.3f);
+            }
             EventManager.Instance.FireEvent(damageEvent);
         }
     }
