@@ -49,7 +49,6 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            GameManager.Instance.OnBossDeath();
             // Heals the player for 10 hp
             player.Health.CurrentHealth += 30;
         }
