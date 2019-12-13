@@ -9,9 +9,6 @@ public class EnemySpellManager : MonoBehaviour
     [SerializeField] private string elementType;
     private float fireballSpeed = 13f;
     private Vector3 fireballSpawnLocation;
-    //Water
-
-    //Earth
     //Wind
     private float windBladeSpeed = 14f;
 
@@ -31,7 +28,8 @@ public class EnemySpellManager : MonoBehaviour
     [SerializeField] private float spellDelayModifier;
     public float SpellSpeedModifier { get => spellDelayModifier; set => spellDelayModifier = value; }
 
-    private Vector3 spellPosition;
+    private Vector3 spellPositionPlayer;
+    private Vector3 spellPositionElite;
     private Quaternion spellRotation;
     private Vector3 spellAim;
 
@@ -47,21 +45,41 @@ public class EnemySpellManager : MonoBehaviour
         spells.Add("Wind", CastWind);
     }
 
+    public void SetAbilityAim()
+    {
+        spellAim = gameObject.transform.forward;
+        spellPositionPlayer = Player.Instance.transform.position;
+        spellPositionElite = gameObject.transform.position;
+        spellRotation = gameObject.transform.rotation;
+
+        ShowAbilityIndicator();
+    }
+
     public void CastAbility()
     {
         //add indicator
         spells[elementType]();
     }
 
-    public void SetAim(Vector3 aim)
+    private void ShowAbilityIndicator()
     {
-        spellAim = aim.normalized;
+        if(elementType == "Earth")
+        {
+            groundTargetIndicatorPosition = transform.position + transform.forward * 6f + new Vector3(0f, -0.3f);
+            Instantiate(groundTargetIndicator, groundTargetIndicatorPosition, spellRotation);
+        }
+        else if (elementType == "Water")
+        {
+            Instantiate(groundTargetIndicator, spellPositionPlayer, Quaternion.Euler(-90, transform.rotation.eulerAngles.y, 0));
+        }
+        
     }
+    
 
     private void CastFire()
     {
         //alter spawn location to avoid colliding with its own collider
-        fireballSpawnLocation = transform.position + Vector3.up.normalized * 1.5f + gameObject.transform.forward * 2f;
+        spellPositionElite +=  Vector3.up.normalized * 1.5f + gameObject.transform.forward * 2f;
         Vector3 direction = spellAim * fireballSpeed;
 
         //cast spell
@@ -76,45 +94,60 @@ public class EnemySpellManager : MonoBehaviour
     private void CastWater()
     {
         Debug.Log("Waterspell cast");
-        spellPosition = Player.Instance.transform.position + Vector3.up * -3f;
+        //spellPositionPlayer +=  Vector3.up * -3f;
+        
 
-        Instantiate(groundTargetIndicator, Player.Instance.transform.position, Quaternion.Euler(-90, transform.rotation.eulerAngles.y, 0));
+        //TimerManager.Instance.SetNewTimer(gameObject, spellDelayModifier, CastWaterWithDelay);
+        GameObject geyser = Instantiate(spellPrefab, spellPositionPlayer, Quaternion.identity);
+        geyser.GetComponent<Geyser>().CasterTag = gameObject.tag;
+        EventManager.Instance.FireEvent(new GeyserCastEvent(spellPositionPlayer, 6f)); //6f is range of extinguish. put this in geyser prefab script later.
+    }
+    
 
-        TimerManager.Instance.SetNewTimer(gameObject, spellDelayModifier, CastWaterWithDelay);
+    private void CastEarth()
+    {
+        /*
+        spellRotation = Quaternion.Euler(-90, transform.rotation.eulerAngles.y, 0);
+        spellPosition = transform.position + (transform.forward.normalized * 0.5f) + (transform.up * -1f);
+        groundTargetIndicatorPosition = transform.position + transform.forward * 6f + new Vector3(0f, -0.3f);
+        Instantiate(groundTargetIndicator, groundTargetIndicatorPosition, spellRotation);
+        TimerManager.Instance.SetNewTimer(gameObject, spellDelayModifier, CastEarthWithDelay);
+        */
+
+        spellPositionElite += transform.forward.normalized * 0.5f + transform.up * -1f;
+        GameObject earthSpikes = Instantiate(spellPrefab, spellPositionElite, spellRotation);
+        earthSpikes.GetComponent<EarthSpikes>().CasterTag = gameObject.tag;
+        earthSpikes.GetComponent<ParticleSystem>().Play(); // shouldnt be needed but is. 
 
     }
+    
+
+    private void CastWind()
+    {
+        Debug.Log("wind cast");
+        spellPositionElite += transform.forward * 1.5f + transform.up * 0.5f;
+        GameObject windBlade = Instantiate(spellPrefab, spellPositionElite, spellRotation);
+        windBlade.GetComponent<WindBlade>().CasterTag = gameObject.tag;
+        windBlade.GetComponent<Rigidbody>().AddForce(spellAim * windBladeSpeed, ForceMode.VelocityChange);
+    }
+
+
+    /*
     private void CastWaterWithDelay()
     {
         GameObject geyser = Instantiate(spellPrefab, spellPosition, Quaternion.identity);
         geyser.GetComponent<Geyser>().CasterTag = gameObject.tag;
         EventManager.Instance.FireEvent(new GeyserCastEvent(spellPosition, 6f)); //6f is range of extinguish. put this in geyser prefab script later.
     }
+    */
 
-    private void CastEarth()
-    {
-        spellRotation = Quaternion.Euler(-90, transform.rotation.eulerAngles.y, 0);
-        spellPosition = transform.position + (transform.forward.normalized * 0.5f) + (transform.up * -1f);
-
-        groundTargetIndicatorPosition = transform.position + transform.forward * 6f + new Vector3(0f, -0.3f);
-
-        Instantiate(groundTargetIndicator, groundTargetIndicatorPosition, spellRotation);
-
-        TimerManager.Instance.SetNewTimer(gameObject, spellDelayModifier, CastEarthWithDelay);
-
-    }
+    /*
     private void CastEarthWithDelay()
     {
         GameObject earthSpikes = Instantiate(spellPrefab, spellPosition, spellRotation);
         earthSpikes.GetComponent<EarthSpikes>().CasterTag = gameObject.tag;
         earthSpikes.GetComponent<ParticleSystem>().Play();
     }
-
-    private void CastWind()
-    {
-        Debug.Log("wind cast");
-        GameObject windBlade = Instantiate(spellPrefab, transform.position + Vector3.up.normalized + transform.forward * 1f + transform.up * -0.2f, this.GetComponent<EnemySM>().Agent.transform.rotation);
-        windBlade.GetComponent<WindBlade>().CasterTag = gameObject.tag;
-        windBlade.GetComponent<Rigidbody>().AddForce(spellAim * windBladeSpeed, ForceMode.VelocityChange);
-    }
+    */
 
 }

@@ -68,7 +68,6 @@ public class Cast_EnemyState : BasicEnemyBaseState
             owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
             //get vector to use as aim when casting, is needed.
             Vector3 aim = owner.Player.transform.position - owner.transform.position;
-            owner.GetComponent<EnemySpellManager>().SetAim(aim);
         }
     }
 
