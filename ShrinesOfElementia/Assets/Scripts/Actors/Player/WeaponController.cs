@@ -7,31 +7,38 @@ public class WeaponController : MonoBehaviour
 {
     [SerializeField] private GameObject sword;
     [SerializeField] private GameObject shield;
+
+    private Sword swordComponent;
+    private Collider shieldCollider;
+
     [SerializeField] private int levelDamageIncrease;
 
     private void Start()
     {
         EventManager.Instance.RegisterListener<LevelUpEvent>(OnLevelUp);
+        swordComponent = sword.GetComponent<Sword>();
+        shieldCollider = shield.GetComponent<Collider>();
+        EventManager.Instance.RegisterListener<StaggerEvent>(OnStagger);
     }
 
     public void SetSwordActive()
     {
-        sword.GetComponent<Sword>().SetActive();
+        swordComponent.SetActive();
     }
 
     public void SetSwordDisabled()
     {
-        sword.GetComponent<Sword>().SetDisabled();
+        swordComponent.SetDisabled();
     }
 
     public void SetShieldActive()
     {
-        shield.GetComponent<Collider>().enabled = true;
+        shieldCollider.enabled = true;
     }
 
     public void SetShieldDisabled()
     {
-        shield.GetComponent<Collider>().enabled = false;
+        shieldCollider.enabled = false;
     }
 
     private void OnLevelUp(LevelUpEvent eve)
@@ -39,5 +46,10 @@ public class WeaponController : MonoBehaviour
         sword.GetComponent<Sword>().SetDamage(levelDamageIncrease);
         print(sword.GetComponent<Sword>().getDamage + " " + Player.Instance.Health.MaxHealth);
     }
-
+    
+    private void OnStagger(StaggerEvent eve)
+    {
+        SetSwordDisabled();
+        SetShieldDisabled();
+    }
 }

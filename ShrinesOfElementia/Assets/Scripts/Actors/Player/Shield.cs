@@ -29,6 +29,7 @@ public class Shield : MonoBehaviour
         blockMeter.gameObject.SetActive(false);
         currentBlockAmount = 0;
         drainTimer = 0;
+        EventManager.Instance.RegisterListener<StaggerEvent>(OnStagger);
     }
 
     private void Update()
@@ -61,7 +62,7 @@ public class Shield : MonoBehaviour
             }
         }
 
-        Stagger(isStaggered);
+        ShieldOverwhelmed(isStaggered);
 
     }
 
@@ -81,22 +82,27 @@ public class Shield : MonoBehaviour
         }
     }
 
-    private void Stagger(bool staggered)
+    private void ShieldOverwhelmed(bool staggered)
     {
         if (staggered)
         {
             staggerTimer -= Time.deltaTime;
             if (staggerTimer > 0)
             {
-                gameObject.GetComponentInParent<Animator>().SetLayerWeight(1, 0);
+                Player.Instance.Animator.SetLayerWeight(1, 0);
             }
             else
             {
-                gameObject.GetComponentInParent<Animator>().SetLayerWeight(1, 1);
+                Player.Instance.Animator.SetLayerWeight(1, 1);
                 isStaggered = false;
                 staggerTimer = 0;
             }
         }
+    }
+
+    private void OnStagger(StaggerEvent eve)
+    {
+        shieldCollider.enabled = false;
     }
 
     private bool IsBlocking()
