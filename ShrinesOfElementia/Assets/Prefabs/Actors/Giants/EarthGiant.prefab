@@ -628,7 +628,6 @@ GameObject:
   - component: {fileID: 2449953488584068019}
   - component: {fileID: 4474479181840825980}
   - component: {fileID: 7191126176622695215}
-  - component: {fileID: 7191126176622695214}
   - component: {fileID: 7506723513671315680}
   m_Layer: 8
   m_Name: EarthGiant
@@ -725,7 +724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvulnerable: 0
   canvas: {fileID: 7599309729029534961}
-  maxHealth: 100
+  maxHealth: 250
   baseHealthIncrease: 0
   healthIncreasePerLevel: 0
 --- !u!114 &2449953488584068019
@@ -799,19 +798,6 @@ MonoBehaviour:
   AbilityRange: 16
   abilityMinRange: 6
   abilityCooldown: 10
---- !u!114 &7191126176622695214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2449953488584068023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 022364507a791cd4d9709d1a986a687b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossHealthBar: {fileID: 0}
 --- !u!114 &7506723513671315680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21257,11 +21243,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1703665157833406884}
     m_Modifications:
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyCanvas
-      objectReference: {fileID: 0}
     - target: {fileID: 4086458299678198103, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21366,6 +21347,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}

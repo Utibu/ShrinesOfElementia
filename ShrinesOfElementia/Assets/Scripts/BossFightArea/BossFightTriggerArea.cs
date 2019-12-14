@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossFightTriggerArea : MonoBehaviour
 {
 
-
+    [SerializeField] private GameObject bossHealthBar;
 
     /*  gav null references jag inte pallar felsöka. 
     private void OnTriggerEnter(Collider other)
@@ -24,7 +24,7 @@ public class BossFightTriggerArea : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Giant.Instance.StartBattle();
-            Giant.Instance.GetComponent<BossHealthBarHandler>().OnBossAreaEnter();
+            bossHealthBar.SetActive(true);
         }
     }
 

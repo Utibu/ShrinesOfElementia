@@ -20222,7 +20222,6 @@ GameObject:
   - component: {fileID: 4770429795931787872}
   - component: {fileID: 6761178695961733039}
   - component: {fileID: 61311740}
-  - component: {fileID: 61311741}
   - component: {fileID: 8483029551160443508}
   m_Layer: 8
   m_Name: FireGiant
@@ -20320,7 +20319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvulnerable: 0
   canvas: {fileID: 0}
-  maxHealth: 100
+  maxHealth: 250
   baseHealthIncrease: 0
   healthIncreasePerLevel: 0
 --- !u!114 &4770429795931787872
@@ -20394,19 +20393,6 @@ MonoBehaviour:
   AbilityRange: 35
   abilityMinRange: 9
   abilityCooldown: 13
---- !u!114 &61311741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4770429795931787876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 022364507a791cd4d9709d1a986a687b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossHealthBar: {fileID: 0}
 --- !u!114 &8483029551160443508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21378,11 +21364,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8388131632491716727}
     m_Modifications:
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyCanvas
-      objectReference: {fileID: 0}
     - target: {fileID: 4086458299678198103, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21487,6 +21468,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 184444fcd2106c24697b408e5174cd0c, type: 3}
