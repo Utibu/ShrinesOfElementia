@@ -12,6 +12,10 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject extrasMenu;
     [SerializeField] private GameObject creditsPanel;
     [SerializeField] private GameObject continueButton;
+    [SerializeField] private GameObject videoOptions;
+    [SerializeField] private GameObject soundOptions;
+    [SerializeField] private GameObject controlOptions;
+
 
     //Achievements panel
     [SerializeField] private GameObject achievementsPanel;
@@ -75,6 +79,31 @@ public class MenuManager : MonoBehaviour
         extrasMenu.SetActive(false);
         startMenu.SetActive(false);
         optionsMenu.SetActive(true);
+
+        videoOptions.SetActive(false);
+        soundOptions.SetActive(false);
+        controlOptions.SetActive(false);
+    }
+
+    public void OnVideoOptions()
+    {
+        videoOptions.SetActive(true);
+        soundOptions.SetActive(false);
+        controlOptions.SetActive(false);
+    }
+
+    public void OnSoundOptions()
+    {
+        videoOptions.SetActive(false);
+        soundOptions.SetActive(true);
+        controlOptions.SetActive(false);
+    }
+
+    public void OnControlOptions()
+    {
+        videoOptions.SetActive(false);
+        soundOptions.SetActive(false);
+        controlOptions.SetActive(true);
     }
 
     public void OnQuit()
