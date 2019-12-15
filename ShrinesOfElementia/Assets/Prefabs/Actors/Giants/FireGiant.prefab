@@ -364,7 +364,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261240947581609614}
   m_LocalRotation: {x: 0.97386324, y: -0.22699203, z: 0.0037735975, w: 0.007129486}
-  m_LocalPosition: {x: -0.1965168, y: 0.00000005960455, z: -0.0000001415608}
+  m_LocalPosition: {x: -0.1965168, y: 0.000000059604545, z: -0.00000014156079}
   m_LocalScale: {x: 0.99999976, y: 0.99999976, z: 1}
   m_Children:
   - {fileID: 9194705552407781668}
@@ -20223,6 +20223,7 @@ GameObject:
   - component: {fileID: 6761178695961733039}
   - component: {fileID: 61311740}
   - component: {fileID: 8483029551160443508}
+  - component: {fileID: 6433327593232907933}
   m_Layer: 8
   m_Name: FireGiant
   m_TagString: Enemy
@@ -20247,6 +20248,7 @@ Transform:
   - {fileID: 2843410083097449889}
   - {fileID: 6680616525282413204}
   - {fileID: 7969261945219230100}
+  - {fileID: 6166556966624335400}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -20408,6 +20410,21 @@ MonoBehaviour:
   giantPassivePrefab: {fileID: 7594324640779035314, guid: 38a6a2a8d80587b4ea985c40aaf39ce1,
     type: 3}
   timeUntilActivation: 12
+--- !u!114 &6433327593232907933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4770429795931787876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39294a3eeaaa6c440ac6501522f2d673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footAudioSource: {fileID: 1102061645704750867}
+  footstepClip: {fileID: 8300000, guid: cd324d49ca1109c49bc8cb68c5f996c7, type: 3}
+  shortFootstepClip: {fileID: 8300000, guid: ee0ea8b127e5877419ab3ababae3191d, type: 3}
 --- !u!1 &4814925544963678407
 GameObject:
   m_ObjectHideFlags: 0
@@ -20623,6 +20640,133 @@ Transform:
   m_Father: {fileID: 4763124058150733323}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5992990957300945164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6166556966624335400}
+  - component: {fileID: 1102061645704750867}
+  m_Layer: 8
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6166556966624335400
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992990957300945164}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8388131632491716727}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1102061645704750867
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992990957300945164}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.454
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6812304024450867863
 GameObject:
   m_ObjectHideFlags: 0
@@ -21473,6 +21617,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662297150879508740, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662297150879508740, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662297150879508740, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 184444fcd2106c24697b408e5174cd0c, type: 3}

@@ -26,6 +26,9 @@ public class PlayerSoundController : MonoBehaviour
     private float footstepTimer = 0f;
     private float timeBeforeNextAllowedStep = 0.1f;
 
+    private float damageTakenTimer = 0f;
+    private float timeBeforeDamageAllowedToPlay = 0.1f;
+
     public void Start()
     {
         EventManager.Instance.RegisterListener<DamageEvent>(PlayHitClip);
@@ -49,16 +52,22 @@ public class PlayerSoundController : MonoBehaviour
             }
         } else
         {
-            if (ev.IsAbility)
-            {
-                playerAudioSource.PlayOneShot(abilityHitClip);
-            }
-            else
-            {
-                playerAudioSource.PlayOneShot(enemyHitClip);
 
+            if (damageTakenTimer >= timeBeforeDamageAllowedToPlay)
+            {
+
+                if (ev.IsAbility)
+                {
+                    playerAudioSource.PlayOneShot(abilityHitClip);
+                }
+                else
+                {
+                    playerAudioSource.PlayOneShot(enemyHitClip);
+
+                }
+                playerAudioSource.PlayOneShot(hurtClip[Random.Range(0, hurtClip.Length - 1)]);
+                damageTakenTimer = 0f;
             }
-            playerAudioSource.PlayOneShot(hurtClip[Random.Range(0, hurtClip.Length - 1)]);
         }
     }
 
@@ -85,6 +94,7 @@ public class PlayerSoundController : MonoBehaviour
     private void Update()
     {
         footstepTimer += Time.deltaTime;
+        damageTakenTimer += Time.deltaTime;
     }
 
     public void PlayChannelingClip()
