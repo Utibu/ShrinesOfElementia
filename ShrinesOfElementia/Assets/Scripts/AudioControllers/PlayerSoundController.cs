@@ -15,6 +15,7 @@ public class PlayerSoundController : MonoBehaviour
     [SerializeField] private AudioClip swordHitClip;
     [SerializeField] private AudioClip enemyHitClip;
     [SerializeField] private AudioClip abilityHitClip;
+    [SerializeField] private AudioClip abilityHitEnemyClip;
     [SerializeField] private AudioClip footstepClip;
     [SerializeField] private AudioClip blockClip;
     [SerializeField] private AudioClip[] hurtClip; 
@@ -37,7 +38,7 @@ public class PlayerSoundController : MonoBehaviour
         {
             if(ev.IsAbility)
             {
-                hitAudioSource.PlayOneShot(enemyHitClip);
+                playerAudioSource.PlayOneShot(abilityHitEnemyClip);
             } else
             {
                 hitAudioSource.PlayOneShot(swordHitClip);
