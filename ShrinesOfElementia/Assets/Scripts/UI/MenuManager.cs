@@ -48,9 +48,11 @@ public class MenuManager : MonoBehaviour
         //make sure continue button only shows if in menuscene and save exists
         if (continueButton != null)
         {
+            Debug.Log("OnPlayer death called -  deaths: ");
             continueButton.SetActive(false); // should be false by default.
             if (GameManager.Instance.SaveDataExists)
             {
+                Debug.Log("OnPlayer death called -  deaths: ");
                 continueButton.SetActive(true);
             }
         }

@@ -22,8 +22,8 @@ public class Checkpoint : MonoBehaviour
         {
             Debug.Log("Checkpoint taken");
             isActive = true;
-            EventManager.Instance.FireEvent(new CheckpointEvent("checkpoint activated", gameObject.transform.position));
-            coll.enabled = false; // just turn off collider so it wont check on trigger all the time. 
+            EventManager.Instance.FireEvent(new CheckpointEvent("checkpoint activated", spawnLocation.transform.position));
+            //coll.enabled = false; // just turn off collider so it wont check on trigger all the time. 
         }
     }
 }

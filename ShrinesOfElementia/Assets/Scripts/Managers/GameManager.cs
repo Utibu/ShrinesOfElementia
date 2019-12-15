@@ -62,10 +62,6 @@ public class GameManager : MonoBehaviour
             AchievementManager.Instance.InitializeFromSave(saveData);
             MenuManager.Instance.ActivateContinueButton();
         }
-        else
-        {
-
-        }
 
     }
 
@@ -120,21 +116,23 @@ public class GameManager : MonoBehaviour
             EventManager.Instance.RegisterListener<ExperienceEvent>(OnPlayerXPEvent);
             EventManager.Instance.RegisterListener<BossDeathEvent>(OnBossDeath);
 
-            //prepare player position and HP
-            Player.Instance.transform.position = NearestCheckpoint;
-            Player.Instance.Health.CurrentHealth = PlayerHP;
-
             //load player abilities
-            TimerManager.Instance.SetNewTimer(gameObject, 1f, LoadAbilities); // Event seems to not be heard if sent too early...
-            Debug.Log("set up game finished -  deaths: " + PlayerDeaths);
+            TimerManager.Instance.SetNewTimer(gameObject, 2f, LoadAbilities); // Event seems to not be heard if sent too early...
 
-
+            //prepare player position and HP
             if (!saveDataExists)
             {
                 SetBaseSpawn();
             }
+            Player.Instance.transform.position = NearestCheckpoint;
+            Player.Instance.Health.CurrentHealth = PlayerHP;
+
+            
+            Debug.Log("set up game finished -  deaths: " + PlayerDeaths);
         }
+        
     }
+
 
     private void SetBaseSpawn()
     {
@@ -159,9 +157,6 @@ public class GameManager : MonoBehaviour
         {
             EventManager.Instance.FireEvent(new ShrineEvent("Earth enabled from gameManager", "Earth"));
         }
-
-
-
     }
 
     private void RegisterShrine(ShrineEvent ev)
@@ -207,9 +202,13 @@ public class GameManager : MonoBehaviour
 
     private void RespawnPlayer()
     {
+        /*
         Vector3 spawnpoint = CheckpointManager.Instance.FindNearestSpawnPoint();
-        Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
         Player.Instance.transform.position = spawnpoint;
+        */
+
+        Player.Instance.transform.position = NearestCheckpoint;
+        Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
     }
 
     public void OnPlayerDeath(PlayerDeathEvent ev)
@@ -282,6 +281,8 @@ public class GameManager : MonoBehaviour
         data.SlayedEarthGiant = earthKilled;
         data.GiantBane = Achievements.GiantBane;
         
+        saveDataExists = true;
+
         Debug.Log("SAVING: shrine:" + data.FireUnlocked + " " + data.EarthUnlocked + " " + data.WaterUnlocked + " " + data.WindUnlocked);
         //stream to file
         bf.Serialize(file, data);
@@ -331,6 +332,7 @@ public class GameManager : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
         //create empty savedata to override with. Ik, dumb solution but its safe.
         SaveData data = new SaveData();
+        saveDataExists = false;
         //stream to file
         bf.Serialize(file, data);
         file.Close();
