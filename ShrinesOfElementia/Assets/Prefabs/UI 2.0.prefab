@@ -37,7 +37,7 @@ RectTransform:
   - {fileID: 827586438675168527}
   - {fileID: 738424531191191290}
   m_Father: {fileID: 6494003801016571908}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2809,7 +2809,7 @@ RectTransform:
   m_Children:
   - {fileID: 6266673308111906669}
   m_Father: {fileID: 6494003801016571908}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8511,7 +8511,7 @@ RectTransform:
   - {fileID: 6029091482778604075}
   - {fileID: 6908750839583080366}
   m_Father: {fileID: 6494003801016571908}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8636,7 +8636,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1939616228408102175}
-  - component: {fileID: 4987723953315627248}
   m_Layer: 5
   m_Name: Boss Health Bar
   m_TagString: Untagged
@@ -8658,28 +8657,13 @@ RectTransform:
   - {fileID: 7489985037407288843}
   - {fileID: 8823085927972729702}
   m_Father: {fileID: 6494003801016571908}
-  m_RootOrder: 2
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &4987723953315627248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2953740829016612964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7ff55401196d76439ce72bb2a86ce16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 7624048706240162691}
-  healthImage: {fileID: 0}
-  healthText: {fileID: 3670657439152736989}
 --- !u!1 &2968810747649452674
 GameObject:
   m_ObjectHideFlags: 0
@@ -17295,7 +17279,7 @@ RectTransform:
   - {fileID: 5298835200146864596}
   - {fileID: 4749485374518326817}
   m_Father: {fileID: 6494003801016571908}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -21286,7 +21270,7 @@ RectTransform:
   m_Children:
   - {fileID: 5057368397369655041}
   m_Father: {fileID: 6494003801016571908}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -22660,8 +22644,8 @@ GameObject:
   - component: {fileID: 455697491378356400}
   - component: {fileID: 860686767099154031}
   - component: {fileID: 264368259587288573}
-  - component: {fileID: 7663540189818909585}
   - component: {fileID: 1707520644}
+  - component: {fileID: 8588613307387451115}
   m_Layer: 5
   m_Name: UI 2.0
   m_TagString: Untagged
@@ -22682,7 +22666,6 @@ RectTransform:
   m_Children:
   - {fileID: 6405602482307975554}
   - {fileID: 8906192571667938014}
-  - {fileID: 1939616228408102175}
   - {fileID: 9033680393148250366}
   - {fileID: 752210419271683974}
   - {fileID: 465745474}
@@ -22690,6 +22673,7 @@ RectTransform:
   - {fileID: 1370608470906333598}
   - {fileID: 7097894690923681031}
   - {fileID: 4024600541547421101}
+  - {fileID: 1939616228408102175}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22787,19 +22771,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaBar: {fileID: 752210419271683975}
   staminaText: {fileID: 752210421014184118}
---- !u!114 &7663540189818909585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6802997575835626117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 022364507a791cd4d9709d1a986a687b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossHealthBar: {fileID: 2953740829016612964}
 --- !u!114 &1707520644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22813,6 +22784,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 465745473}
+--- !u!114 &8588613307387451115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6802997575835626117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c28a727936b2747bcdfbc76a6cc27b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 7624048706240162691}
+  healthImage: {fileID: 8779243474129365934}
+  healthText: {fileID: 3670657439152736989}
 --- !u!1 &6835931660888256701
 GameObject:
   m_ObjectHideFlags: 0
@@ -24535,7 +24521,7 @@ RectTransform:
   m_Children:
   - {fileID: 6694747865996244993}
   m_Father: {fileID: 6494003801016571908}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -31979,11 +31965,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6494003801016571908}
     m_Modifications:
-    - target: {fileID: 7135896215840714325, guid: 6937f6722de657c4db6fc69c0dcbed29,
-        type: 3}
-      propertyPath: m_Name
-      value: StaminaSlider
-      objectReference: {fileID: 0}
     - target: {fileID: 7135896215840714326, guid: 6937f6722de657c4db6fc69c0dcbed29,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32022,7 +32003,7 @@ PrefabInstance:
     - target: {fileID: 7135896215840714326, guid: 6937f6722de657c4db6fc69c0dcbed29,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7135896215840714326, guid: 6937f6722de657c4db6fc69c0dcbed29,
         type: 3}
@@ -32089,6 +32070,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7135896215840714325, guid: 6937f6722de657c4db6fc69c0dcbed29,
+        type: 3}
+      propertyPath: m_Name
+      value: StaminaSlider
+      objectReference: {fileID: 0}
     - target: {fileID: 7135896214979277767, guid: 6937f6722de657c4db6fc69c0dcbed29,
         type: 3}
       propertyPath: m_AnchorMin.x
@@ -32116,18 +32102,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6937f6722de657c4db6fc69c0dcbed29, type: 3}
---- !u!114 &752210419271683975 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7135896215840714327, guid: 6937f6722de657c4db6fc69c0dcbed29,
-    type: 3}
-  m_PrefabInstance: {fileID: 7599728339715367376}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &752210421014184118 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7135896214088835430, guid: 6937f6722de657c4db6fc69c0dcbed29,
@@ -32138,6 +32112,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &752210419271683975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7135896215840714327, guid: 6937f6722de657c4db6fc69c0dcbed29,
+    type: 3}
+  m_PrefabInstance: {fileID: 7599728339715367376}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &752210419271683974 stripped
