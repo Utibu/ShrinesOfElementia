@@ -12,7 +12,10 @@ public class HealthBarController : MonoBehaviour
     [SerializeField] private Slider healthSlider;
     [SerializeField] private Image healthImage;
     [SerializeField] private Text healthText;
-    private int currentHealth, maxHealth;
+    protected int currentHealth, maxHealth;
+
+
+
 
     public int MaxHealth
     {
@@ -34,7 +37,7 @@ public class HealthBarController : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         // Initiates the health values
         if(healthSlider != null)

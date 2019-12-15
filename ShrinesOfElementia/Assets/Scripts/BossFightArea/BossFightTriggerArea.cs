@@ -1,4 +1,5 @@
 ﻿// Author: Bilal El Medkouri
+//co-Author: Sofia Kauko
 
 using UnityEngine;
 
@@ -23,8 +24,9 @@ public class BossFightTriggerArea : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Giant.Instance.StartBattle();
             bossHealthBar.SetActive(true);
+            Giant.Instance.StartBattle();
+            
         }
     }
 

@@ -624,11 +624,11 @@ GameObject:
   - component: {fileID: 8732094500153464030}
   - component: {fileID: 2449953488584068022}
   - component: {fileID: 2449953488584068021}
-  - component: {fileID: 2449953488584068020}
   - component: {fileID: 2449953488584068019}
   - component: {fileID: 4474479181840825980}
   - component: {fileID: 7191126176622695215}
   - component: {fileID: 7506723513671315680}
+  - component: {fileID: 8054151492770559821}
   m_Layer: 8
   m_Name: EarthGiant
   m_TagString: Enemy
@@ -710,23 +710,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2449953488584068020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2449953488584068023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab43eef181cda0540a6dabf238a3fa50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInvulnerable: 0
-  canvas: {fileID: 7599309729029534961}
-  maxHealth: 250
-  baseHealthIncrease: 0
-  healthIncreasePerLevel: 0
 --- !u!114 &2449953488584068019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,6 +796,23 @@ MonoBehaviour:
   giantPassivePrefab: {fileID: 8966266341431325926, guid: f5aaea0f32faee846886a32d1d8dfa6b,
     type: 3}
   timeUntilActivation: 15
+--- !u!114 &8054151492770559821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2449953488584068023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab43eef181cda0540a6dabf238a3fa50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInvulnerable: 0
+  canvas: {fileID: 0}
+  maxHealth: 200
+  baseHealthIncrease: 0
+  healthIncreasePerLevel: 0
 --- !u!1 &2488060163593727309
 GameObject:
   m_ObjectHideFlags: 0
@@ -21380,12 +21380,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 184444fcd2106c24697b408e5174cd0c, type: 3}
---- !u!1 &7599309729029534961 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-    type: 3}
-  m_PrefabInstance: {fileID: 4409680050571755197}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &397531213615642602 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4086458299678198103, guid: 184444fcd2106c24697b408e5174cd0c,

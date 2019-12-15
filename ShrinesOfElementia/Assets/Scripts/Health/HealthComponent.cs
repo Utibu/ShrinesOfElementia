@@ -15,11 +15,14 @@ public class HealthComponent : MonoBehaviour
     private HealthBarController healthBarController;
 
     [Header("Health attributes")]
-    [SerializeField] private int maxHealth;
+    [SerializeField] protected int maxHealth;
 
     [Header("Level Up")]
     [SerializeField] private float baseHealthIncrease;
     [SerializeField] private float healthIncreasePerLevel;
+
+    private Giant giant;
+    bool isGiant;
 
 
     public int MaxHealth
@@ -72,14 +75,31 @@ public class HealthComponent : MonoBehaviour
 
     private void Awake()
     {
-        healthBarController = canvas.GetComponent<HealthBarController>();
-        healthBarController.MaxHealth = maxHealth;
-        MaxHealth = maxHealth;
-        IsInvulnerable = false;
+        //is this a giant? this gets a ref to giant statemachine, and ref to bosshealthbarcontroller is created.
+        if (gameObject.TryGetComponent(out giant))
+        {
+            isGiant = true;
+            Debug.Log("this a giant");
+        }
+       
     }
 
     private void Start()
     {
+        // if gameobject is a giant, healthbarController is set a different way.
+        if (isGiant)  
+        {
+            healthBarController = BossHealthBarController.Instance;
+        }
+        //else, its a player or enemy. They have canvases so set ref to component on canvas.
+        else
+        {
+            healthBarController = canvas.GetComponent<HealthBarController>();
+        }
+        MaxHealth = maxHealth;
+        IsInvulnerable = false;
+        healthBarController.MaxHealth = maxHealth;
+
         if (gameObject.CompareTag("Player"))
         {
             EventManager.Instance.RegisterListener<LevelUpEvent>(OnLevelUp);
@@ -97,11 +117,9 @@ public class HealthComponent : MonoBehaviour
     private void Die()
     {
 
-        if (gameObject.name == "EarthGiant" || gameObject.name == "FireGiant" || gameObject.name == "WindGiant" || gameObject.name == "WaterGiant")
+        if (isGiant)
         {
-
-            GetComponent<Giant>().Die();
-            
+            giant.Die();
         }
         else if (gameObject.CompareTag("Enemy"))
         {
@@ -111,7 +129,6 @@ public class HealthComponent : MonoBehaviour
         {
             Debug.Log("Playerdied");
             EventManager.Instance.FireEvent(new PlayerDeathEvent("Player died", gameObject));
-            //SceneManager.LoadScene("DeathScreen");
         }
     }
 
