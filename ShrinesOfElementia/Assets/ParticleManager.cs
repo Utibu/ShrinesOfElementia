@@ -11,12 +11,14 @@ public class ParticleManager : MonoBehaviour
     public void ShowShrineActivationParticles()
     {
         shrineActivationParticles.SetActive(true);
+        Player.Instance.GetComponent<PlayerSoundController>().PlayChannelingClip();
         //shrineActivationParticles.GetComponent<ParticleSystem>().Play();
     }
 
     public void HideShrineActivationParticles()
     {
         shrineActivationParticles.SetActive(false);
+        Player.Instance.GetComponent<PlayerSoundController>().StopChannelingClip();
         /*
         shrineActivationParticles.GetComponent<ParticleSystem>().Stop();
         Invoke("StopShrinesActivationParticles", 5);*/

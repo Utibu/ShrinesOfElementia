@@ -10,6 +10,7 @@ public class PlayerSoundController : MonoBehaviour
     public AudioSource playerAudioSource;
     [SerializeField] private AudioSource footAudioSource;
     [SerializeField] private AudioSource hitAudioSource;
+    [SerializeField] private AudioSource channelingAudioSource;
 
     [SerializeField] private AudioClip slashClip;
     [SerializeField] private AudioClip swordHitClip;
@@ -17,6 +18,8 @@ public class PlayerSoundController : MonoBehaviour
     [SerializeField] private AudioClip abilityHitClip;
     [SerializeField] private AudioClip abilityHitEnemyClip;
     [SerializeField] private AudioClip footstepClip;
+    [SerializeField] private AudioClip shrineTakenClip;
+    [SerializeField] private AudioClip shrineChannelingClip;
     [SerializeField] private AudioClip blockClip;
     [SerializeField] private AudioClip[] hurtClip; 
 
@@ -82,6 +85,21 @@ public class PlayerSoundController : MonoBehaviour
     private void Update()
     {
         footstepTimer += Time.deltaTime;
+    }
+
+    public void PlayChannelingClip()
+    {
+        channelingAudioSource.PlayOneShot(shrineChannelingClip);
+    }
+
+    public void StopChannelingClip()
+    {
+        channelingAudioSource.Stop();
+    }
+
+    public void PlayShrineTakenClip()
+    {
+        playerAudioSource.PlayOneShot(shrineTakenClip);
     }
 
 }

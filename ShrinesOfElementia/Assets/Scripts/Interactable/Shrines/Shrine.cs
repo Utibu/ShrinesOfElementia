@@ -90,6 +90,7 @@ public class Shrine : Interactable
         ShrineEvent shrineEvent = new ShrineEvent(element + " shrine activated", element);
         EventManager.Instance.FireEvent(shrineEvent);
         shrineAnimationController.SetTrigger("IsTaken");
+        Player.Instance.GetComponent<PlayerSoundController>().PlayShrineTakenClip();
         Player.Instance.GetComponent<ShrineUnlockComponent>().ShowUnlockableCanvas(firstUnlockableText, secondUnlockableText);
         //shrinePanel.gameObject.SetActive(true);
         //Player.Instance.GetComponent<MovementInput>().TakeInput = false;
