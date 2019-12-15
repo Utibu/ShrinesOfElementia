@@ -122,6 +122,17 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
+    public bool HasPlayerAbility(SHRINETYPES t)
+    {
+        if((t == SHRINETYPES.Earth && hasEarth) || (t == SHRINETYPES.Water && hasWater) || (t == SHRINETYPES.Wind && hasWind) || (t == SHRINETYPES.Fire && hasFire))
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+
     public void CheckFireBall()
     {
         if (hasFire && fireballTimer <= 0f)
