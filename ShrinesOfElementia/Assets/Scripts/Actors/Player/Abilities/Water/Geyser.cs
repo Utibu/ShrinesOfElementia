@@ -24,7 +24,7 @@ public class Geyser : Ability
 
     private void DealDamage(GameObject damagedGameObject, int damage)
     {
-        DamageEvent damageEvent = new DamageEvent(damagedGameObject + " has dealt " + damage + " damage to " + damagedGameObject, damage, gameObject, damagedGameObject);
+        DamageEvent damageEvent = new DamageEvent(damagedGameObject + " has dealt " + damage + " damage to " + damagedGameObject, damage, gameObject, damagedGameObject, true);
         EventManager.Instance.FireEvent(damageEvent);
     }
 

@@ -52,7 +52,7 @@ public class EarthSpikes : Ability
             //print(caster.name);
             //print(other.gameObject.name);
             //print("trigger particle");
-            EventManager.Instance.FireEvent(new DamageEvent("damage dealt", damage, gameObject, other.gameObject));
+            EventManager.Instance.FireEvent(new DamageEvent("damage dealt", damage, gameObject, other.gameObject, true));
             EventManager.Instance.FireEvent(new EarthAbilityEvent("earthAbility activated", other.gameObject, gameObject.transform.position, boxCollider.size.magnitude));
             victims.Add(other.gameObject);
         }

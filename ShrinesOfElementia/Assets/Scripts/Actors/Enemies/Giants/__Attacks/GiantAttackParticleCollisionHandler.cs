@@ -19,7 +19,7 @@ public class GiantAttackParticleCollisionHandler : MonoBehaviour
     {
         if (other.CompareTag("Player") && hits == 0)
         {
-            DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + Giant.Instance.StompDamage + " damage to " + other, Giant.Instance.StompDamage, gameObject, other);
+            DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + Giant.Instance.StompDamage + " damage to " + other, Giant.Instance.StompDamage, gameObject, other, true);
             EventManager.Instance.FireEvent(damageEvent);
 
             hits += 2;

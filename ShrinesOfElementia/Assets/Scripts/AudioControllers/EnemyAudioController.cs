@@ -6,6 +6,7 @@ public class EnemyAudioController : MonoBehaviour
 {
     [SerializeField] private AudioClip spinClip;
     [SerializeField] private AudioClip dieClip;
+    [SerializeField] private AudioClip castClip;
     private AudioSource audioSource;
 
     public void Start()
@@ -25,6 +26,14 @@ public class EnemyAudioController : MonoBehaviour
         if(dieClip != null && audioSource != null)
         {
             this.audioSource.PlayOneShot(dieClip);
+        }
+    }
+
+    public void PlayCastSound()
+    {
+        if (castClip != null && audioSource != null)
+        {
+            this.audioSource.PlayOneShot(castClip);
         }
     }
 }

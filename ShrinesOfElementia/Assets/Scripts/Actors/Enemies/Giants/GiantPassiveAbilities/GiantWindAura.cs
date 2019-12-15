@@ -24,7 +24,7 @@ public class GiantWindAura : MonoBehaviour
             countdown -= Time.deltaTime;
             if (countdown < 0)
             {
-                EventManager.Instance.FireEvent(new DamageEvent("windaura deals damage", DamagePerTick, gameObject, other.gameObject));
+                EventManager.Instance.FireEvent(new DamageEvent("windaura deals damage", DamagePerTick, gameObject, other.gameObject, true));
                 Debug.Log("winddamage dealt");
                 countdown = tickTime;
             }
