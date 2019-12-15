@@ -2,12 +2,17 @@
 
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
     [SerializeField] private AudioMixer mixer;
+    [SerializeField] private Slider masterSlider;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider sfxSlider;
+
     /*
     [SerializeField] private AudioMixerGroup masterGroup;
     [SerializeField] private AudioMixerGroup musicGroup;
@@ -49,5 +54,26 @@ public class AudioManager : MonoBehaviour
         SetVolume(master, music, sfx);
     }
 
+    public void OnMasterVolumeChange(float volume)
+    {
+        mixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
+    }
+
+    public void OnMusicVolumeChange(float volume)
+    {
+        mixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
+    }
+
+    public void OnSfxVolumeChange(float volume)
+    {
+        mixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
+    }
+
+    private float GetVolume(string volumeType)
+    {
+        float value;
+        bool result = mixer.GetFloat(volumeType, out value);
+        return value;
+    }
 
 }
