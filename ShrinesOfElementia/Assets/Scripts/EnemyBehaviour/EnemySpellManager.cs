@@ -51,7 +51,7 @@ public class EnemySpellManager : MonoBehaviour
         spellPositionPlayer = Player.Instance.transform.position;
         spellPositionElite = gameObject.transform.position;
         spellRotation = gameObject.transform.rotation;
-
+        
         ShowAbilityIndicator();
     }
 
@@ -66,6 +66,7 @@ public class EnemySpellManager : MonoBehaviour
         if(elementType == "Earth")
         {
             groundTargetIndicatorPosition = transform.position + transform.forward * 6f + new Vector3(0f, -0.3f);
+            spellRotation.eulerAngles = new Vector3(-90f, spellRotation.eulerAngles.y, spellRotation.eulerAngles.z);
             Instantiate(groundTargetIndicator, groundTargetIndicatorPosition, spellRotation);
         }
         else if (elementType == "Water")
@@ -83,6 +84,7 @@ public class EnemySpellManager : MonoBehaviour
         Vector3 direction = spellAim * fireballSpeed;
 
         //cast spell
+        fireballSpawnLocation = gameObject.transform.position + Vector3.up.normalized * 1.5f + gameObject.transform.forward * 1.8f;
         Debug.Log("Firespell cast");
         GameObject fireball = Instantiate(spellPrefab, fireballSpawnLocation, this.GetComponent<EnemySM>().Agent.transform.rotation);
         fireball.GetComponent<Fireball>().CasterTag = gameObject.tag;
@@ -115,6 +117,7 @@ public class EnemySpellManager : MonoBehaviour
         */
 
         spellPositionElite += transform.forward.normalized * 0.5f + transform.up * -1f;
+        spellRotation.eulerAngles = new Vector3(-90f, spellRotation.eulerAngles.y, spellRotation.eulerAngles.z);
         GameObject earthSpikes = Instantiate(spellPrefab, spellPositionElite, spellRotation);
         earthSpikes.GetComponent<EarthSpikes>().CasterTag = gameObject.tag;
         earthSpikes.GetComponent<ParticleSystem>().Play(); // shouldnt be needed but is. 
@@ -126,7 +129,7 @@ public class EnemySpellManager : MonoBehaviour
     {
         Debug.Log("wind cast");
         spellPositionElite += transform.forward * 1.5f + transform.up * 0.5f;
-        GameObject windBlade = Instantiate(spellPrefab, spellPositionElite, spellRotation);
+        GameObject windBlade = Instantiate(spellPrefab, spellPositionElite, gameObject.transform.rotation);
         windBlade.GetComponent<WindBlade>().CasterTag = gameObject.tag;
         windBlade.GetComponent<Rigidbody>().AddForce(spellAim * windBladeSpeed, ForceMode.VelocityChange);
     }
