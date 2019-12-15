@@ -6,6 +6,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum SHRINETYPES
+{
+    Fire,
+    Water,
+    Earth,
+    Wind
+};
+
 public class Shrine : Interactable
 {
     private string element;
@@ -17,13 +25,7 @@ public class Shrine : Interactable
     [SerializeField] private float channelTime;
     GameObject channelTimer;
     //[SerializeField] private RectTransform shrinePanel;
-    private enum SHRINETYPES
-    {
-        Fire,
-        Water,
-        Earth,
-        Wind
-    };
+    
 
     [SerializeField] private SHRINETYPES shrineTypes;
     
@@ -91,7 +93,8 @@ public class Shrine : Interactable
         EventManager.Instance.FireEvent(shrineEvent);
         shrineAnimationController.SetTrigger("IsTaken");
         Player.Instance.GetComponent<PlayerSoundController>().PlayShrineTakenClip();
-        Player.Instance.GetComponent<ShrineUnlockComponent>().ShowUnlockableCanvas(firstUnlockableText, secondUnlockableText);
+        //Player.Instance.GetComponent<ShrineUnlockComponent>().ShowUnlockableCanvas(firstUnlockableText, secondUnlockableText);
+        Player.Instance.GetComponent<ShrineUnlockComponent>().OpenCanvas(shrineTypes);
         //shrinePanel.gameObject.SetActive(true);
         //Player.Instance.GetComponent<MovementInput>().TakeInput = false;
         beacon.SetActive(false);

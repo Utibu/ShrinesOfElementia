@@ -109,7 +109,7 @@ public class PlayerSoundController : MonoBehaviour
 
     public void PlayShrineTakenClip()
     {
-        playerAudioSource.PlayOneShot(shrineTakenClip);
+        hitAudioSource.PlayOneShot(shrineTakenClip);
     }
 
 }
