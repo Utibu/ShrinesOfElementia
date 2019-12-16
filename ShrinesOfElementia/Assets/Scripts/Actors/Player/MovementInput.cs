@@ -51,7 +51,7 @@ public class MovementInput : MonoBehaviour
     [SerializeField] private float defaultSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float animationDamping;
-    [SerializeField] private bool newMovement;
+    [SerializeField] private float runAnimationSpeedMultiplier = 1.3f;
     private float movementSpeed;
 
     [Header("Stagger")]
@@ -133,24 +133,19 @@ public class MovementInput : MonoBehaviour
         else if (Input.GetKey(KeyCode.LeftShift))
         {
             movementSpeed = runSpeed;
+            animator.SetFloat("MovementSpeed", runAnimationSpeedMultiplier);
         }
         else
         {
             movementSpeed = defaultSpeed;
+            animator.SetFloat("MovementSpeed", 1f);
         }
 
-        if (newMovement)
-        {
-            movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        }
-        else
-        {
-            movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        }
+        movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
 
         // Movement
-        if ((IsGrounded() || controller.isGrounded) && newMovement && takeInput)
+        if ((IsGrounded() || controller.isGrounded) && takeInput)
         {
             moveVector = new Vector3(movementInput.x, 0.0f, movementInput.y);
             moveVector = CameraRelativeFlatten(moveVector, Vector3.up);
