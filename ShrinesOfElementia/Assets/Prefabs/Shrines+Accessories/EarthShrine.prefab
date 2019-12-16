@@ -714,6 +714,7 @@ Transform:
   m_LocalPosition: {x: 271.6, y: 23.32, z: 319.6}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
+  - {fileID: 7943027309999524307}
   - {fileID: 9128081529061863424}
   - {fileID: 7995710001403564342}
   - {fileID: 3494623464759661935}
@@ -737,7 +738,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216710280541573688}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -864,7 +865,7 @@ RectTransform:
   m_Children:
   - {fileID: 2946109122049975384}
   m_Father: {fileID: 2790479513273360427}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -975,7 +976,7 @@ Transform:
   - {fileID: 9064161365524715409}
   - {fileID: 2645083476751040013}
   m_Father: {fileID: 2790479513273360427}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &4594416574911822091
 ParticleSystem:
@@ -15257,7 +15258,7 @@ Transform:
   - {fileID: 3494623465002523760}
   - {fileID: 4319235997537504856}
   m_Father: {fileID: 2790479513273360427}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3494623464759661934
 Animator:
@@ -34472,7 +34473,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 0.25000012, z: 0.25000012}
   m_Children: []
   m_Father: {fileID: 2790479513273360427}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &7355723605290465275
 ParticleSystem:
@@ -39195,6 +39196,96 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1001 &3084439279806316336
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2790479513273360427}
+    m_Modifications:
+    - target: {fileID: 8263601426873484528, guid: 9988b8516b3e34c47b5cea36129b3f14,
+        type: 3}
+      propertyPath: m_Name
+      value: Earth Shrine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968996991924336355, guid: 9988b8516b3e34c47b5cea36129b3f14,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968996991924336355, guid: 9988b8516b3e34c47b5cea36129b3f14,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968996991924336355, guid: 9988b8516b3e34c47b5cea36129b3f14,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968996991924336355, guid: 9988b8516b3e34c47b5cea36129b3f14,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968996991924336355, guid: 9988b8516b3e34c47b5cea36129b3f14,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968996991924336355, guid: 9988b8516b3e34c47b5cea36129b3f14,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968996991924336355, guid: 9988b8516b3e34c47b5cea36129b3f14,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968996991924336355, guid: 9988b8516b3e34c47b5cea36129b3f14,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968996991924336355, guid: 9988b8516b3e34c47b5cea36129b3f14,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968996991924336355, guid: 9988b8516b3e34c47b5cea36129b3f14,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968996991924336355, guid: 9988b8516b3e34c47b5cea36129b3f14,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968996991924336355, guid: 9988b8516b3e34c47b5cea36129b3f14,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968996991924336355, guid: 9988b8516b3e34c47b5cea36129b3f14,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968996991924336355, guid: 9988b8516b3e34c47b5cea36129b3f14,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9988b8516b3e34c47b5cea36129b3f14, type: 3}
+--- !u!4 &7943027309999524307 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4968996991924336355, guid: 9988b8516b3e34c47b5cea36129b3f14,
+    type: 3}
+  m_PrefabInstance: {fileID: 3084439279806316336}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8574216932822452569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39202,11 +39293,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2790479513273360427}
     m_Modifications:
-    - target: {fileID: 3147486697016466355, guid: 8399ea24923177446aa168e8b33e4650,
-        type: 3}
-      propertyPath: m_Name
-      value: Earth Icon
-      objectReference: {fileID: 0}
     - target: {fileID: 2158710354844707232, guid: 8399ea24923177446aa168e8b33e4650,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -39245,7 +39331,7 @@ PrefabInstance:
     - target: {fileID: 2158710354844707232, guid: 8399ea24923177446aa168e8b33e4650,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2158710354844707232, guid: 8399ea24923177446aa168e8b33e4650,
         type: 3}
@@ -39276,6 +39362,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.3163945
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147486697016466355, guid: 8399ea24923177446aa168e8b33e4650,
+        type: 3}
+      propertyPath: m_Name
+      value: Earth Icon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8399ea24923177446aa168e8b33e4650, type: 3}
