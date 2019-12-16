@@ -136,6 +136,7 @@ public class MenuManager : MonoBehaviour
     public void OnCredits()
     {
         creditsPanel.SetActive(true);
+        achievementsPanel.SetActive(false);
     }
 
     public void OnAchievements()
