@@ -3,6 +3,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using TMPro;
 
 public class AudioManager : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Slider masterSlider;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
+
+    [SerializeField] private TextMeshProUGUI masterLabel;
+    [SerializeField] private TextMeshProUGUI musicLabel;
+    [SerializeField] private TextMeshProUGUI sfxLabel;
 
     /*
     [SerializeField] private AudioMixerGroup masterGroup;
@@ -102,6 +107,11 @@ public class AudioManager : MonoBehaviour
         float newVolumeDb = Mathf.Log10(volume) * 20;
         mixer.SetFloat("MasterVolume", newVolumeDb);
         PlayerPrefs.SetFloat("MasterVolumeRaw", volume);
+
+        if(masterLabel != null)
+        {
+            masterLabel.text = "" + Mathf.FloorToInt(volume * 100);
+        }
       //  PlayerPrefs.Save();
     }
 
@@ -110,7 +120,12 @@ public class AudioManager : MonoBehaviour
         float newVolumeDb = Mathf.Log10(volume) * 20;
         mixer.SetFloat("MusicVolume", newVolumeDb);
         PlayerPrefs.SetFloat("MusicVolumeRaw", volume);
-       // PlayerPrefs.Save();
+
+        if (musicLabel != null)
+        {
+            musicLabel.text = "" + Mathf.FloorToInt(volume * 100);
+        }
+        // PlayerPrefs.Save();
     }
 
     public void OnSfxVolumeChange(float volume)
@@ -118,6 +133,11 @@ public class AudioManager : MonoBehaviour
         float newVolumeDb = Mathf.Log10(volume) * 20;
         mixer.SetFloat("SFXVolume", newVolumeDb);
         PlayerPrefs.SetFloat("SFXVolumeRaw", volume);
+
+        if (sfxLabel != null)
+        {
+            sfxLabel.text = "" + Mathf.FloorToInt(volume * 100);
+        }
         //PlayerPrefs.Save();
     }
 
