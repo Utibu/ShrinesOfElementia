@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class InGameMenuController : MonoBehaviour
 {
 
-    [SerializeField]private GameObject menuPanel;
+    [SerializeField] private GameObject menuPanel;
+    [SerializeField] private GameObject soundPanel;
 
 
     private void Update()
@@ -29,6 +30,18 @@ public class InGameMenuController : MonoBehaviour
     {
         GameManager.Instance.Save();
         SceneManager.LoadScene(0);
+    }
+
+    public void OnSoundOptionsClick()
+    {
+        menuPanel.SetActive(false);
+        soundPanel.SetActive(true);
+    }
+
+    public void OnBackClick()
+    {
+        menuPanel.SetActive(true);
+        soundPanel.SetActive(false);
     }
 
     public void OnResumeGame()
