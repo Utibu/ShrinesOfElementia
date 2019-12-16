@@ -76,13 +76,13 @@ public class Shrine : Interactable
         }        
         
     }
-
-    protected void OnTriggerExit(Collider other)
-    {
+    
+    //protected void OnTriggerExit(Collider other)
+    //{
         /*Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles();
         Debug.Log(Player.Instance.GetComponent<ParticleManager>() + " WEEEE");*/
-    }
-
+    //}
+    
     protected override void OnInteract()
     {
         base.OnInteract();

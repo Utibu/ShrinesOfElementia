@@ -34,7 +34,7 @@ public class Interactable : MonoBehaviour
 
     }
 
-    private void OnTriggerExit(Collider other)
+    protected void OnTriggerExit(Collider other)
     {
         Debug.Log("Left");
         if (other.gameObject.tag == "Player")
