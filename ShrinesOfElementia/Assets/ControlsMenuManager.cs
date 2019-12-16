@@ -42,6 +42,7 @@ public class ControlsMenuManager : MonoBehaviour
 
         //Uncomment to reset 
         //PlayerPrefs.SetInt("HasChangedKeys", 0);
+        //PlayerPrefs.DeleteAll();
 
         //Debug.Log("HASCHANGEDFKEYS: " + PlayerPrefs.GetInt("HasSetupKeys"));
 

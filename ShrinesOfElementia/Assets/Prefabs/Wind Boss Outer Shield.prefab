@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4970835850788931310}
   - component: {fileID: 5056296844011453890}
   - component: {fileID: 5055419223234285490}
+  - component: {fileID: 1699953982491527332}
+  - component: {fileID: 7682835590640499189}
   m_Layer: 0
   m_Name: Wind Boss Outer Shield
   m_TagString: Untagged
@@ -26,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4965475399968353426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.403845, y: -2.483443, z: 8.720344}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 22.688873, y: 42.16635, z: 22.688873}
   m_Children:
   - {fileID: 4970624502539758118}
@@ -4763,6 +4765,31 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!135 &1699953982491527332
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4965475399968353426}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.64
+  m_Center: {x: -0.00006866454, y: -0.00061579794, z: -0.0048265452}
+--- !u!114 &7682835590640499189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4965475399968353426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a477641a773741a479c67cfe4c155cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4966647823595099608
 GameObject:
   m_ObjectHideFlags: 0
