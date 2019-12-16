@@ -41,6 +41,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
+        /* Dirty cheats
         if (Input.GetKeyDown(KeyCode.K))
         {
             // Deals 10 damage to the player
@@ -52,6 +53,7 @@ public class PlayerInput : MonoBehaviour
             // Heals the player for 10 hp
             player.Health.CurrentHealth += 30;
         }
+        */
 
         // Fireball
         if (Input.GetKeyDown(InputManager.Instance.keyCode["Fire"].keyCode) && !IsBlocking)
@@ -89,6 +91,7 @@ public class PlayerInput : MonoBehaviour
 
         // Temporary water walking. Layer 9 is the player, and layer 4 is water
 
+        /* Dirty cheats
         //Enable water walking
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -100,11 +103,8 @@ public class PlayerInput : MonoBehaviour
         {
             Physics.IgnoreLayerCollision(9, 4, true);
         }
+        */
 
-        if (!player.Animator.GetBool("CanBlock"))
-        {
-            //print("Can't block");
-        }
         /*
         if (Input.GetKeyDown(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
             && staminaManager.CurrentStamina > 0) 
@@ -141,7 +141,7 @@ public class PlayerInput : MonoBehaviour
        */
 
 
-        // Mouse buttons, 0 - Primary Button, 1 - Secondary Button, 2 - Middle Click
+        /* Dirty cheats
         if (Input.GetKeyDown(KeyCode.R))
         {
             if(movementInput.RespawnLocation != null)
@@ -149,7 +149,7 @@ public class PlayerInput : MonoBehaviour
                 Player.Instance.MovementInput.MoveTo(movementInput.RespawnLocation.transform.position);
             }
         }
-
+        */
 
         // Left click / Primary button
         if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length && !isBlocking && canAttack && !movementInput.IsStaggered)
@@ -213,6 +213,7 @@ public class PlayerInput : MonoBehaviour
             player.Animator.SetBool("CanBlock", true);
         }
 
+        /* Dirty cheats
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             EventManager.Instance.FireEvent(new ShrineEvent("Fire activated", "Fire"));
@@ -245,6 +246,7 @@ public class PlayerInput : MonoBehaviour
         {
             Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
         }
+        */
     }
 
     private void CancelAttack()
