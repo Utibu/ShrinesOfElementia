@@ -114,6 +114,7 @@ public class MovementInput : MonoBehaviour
         animator = player.Animator;
         playerInput = player.GetComponent<PlayerInput>();
         staggerDuration = staggerAnimation.length;
+        EventManager.Instance.RegisterListener<RespawnEvent>(OnPlayerRespawn);
 
         //cameraCamCamTheGlam = CameraReference.Instance;
         IsStaggered = false;
@@ -441,8 +442,6 @@ public class MovementInput : MonoBehaviour
             animator.speed -= staggerAnimationSlow;
             //GetComponent<WeaponController>().SetSwordDisabled();
         }
-
-
     }
 
     public void Recover()
@@ -466,6 +465,15 @@ public class MovementInput : MonoBehaviour
     public void ActivateGlide()
     {
         hasGlide = true;
+    }
+
+    private void OnPlayerRespawn(RespawnEvent eve)
+    {
+        MoveTo(eve.RespawnLocation);
+        Player.Instance.Animator.SetTrigger("ToNeutral");
+        Player.Instance.Animator.SetBool("IsGliding", false);
+        isGliding = false;
+        moveVector = Vector3.zero;
     }
 
     // Used by killzones to move the player
