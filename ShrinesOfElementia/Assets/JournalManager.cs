@@ -46,7 +46,7 @@ public class JournalManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("IsJournalOpen: " + IsJournalOpen);
+        //Debug.Log("IsJournalOpen: " + IsJournalOpen);
         if(Input.GetKeyDown(KeyCode.J) && IsJournalOpen == false)
         {
             OpenJournal();

@@ -35,6 +35,13 @@ public class AudioManager : MonoBehaviour
         if (Instance == null) { Instance = this; }
         else { Debug.Log("Warning: multiple " + this + " in scene!"); }
 
+        
+
+    }
+
+    private void Start()
+    {
+
         if (PlayerPrefs.GetInt("HasRunVolume") != 1)
         {
             PlayerPrefs.SetInt("HasRunVolume", 1);
@@ -45,13 +52,11 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            OnUIVolumeChange(PlayerPrefs.GetFloat("MasterVolumeRaw"), PlayerPrefs.GetFloat("MusicVolumeRaw"), PlayerPrefs.GetFloat("SFXVolumeRaw"));
+            SetVolume(PlayerPrefs.GetFloat("MasterVolumeRaw"), PlayerPrefs.GetFloat("MusicVolumeRaw"), PlayerPrefs.GetFloat("SFXVolumeRaw"));
         }
 
-    }
+        Debug.Log("mvr: " + PlayerPrefs.GetFloat("MusicVolumeRaw"));
 
-    private void Start()
-    {
         if (masterSlider != null)
         {
             masterSlider.value = PlayerPrefs.GetFloat("MasterVolumeRaw");
@@ -70,9 +75,13 @@ public class AudioManager : MonoBehaviour
 
     public void SetVolume(float master, float music, float sfx)
     {
+        Debug.Log("SETVOLUME!");
         mixer.SetFloat("MasterVolume", Mathf.Log10(master) * 20);
         mixer.SetFloat("MusicVolume", Mathf.Log10(music) * 20);
         mixer.SetFloat("SFXVolume", Mathf.Log10(sfx) * 20);
+        //OnMasterVolumeChange(master);
+        //OnMusicVolumeChange(music);
+        //OnSfxVolumeChange(sfx);
     }
 
     public void OnUIVolumeChange(float master, float music, float sfx)
