@@ -22,6 +22,7 @@ public class GiantPassiveManager : MonoBehaviour
     {
         EventManager.Instance.RegisterListener<GeyserCastEvent>(DestroyFirePassive);
         EventManager.Instance.RegisterListener<FireAbilityEvent>(DestroyWindPassive);
+        EventManager.Instance.RegisterListener<EarthAbilityEvent>(DestroyWaterPassive);
 
         ElementalType = GetComponent<Giant>().ElementalType;
         IsReady = true;
@@ -79,6 +80,14 @@ public class GiantPassiveManager : MonoBehaviour
     {
         instantiatedPrefab = GameObject.Instantiate(giantPassivePrefab, gameObject.transform.position, gameObject.transform.rotation);
         instantiatedPrefab.transform.SetParent(gameObject.transform);
+    }
+    private void DestroyWaterPassive(EarthAbilityEvent ev)
+    {
+        if (ElementalType == "Water" && Vector3.Distance(gameObject.transform.position, ev.PointOfOrigin) < 3f)
+        {
+            Debug.Log("Water passive prefab is destroyed.");
+            Destroy(instantiatedPrefab);
+        }
     }
 
 

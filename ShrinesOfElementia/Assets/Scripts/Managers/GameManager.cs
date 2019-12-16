@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
                 EventManager.Instance.RegisterListener<PlayerDeathEvent>(OnPlayerDeath);
                 EventManager.Instance.RegisterListener<ExperienceEvent>(OnPlayerXPEvent);
                 EventManager.Instance.RegisterListener<BossDeathEvent>(OnBossDeath);
+                PlayerHP = Player.Instance.Health.MaxHealth;
             }
 
             Debug.Log("Shrines aquired: " + FireUnlocked + " " + EarthUnlocked + " " + WaterUnlocked + " " + WindUnlocked);
@@ -210,11 +211,8 @@ public class GameManager : MonoBehaviour
 
     private void RespawnPlayer()
     {
-        /*
-        Vector3 spawnpoint = CheckpointManager.Instance.FindNearestSpawnPoint();
-        Player.Instance.transform.position = spawnpoint;
-        */
-
+        
+        NearestCheckpoint = CheckpointManager.Instance.FindNearestSpawnPoint();
         Player.Instance.transform.position = NearestCheckpoint;
         Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
     }
