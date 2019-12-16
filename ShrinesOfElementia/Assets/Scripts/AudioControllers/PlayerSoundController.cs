@@ -16,6 +16,7 @@ public class PlayerSoundController : MonoBehaviour
     [SerializeField] private AudioClip swordHitClip;
     [SerializeField] private AudioClip enemyHitClip;
     [SerializeField] private AudioClip abilityHitClip;
+    [SerializeField] private AudioClip waterHitClip;
     [SerializeField] private AudioClip abilityHitEnemyClip;
     [SerializeField] private AudioClip footstepClip;
     [SerializeField] private AudioClip shrineTakenClip;
@@ -55,8 +56,11 @@ public class PlayerSoundController : MonoBehaviour
 
             if (damageTakenTimer >= timeBeforeDamageAllowedToPlay)
             {
-
-                if (ev.IsAbility)
+                if(ev.InflictedFromWater && waterHitClip != null)
+                {
+                    playerAudioSource.PlayOneShot(waterHitClip);
+                }
+                else if (ev.IsAbility)
                 {
                     playerAudioSource.PlayOneShot(abilityHitClip);
                 }

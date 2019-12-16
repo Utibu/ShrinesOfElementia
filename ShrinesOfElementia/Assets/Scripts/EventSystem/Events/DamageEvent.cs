@@ -13,14 +13,17 @@ public class DamageEvent : DebugEvent
 
     public bool IsAbility { get; }
 
+    public bool InflictedFromWater { get; }
+
     //public string DamageType { get; }
 
-    public DamageEvent(string eventDescription, int damage, GameObject instigatorGameObject, GameObject targetGameObject, bool isAbility = false) : base(eventDescription)
+    public DamageEvent(string eventDescription, int damage, GameObject instigatorGameObject, GameObject targetGameObject, bool isAbility = false, bool inflictedFromWater = false) : base(eventDescription)
     {
         Damage = damage;
         InstigatorGameObject = instigatorGameObject;
         TargetGameObject = targetGameObject;
         //DamageType = damageType;
         IsAbility = isAbility;
+        InflictedFromWater = inflictedFromWater;
     }
 }
