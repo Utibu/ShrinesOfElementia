@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int MaxAllowedDeaths;
     private bool saveDataExists = false;
     private SaveData saveData;
+    private bool gameHasBeenSetUp = false;
+    private bool nextChapterLoading = false;
 
     //variables
     public int Level { get; set; }
@@ -92,8 +94,8 @@ public class GameManager : MonoBehaviour
         //SceneManager.sceneLoaded += SetBaseSpawn;
         Level += 1;
         PlayerHP = 150;
-        SetBaseSpawn();
         PlayerLivesRemaining = MaxAllowedDeaths;
+        nextChapterLoading = true;
         Save();
         LoadFromSave();
     }
@@ -109,27 +111,32 @@ public class GameManager : MonoBehaviour
     {
         if (scene.buildIndex == 1) // set up game world if game world was loaded.
         {
+
+            if (!gameHasBeenSetUp)
+            {
+                //register listeners        
+                EventManager.Instance.RegisterListener<ShrineEvent>(RegisterShrine);
+                EventManager.Instance.RegisterListener<PlayerDeathEvent>(OnPlayerDeath);
+                EventManager.Instance.RegisterListener<ExperienceEvent>(OnPlayerXPEvent);
+                EventManager.Instance.RegisterListener<BossDeathEvent>(OnBossDeath);
+            }
+
             Debug.Log("Shrines aquired: " + FireUnlocked + " " + EarthUnlocked + " " + WaterUnlocked + " " + WindUnlocked);
-
-            //register listeners        
-            EventManager.Instance.RegisterListener<ShrineEvent>(RegisterShrine);
-            EventManager.Instance.RegisterListener<PlayerDeathEvent>(OnPlayerDeath);
-            EventManager.Instance.RegisterListener<ExperienceEvent>(OnPlayerXPEvent);
-            EventManager.Instance.RegisterListener<BossDeathEvent>(OnBossDeath);
-
             //load player abilities
             TimerManager.Instance.SetNewTimer(gameObject, 2f, LoadAbilities); // Event seems to not be heard if sent too early...
 
             //prepare player position and HP
-            if (!saveDataExists)
+            if (!saveDataExists || nextChapterLoading)
             {
                 SetBaseSpawn();
+                nextChapterLoading = false; // only true just efter player defeats a boss and clicks nect chapter.
             }
             Player.Instance.transform.position = NearestCheckpoint;
             Player.Instance.Health.CurrentHealth = PlayerHP;
 
+
+            gameHasBeenSetUp = true;
             
-            Debug.Log("set up game finished -  deaths: " + PlayerDeaths);
         }
         
     }

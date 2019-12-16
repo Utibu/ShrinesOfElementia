@@ -15,7 +15,7 @@ public class PlayerLivesController : MonoBehaviour
     {
         EventManager.Instance.RegisterListener<PlayerDeathEvent>(RemoveLifeImage);
         
-        for (int i = 1; i <= GameManager.Instance.PlayerLivesRemaining; i++)
+        for (int i = 0; i < GameManager.Instance.PlayerLivesRemaining; i++)
         {
             lives[i].SetActive(true);
             remainingLives = i; 
