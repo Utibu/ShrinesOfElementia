@@ -99,7 +99,7 @@ public class MovementInput : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
 
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
 
         Physics.IgnoreLayerCollision(9, 4, true);
 

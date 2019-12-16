@@ -214,7 +214,7 @@ public class PlayerInput : MonoBehaviour
         }
 
         
-        if (Input.GetKeyDown(KeyCode.Alpha7))
+        /*if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             EventManager.Instance.FireEvent(new ShrineEvent("Fire activated", "Fire"));
         }
@@ -241,7 +241,7 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.U))
         {
             EventManager.Instance.FireEvent(new ExperienceEvent("", 10));
-        }
+        }*/
         if (invincible)
         {
             Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
