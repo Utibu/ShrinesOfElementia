@@ -22,6 +22,7 @@ public class CheckpointManager : MonoBehaviour
         spawnPoints = new List<Vector3>();
         spawnPoints.Add(Player.Instance.transform.position);
         EventManager.Instance.RegisterListener<CheckpointEvent>(RegisterSpawn);
+        EventManager.Instance.RegisterListener<BossDeathEvent>(ClearCheckpoints);
     }
 
     private void RegisterSpawn(CheckpointEvent eve)
@@ -36,6 +37,12 @@ public class CheckpointManager : MonoBehaviour
             GameManager.Instance.SaveLatestCheckpoint(point);
         }
 
+    }
+
+    public void ClearCheckpoints(BossDeathEvent eve)
+    {
+        print("clearing checkpoints");
+        spawnPoints.Clear();
     }
 
     public Vector3 FindNearestSpawnPoint()
