@@ -31,10 +31,12 @@ public class Killzone : MonoBehaviour
     {
         print("Respawn");
         print("Transform before: " + targetGameObject.transform.position);
+        
 
         if (targetGameObject.CompareTag("Player"))
         {
-            Player.Instance.MovementInput.MoveTo(respawnLocation.transform.position);
+            EventManager.Instance.FireEvent(new RespawnEvent("player respawning", respawnLocation.transform.position));
+            //Player.Instance.MovementInput.MoveTo(respawnLocation.transform.position);
         }
         else
         {
