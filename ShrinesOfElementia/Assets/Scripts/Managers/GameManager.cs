@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
         //SceneManager.sceneLoaded += SetBaseSpawn;
         Level += 1;
         PlayerHP = 150;
+        SetBaseSpawn();
         PlayerLivesRemaining = MaxAllowedDeaths;
         Save();
         LoadFromSave();
