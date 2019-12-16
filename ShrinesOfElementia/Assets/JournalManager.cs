@@ -47,10 +47,10 @@ public class JournalManager : MonoBehaviour
     void Update()
     {
         //Debug.Log("IsJournalOpen: " + IsJournalOpen);
-        if(Input.GetKeyDown(KeyCode.J) && IsJournalOpen == false)
+        if(Input.GetKeyDown(InputManager.Instance.keyCode["Journal"].keyCode) && IsJournalOpen == false)
         {
             OpenJournal();
-        } else if((Input.GetKeyDown(KeyCode.J) && IsJournalOpen == true) || Input.GetKeyDown(KeyCode.Escape))
+        } else if((Input.GetKeyDown(InputManager.Instance.keyCode["Journal"].keyCode) && IsJournalOpen == true) || Input.GetKeyDown(InputManager.Instance.keyCode["Pause"].keyCode))
         {
             CloseJournal();
         }
@@ -97,6 +97,6 @@ public class JournalManager : MonoBehaviour
 
     public void OnCategoryClick()
     {
-        Debug.LogWarning("CAT CLICK!!!");
+        //Debug.LogWarning("CAT CLICK!!!");
     }
 }

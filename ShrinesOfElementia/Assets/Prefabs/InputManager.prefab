@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1740397830580046577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1740397830580046579}
+  - component: {fileID: 1740397830580046576}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1740397830580046579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740397830580046577}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 967.6277, y: 550.9781, z: 94.478226}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1740397830580046576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740397830580046577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323bc790f394e9a47b478dfefa7e2141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controls:
+  - name: Forward
+    keyCodeString: 
+    keyCode: 0
+    defaultKeycode: W
+  - name: Backward
+    keyCodeString: 
+    keyCode: 0
+    defaultKeycode: S
+  - name: Left
+    keyCodeString: 
+    keyCode: 0
+    defaultKeycode: A
+  - name: Right
+    keyCodeString: 
+    keyCode: 0
+    defaultKeycode: D
+  - name: Interact
+    keyCodeString: 
+    keyCode: 0
+    defaultKeycode: E
+  - name: Sidestep
+    keyCodeString: 
+    keyCode: 0
+    defaultKeycode: LeftCtrl
+  - name: Jump
+    keyCodeString: 
+    keyCode: 0
+    defaultKeycode: Space
+  - name: Pause
+    keyCodeString: 
+    keyCode: 0
+    defaultKeycode: Escape
+  - name: Water
+    keyCodeString: 
+    keyCode: 0
+    defaultKeycode: Alpha2
+  - name: Earth
+    keyCodeString: 
+    keyCode: 0
+    defaultKeycode: Alpha4
+  - name: Fire
+    keyCodeString: 
+    keyCode: 0
+    defaultKeycode: Alpha1
+  - name: Wind
+    keyCodeString: 
+    keyCode: 0
+    defaultKeycode: Alpha3
+  - name: Journal
+    keyCodeString: 
+    keyCode: 0
+    defaultKeycode: J

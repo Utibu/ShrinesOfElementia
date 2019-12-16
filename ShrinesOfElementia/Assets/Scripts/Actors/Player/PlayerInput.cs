@@ -54,13 +54,13 @@ public class PlayerInput : MonoBehaviour
         }
 
         // Fireball
-        if (Input.GetKeyDown(KeyCode.Alpha1) && !IsBlocking)
+        if (Input.GetKeyDown(InputManager.Instance.keyCode["Fire"].keyCode) && !IsBlocking)
         {
             abilityManager.CheckFireBall();
         }
 
         // Geyser
-        if (Input.GetKey(KeyCode.Alpha2) && !IsBlocking)
+        if (Input.GetKey(InputManager.Instance.keyCode["Water"].keyCode) && !IsBlocking)
         {
             // activate projector
             //abilityIndicator.ShowIndicator();
@@ -68,18 +68,18 @@ public class PlayerInput : MonoBehaviour
         }
 
         //Wind blade
-        if (Input.GetKeyDown(KeyCode.Alpha3) && !IsBlocking)
+        if (Input.GetKeyDown(InputManager.Instance.keyCode["Wind"].keyCode) && !IsBlocking)
         {
             abilityManager.CheckWindBlade();
         }
 
         //Earth spikes
-        if (Input.GetKeyDown(KeyCode.Alpha4) && !IsBlocking)
+        if (Input.GetKeyDown(InputManager.Instance.keyCode["Earth"].keyCode) && !IsBlocking)
         {
             abilityManager.CheckEarthSpikes();
         }
 
-        else if (Input.GetKeyUp(KeyCode.Alpha2) && !IsBlocking)
+        else if (Input.GetKeyUp(InputManager.Instance.keyCode["Water"].keyCode) && !IsBlocking)
         {
             abilityManager.CheckGeyser();
             //abilityIndicator.HideIndicator();

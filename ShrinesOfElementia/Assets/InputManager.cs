@@ -4,11 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+[Serializable]
+public class Controls
+{
+    public String name;
+    [HideInInspector] public String keyCodeString;
+    [HideInInspector] public KeyCode keyCode;
+    public String defaultKeycode;
+}
+
 public class InputManager : MonoBehaviour
 {
 
     public static InputManager Instance { get; private set; }
-    public Dictionary<string, KeyCode> keyCode { get; private set; }
+
+    public Controls[] controls;
+
+    public Dictionary<string, Controls> keyCode { get; private set; }
 
     private void Awake()
     {
@@ -16,13 +28,25 @@ public class InputManager : MonoBehaviour
         if (Instance == null) { Instance = this; }
         else { Debug.Log("Warning: multiple " + this + " in scene!"); }
 
-        keyCode = new Dictionary<string, KeyCode>();
+        keyCode = new Dictionary<string, Controls>();
 
-        String k = PlayerPrefs.GetString("KeyNames");
-        
-        List<String> keys = k.Split(',').ToList();
+        foreach(Controls control in controls)
+        {
+            String newKey = PlayerPrefs.GetString("Key_" + control.name);
+            if (newKey.Length > 0)
+            {
+                control.keyCodeString = newKey;
+            } else
+            {
+                control.keyCodeString = control.defaultKeycode;
+            }
 
-        Debug.Log("KEYS: " + keys.Count);
+            Debug.Log("newKey: " + newKey + " --- Length: " + newKey.Length);
+            control.keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), control.keyCodeString);
+            keyCode.Add(control.name, control);
+        }
+
+        Debug.LogWarning("COUNT: " + keyCode.Count());
 
     }
 
@@ -35,6 +59,6 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log("KEYCODE FOR FORWARD: " + keyCode["Forward"].keyCode);
     }
 }

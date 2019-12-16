@@ -143,6 +143,16 @@ public class MovementInput : MonoBehaviour
         }
 
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        movementInput = new Vector2();
+
+        if (Input.GetKey(InputManager.Instance.keyCode["Forward"].keyCode))
+            movementInput.y++;
+        if (Input.GetKey(InputManager.Instance.keyCode["Backward"].keyCode))
+            movementInput.y--;
+        if (Input.GetKey(InputManager.Instance.keyCode["Left"].keyCode))
+            movementInput.x--;
+        if (Input.GetKey(InputManager.Instance.keyCode["Right"].keyCode))
+            movementInput.x++;
 
 
         // Movement
@@ -222,7 +232,7 @@ public class MovementInput : MonoBehaviour
 
         // Jump
         // Maybe add "better jump"
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(InputManager.Instance.keyCode["Jump"].keyCode))
         {
             if (!isGliding && IsGrounded())
             {

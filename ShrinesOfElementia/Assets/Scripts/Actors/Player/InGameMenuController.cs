@@ -12,7 +12,7 @@ public class InGameMenuController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F12))
+        if (Input.GetKeyDown(InputManager.Instance.keyCode["Pause"].keyCode))
         {
             ShowInGameMenu();
         }
