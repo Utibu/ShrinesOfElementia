@@ -37,6 +37,7 @@ public class InputManager : MonoBehaviour
     {
         // Prevents multiple instances
         if (Instance == null) { Instance = this; }
+        else if (Instance != this) { Destroy(gameObject); }
         else { Debug.Log("Warning: multiple " + this + " in scene!"); }
 
         keyCode = new Dictionary<string, Controls>();
@@ -64,12 +65,12 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("KEYCODE FOR FORWARD: " + keyCode["Water"].GetNicerName());
+        //Debug.Log("KEYCODE FOR FORWARD: " + keyCode["Water"].GetNicerName());
     }
 }
