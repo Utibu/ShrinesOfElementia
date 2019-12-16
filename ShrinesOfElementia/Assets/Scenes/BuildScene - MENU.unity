@@ -19319,8 +19319,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389769055}
-  m_LocalRotation: {x: -0.053657535, y: -0.015878517, z: 0.00085314293, w: -0.9984328}
-  m_LocalPosition: {x: 799.4064, y: -379.22702, z: -1374.3866}
+  m_LocalRotation: {x: -0.008689262, y: -0.014401088, z: 0.00012502646, w: -0.99985856}
+  m_LocalPosition: {x: 932.0414, y: -488.96036, z: -1140.6333}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -25970,7 +25970,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 557801164}
   m_OnClick:
     m_PersistentCalls:
@@ -30613,7 +30613,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 614121600}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1153102030}
+        m_MethodName: SendText
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 943214602}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1153102030}
+        m_MethodName: StartAssignment
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 943214602}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &614121600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58608,6 +58630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 1089136077}
+  currentKeybinds: []
   keyOptions:
   - keyName: 
     label: {fileID: 1874154109}
@@ -64400,7 +64423,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1263647938}
   m_OnClick:
     m_PersistentCalls:

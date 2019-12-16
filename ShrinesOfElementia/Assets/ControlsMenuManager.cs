@@ -19,39 +19,66 @@ public class KeyOption
 public class ControlsMenuManager : MonoBehaviour
 {
     [SerializeField] private Transform menuPanel;
+    [SerializeField] private List<String> currentKeybinds = new List<string>();
     Event keyEvent;
-    Text buttonText;
+    TextMeshProUGUI buttonText;
     KeyCode newKey;
     bool waitingForKey;
 
 
     [SerializeField] private KeyOption[] keyOptions;
-
+    private Dictionary<TextMeshProUGUI, KeyOption> keysDict = new Dictionary<TextMeshProUGUI, KeyOption>();
 
 
 
     void Start()
     {
-
         waitingForKey = false;
 
+        Debug.Log("HASCHANGEDFKEYS: " + PlayerPrefs.GetInt("HasChangedKeys"));
+
+        foreach(KeyOption option in keyOptions)
+        {
+            option.keyName = option.label.text;
+
+            if (PlayerPrefs.GetInt("HasChangedKeys") != 1)
+            {
+                Debug.Log("ISRUNNINGBAD");
+                PlayerPrefs.SetString("key_" + option.keyName, option.buttonLabel.text);
+            } else
+            {
+                Debug.Log(PlayerPrefs.GetString("key_" + option.keyName));
+                option.buttonLabel.text = PlayerPrefs.GetString("key_" + option.keyName);
+            }
+
+            Debug.Log(PlayerPrefs.GetString("key_" + option.keyName));
+            currentKeybinds.Add(option.buttonLabel.text);
+            keysDict.Add(option.buttonLabel, option);
 
 
-        /*iterate through each child of the panel and check
+        }
 
-         * the names of each one. Each if statement will
+        if (PlayerPrefs.GetInt("HasChangedKeys") != 1)
+        {
+            PlayerPrefs.SetInt("HasChangedKeys", 1);
+        }
 
-         * set each button's text component to display
 
-         * the name of the key that is associated
+            /*iterate through each child of the panel and check
 
-         * with each command. Example: the ForwardKey
+             * the names of each one. Each if statement will
 
-         * button will display "W" in the middle of it
+             * set each button's text component to display
 
-         */
+             * the name of the key that is associated
 
-        for (int i = 0; i < menuPanel.childCount; i++)
+             * with each command. Example: the ForwardKey
+
+             * button will display "W" in the middle of it
+
+             */
+
+            for (int i = 0; i < menuPanel.childCount; i++)
 
         {
 
@@ -89,14 +116,14 @@ public class ControlsMenuManager : MonoBehaviour
 
         //Escape key will open or close the panel
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !menuPanel.gameObject.activeSelf)
+       /* if (Input.GetKeyDown(KeyCode.Escape) && !menuPanel.gameObject.activeSelf)
 
             menuPanel.gameObject.SetActive(true);
 
         else if (Input.GetKeyDown(KeyCode.Escape) && menuPanel.gameObject.activeSelf)
 
             menuPanel.gameObject.SetActive(false);
-
+            */
     }
 
 
@@ -145,8 +172,10 @@ public class ControlsMenuManager : MonoBehaviour
 
      */
 
-    public void StartAssignment(string keyName)
+    public void StartAssignment(TextMeshProUGUI text)
     {
+        string keyName = keysDict[text].keyName;
+        Debug.Log("KEYNAME: " + keyName);
         if (!waitingForKey)
             StartCoroutine(AssignKey(keyName));
     }
@@ -157,7 +186,7 @@ public class ControlsMenuManager : MonoBehaviour
 
     //the button that was pressed
 
-    public void SendText(Text text)
+    public void SendText(TextMeshProUGUI text)
 
     {
 
@@ -204,63 +233,77 @@ public class ControlsMenuManager : MonoBehaviour
         yield return WaitForKey(); //Executes endlessly until user presses a key
 
 
-/*
-        switch (keyName)
-
+        if(!currentKeybinds.Contains(newKey.ToString()))
         {
+            buttonText.text = newKey.ToString();
+            PlayerPrefs.SetString("key_" + keysDict[buttonText].keyName, newKey.ToString());
+            Debug.Log("NEWKEY: " + keysDict[buttonText].keyName + "  - - -- - - " + newKey.ToString());
+            PlayerPrefs.Save();
 
-            case "forward":
-
-                GameManager.GM.forward = newKey; //Set forward to new keycode
-
-                buttonText.text = GameManager.GM.forward.ToString(); //Set button text to new key
-
-                PlayerPrefs.SetString("forwardKey", GameManager.GM.forward.ToString()); //save new key to PlayerPrefs
-
-                break;
-
-            case "backward":
-
-                GameManager.GM.backward = newKey; //set backward to new keycode
-
-                buttonText.text = GameManager.GM.backward.ToString(); //set button text to new key
-
-                PlayerPrefs.SetString("backwardKey", GameManager.GM.backward.ToString()); //save new key to PlayerPrefs
-
-                break;
-
-            case "left":
-
-                GameManager.GM.left = newKey; //set left to new keycode
-
-                buttonText.text = GameManager.GM.left.ToString(); //set button text to new key
-
-                PlayerPrefs.SetString("leftKey", GameManager.GM.left.ToString()); //save new key to playerprefs
-
-                break;
-
-            case "right":
-
-                GameManager.GM.right = newKey; //set right to new keycode
-
-                buttonText.text = GameManager.GM.right.ToString(); //set button text to new key
-
-                PlayerPrefs.SetString("rightKey", GameManager.GM.right.ToString()); //save new key to playerprefs
-
-                break;
-
-            case "jump":
-
-                GameManager.GM.jump = newKey; //set jump to new keycode
-
-                buttonText.text = GameManager.GM.jump.ToString(); //set button text to new key
-
-                PlayerPrefs.SetString("jumpKey", GameManager.GM.jump.ToString()); //save new key to playerprefs
-
-                break;
-
+            currentKeybinds.Clear();
+            foreach (KeyOption option in keyOptions)
+            {
+                currentKeybinds.Add(option.buttonLabel.text);
+            }
         }
-        */
+        
+        /*
+                switch (keyName)
+
+                {
+
+                    case "forward":
+
+                        GameManager.GM.forward = newKey; //Set forward to new keycode
+
+                        buttonText.text = GameManager.GM.forward.ToString(); //Set button text to new key
+
+                        PlayerPrefs.SetString("forwardKey", GameManager.GM.forward.ToString()); //save new key to PlayerPrefs
+
+                        break;
+
+                    case "backward":
+
+                        GameManager.GM.backward = newKey; //set backward to new keycode
+
+                        buttonText.text = GameManager.GM.backward.ToString(); //set button text to new key
+
+                        PlayerPrefs.SetString("backwardKey", GameManager.GM.backward.ToString()); //save new key to PlayerPrefs
+
+                        break;
+
+                    case "left":
+
+                        GameManager.GM.left = newKey; //set left to new keycode
+
+                        buttonText.text = GameManager.GM.left.ToString(); //set button text to new key
+
+                        PlayerPrefs.SetString("leftKey", GameManager.GM.left.ToString()); //save new key to playerprefs
+
+                        break;
+
+                    case "right":
+
+                        GameManager.GM.right = newKey; //set right to new keycode
+
+                        buttonText.text = GameManager.GM.right.ToString(); //set button text to new key
+
+                        PlayerPrefs.SetString("rightKey", GameManager.GM.right.ToString()); //save new key to playerprefs
+
+                        break;
+
+                    case "jump":
+
+                        GameManager.GM.jump = newKey; //set jump to new keycode
+
+                        buttonText.text = GameManager.GM.jump.ToString(); //set button text to new key
+
+                        PlayerPrefs.SetString("jumpKey", GameManager.GM.jump.ToString()); //save new key to playerprefs
+
+                        break;
+
+                }
+                */
 
 
         yield return null;
