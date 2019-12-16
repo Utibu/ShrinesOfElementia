@@ -84,7 +84,7 @@ public class InputManager : MonoBehaviour
         }
 
         //Debug.Log("USEDEFAULTSENSITIVITY: " + PlayerPrefs.GetInt("UseDefaultSensitivity"));
-        if(PlayerPrefs.GetInt("UseDefaultSensitivity") == 1)
+        if(PlayerPrefs.GetInt("HasChangedSensitivity") == 0)
         {
             sensitivity.chosenSensitivity = sensitivity.defaultSensitivity;
         } else

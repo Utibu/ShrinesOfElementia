@@ -219,7 +219,7 @@ public class ControlsMenuManager : MonoBehaviour
         InputManager.Instance.sensitivity.chosenSensitivity = (int)val;
         PlayerPrefs.SetInt("sensitivity", (int)val);
         Debug.Log("SENSITIVITY: " + PlayerPrefs.GetInt("sensitivity"));
-        PlayerPrefs.SetInt("UseDefaultSensitivity", 0);
+        PlayerPrefs.SetInt("HasChangedSensitivity", 1);
         sensitivityLabel.text = "" + val;
         InputManager.Instance.ReloadKeys();
     }
