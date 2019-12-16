@@ -142,7 +142,7 @@ public class MovementInput : MonoBehaviour
             animator.SetFloat("MovementSpeed", 1f);
         }
 
-        movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        //movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         movementInput = new Vector2();
 
         if (Input.GetKey(InputManager.Instance.keyCode["Forward"].keyCode))

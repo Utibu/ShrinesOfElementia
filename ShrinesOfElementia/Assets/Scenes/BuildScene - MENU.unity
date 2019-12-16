@@ -8505,13 +8505,24 @@ MonoBehaviour:
   m_FillRect: {fileID: 1313279596}
   m_HandleRect: {fileID: 809444096}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 2
   m_MaxValue: 100
   m_WholeNumbers: 1
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1153102030}
+        m_MethodName: OnSensitivitySliderChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &181956207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19407,8 +19418,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389769055}
-  m_LocalRotation: {x: -0.15444708, y: 0.19887778, z: 0.031873133, w: 0.96725273}
-  m_LocalPosition: {x: 62.972237, y: -16.102608, z: -140.75992}
+  m_LocalRotation: {x: 0.12385689, y: -0.012057892, z: 0.0018384142, w: 0.99222517}
+  m_LocalPosition: {x: 881.83405, y: -95.95231, z: -1043.3513}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -33490,8 +33501,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701365492}
-  m_LocalRotation: {x: -0.15444708, y: 0.19887778, z: 0.031873133, w: 0.96725273}
-  m_LocalPosition: {x: 62.972237, y: -46.702606, z: -140.75992}
+  m_LocalRotation: {x: -0.04773229, y: 0.69330895, z: 0.047199316, w: 0.7175072}
+  m_LocalPosition: {x: 20.344, y: -21.345, z: 227.036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -58763,6 +58774,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 1089136077}
   currentKeybinds: []
+  sensitivitySlider: {fileID: 181556967}
+  sensitivityLabel: {fileID: 958988874}
   keyOptions:
   - keyName: Forward
     isDisabled: 0
@@ -58796,10 +58809,6 @@ MonoBehaviour:
     isDisabled: 0
     label: {fileID: 852148760}
     buttonLabel: {fileID: 952208984}
-  - keyName: Block
-    isDisabled: 0
-    label: {fileID: 307575906}
-    buttonLabel: {fileID: 2140995632}
   - keyName: Water
     isDisabled: 0
     label: {fileID: 1148604794}
@@ -58808,10 +58817,6 @@ MonoBehaviour:
     isDisabled: 0
     label: {fileID: 895838197}
     buttonLabel: {fileID: 236709771}
-  - keyName: Attack
-    isDisabled: 0
-    label: {fileID: 917968678}
-    buttonLabel: {fileID: 2049396047}
   - keyName: Fire
     isDisabled: 0
     label: {fileID: 1938995267}
@@ -67857,8 +67862,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320115678}
-  m_LocalRotation: {x: -0.15444708, y: 0.19887778, z: 0.031873133, w: 0.96725273}
-  m_LocalPosition: {x: 62.972237, y: -16.102608, z: -140.75992}
+  m_LocalRotation: {x: -0.04773229, y: 0.69330895, z: 0.047199316, w: 0.7175072}
+  m_LocalPosition: {x: 20.344, y: 9.255001, z: 227.036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

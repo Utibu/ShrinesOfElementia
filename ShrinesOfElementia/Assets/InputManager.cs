@@ -24,6 +24,13 @@ public class Controls
     }
 }
 
+[Serializable]
+public class SensitivityControl
+{
+    public int defaultSensitivity = 100;
+    [HideInInspector] public int chosenSensitivity;
+}
+
 public class InputManager : MonoBehaviour
 {
 
@@ -32,6 +39,8 @@ public class InputManager : MonoBehaviour
     public Controls[] controls;
 
     public Dictionary<string, Controls> keyCode { get; private set; }
+
+    public SensitivityControl sensitivity;
 
     private void Awake()
     {
@@ -42,21 +51,7 @@ public class InputManager : MonoBehaviour
 
         keyCode = new Dictionary<string, Controls>();
 
-        foreach(Controls control in controls)
-        {
-            String newKey = PlayerPrefs.GetString("Key_" + control.name);
-            if (newKey.Length > 0)
-            {
-                control.keyCodeString = newKey;
-            } else
-            {
-                control.keyCodeString = control.defaultKeycode;
-            }
-
-            Debug.Log("newKey: " + newKey + " --- Length: " + newKey.Length);
-            control.keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), control.keyCodeString);
-            keyCode.Add(control.name, control);
-        }
+        ReloadKeys();
 
         //Debug.LogWarning("COUNT: " + keyCode.Count());
 
@@ -66,6 +61,36 @@ public class InputManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void ReloadKeys()
+    {
+        keyCode.Clear();
+        foreach (Controls control in controls)
+        {
+            String newKey = PlayerPrefs.GetString("Key_" + control.name);
+            if (newKey.Length > 0)
+            {
+                control.keyCodeString = newKey;
+            }
+            else
+            {
+                control.keyCodeString = control.defaultKeycode;
+            }
+
+            //Debug.Log("newKey: " + newKey + " --- Length: " + newKey.Length);
+            control.keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), control.keyCodeString);
+            keyCode.Add(control.name, control);
+        }
+
+        //Debug.Log("USEDEFAULTSENSITIVITY: " + PlayerPrefs.GetInt("UseDefaultSensitivity"));
+        if(PlayerPrefs.GetInt("UseDefaultSensitivity") == 1)
+        {
+            sensitivity.chosenSensitivity = sensitivity.defaultSensitivity;
+        } else
+        {
+            sensitivity.chosenSensitivity = PlayerPrefs.GetInt("sensitivity");
+        }
     }
 
     // Update is called once per frame
