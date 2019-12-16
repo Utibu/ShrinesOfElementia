@@ -11,7 +11,8 @@ using System;
 [Serializable]
 public class KeyOption
 {
-    [HideInInspector] public String keyName;
+    public String keyName;
+    public bool isDisabled = false;
     public TextMeshProUGUI label;
     public TextMeshProUGUI buttonLabel;
 }
@@ -27,6 +28,7 @@ public class ControlsMenuManager : MonoBehaviour
 
 
     [SerializeField] private KeyOption[] keyOptions;
+    [SerializeField] private List<String> keyStrings = new List<string>();
     private Dictionary<TextMeshProUGUI, KeyOption> keysDict = new Dictionary<TextMeshProUGUI, KeyOption>();
 
 
@@ -35,34 +37,47 @@ public class ControlsMenuManager : MonoBehaviour
     {
         waitingForKey = false;
 
-        Debug.Log("HASCHANGEDFKEYS: " + PlayerPrefs.GetInt("HasChangedKeys"));
+        //Uncomment to reset 
+        //PlayerPrefs.SetInt("HasChangedKeys", 0);
+
+        Debug.Log("HASCHANGEDFKEYS: " + PlayerPrefs.GetInt("HasSetupKeys"));
 
         foreach(KeyOption option in keyOptions)
         {
-            option.keyName = option.label.text;
+            //option.keyName = option.label.text;
 
-            if (PlayerPrefs.GetInt("HasChangedKeys") != 1)
+            if (PlayerPrefs.GetInt("HasSetupKeys") == 0)
             {
                 Debug.Log("ISRUNNINGBAD");
-                PlayerPrefs.SetString("key_" + option.keyName, option.buttonLabel.text);
+                PlayerPrefs.SetString("Key_" + option.keyName, option.buttonLabel.text);
+
+                if (option.isDisabled == false)
+                {
+                    keyStrings.Add("Key_" + option.keyName);
+                }
+
             } else
             {
-                Debug.Log(PlayerPrefs.GetString("key_" + option.keyName));
-                option.buttonLabel.text = PlayerPrefs.GetString("key_" + option.keyName);
+                Debug.Log(PlayerPrefs.GetString("Key_" + option.keyName));
+                option.buttonLabel.text = PlayerPrefs.GetString("Key_" + option.keyName);
             }
 
-            Debug.Log(PlayerPrefs.GetString("key_" + option.keyName));
+            Debug.Log(PlayerPrefs.GetString("Key_" + option.keyName));
             currentKeybinds.Add(option.buttonLabel.text);
             keysDict.Add(option.buttonLabel, option);
 
+            
 
         }
-
-        if (PlayerPrefs.GetInt("HasChangedKeys") != 1)
+        if (PlayerPrefs.GetInt("HasSetupKeys") == 0)
         {
-            PlayerPrefs.SetInt("HasChangedKeys", 1);
+            Debug.Log("NOWCHANGEDKEYS: " + PlayerPrefs.GetInt("HasSetupKeys"));
+            PlayerPrefs.SetInt("HasSetupKeys", 1);
+            PlayerPrefs.SetString("KeyNames", String.Join(",", keyStrings));
         }
 
+
+        
 
             /*iterate through each child of the panel and check
 
@@ -236,7 +251,7 @@ public class ControlsMenuManager : MonoBehaviour
         if(!currentKeybinds.Contains(newKey.ToString()))
         {
             buttonText.text = newKey.ToString();
-            PlayerPrefs.SetString("key_" + keysDict[buttonText].keyName, newKey.ToString());
+            PlayerPrefs.SetString("Key_" + keysDict[buttonText].keyName, newKey.ToString());
             Debug.Log("NEWKEY: " + keysDict[buttonText].keyName + "  - - -- - - " + newKey.ToString());
             PlayerPrefs.Save();
 
@@ -244,6 +259,8 @@ public class ControlsMenuManager : MonoBehaviour
             foreach (KeyOption option in keyOptions)
             {
                 currentKeybinds.Add(option.buttonLabel.text);
+
+               
             }
         }
         
