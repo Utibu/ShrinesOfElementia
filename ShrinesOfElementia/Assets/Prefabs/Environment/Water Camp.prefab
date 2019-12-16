@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1335849842166981081}
   - component: {fileID: 8057752158731295727}
   - component: {fileID: 4390564947744728854}
+  - component: {fileID: -8118352054666290438}
   m_Layer: 0
   m_Name: Water Camp
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2653391498599011274}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 130.36, y: 25.14, z: 166.74}
   m_LocalScale: {x: 17.755737, y: 241.15971, z: 241.15929}
   m_Children:
@@ -33,7 +34,7 @@ Transform:
   - {fileID: 1335849843328663298}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.00001}
 --- !u!33 &8057752158731295727
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -80,6 +81,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-8118352054666290438
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2653391498599011274}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 2540817853737639666, guid: b8bbbe4bb5d915a4183a227875c2757f, type: 3}
 --- !u!1 &6337497699004853179
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6337497699004853176
 Transform:
   m_ObjectHideFlags: 0
