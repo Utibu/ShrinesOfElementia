@@ -29,6 +29,10 @@ public class AudioManager : MonoBehaviour
     public float musicVolume = 1f;
     public float sfxVolume = 1f;
 
+    private bool masterMuted;
+    private bool musicMuted;
+    private bool sfxMuted;
+
     private void Awake()
     {
         // Prevents multiple instances
@@ -49,6 +53,10 @@ public class AudioManager : MonoBehaviour
             OnMasterVolumeChange(masterVolume);
             OnMusicVolumeChange(musicVolume);
             OnSfxVolumeChange(sfxVolume);
+
+            //PlayerPrefs.SetInt("MasterIsMuted", 0);
+            //PlayerPrefs.SetInt("MusicIsMuted", 0);
+            //PlayerPrefs.SetInt("SFXIsMuted", 0);
         }
         else
         {
@@ -112,6 +120,18 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetFloat("SFXVolumeRaw", volume);
         //PlayerPrefs.Save();
     }
+
+    /*public void SetMasterMute(Toggle toggle)
+    {
+        if(toggle.isOn)
+        {
+            OnMasterVolumeChange(0.001f);
+
+        } else
+        {
+            //Mute
+        }
+    }*/
 
     private float GetVolume(string volumeType)
     {
