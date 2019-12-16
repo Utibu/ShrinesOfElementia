@@ -67,8 +67,9 @@ public class GiantPassiveManager : MonoBehaviour
     }
     private void DestroyFirePassive(GeyserCastEvent ev)
     {
-        if (Vector3.Distance(gameObject.transform.position, ev.affectedPosition) < ev.effectRange)
+        if (ElementalType == "Fire" && Vector3.Distance(gameObject.transform.position, ev.affectedPosition) < ev.effectRange)
         {
+            Debug.Log("passive prefab is destroyed.");
             Destroy(instantiatedPrefab);
         }
     }
@@ -89,7 +90,7 @@ public class GiantPassiveManager : MonoBehaviour
     }
     private void DestroyWindPassive(FireAbilityEvent ev)
     {
-        if (Vector3.Distance(gameObject.transform.position, ev.PointOfOrigin) < ev.EffectRange * 2)
+        if (ElementalType == "Wind" && Vector3.Distance(gameObject.transform.position, ev.PointOfOrigin) < ev.EffectRange * 2)
         {
             Destroy(instantiatedPrefab);
         }
