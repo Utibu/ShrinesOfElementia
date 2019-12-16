@@ -22,6 +22,4 @@ public class TimerManager : MonoBehaviour
         timer.GetComponent<Timer>().SetVariables(owner, duration, action);
         return timer;
     }
-
-
 }
