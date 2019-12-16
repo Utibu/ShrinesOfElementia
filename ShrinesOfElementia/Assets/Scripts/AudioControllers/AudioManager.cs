@@ -25,7 +25,7 @@ public class AudioManager : MonoBehaviour
      * The sliders need to go from 0.001f to 1f or something similar.
     */
 
-    public float masterVolume = 0f;
+    public float masterVolume = 0.5f;
     public float musicVolume = 1f;
     public float sfxVolume = 1f;
 
@@ -35,11 +35,37 @@ public class AudioManager : MonoBehaviour
         if (Instance == null) { Instance = this; }
         else { Debug.Log("Warning: multiple " + this + " in scene!"); }
 
+        if (PlayerPrefs.GetInt("HasRunVolume") != 1)
+        {
+            PlayerPrefs.SetInt("HasRunVolume", 1);
+            //OnUIVolumeChange(masterVolume, musicVolume, sfxVolume);
+            OnMasterVolumeChange(masterVolume);
+            OnMusicVolumeChange(musicVolume);
+            OnSfxVolumeChange(sfxVolume);
+        }
+        else
+        {
+            OnUIVolumeChange(PlayerPrefs.GetFloat("MasterVolumeRaw"), PlayerPrefs.GetFloat("MusicVolumeRaw"), PlayerPrefs.GetFloat("SFXVolumeRaw"));
+        }
+
     }
 
     private void Start()
     {
-        SetVolume(masterVolume, musicVolume, sfxVolume);
+        if (masterSlider != null)
+        {
+            masterSlider.value = PlayerPrefs.GetFloat("MasterVolumeRaw");
+        }
+
+        if (musicSlider != null)
+        {
+            musicSlider.value = PlayerPrefs.GetFloat("MusicVolumeRaw");
+        }
+
+        if (sfxSlider != null)
+        {
+            sfxSlider.value = PlayerPrefs.GetFloat("SFXVolumeRaw");
+        }
     }
 
     public void SetVolume(float master, float music, float sfx)
@@ -56,17 +82,26 @@ public class AudioManager : MonoBehaviour
 
     public void OnMasterVolumeChange(float volume)
     {
-        mixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
+        float newVolumeDb = Mathf.Log10(volume) * 20;
+        mixer.SetFloat("MasterVolume", newVolumeDb);
+        PlayerPrefs.SetFloat("MasterVolumeRaw", volume);
+      //  PlayerPrefs.Save();
     }
 
     public void OnMusicVolumeChange(float volume)
     {
-        mixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
+        float newVolumeDb = Mathf.Log10(volume) * 20;
+        mixer.SetFloat("MusicVolume", newVolumeDb);
+        PlayerPrefs.SetFloat("MusicVolumeRaw", volume);
+       // PlayerPrefs.Save();
     }
 
     public void OnSfxVolumeChange(float volume)
     {
-        mixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
+        float newVolumeDb = Mathf.Log10(volume) * 20;
+        mixer.SetFloat("SFXVolume", newVolumeDb);
+        PlayerPrefs.SetFloat("SFXVolumeRaw", volume);
+        //PlayerPrefs.Save();
     }
 
     private float GetVolume(string volumeType)
