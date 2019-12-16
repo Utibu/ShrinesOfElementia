@@ -213,7 +213,7 @@ public class PlayerInput : MonoBehaviour
             player.Animator.SetBool("CanBlock", true);
         }
 
-        /* Dirty cheats
+        
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             EventManager.Instance.FireEvent(new ShrineEvent("Fire activated", "Fire"));
@@ -246,7 +246,7 @@ public class PlayerInput : MonoBehaviour
         {
             Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
         }
-        */
+        
     }
 
     private void CancelAttack()
