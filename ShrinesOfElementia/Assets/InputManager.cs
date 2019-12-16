@@ -11,6 +11,17 @@ public class Controls
     [HideInInspector] public String keyCodeString;
     [HideInInspector] public KeyCode keyCode;
     public String defaultKeycode;
+
+    public String GetNicerName()
+    {
+        if(keyCodeString.Length >= 5 && keyCodeString.Substring(0, 5) == "Alpha")
+        {
+            //Debug.Log("keycode[4] = " + keyCodeString.Substring(5));
+            return keyCodeString[5].ToString();
+        }
+
+        return keyCodeString;
+    }
 }
 
 public class InputManager : MonoBehaviour
@@ -46,7 +57,7 @@ public class InputManager : MonoBehaviour
             keyCode.Add(control.name, control);
         }
 
-        Debug.LogWarning("COUNT: " + keyCode.Count());
+        //Debug.LogWarning("COUNT: " + keyCode.Count());
 
     }
 
@@ -59,6 +70,6 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("KEYCODE FOR FORWARD: " + keyCode["Forward"].keyCode);
+        Debug.Log("KEYCODE FOR FORWARD: " + keyCode["Water"].GetNicerName());
     }
 }
