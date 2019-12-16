@@ -108,10 +108,13 @@ public class HealthComponent : MonoBehaviour
 
     private void OnLevelUp(LevelUpEvent eve)
     {
-        float newMaxHealth = (float)MaxHealth;
-        newMaxHealth += baseHealthIncrease;
-        MaxHealth = (int)newMaxHealth;
-        baseHealthIncrease += healthIncreasePerLevel;
+        if (gameObject.CompareTag("Player"))
+        {
+            float newMaxHealth = (float)MaxHealth;
+            newMaxHealth += baseHealthIncrease;
+            MaxHealth = (int)newMaxHealth;
+            baseHealthIncrease += healthIncreasePerLevel;
+        }
     }
 
     private void Die()
