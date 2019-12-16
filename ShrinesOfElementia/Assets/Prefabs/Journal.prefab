@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5092722495132643691}
   - component: {fileID: 1190200394894090522}
   m_Layer: 5
-  m_Name: Fireball_desc
+  m_Name: Earth Spikes_desc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,9 +63,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'A geyser erupts from the ground, causing water to shoot upwards from the
-    target area. It causes area-of-effect damage to nearby targets, and douzes flames
-    within the area. '
+  m_text: Deadly spikes erupt from the ground in front of the player, damaging any
+    target standing within the target area. Effective against water, weak against
+    wind.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f7623d4c852eaca4ba4f910bb5f254e7, type: 2}
   m_sharedMaterial: {fileID: -2709049793256875688, guid: f7623d4c852eaca4ba4f910bb5f254e7,
@@ -135,10 +135,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1190200394894090522}
-    characterCount: 172
+    characterCount: 156
     spriteCount: 0
-    spaceCount: 28
-    wordCount: 28
+    spaceCount: 24
+    wordCount: 25
     linkCount: 0
     lineCount: 4
     pageCount: 1
@@ -1376,7 +1376,7 @@ GameObject:
   - component: {fileID: 5551642253990368}
   - component: {fileID: 3852852108494413589}
   m_Layer: 5
-  m_Name: Fire Infusion
+  m_Name: Touch of Nature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1427,7 +1427,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f5777b998372816488257ac1ad289282, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 64119ba50b0f4a047998868c62be4bc4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1452,7 +1452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2849864854309243285
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2695,7 +2695,7 @@ GameObject:
   - component: {fileID: 2930405478352944816}
   - component: {fileID: 1586321966858762498}
   m_Layer: 5
-  m_Name: Fire Infusion_title
+  m_Name: Touch of Nature_title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2718,7 +2718,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -205.99997, y: -252.90004}
-  m_SizeDelta: {x: 178.8, y: 80.1}
+  m_SizeDelta: {x: 178.8, y: 80}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &2930405478352944816
 CanvasRenderer:
@@ -2746,7 +2746,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Water Walking
+  m_text: Touch of Nature
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f7623d4c852eaca4ba4f910bb5f254e7, type: 2}
   m_sharedMaterial: {fileID: -2709049793256875688, guid: f7623d4c852eaca4ba4f910bb5f254e7,
@@ -2816,10 +2816,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1586321966858762498}
-    characterCount: 13
+    characterCount: 15
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 2
+    wordCount: 3
     linkCount: 0
     lineCount: 2
     pageCount: 1
@@ -3236,7 +3236,7 @@ GameObject:
   - component: {fileID: 4047507966622337989}
   - component: {fileID: 5213662621925263228}
   m_Layer: 5
-  m_Name: Fireball_title
+  m_Name: Earth Spikes_title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3258,8 +3258,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -205.99997, y: -23.80004}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -205.99997, y: 10.5}
+  m_SizeDelta: {x: 172.81, y: 80}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4047507966622337989
 CanvasRenderer:
@@ -3287,7 +3287,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Geyser
+  m_text: Earth Spikes
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f7623d4c852eaca4ba4f910bb5f254e7, type: 2}
   m_sharedMaterial: {fileID: -2709049793256875688, guid: f7623d4c852eaca4ba4f910bb5f254e7,
@@ -3357,12 +3357,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 5213662621925263228}
-    characterCount: 6
+    characterCount: 12
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -3905,7 +3905,7 @@ GameObject:
   - component: {fileID: 7923436791270221676}
   - component: {fileID: 4939195107763061474}
   m_Layer: 5
-  m_Name: Water_txt
+  m_Name: Earth_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3956,7 +3956,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Water
+  m_text: Earth
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f7623d4c852eaca4ba4f910bb5f254e7, type: 2}
   m_sharedMaterial: {fileID: -2709049793256875688, guid: f7623d4c852eaca4ba4f910bb5f254e7,
@@ -3966,8 +3966,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294613289
-  m_fontColor: {r: 0.16078432, g: 0.6, b: 0.9803922, a: 1}
+    rgba: 4278243600
+  m_fontColor: {r: 0.062789835, g: 0.8207547, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4517,7 +4517,7 @@ GameObject:
   - component: {fileID: 3090828293413321784}
   - component: {fileID: 4505999905556334117}
   m_Layer: 5
-  m_Name: Fireball
+  m_Name: Earth Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4568,7 +4568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8c64b3dd39049304da8ca9ccdb730caf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4edeaba7ed7b87d49a0d64e32a6b658b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4902,7 +4902,7 @@ GameObject:
   - component: {fileID: 4069563661175284594}
   - component: {fileID: 3049774792887619895}
   m_Layer: 5
-  m_Name: Fire Infusion_desc
+  m_Name: Touch of Nature_desc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4953,8 +4953,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The player is able to stand on the water surface, enabling them to perform
-    all movement abilities on top of water.
+  m_text: "The player\u2019s health regeneration is increased by 50%. "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f7623d4c852eaca4ba4f910bb5f254e7, type: 2}
   m_sharedMaterial: {fileID: -2709049793256875688, guid: f7623d4c852eaca4ba4f910bb5f254e7,
@@ -4990,7 +4989,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 513
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -5024,12 +5023,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 3049774792887619895}
-    characterCount: 114
+    characterCount: 54
     spriteCount: 0
-    spaceCount: 20
-    wordCount: 21
+    spaceCount: 8
+    wordCount: 8
     linkCount: 0
-    lineCount: 3
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -5081,7 +5080,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -205.99997, y: 25.199972}
+  m_AnchoredPosition: {x: -205.99997, y: 60.4}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &41404524884201150
@@ -5447,7 +5446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7844676236401824558
 RectTransform:
   m_ObjectHideFlags: 0
