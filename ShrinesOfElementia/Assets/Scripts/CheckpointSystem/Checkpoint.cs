@@ -7,14 +7,9 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     [SerializeField]private GameObject spawnLocation;
-    private Collider coll;
     private bool isActive;
 
-    private void Start()
-    {
-        coll = GetComponent<Collider>();
-        
-    }
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,4 +21,6 @@ public class Checkpoint : MonoBehaviour
             //coll.enabled = false; // just turn off collider so it wont check on trigger all the time. 
         }
     }
+
+   
 }
