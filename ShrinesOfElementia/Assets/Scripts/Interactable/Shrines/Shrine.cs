@@ -50,6 +50,7 @@ public class Shrine : Interactable
                 break;
 
         }
+        EventManager.Instance.RegisterListener<StaggerEvent>(OnStagger);
     }
 
 
@@ -100,7 +101,11 @@ public class Shrine : Interactable
         beacon.SetActive(false);
     }
 
-
+    private void OnStagger(StaggerEvent eve)
+    {
+        Destroy(channelTimer);
+        Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles();
+    }
 
     protected override void Disable()
     {
