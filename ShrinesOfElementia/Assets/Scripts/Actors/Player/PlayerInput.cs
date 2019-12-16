@@ -105,7 +105,7 @@ public class PlayerInput : MonoBehaviour
         {
             //print("Can't block");
         }
-
+        /*
         if (Input.GetKeyDown(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
             && staminaManager.CurrentStamina > 0) 
         {
@@ -122,6 +122,7 @@ public class PlayerInput : MonoBehaviour
         {
             player.Animator.SetTrigger("ToNeutral");
         }
+        */
 
         if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking 
             && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
