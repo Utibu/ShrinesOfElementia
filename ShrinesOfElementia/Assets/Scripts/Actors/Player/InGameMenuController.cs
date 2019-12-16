@@ -12,9 +12,16 @@ public class InGameMenuController : MonoBehaviour
 
     private void Update()
     {
+        print(GameManager.Instance.CanOpenInterface);
         if (Input.GetKeyDown(InputManager.Instance.keyCode["Pause"].keyCode))
         {
-            ShowInGameMenu();
+            if (menuPanel.activeSelf == false && GameManager.Instance.CanOpenInterface)
+            {
+                ShowInGameMenu();
+                print("opening");
+            }
+            else if(menuPanel.activeSelf == true)
+                HideInGameMenu();
         }
     }
 
@@ -24,6 +31,12 @@ public class InGameMenuController : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         menuPanel.SetActive(true);
+    }
+    private void HideInGameMenu()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+        menuPanel.SetActive(false);
     }
 
     public void OnSaveAndExit()
@@ -50,6 +63,5 @@ public class InGameMenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuPanel.SetActive(false);
     }
-
 
 }

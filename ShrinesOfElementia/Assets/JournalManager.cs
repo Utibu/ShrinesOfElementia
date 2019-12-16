@@ -50,8 +50,9 @@ public class JournalManager : MonoBehaviour
         if(Input.GetKeyDown(InputManager.Instance.keyCode["Journal"].keyCode) && IsJournalOpen == false)
         {
             OpenJournal();
-        } else if((Input.GetKeyDown(InputManager.Instance.keyCode["Journal"].keyCode) && IsJournalOpen == true) || Input.GetKeyDown(InputManager.Instance.keyCode["Pause"].keyCode))
+        } else if((Input.GetKeyDown(InputManager.Instance.keyCode["Journal"].keyCode) && IsJournalOpen == true) || Input.GetKeyDown(InputManager.Instance.keyCode["Pause"].keyCode) && IsJournalOpen == true)
         {
+            GameManager.Instance.InterfaceClose();
             CloseJournal();
         }
     }

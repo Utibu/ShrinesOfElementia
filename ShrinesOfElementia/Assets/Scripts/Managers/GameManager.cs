@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public bool WindUnlocked { get; set; }
     public bool EarthUnlocked { get; set; }
     public Vector3 NearestCheckpoint { get; set; }
+    public bool CanOpenInterface { get; set; }
 
     public static GameManager Instance { get; private set; }
     public bool SaveDataExists { get => saveDataExists; private set => saveDataExists = value; }
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
         //secure gamobject
         DontDestroyOnLoad(gameObject);
 
+        CanOpenInterface = true;
         //gameObject.AddComponent<AchievementManager>();
         //Achievements = GetComponent<AchievementManager>();
 
@@ -358,6 +360,15 @@ public class GameManager : MonoBehaviour
         EarthUnlocked = false;
     }
 
+    public void InterfaceClose()
+    {
+        CanOpenInterface = false;
+        TimerManager.Instance.SetNewTimer(gameObject, 0.1f, InterfaceOpenable);
+    }
 
+    private void InterfaceOpenable()
+    {
+        CanOpenInterface = true;
+    }
 
 }
