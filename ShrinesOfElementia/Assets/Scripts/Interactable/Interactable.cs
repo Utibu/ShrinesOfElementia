@@ -45,6 +45,10 @@ public class Interactable : MonoBehaviour
 
     protected virtual void OnInteract()
     {
+        if (gameObject.CompareTag("OldManJoe"))
+        {
+
+        }
         print("interacted");
         EventManager.Instance.FireEvent(new ExperienceEvent(experience + " gained", experience));
     }
