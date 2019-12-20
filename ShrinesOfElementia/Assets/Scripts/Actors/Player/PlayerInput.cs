@@ -41,6 +41,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
+        #region Health changer
         /* Dirty cheats
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -54,6 +55,7 @@ public class PlayerInput : MonoBehaviour
             player.Health.CurrentHealth += 30;
         }
         */
+        #endregion
 
         // Fireball
         if (Input.GetKeyDown(InputManager.Instance.keyCode["Fire"].keyCode) && !IsBlocking)
@@ -89,8 +91,7 @@ public class PlayerInput : MonoBehaviour
             abilityManager.ToggleAim();
         }
 
-        // Temporary water walking. Layer 9 is the player, and layer 4 is water
-
+        #region Waterwalking tester
         /* Dirty cheats
         //Enable water walking
         if (Input.GetKeyDown(KeyCode.P))
@@ -104,7 +105,9 @@ public class PlayerInput : MonoBehaviour
             Physics.IgnoreLayerCollision(9, 4, true);
         }
         */
+        #endregion
 
+        #region Old sprint code
         /*
         if (Input.GetKeyDown(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
             && staminaManager.CurrentStamina > 0) 
@@ -123,6 +126,7 @@ public class PlayerInput : MonoBehaviour
             player.Animator.SetTrigger("ToNeutral");
         }
         */
+        #endregion
 
         if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking 
             && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
@@ -140,8 +144,8 @@ public class PlayerInput : MonoBehaviour
         }
        */
 
-
-        /* Dirty cheats
+        #region Player respawner
+        /*
         if (Input.GetKeyDown(KeyCode.R))
         {
             if(movementInput.RespawnLocation != null)
@@ -150,6 +154,7 @@ public class PlayerInput : MonoBehaviour
             }
         }
         */
+        #endregion
 
         // Left click / Primary button
         if (Input.GetMouseButtonDown(0) && attackIndex < lightAttacks.Length && !isBlocking && canAttack && !movementInput.IsStaggered)
@@ -213,7 +218,7 @@ public class PlayerInput : MonoBehaviour
             player.Animator.SetBool("CanBlock", true);
         }
 
-        
+        #region Ability cheats
         /* CHEATS
          * if (Input.GetKeyDown(KeyCode.Alpha7))
         {
@@ -248,7 +253,7 @@ public class PlayerInput : MonoBehaviour
             Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
         }
         */
-        
+        #endregion
     }
 
     private void CancelAttack()
