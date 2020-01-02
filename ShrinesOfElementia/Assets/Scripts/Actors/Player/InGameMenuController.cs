@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class InGameMenuController : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class InGameMenuController : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         menuPanel.SetActive(true);
+       
     }
     private void HideInGameMenu()
     {
@@ -40,6 +42,7 @@ public class InGameMenuController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         menuPanel.SetActive(false);
+        
     }
 
     public void OnSaveAndExit()
