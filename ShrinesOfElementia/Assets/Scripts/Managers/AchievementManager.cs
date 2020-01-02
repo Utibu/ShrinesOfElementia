@@ -113,6 +113,8 @@ public class AchievementManager : MonoBehaviour
             if (collectedElements.Count >= 4)
             {
                 Elementalist = true;
+                EventManager.Instance.FireEvent(new AchievementEvent("", "Elementalist"));
+                print("fire achievement event");
             }
         }
     }
@@ -128,6 +130,7 @@ public class AchievementManager : MonoBehaviour
         if (currentKills >= requiredKills)
         {
             KillcountHundred = true;
+            EventManager.Instance.FireEvent(new AchievementEvent("", "ElementalsHateHer"));
         }
     }
 
@@ -137,9 +140,11 @@ public class AchievementManager : MonoBehaviour
         if (!SlayedGiants.ContainsValue(false))
         {
             GiantBane = true;
+            EventManager.Instance.FireEvent(new AchievementEvent("", "Giantslayer"));
         }
 
         //if boss killed and speedrunnertimer = active, congratulations
         SpeedRunner = true;
+        EventManager.Instance.FireEvent(new AchievementEvent("", "Speedrunner"));
     }
 }

@@ -219,8 +219,7 @@ public class PlayerInput : MonoBehaviour
         }
 
         #region Ability cheats
-        /* CHEATS
-         * if (Input.GetKeyDown(KeyCode.Alpha7))
+        if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             EventManager.Instance.FireEvent(new ShrineEvent("Fire activated", "Fire"));
         }
@@ -252,7 +251,7 @@ public class PlayerInput : MonoBehaviour
         {
             Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
         }
-        */
+        
         #endregion
     }
 

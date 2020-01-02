@@ -9,6 +9,21 @@ public class BossDeathEvent : EnemyDeathEvent
     public BossDeathEvent(string elementType, GameObject enemy, GameObject spawnarea, bool elite) :  base(enemy, spawnarea, elite)
     {
         ElementType = elementType;
+        switch (elementType)
+        {
+            case "Fire":
+                EventManager.Instance.FireEvent(new AchievementEvent("", "ItsGettingHotInHere"));
+                break;
+            case "Water":
+                EventManager.Instance.FireEvent(new AchievementEvent("", "SurfsUp"));
+                break;
+            case "Wind":
+                EventManager.Instance.FireEvent(new AchievementEvent("", "RockYouLikeAHurricane"));
+                break;
+            case "Earth":
+                EventManager.Instance.FireEvent(new AchievementEvent("", "ILoveRockyRoad"));
+                break;
+        }
     }
     
 }

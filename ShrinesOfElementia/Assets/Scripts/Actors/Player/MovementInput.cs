@@ -312,6 +312,7 @@ public class MovementInput : MonoBehaviour
     {
         print("Flight expert unlocked");
         AchievementManager.Instance.FlightExpert = true;
+        EventManager.Instance.FireEvent(new AchievementEvent("", "FlightExpert"));
     }
 
     public void StartCasting()
