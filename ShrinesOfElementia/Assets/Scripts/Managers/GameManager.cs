@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
     public bool EarthUnlocked { get; set; }
     public Vector3 NearestCheckpoint { get; set; }
     public bool CanOpenInterface { get; set; }
-
     public static GameManager Instance { get; private set; }
     public bool SaveDataExists { get => saveDataExists; private set => saveDataExists = value; }
 

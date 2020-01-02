@@ -27,12 +27,16 @@ public class InGameMenuController : MonoBehaviour
 
     public void ShowInGameMenu()
     {
+        CameraReference.Instance.gameObject.GetComponent<CameraManager>().enabled = false;
+        CameraReference.Instance.gameObject.GetComponent<FreeLookAxisDriver>().enabled = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         menuPanel.SetActive(true);
     }
     private void HideInGameMenu()
     {
+        CameraReference.Instance.gameObject.GetComponent<CameraManager>().enabled = true;
+        CameraReference.Instance.gameObject.GetComponent<FreeLookAxisDriver>().enabled = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         menuPanel.SetActive(false);
