@@ -58,9 +58,7 @@ public class InGameMenuController : MonoBehaviour
 
     public void OnResumeGame()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        menuPanel.SetActive(false);
+        HideInGameMenu();
     }
 
 }
