@@ -23,7 +23,7 @@ public class VinesDamage : MonoBehaviour
     {
         if(gameObject.transform.localScale.x < fullSizeX)
         {
-            gameObject.transform.localScale += new Vector3(0.3f, 0.9f, 0.3f) * Time.deltaTime;
+            gameObject.transform.localScale += new Vector3(0.3f, 0.3f, 0.3f) * Time.deltaTime;
         }
     }
 
