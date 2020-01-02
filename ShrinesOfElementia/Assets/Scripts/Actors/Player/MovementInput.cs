@@ -99,7 +99,7 @@ public class MovementInput : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
 
-        //Cursor.lockState = CursorLockMode.Locked;
+        
 
         Physics.IgnoreLayerCollision(9, 4, true);
 
@@ -115,9 +115,9 @@ public class MovementInput : MonoBehaviour
         playerInput = player.GetComponent<PlayerInput>();
         staggerDuration = staggerAnimation.length;
         EventManager.Instance.RegisterListener<RespawnEvent>(OnPlayerRespawn);
-
-        //cameraCamCamTheGlam = CameraReference.Instance;
         IsStaggered = false;
+
+        
     }
 
     private void Update()
@@ -408,6 +408,7 @@ public class MovementInput : MonoBehaviour
             velocityOnImpact *= damageMultiplier;
             player.Health.CurrentHealth -= Mathf.Abs((int)velocityOnImpact);
             airTime = 0;
+            SlowDown();
         }
 
         else

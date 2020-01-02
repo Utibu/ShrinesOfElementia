@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         MovementInput = GetComponent<MovementInput>();
         PlayerInput = GetComponent<PlayerInput>();
 
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         //base.Awake();

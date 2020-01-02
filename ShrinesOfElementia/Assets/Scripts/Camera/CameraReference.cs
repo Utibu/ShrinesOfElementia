@@ -12,5 +12,6 @@ public class CameraReference : MonoBehaviour
         // Prevents multiple instances
         if (Instance == null) { Instance = this; }
         else { Debug.Log("Warning: multiple " + this + " in scene!"); }
+        
     }
 }
