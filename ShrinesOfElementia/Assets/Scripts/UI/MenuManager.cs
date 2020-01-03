@@ -29,6 +29,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject earthGiantIcon;
     [SerializeField] private GameObject giantBaneIcon;
 
+    [SerializeField] private SingleSoundManager clickSoundManager;
+
     public static MenuManager Instance { get; private set; }
 
     private void Awake()
@@ -69,8 +71,14 @@ public class MenuManager : MonoBehaviour
         GameManager.Instance.LoadNewGame();
     }
 
+    public void PlaySound()
+    {
+        clickSoundManager.PlaySoundIfAvailable();
+    }
+
     public void OnExtras()
     {
+        PlaySound();
         extrasMenu.SetActive(true);
         startMenu.SetActive(false);
         optionsMenu.SetActive(false);
@@ -78,6 +86,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnOptions()
     {
+        PlaySound();
         extrasMenu.SetActive(false);
         startMenu.SetActive(false);
         optionsMenu.SetActive(true);
@@ -89,6 +98,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnVideoOptions()
     {
+        PlaySound();
         videoOptions.SetActive(true);
         soundOptions.SetActive(false);
         controlOptions.SetActive(false);
@@ -96,6 +106,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnSoundOptions()
     {
+        PlaySound();
         videoOptions.SetActive(false);
         soundOptions.SetActive(true);
         controlOptions.SetActive(false);
@@ -103,6 +114,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnControlOptions()
     {
+        PlaySound();
         videoOptions.SetActive(false);
         soundOptions.SetActive(false);
         controlOptions.SetActive(true);
@@ -110,22 +122,26 @@ public class MenuManager : MonoBehaviour
 
     public void OnQuit()
     {
+        PlaySound();
         Application.Quit();
     }
 
     public void OnMainMenu()
     {
+        PlaySound();
         SceneManager.LoadScene(0);
     }
 
     public void OnNextChapter()
     {
+        PlaySound();
         GameManager.Instance.LoadNextLevel();
 
     }
 
     public void OnBack()
     {
+        PlaySound();
         extrasMenu.SetActive(false);
         startMenu.SetActive(true);
         optionsMenu.SetActive(false);
@@ -135,12 +151,14 @@ public class MenuManager : MonoBehaviour
 
     public void OnCredits()
     {
+        PlaySound();
         creditsPanel.SetActive(true);
         achievementsPanel.SetActive(false);
     }
 
     public void OnAchievements()
     {
+        PlaySound();
         Debug.Log("ON ACHIEVEMENTS");
         achievementsPanel.SetActive(true);
 
