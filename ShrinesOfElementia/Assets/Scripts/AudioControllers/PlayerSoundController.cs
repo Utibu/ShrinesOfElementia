@@ -11,6 +11,8 @@ public class PlayerSoundController : MonoBehaviour
     [SerializeField] private AudioSource footAudioSource;
     [SerializeField] private AudioSource hitAudioSource;
     [SerializeField] private AudioSource channelingAudioSource;
+    [SerializeField] private AudioSource healthOrbsAudioSource;
+    [SerializeField] private AudioSource jingleAudioSource;
 
     [SerializeField] private AudioClip slashClip;
     [SerializeField] private AudioClip swordHitClip;
@@ -22,6 +24,8 @@ public class PlayerSoundController : MonoBehaviour
     [SerializeField] private AudioClip shrineTakenClip;
     [SerializeField] private AudioClip shrineChannelingClip;
     [SerializeField] private AudioClip blockClip;
+    [SerializeField] private AudioClip jingleClip;
+    [SerializeField] private AudioClip healthOrbClip;
     [SerializeField] private AudioClip[] hurtClip; 
 
     private float footstepTimer = 0f;
@@ -33,11 +37,23 @@ public class PlayerSoundController : MonoBehaviour
     public void Start()
     {
         EventManager.Instance.RegisterListener<DamageEvent>(PlayHitClip);
+        EventManager.Instance.RegisterListener<LevelUpEvent>(PlayLevelUpJingle);
     }
     public void PlaySlashClip()
     {
         playerAudioSource.PlayOneShot(slashClip);
     }
+
+    public void PlayLevelUpJingle(LevelUpEvent ev)
+    {
+        jingleAudioSource.PlayOneShot(jingleClip);
+    }
+
+    public void PlayOrbClip()
+    {
+        healthOrbsAudioSource.PlayOneShot(healthOrbClip);
+    }
+
 
     public void PlayHitClip(DamageEvent ev)
     {

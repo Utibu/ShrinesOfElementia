@@ -35,6 +35,7 @@ public class HealthOrb : DroppableObject
         if (other.gameObject.CompareTag("Player"))
         {
             Player.Instance.Health.CurrentHealth += healthAmount;
+            Player.Instance.GetComponent<PlayerSoundController>().PlayOrbClip();
             Destroy(droppedObject);
         }
     }
