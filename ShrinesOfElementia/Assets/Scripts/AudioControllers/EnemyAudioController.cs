@@ -17,7 +17,10 @@ public class EnemyAudioController : MonoBehaviour
 
     public void PlaySpinClip()
     {
-        this.GetComponent<AudioSource>().PlayOneShot(spinClip);
+        if (spinClip != null && audioSource != null) 
+        {
+            this.GetComponent<AudioSource>().PlayOneShot(spinClip);
+        }
     }
 
     public void PlayDieClip()

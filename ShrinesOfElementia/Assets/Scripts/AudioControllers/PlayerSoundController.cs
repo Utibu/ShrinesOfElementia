@@ -58,6 +58,7 @@ public class PlayerSoundController : MonoBehaviour
             {
                 if(ev.InflictedFromWater && waterHitClip != null)
                 {
+                    Debug.LogWarning("WAterhitclip?");
                     playerAudioSource.PlayOneShot(waterHitClip);
                 }
                 else if (ev.IsAbility)
