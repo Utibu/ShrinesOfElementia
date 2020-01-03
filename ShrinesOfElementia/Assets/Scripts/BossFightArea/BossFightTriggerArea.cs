@@ -7,6 +7,7 @@ public class BossFightTriggerArea : MonoBehaviour
 {
 
     [SerializeField] private GameObject bossHealthBar;
+    [SerializeField] private GameObject boss;
 
     /*  gav null references jag inte pallar felsöka. 
     private void OnTriggerEnter(Collider other)
@@ -25,7 +26,8 @@ public class BossFightTriggerArea : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             bossHealthBar.SetActive(true);
-            Giant.Instance.StartBattle();
+            boss.GetComponent<Giant>().StartBattle();
+            //Giant.Instance.StartBattle();
             
         }
     }
