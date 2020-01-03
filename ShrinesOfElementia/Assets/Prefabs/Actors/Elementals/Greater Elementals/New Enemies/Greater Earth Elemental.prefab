@@ -356,7 +356,6 @@ MonoBehaviour:
   spinClip: {fileID: 8300000, guid: b313cdac7084ed242a912172df471250, type: 3}
   dieClip: {fileID: 8300000, guid: 90e751ee86808794b8f02b5a157c0e0c, type: 3}
   castClip: {fileID: 0}
-  meleeWindupClip: {fileID: 8300000, guid: 70dc274b23447a64fb914c59af48e458, type: 3}
 --- !u!114 &4343489666953683772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,16 +832,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4066281170317373075}
     m_Modifications:
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4086458299678198103, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -963,17 +952,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.47229713
       objectReference: {fileID: 0}
-    - target: {fileID: 4848705264210523711, guid: 184444fcd2106c24697b408e5174cd0c,
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
-      propertyPath: m_Layer
-      value: 8
+      propertyPath: m_Name
+      value: EnemyCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1220187668063691765, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 148211077782718411, guid: 184444fcd2106c24697b408e5174cd0c,
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_Layer
       value: 8
@@ -987,16 +971,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5571489614852029018, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5214969163171619938, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4662297150879508740, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
@@ -1012,6 +986,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848705264210523711, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214969163171619938, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220187668063691765, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 148211077782718411, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571489614852029018, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1483070178001281548, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
@@ -1044,11 +1043,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5932777673204327275}
     m_Modifications:
-    - target: {fileID: 6706850775248175820, guid: 8b64feb849aba5647b06d2519c3146ad,
-        type: 3}
-      propertyPath: m_Name
-      value: AttackCollider
-      objectReference: {fileID: 0}
     - target: {fileID: 528870615650135336, guid: 8b64feb849aba5647b06d2519c3146ad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1104,6 +1098,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6706850775248175820, guid: 8b64feb849aba5647b06d2519c3146ad,
+        type: 3}
+      propertyPath: m_Name
+      value: AttackCollider
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b64feb849aba5647b06d2519c3146ad, type: 3}
 --- !u!4 &7759907454391434704 stripped
@@ -1119,11 +1118,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4066281170317373075}
     m_Modifications:
-    - target: {fileID: 8998728463209156658, guid: 0a4e86c55b95f4a44a1f488cbbf112a5,
-        type: 3}
-      propertyPath: m_Name
-      value: Greater Earth Particles
-      objectReference: {fileID: 0}
     - target: {fileID: 3422225416878254913, guid: 0a4e86c55b95f4a44a1f488cbbf112a5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1178,6 +1172,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998728463209156658, guid: 0a4e86c55b95f4a44a1f488cbbf112a5,
+        type: 3}
+      propertyPath: m_Name
+      value: Greater Earth Particles
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a4e86c55b95f4a44a1f488cbbf112a5, type: 3}

@@ -11,7 +11,6 @@ public class PlayerSoundController : MonoBehaviour
     [SerializeField] private AudioSource footAudioSource;
     [SerializeField] private AudioSource hitAudioSource;
     [SerializeField] private AudioSource channelingAudioSource;
-    [SerializeField] private AudioSource jingleSound;
 
     [SerializeField] private AudioClip slashClip;
     [SerializeField] private AudioClip swordHitClip;
@@ -23,7 +22,6 @@ public class PlayerSoundController : MonoBehaviour
     [SerializeField] private AudioClip shrineTakenClip;
     [SerializeField] private AudioClip shrineChannelingClip;
     [SerializeField] private AudioClip blockClip;
-    [SerializeField] private AudioClip levelUpClip;
     [SerializeField] private AudioClip[] hurtClip; 
 
     private float footstepTimer = 0f;
@@ -35,16 +33,10 @@ public class PlayerSoundController : MonoBehaviour
     public void Start()
     {
         EventManager.Instance.RegisterListener<DamageEvent>(PlayHitClip);
-        EventManager.Instance.RegisterListener<LevelUpEvent>(PlayLevelUpClip);
     }
     public void PlaySlashClip()
     {
         playerAudioSource.PlayOneShot(slashClip);
-    }
-
-    public void PlayLevelUpClip(LevelUpEvent ev)
-    {
-        jingleSound.PlayOneShot(levelUpClip);
     }
 
     public void PlayHitClip(DamageEvent ev)
@@ -66,6 +58,7 @@ public class PlayerSoundController : MonoBehaviour
             {
                 if(ev.InflictedFromWater && waterHitClip != null)
                 {
+                    Debug.LogWarning("WAterhitclip?");
                     playerAudioSource.PlayOneShot(waterHitClip);
                 }
                 else if (ev.IsAbility)
