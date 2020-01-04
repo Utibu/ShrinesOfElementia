@@ -355,6 +355,7 @@ MonoBehaviour:
   spinClip: {fileID: 8300000, guid: b313cdac7084ed242a912172df471250, type: 3}
   dieClip: {fileID: 8300000, guid: 90e751ee86808794b8f02b5a157c0e0c, type: 3}
   castClip: {fileID: 0}
+  meleeWindupClip: {fileID: 8300000, guid: bd12478d7a3019045906295f180f6e13, type: 3}
 --- !u!114 &4343489666953683772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,6 +988,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4066281170317373075}
     m_Modifications:
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4086458299678198103, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1106,16 +1117,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.47229713
-      objectReference: {fileID: 0}
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
