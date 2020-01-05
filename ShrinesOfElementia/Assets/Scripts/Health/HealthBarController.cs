@@ -9,9 +9,9 @@ using UnityEngine.UI;
 public class HealthBarController : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField] private Slider healthSlider;
-    [SerializeField] private Image healthImage;
-    [SerializeField] private Text healthText;
+    [SerializeField] protected Slider healthSlider;
+    [SerializeField] protected Image healthImage;
+    [SerializeField] protected Text healthText;
     protected int currentHealth, maxHealth;
 
 
@@ -40,15 +40,8 @@ public class HealthBarController : MonoBehaviour
     private void Awake()
     {
         // Initiates the health values
-        if(healthSlider != null)
-        {
-            healthSlider.maxValue = maxHealth;
-        }
-        else if(healthImage != null)
-        {
-            healthImage.fillAmount = 1f;
-        }
-        UpdateHealthBar();
+        InitiateHealthValues();
+        
     }
 
     private void UpdateHealthBar()
@@ -65,5 +58,18 @@ public class HealthBarController : MonoBehaviour
         {
             healthImage.fillAmount = CurrentHealth / (float)MaxHealth;
         }
+    }
+
+    protected void InitiateHealthValues()
+    {
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = maxHealth;
+        }
+        else if (healthImage != null)
+        {
+            healthImage.fillAmount = 1f;
+        }
+        UpdateHealthBar();
     }
 }

@@ -25,11 +25,17 @@ public class BossFightTriggerArea : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            bossHealthBar.SetActive(true);
+            //bossHealthBar.SetActive(true);
+            BossHealthBarController.Instance.GetComponent<BossHealthBarController>().OnBossFightTrigger();
             boss.GetComponent<Giant>().StartBattle();
             //Giant.Instance.StartBattle();
             
         }
+    }
+
+    public void OnBossDeath()
+    {
+        bossHealthBar.SetActive(false);
     }
 
 
