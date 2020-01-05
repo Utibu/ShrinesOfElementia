@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
     public bool WaterUnlocked { get; set; }
     public bool WindUnlocked { get; set; }
     public bool EarthUnlocked { get; set; }
+    public bool FireBossKilled { get; set; }
+    public bool EarthBossKilled { get; set; }
+    public bool WaterBossKilled { get; set; }
+    public bool WindBossKilled { get; set; }
     public Vector3 NearestCheckpoint { get; set; }
     public bool CanOpenInterface { get; set; }
     public static GameManager Instance { get; private set; }
@@ -277,15 +281,16 @@ public class GameManager : MonoBehaviour
         bool fireKilled;
         Achievements.SlayedGiants.TryGetValue("Fire", out fireKilled);
         data.SlayedFireGiant = fireKilled;
+        bool earthKilled;
+        Achievements.SlayedGiants.TryGetValue("Earth", out earthKilled);
+        data.SlayedEarthGiant = earthKilled;
         bool waterKilled;
-        Achievements.SlayedGiants.TryGetValue("Fire", out waterKilled);
+        Achievements.SlayedGiants.TryGetValue("Water", out waterKilled);
         data.SlayedWaterGiant = waterKilled;
         bool windKilled;
-        Achievements.SlayedGiants.TryGetValue("Fire", out windKilled);
+        Achievements.SlayedGiants.TryGetValue("Wind", out windKilled);
         data.SlayedWindGiant = windKilled;
-        bool earthKilled;
-        Achievements.SlayedGiants.TryGetValue("Fire", out earthKilled);
-        data.SlayedEarthGiant = earthKilled;
+        
         data.GiantBane = Achievements.GiantBane;
         
         saveDataExists = true;
