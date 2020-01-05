@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     private bool nextChapterLoading = false;
 
     //variables
-    public int Level { get; set; }
+    public int Level { get; set; } // now practically means nr of bosses killed.
     public int PlayerLevel { get; set; }
     public int PlayerXP { get; set; }
     public int PlayerHP { get; set; }
@@ -207,7 +207,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Boss died, level int has been increased");
         //go to menu? play cutscene? show UI with "next Chapter"? 
         Save();
-        SceneManager.LoadScene(3);
+        //SceneManager.LoadScene(3);
     }
 
     private void RespawnPlayer()

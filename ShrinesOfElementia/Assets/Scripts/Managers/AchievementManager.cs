@@ -141,10 +141,12 @@ public class AchievementManager : MonoBehaviour
         {
             GiantBane = true;
             EventManager.Instance.FireEvent(new AchievementEvent("", "Giantslayer"));
+
+            //if all bosses killed and speedrunnertimer = active, congratulations
+            SpeedRunner = true;
+            EventManager.Instance.FireEvent(new AchievementEvent("", "Speedrunner"));
         }
 
-        //if boss killed and speedrunnertimer = active, congratulations
-        SpeedRunner = true;
-        EventManager.Instance.FireEvent(new AchievementEvent("", "Speedrunner"));
+        
     }
 }
