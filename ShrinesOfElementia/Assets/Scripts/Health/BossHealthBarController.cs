@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BossHealthBarController : HealthBarController
 {
-    public static  HealthBarController Instance { get; private set; }
+    public static  BossHealthBarController Instance { get; private set; }
     public GameObject bossHealthBar;
 
     private void Awake()
@@ -25,6 +25,11 @@ public class BossHealthBarController : HealthBarController
     }
 
     private void OnBossDeath(BossDeathEvent ev)
+    {
+        DeactivateBossHealthBar();
+    }
+
+    public void DeactivateBossHealthBar()
     {
         bossHealthBar.SetActive(false);
     }

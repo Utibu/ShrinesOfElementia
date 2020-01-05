@@ -13,6 +13,7 @@ public class Giant : StateMachine
     public NavMeshAgent Agent { get; set; }
     public HealthComponent HealthComponent { get; set; }
     public GiantAbilityManager GiantAbilityManagerRef { get; set; }
+    public GameObject PatrolPoint;
     //public GiantAuraManager GiantAuraManager { get; set; }
 
 
@@ -202,6 +203,9 @@ public class Giant : StateMachine
     public void OnPlayerDeath(PlayerDeathEvent ev)
     {
         Transition<GiantIdleState>();
+        gameObject.transform.position = PatrolPoint.transform.position;
+        gameObject.GetComponent<HealthComponent>().CurrentHealth = gameObject.GetComponent<HealthComponent>().MaxHealth;
+        BossHealthBarController.Instance.DeactivateBossHealthBar();
     }
 
     public void Die()

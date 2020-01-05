@@ -20,7 +20,8 @@ public class CheckpointManager : MonoBehaviour
     private void Start()
     {
         spawnPoints = new List<Vector3>();
-        spawnPoints.Add(Player.Instance.transform.position);
+        //spawnPoints.Add(Player.Instance.transform.position);
+        spawnPoints.Add(PlayerSpawn.Instance.transform.position);
         EventManager.Instance.RegisterListener<CheckpointEvent>(RegisterSpawn);
         EventManager.Instance.RegisterListener<BossDeathEvent>(ClearCheckpoints);
     }
