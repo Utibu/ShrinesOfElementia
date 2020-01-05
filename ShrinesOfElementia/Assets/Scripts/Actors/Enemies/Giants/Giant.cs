@@ -120,7 +120,8 @@ public class Giant : StateMachine
     protected override void Start()
     {
         //BossEvents.Instance.OnBossFightAreaTriggerEnter += OnBossAreaEnter;
-        print("Subscribed to BossFightAreaTriggerEnter");
+        //print("Subscribed to BossFightAreaTriggerEnter");
+        EventManager.Instance.RegisterListener<PlayerDeathEvent>(OnPlayerDeath);
     }
 
     protected override void Update()
@@ -196,6 +197,11 @@ public class Giant : StateMachine
     public virtual float DistanceToPlayer()
     {
         return Vector3.Distance(gameObject.transform.position, Player.Instance.transform.position);
+    }
+
+    public void OnPlayerDeath(PlayerDeathEvent ev)
+    {
+        Transition<GiantIdleState>();
     }
 
     public void Die()

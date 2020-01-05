@@ -218,8 +218,9 @@ public class GameManager : MonoBehaviour
     {
         
         NearestCheckpoint = CheckpointManager.Instance.FindNearestSpawnPoint();
-        Player.Instance.transform.position = NearestCheckpoint;
+        //Player.Instance.transform.position = NearestCheckpoint;
         Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
+        EventManager.Instance.FireEvent(new RespawnEvent("player respawns to closest checkpoint", NearestCheckpoint));
     }
 
     public void OnPlayerDeath(PlayerDeathEvent ev)
