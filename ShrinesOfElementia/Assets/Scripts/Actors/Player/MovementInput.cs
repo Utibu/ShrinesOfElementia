@@ -24,9 +24,6 @@ public class MovementInput : MonoBehaviour
     // Variables
     private Vector2 movementInput;
     private Vector3 desiredMoveDirection;
-
-    private bool faceCameraDirection;
-    public bool FaceCameraDirection { set { faceCameraDirection = value; } }
     
     private float animationSpeed;
     private float allowPlayerRotation;
@@ -193,18 +190,6 @@ public class MovementInput : MonoBehaviour
             fromGlide = true;
             velocityOnImpact = 0;
         }
-
-        // Maybe move this to a separate script?
-        if (animator.GetBool("InCombat"))
-        {
-            faceCameraDirection = true;
-        }
-        else if (animator.GetBool("InCombat") == false)
-        {
-            faceCameraDirection = false;
-        }
-        
-
         ApplyGravity();
 
         InputMagnitude();
@@ -300,8 +285,8 @@ public class MovementInput : MonoBehaviour
         animationSpeed = new Vector2(movementInput.x, movementInput.y).sqrMagnitude;
 
         animator.SetFloat("InputMagnitude", animationSpeed, animationDamping, Time.deltaTime);
-        
-        if(animationSpeed > allowPlayerRotation || animator.GetBool("InCombat"))
+
+        if (animationSpeed > allowPlayerRotation || animator.GetBool("InCombat") || animator.GetBool("IsBlocking"))
         {
             PlayerRotation();
         }
