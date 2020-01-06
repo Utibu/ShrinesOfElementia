@@ -48,6 +48,10 @@ public class CheckpointManager : MonoBehaviour
 
     public Vector3 FindNearestSpawnPoint()
     {
+        
+        //if no checkpoints taken, return the playerspawn position
+        closestSpawn = PlayerSpawn.Instance.transform.position;
+        
         foreach (Vector3 spawn in spawnPoints)
         {
             if (closestSpawn == null)
@@ -59,6 +63,8 @@ public class CheckpointManager : MonoBehaviour
                 closestSpawn = spawn;
             }
         }
+
+
         return closestSpawn;
     }
 }
