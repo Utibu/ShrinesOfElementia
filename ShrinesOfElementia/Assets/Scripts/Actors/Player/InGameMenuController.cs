@@ -9,18 +9,19 @@ public class InGameMenuController : MonoBehaviour
 
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject soundPanel;
+    [SerializeField] private GameObject balancingPanel;
 
 
     private void Update()
     {
         if (Input.GetKeyDown(InputManager.Instance.keyCode["Pause"].keyCode))
         {
-            if (menuPanel.activeSelf == false && GameManager.Instance.CanOpenInterface)
+            if (menuPanel.activeSelf == false && soundPanel.activeSelf == false && balancingPanel.activeSelf == false && GameManager.Instance.CanOpenInterface)
             {
                 ShowInGameMenu();
                 print("opening");
             }
-            else if(menuPanel.activeSelf == true)
+            else if(menuPanel.activeSelf == true || soundPanel.activeSelf == true || balancingPanel.activeSelf == true)
                 HideInGameMenu();
         }
     }
@@ -42,7 +43,8 @@ public class InGameMenuController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         menuPanel.SetActive(false);
-        
+        soundPanel.SetActive(false);
+        balancingPanel.SetActive(false);
     }
 
     public void OnSaveAndExit()
@@ -55,12 +57,21 @@ public class InGameMenuController : MonoBehaviour
     {
         menuPanel.SetActive(false);
         soundPanel.SetActive(true);
+        balancingPanel.SetActive(false);
+    }
+
+    public void OnBalancingClick()
+    {
+        menuPanel.SetActive(false);
+        soundPanel.SetActive(false);
+        balancingPanel.SetActive(true);
     }
 
     public void OnBackClick()
     {
         menuPanel.SetActive(true);
         soundPanel.SetActive(false);
+        balancingPanel.SetActive(false);
     }
 
     public void OnResumeGame()
