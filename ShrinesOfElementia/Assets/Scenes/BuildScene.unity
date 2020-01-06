@@ -17625,11 +17625,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 631619642}
     m_Modifications:
-    - target: {fileID: 7671628568522650078, guid: e5a679be8590ce44993ec8fc768a11d7,
-        type: 3}
-      propertyPath: m_Name
-      value: BasicTextCanvas
-      objectReference: {fileID: 0}
     - target: {fileID: 7671628568522650073, guid: e5a679be8590ce44993ec8fc768a11d7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17734,6 +17729,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671628568522650078, guid: e5a679be8590ce44993ec8fc768a11d7,
+        type: 3}
+      propertyPath: m_Name
+      value: BasicTextCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 7671628567156635794, guid: e5a679be8590ce44993ec8fc768a11d7,
         type: 3}
@@ -60270,11 +60270,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 769211382}
     m_Modifications:
-    - target: {fileID: 7671628568522650078, guid: e5a679be8590ce44993ec8fc768a11d7,
-        type: 3}
-      propertyPath: m_Name
-      value: BasicTextCanvas
-      objectReference: {fileID: 0}
     - target: {fileID: 7671628568522650073, guid: e5a679be8590ce44993ec8fc768a11d7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -60379,6 +60374,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671628568522650078, guid: e5a679be8590ce44993ec8fc768a11d7,
+        type: 3}
+      propertyPath: m_Name
+      value: BasicTextCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 7671628567307904217, guid: e5a679be8590ce44993ec8fc768a11d7,
         type: 3}
@@ -65604,6 +65604,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1338448506}
   - component: {fileID: 1338448505}
+  - component: {fileID: 1338448507}
   m_Layer: 0
   m_Name: Water (1)ReflectionSceneCamera
   m_TagString: Untagged
@@ -65661,13 +65662,22 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338448504}
-  m_LocalRotation: {x: -0.085475184, y: 0.15168639, z: 0.02754016, w: 0.9843408}
-  m_LocalPosition: {x: 119.77707, y: 11.079845, z: 215.21185}
+  m_LocalRotation: {x: -0.087158404, y: 0, z: 0, w: 0.9961945}
+  m_LocalPosition: {x: 132.03116, y: 10.6, z: 205.93803}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!45 &1338448507
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338448504}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!1001 &1338543245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78354,6 +78364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1665597566}
   - component: {fileID: 1665597565}
+  - component: {fileID: 1665597567}
   m_Layer: 0
   m_Name: WaterReflectionSceneCamera
   m_TagString: Untagged
@@ -78411,13 +78422,22 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665597564}
-  m_LocalRotation: {x: -0.085475184, y: 0.15168639, z: 0.02754016, w: 0.9843408}
-  m_LocalPosition: {x: 119.77707, y: -19.520155, z: 215.21185}
+  m_LocalRotation: {x: -0.087158404, y: 0, z: 0, w: 0.9961945}
+  m_LocalPosition: {x: 132.03116, y: -20, z: 205.93803}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!45 &1665597567
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665597564}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!33 &1665911176
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -79134,6 +79154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1678350946}
   - component: {fileID: 1678350945}
+  - component: {fileID: 1678350947}
   m_Layer: 0
   m_Name: Water (2)ReflectionSceneCamera
   m_TagString: Untagged
@@ -79191,13 +79212,22 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678350944}
-  m_LocalRotation: {x: -0.085475184, y: 0.15168639, z: 0.02754016, w: 0.9843408}
-  m_LocalPosition: {x: 119.77707, y: 9.261642, z: 215.21185}
+  m_LocalRotation: {x: -0.087158404, y: 0, z: 0, w: 0.9961945}
+  m_LocalPosition: {x: 132.03116, y: 8.781797, z: 205.93803}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!45 &1678350947
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678350944}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!1001 &1679479093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81700,12 +81730,12 @@ PrefabInstance:
     - target: {fileID: 5860557101802413802, guid: c98c8f72109670944b00593c034047e5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.03383124
+      value: 0.033831216
       objectReference: {fileID: 0}
     - target: {fileID: 5860557101802413802, guid: c98c8f72109670944b00593c034047e5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.008757085
+      value: -0.008757062
       objectReference: {fileID: 0}
     - target: {fileID: 5860557101802413802, guid: c98c8f72109670944b00593c034047e5,
         type: 3}
@@ -81755,22 +81785,22 @@ PrefabInstance:
     - target: {fileID: 5860557102441031541, guid: c98c8f72109670944b00593c034047e5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.034364767
+      value: 0.034364756
       objectReference: {fileID: 0}
     - target: {fileID: 5860557102441031541, guid: c98c8f72109670944b00593c034047e5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00409686
+      value: -0.004096897
       objectReference: {fileID: 0}
     - target: {fileID: 5860557102441031541, guid: c98c8f72109670944b00593c034047e5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.11830826
+      value: -0.11830827
       objectReference: {fileID: 0}
     - target: {fileID: 5860557102441031541, guid: c98c8f72109670944b00593c034047e5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.99237365
+      value: -0.9923737
       objectReference: {fileID: 0}
     - target: {fileID: 2610386946174837223, guid: c98c8f72109670944b00593c034047e5,
         type: 3}
@@ -82196,6 +82226,18 @@ PrefabInstance:
       propertyPath: bossHealthBar
       value: 
       objectReference: {fileID: 1707520643}
+    - target: {fileID: 1707520648, guid: c98c8f72109670944b00593c034047e5, type: 3}
+      propertyPath: antialiasingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707520648, guid: c98c8f72109670944b00593c034047e5, type: 3}
+      propertyPath: fastApproximateAntialiasing.fastMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707520648, guid: c98c8f72109670944b00593c034047e5, type: 3}
+      propertyPath: fastApproximateAntialiasing.keepAlpha
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c98c8f72109670944b00593c034047e5, type: 3}
 --- !u!1 &1707520643 stripped
