@@ -11,7 +11,8 @@ public enum SHRINETYPES
     Fire,
     Water,
     Earth,
-    Wind
+    Wind,
+    Great
 };
 
 public class Shrine : Interactable
@@ -48,34 +49,33 @@ public class Shrine : Interactable
             case SHRINETYPES.Wind:
                 element = "Wind";
                 break;
+            case SHRINETYPES.Great:
+                element = "Great";
+                break;
 
         }
         EventManager.Instance.RegisterListener<StaggerEvent>(OnStagger);
     }
 
-
-
     protected override void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.E))
         {
-            if(channelTimer == null)
+            if (channelTimer == null)
             {
                 Player.Instance.Animator.SetTrigger("OnPray"); // Add some channel animation
                 Player.Instance.Animator.SetBool("InCombat", false); // stops player from rotating to face camera.forward
                 channelTimer = TimerManager.Instance.SetNewTimer(gameObject, channelTime, OnInteract);
             }
+
+            else if (other.gameObject.tag == "Player" && Input.anyKeyDown && channelTimer != null)
+            {
+                Player.Instance.Animator.SetTrigger("ToNeutral");
+                Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles()
+                Destroy(channelTimer);
+                channelTimer = null;
+            }
         }
-
-        else if (other.gameObject.tag == "Player" && Input.anyKeyDown && channelTimer != null)
-        {
-            Player.Instance.Animator.SetTrigger("ToNeutral");
-            Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles();
-
-            Destroy(channelTimer);
-            channelTimer = null;
-        }        
-        
     }
     
     //protected void OnTriggerExit(Collider other)
@@ -86,19 +86,25 @@ public class Shrine : Interactable
     
     protected override void OnInteract()
     {
-        base.OnInteract();
-        Disable();
-        Player.Instance.Animator.SetTrigger("ToNeutral");
-        Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles();
-        ShrineEvent shrineEvent = new ShrineEvent(element + " shrine activated", element);
-        EventManager.Instance.FireEvent(shrineEvent);
-        shrineAnimationController.SetTrigger("IsTaken");
-        Player.Instance.GetComponent<PlayerSoundController>().PlayShrineTakenClip();
-        //Player.Instance.GetComponent<ShrineUnlockComponent>().ShowUnlockableCanvas(firstUnlockableText, secondUnlockableText);
-        Player.Instance.GetComponent<ShrineUnlockComponent>().OpenCanvas(shrineTypes);
-        //shrinePanel.gameObject.SetActive(true);
-        //Player.Instance.GetComponent<MovementInput>().TakeInput = false;
-        beacon.SetActive(false);
+        if (!element.Equals("Great")) {
+            base.OnInteract();
+            Disable();
+            Player.Instance.Animator.SetTrigger("ToNeutral");
+            Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles();
+            ShrineEvent shrineEvent = new ShrineEvent(element + " shrine activated", element);
+            EventManager.Instance.FireEvent(shrineEvent);
+            shrineAnimationController.SetTrigger("IsTaken");
+            Player.Instance.GetComponent<PlayerSoundController>().PlayShrineTakenClip();
+            //Player.Instance.GetComponent<ShrineUnlockComponent>().ShowUnlockableCanvas(firstUnlockableText, secondUnlockableText);
+            Player.Instance.GetComponent<ShrineUnlockComponent>().OpenCanvas(shrineTypes);
+            //shrinePanel.gameObject.SetActive(true);
+            //Player.Instance.GetComponent<MovementInput>().TakeInput = false;
+            beacon.SetActive(false);
+        }
+        else
+        {
+            GameManager.Instance.EndGame();
+        }
     }
 
     private void OnStagger(StaggerEvent eve)

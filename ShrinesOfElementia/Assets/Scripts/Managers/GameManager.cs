@@ -371,6 +371,11 @@ public class GameManager : MonoBehaviour
         EarthUnlocked = false;
     }
 
+    public void EndGame()
+    {
+        SceneManager.LoadScene(3);
+    }
+
     public void InterfaceClose()
     {
         CanOpenInterface = false;
