@@ -26,7 +26,8 @@ public class BossFightTriggerArea : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             //bossHealthBar.SetActive(true);
-            BossHealthBarController.Instance.GetComponent<BossHealthBarController>().OnBossFightTrigger();
+            int maxHP = boss.GetComponent<HealthComponent>().MaxHealth;
+            BossHealthBarController.Instance.GetComponent<BossHealthBarController>().OnBossFightTrigger(maxHP);
             boss.GetComponent<Giant>().StartBattle();
             //Giant.Instance.StartBattle();
             

@@ -40,7 +40,7 @@ public class HealthBarController : MonoBehaviour
     private void Awake()
     {
         // Initiates the health values
-        InitiateHealthValues();
+        InitiateHealthValues(MaxHealth);
         
     }
 
@@ -60,8 +60,10 @@ public class HealthBarController : MonoBehaviour
         }
     }
 
-    protected void InitiateHealthValues()
+    protected void InitiateHealthValues(int maxHp)
     {
+        MaxHealth = maxHp;
+
         if (healthSlider != null)
         {
             healthSlider.maxValue = maxHealth;

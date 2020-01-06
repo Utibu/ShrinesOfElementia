@@ -202,8 +202,8 @@ public class Giant : StateMachine
 
     public void OnPlayerDeath(PlayerDeathEvent ev)
     {
-        Transition<GiantIdleState>();
         gameObject.transform.position = PatrolPoint.transform.position;
+        Transition<GiantIdleState>();
         gameObject.GetComponent<HealthComponent>().CurrentHealth = gameObject.GetComponent<HealthComponent>().MaxHealth;
         BossHealthBarController.Instance.DeactivateBossHealthBar();
     }

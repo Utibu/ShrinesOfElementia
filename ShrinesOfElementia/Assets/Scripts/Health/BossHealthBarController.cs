@@ -18,10 +18,11 @@ public class BossHealthBarController : HealthBarController
         EventManager.Instance.RegisterListener<BossDeathEvent>(OnBossDeath);
     }
 
-    public void OnBossFightTrigger()
+    public void OnBossFightTrigger(int MaxHP)
     {
+        InitiateHealthValues(MaxHP);
         bossHealthBar.SetActive(true);
-        InitiateHealthValues();
+        
     }
 
     private void OnBossDeath(BossDeathEvent ev)
