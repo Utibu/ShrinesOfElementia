@@ -8,6 +8,7 @@ public class GiantCombatState : GiantBaseState
 
     public override void Enter()
     {
+        owner.transform.LookAt(Player.Instance.transform);
         owner.Animator.SetBool("IsAttacking", true);
     }
 
