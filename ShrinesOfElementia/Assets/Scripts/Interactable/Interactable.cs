@@ -9,6 +9,7 @@ public class Interactable : MonoBehaviour
     protected bool isInteractable;
     protected BoxCollider boxCollider;
     [SerializeField] protected int experience;
+    private bool expTaken = false;
     [SerializeField] protected Canvas interactCanvas;
 
 
@@ -22,7 +23,14 @@ public class Interactable : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             interactCanvas.gameObject.SetActive(true);
+
+            //if palyer triggers point of interest canvas, give XP once.
+            if (gameObject.CompareTag("POI"))
+            {
+                OnInteract();
+            }
         }
+        
     }
 
     protected virtual void OnTriggerStay(Collider other)
@@ -31,6 +39,7 @@ public class Interactable : MonoBehaviour
         {
             OnInteract();
         }
+        
 
     }
 
@@ -45,12 +54,14 @@ public class Interactable : MonoBehaviour
 
     protected virtual void OnInteract()
     {
-        if (gameObject.CompareTag("OldManJoe"))
-        {
-
-        }
+        
         print("interacted");
-        EventManager.Instance.FireEvent(new ExperienceEvent(experience + " gained", experience));
+        if (!expTaken)
+        {
+            EventManager.Instance.FireEvent(new ExperienceEvent(experience + " gained", experience));
+            expTaken = true;
+        }
+        
     }
 
     protected virtual void Disable()
