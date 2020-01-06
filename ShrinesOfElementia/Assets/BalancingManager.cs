@@ -21,7 +21,12 @@ public class BalancingManager : MonoBehaviour
 
     public List<BalancingInput> inputs;
 
-    public int PlayerHealth;
+    public float PlayerHealth;
+    public float PlayerRegen;
+    public float PlayerLives;
+    public float EnemyHealth;
+    public float EnemyAttack;
+    public float Healthdrops;
 
     private void Awake()
     {
@@ -36,6 +41,28 @@ public class BalancingManager : MonoBehaviour
     void Start()
     {
         
+    }
+
+    public void SetPlayerHealth(float val)
+    {
+        PlayerHealth = val;
+        Player.Instance.Health.MaxHealth = (int)PlayerHealth;
+        Player.Instance.Health.CurrentHealth = (int)PlayerHealth;
+    }
+
+    public void UpdateInputs()
+    {
+        foreach(BalancingInput b in inputs)
+        {
+            switch(b.name)
+            {
+                case BalancingVariables.PlayerHealth:
+                    b.inputField.text = PlayerHealth.ToString();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     // Update is called once per frame

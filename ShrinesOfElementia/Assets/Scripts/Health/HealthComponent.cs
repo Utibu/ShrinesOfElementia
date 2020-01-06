@@ -103,6 +103,7 @@ public class HealthComponent : MonoBehaviour
         if (gameObject.CompareTag("Player"))
         {
             EventManager.Instance.RegisterListener<LevelUpEvent>(OnLevelUp);
+            BalancingManager.Instance.SetPlayerHealth(MaxHealth);
         }
     }
 

@@ -62,9 +62,22 @@ public class InGameMenuController : MonoBehaviour
 
     public void OnBalancingClick()
     {
+        BalancingManager.Instance.UpdateInputs();
         menuPanel.SetActive(false);
         soundPanel.SetActive(false);
         balancingPanel.SetActive(true);
+    }
+
+    public void SaveBalancingValue(BalancingVariables vari, float val)
+    {
+        switch(vari)
+        {
+            case BalancingVariables.PlayerHealth:
+                BalancingManager.Instance.SetPlayerHealth(val);
+                break;
+            default:
+                break;
+        }
     }
 
     public void OnBackClick()
