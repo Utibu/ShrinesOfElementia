@@ -107,6 +107,6 @@ public class Shield : MonoBehaviour
 
     private bool IsBlocking()
     {
-        return gameObject.GetComponentInParent<Animator>().GetBool("IsBlocking");
+        return Player.Instance.Animator.GetBool("IsBlocking");
     }
 }
