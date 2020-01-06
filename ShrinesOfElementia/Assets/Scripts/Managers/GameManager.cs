@@ -215,7 +215,7 @@ public class GameManager : MonoBehaviour
         // IF we want game to be over after killing all 4 giants.
         if (!Achievements.SlayedGiants.ContainsValue(false))
         {
-            SceneManager.LoadScene(3);
+            //SceneManager.LoadScene(3);
         }
 
     }

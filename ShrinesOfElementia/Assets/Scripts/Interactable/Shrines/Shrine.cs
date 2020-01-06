@@ -57,23 +57,34 @@ public class Shrine : Interactable
         EventManager.Instance.RegisterListener<StaggerEvent>(OnStagger);
     }
 
+    protected override void OnTriggerEnter(Collider other)
+    {
+        if(!element.Equals("Great") || !AchievementManager.Instance.SlayedGiants.ContainsValue(false))
+        {
+            base.OnTriggerEnter(other);
+        }
+    }
+
     protected override void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.E))
+        if(!element.Equals("Great") || !AchievementManager.Instance.SlayedGiants.ContainsValue(false))
         {
-            if (channelTimer == null)
+            if (other.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.E))
             {
-                Player.Instance.Animator.SetTrigger("OnPray"); // Add some channel animation
-                Player.Instance.Animator.SetBool("InCombat", false); // stops player from rotating to face camera.forward
-                channelTimer = TimerManager.Instance.SetNewTimer(gameObject, channelTime, OnInteract);
-            }
+                if (channelTimer == null)
+                {
+                    Player.Instance.Animator.SetTrigger("OnPray"); // Add some channel animation
+                    Player.Instance.Animator.SetBool("InCombat", false); // stops player from rotating to face camera.forward
+                    channelTimer = TimerManager.Instance.SetNewTimer(gameObject, channelTime, OnInteract);
+                }
 
-            else if (other.gameObject.tag == "Player" && Input.anyKeyDown && channelTimer != null)
-            {
-                Player.Instance.Animator.SetTrigger("ToNeutral");
-                Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles();
-                Destroy(channelTimer);
-                channelTimer = null;
+                else if (other.gameObject.tag == "Player" && Input.anyKeyDown && channelTimer != null)
+                {
+                    Player.Instance.Animator.SetTrigger("ToNeutral");
+                    Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles();
+                    Destroy(channelTimer);
+                    channelTimer = null;
+                }
             }
         }
     }
