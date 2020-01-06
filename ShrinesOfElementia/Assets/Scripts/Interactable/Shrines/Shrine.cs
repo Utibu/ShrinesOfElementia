@@ -71,7 +71,7 @@ public class Shrine : Interactable
             else if (other.gameObject.tag == "Player" && Input.anyKeyDown && channelTimer != null)
             {
                 Player.Instance.Animator.SetTrigger("ToNeutral");
-                Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles()
+                Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles();
                 Destroy(channelTimer);
                 channelTimer = null;
             }
