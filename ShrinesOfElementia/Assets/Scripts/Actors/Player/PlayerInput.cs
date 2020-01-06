@@ -202,13 +202,13 @@ public class PlayerInput : MonoBehaviour
 
         if (isBlocking == true  && player.Animator.GetBool("CanBlock")) // Start blocking
         {
-            player.Animator.SetBool("InCombat", true);
 
 
             if (blockTrigger == true)   // Makes it so that the trigger is only called on once per "action"
                 return;
 
             player.Animator.SetTrigger("ShieldBlock");
+            EventManager.Instance.FireEvent(new CombatEvent(""));
 
             blockTrigger = true;
         }
@@ -265,9 +265,7 @@ public class PlayerInput : MonoBehaviour
     private void LightAttack()
     {
         player.Animator.SetBool("CanBlock", false);
-        if (player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")) {
-            player.Animator.SetBool("InCombat", true);
-        }
+        
 
         player.Animator.SetTrigger(lightAttacks[attackIndex]);
         attackIndex = (attackIndex + 1) % lightAttacks.Length;

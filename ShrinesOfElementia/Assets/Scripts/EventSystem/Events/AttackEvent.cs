@@ -9,7 +9,8 @@ public class AttackEvent : DebugEvent
 
     public AttackEvent(string description) : base(description)
     {
-        
+
         //EventManager.Current.FireEvent(new StaminaDrainEvent("stamina drained", 20));
+        EventManager.Instance.FireEvent(new CombatEvent(""));
     }
 }

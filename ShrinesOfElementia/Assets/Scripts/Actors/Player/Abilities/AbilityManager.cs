@@ -137,7 +137,7 @@ public class AbilityManager : MonoBehaviour
     {
         if (hasFire && fireballTimer <= 0f)
         {
-            Player.Instance.Animator.SetBool("InCombat", true);
+            EventManager.Instance.FireEvent(new CombatEvent(""));
 
             Player.Instance.Animator.SetTrigger("CastFireball");
             fireballTimer = fireballCooldown;
@@ -147,7 +147,7 @@ public class AbilityManager : MonoBehaviour
 
     private void CastFireBall()
     {
-        Player.Instance.Animator.SetBool("InCombat", true);
+        EventManager.Instance.FireEvent(new CombatEvent(""));
         fireballSpawnLocation = gameObject.transform.position + Vector3.up.normalized * 1.5f + gameObject.transform.forward * 1.8f;
         GameObject fireball = Instantiate(fireballPrefab, fireballSpawnLocation, gameObject.transform.rotation);
         fireball.GetComponent<Fireball>().CasterTag = gameObject.tag;
@@ -158,7 +158,7 @@ public class AbilityManager : MonoBehaviour
     {
         if (hasWater && geyserTimer <= 0f)
         {
-            Player.Instance.Animator.SetBool("InCombat", true);
+            EventManager.Instance.FireEvent(new CombatEvent(""));
             abilityIndicator.ShowIndicator();
         }
         else
@@ -204,7 +204,7 @@ public class AbilityManager : MonoBehaviour
     {
         print("casting");
 
-        Player.Instance.Animator.SetBool("InCombat", true);
+        EventManager.Instance.FireEvent(new CombatEvent(""));
         GameObject geyser = Instantiate(geyserPrefab, geyserSpawnLocation, Quaternion.identity);
         geyser.GetComponent<Geyser>().CasterTag = gameObject.tag;
         EventManager.Instance.FireEvent(new GeyserCastEvent(geyserSpawnLocation, moistRange));
@@ -214,7 +214,7 @@ public class AbilityManager : MonoBehaviour
     {
         if(hasWind && windBladeTimer <= 0f)
         {
-            Player.Instance.Animator.SetBool("InCombat", true);
+            EventManager.Instance.FireEvent(new CombatEvent(""));
             Player.Instance.Animator.SetTrigger("OnWindBlade");
             windBladeTimer = windBladeCooldown;
             windBladeCooldownButton.GetComponent<Image>().fillAmount = 1f;
@@ -234,7 +234,7 @@ public class AbilityManager : MonoBehaviour
         {
             print("casting earthspikes");
             Player.Instance.Animator.SetTrigger("CastEarthSpikes");
-            Player.Instance.Animator.SetBool("InCombat", true);
+            EventManager.Instance.FireEvent(new CombatEvent(""));
             earthSpikesTimer = earthSpikesCooldown;
             earthSpikesCooldownButton.GetComponent<Image>().fillAmount = 1f;
         }

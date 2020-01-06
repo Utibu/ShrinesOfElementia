@@ -7,12 +7,8 @@ using UnityEngine;
 public class CombatEvent : DebugEvent
 {
 
-    public GameObject Instigator { get; }
-    public bool EnteredCombat { get; }
-
-    public CombatEvent(string eventDescription, GameObject instigator, bool enteredCombat) : base(eventDescription)
+    public CombatEvent(string eventDescription) : base(eventDescription)
     {
-        Instigator = instigator;
-        EnteredCombat = enteredCombat;
+        
     }
 }

@@ -6,46 +6,25 @@ using UnityEngine;
 
 public class CombatManager : MonoBehaviour
 {
-    private MovementInput movementInput;
-    public bool InCombat { get { return inCombat; } }
-    private bool inCombat;
-    private int enemiesAttacking;
-
+    //private MovementInput movementInput;
+    public bool InCombat { get; }
+    [SerializeField] private float combatDuration = 3.0f;
+    GameObject timer;
 
     private void Start()
     {
-        movementInput = GetComponent<MovementInput>();
+        //movementInput = GetComponent<MovementInput>();
         EventManager.Instance.RegisterListener<CombatEvent>(OnCombatEvent);
-        enemiesAttacking = 0;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            print(enemiesAttacking);
-        }
     }
 
     private void OnCombatEvent(CombatEvent eve)
     {
-        if(inCombat == false)
+        EnterCombat();
+        if(timer != null)
         {
-            EnterCombat();
+            Destroy(timer);
         }
-        if (eve.EnteredCombat)
-        {
-            enemiesAttacking++;
-        }
-        else
-        {
-            enemiesAttacking--;
-        }
-
-        if(enemiesAttacking <= 0)
-        {
-            LeaveCombat();
-        }
+        timer = TimerManager.Instance.SetNewTimer(gameObject, combatDuration, LeaveCombat);
     }
 
     private void EnterCombat()

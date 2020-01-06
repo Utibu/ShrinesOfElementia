@@ -20,7 +20,7 @@ public class Ability : MonoBehaviour
 
     protected virtual void CastAbility()
     {
-        Player.Instance.Animator.SetBool("InCombat", true);
+        //Player.Instance.Animator.SetBool("InCombat", true);
     }
 
     protected virtual void SelfDestruct()
