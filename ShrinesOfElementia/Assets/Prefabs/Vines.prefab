@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1033546079906255185}
   - component: {fileID: 8497224996931452691}
   - component: {fileID: 758761918507060804}
+  - component: {fileID: 3119931358953553029}
   m_Layer: 0
   m_Name: Vines
   m_TagString: Vines
@@ -135,3 +136,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.3
   m_Center: {x: 0.000014543533, y: -0.0056584477, z: 0.00071577355}
+--- !u!208 &3119931358953553029
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2958854960170077046}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.25, y: 0.5, z: 0.25}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: -0.006, z: 0.001}
+  m_TimeToStationary: 0.5
