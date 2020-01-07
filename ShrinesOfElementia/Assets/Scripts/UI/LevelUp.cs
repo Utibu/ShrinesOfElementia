@@ -136,10 +136,10 @@ public class LevelUp : MonoBehaviour
         }
 
         //Debug remove if finished.
-        if (Input.GetKeyDown(KeyCode.U))
+        /*if (Input.GetKeyDown(KeyCode.U))
         {
             state = State.resetAll;
-        }
+        }*/
     }
 
     public void fadeInTab()

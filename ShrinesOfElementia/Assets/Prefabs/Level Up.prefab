@@ -183,7 +183,7 @@ RectTransform:
   m_GameObject: {fileID: 184632487062381275}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.1982315, y: 2.1982315, z: 2.1982315}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 184632487501251158}
   m_RootOrder: 4
@@ -221,16 +221,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: Level  Up!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 892fb1058cba90f4190decaafdddac04, type: 2}
-  m_sharedMaterial: {fileID: -4800798356902610428, guid: 892fb1058cba90f4190decaafdddac04,
+  m_fontAsset: {fileID: 11400000, guid: fbfd932370cc6d54caa92d0c99abfa23, type: 2}
+  m_sharedMaterial: {fileID: 4652370825478725861, guid: fbfd932370cc6d54caa92d0c99abfa23,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -486,7 +486,7 @@ RectTransform:
   m_GameObject: {fileID: 184632487501251159}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 184632487106529491}
   - {fileID: 184632487884382835}
@@ -530,7 +530,7 @@ MonoBehaviour:
   levelnumAppear: {fileID: 184632487501251163}
   dissapearAll: {fileID: 184632487501251160}
   progress: 0
-  shine: {fileID: 0}
+  particleObject: {fileID: 0}
   rollLevelbool: 0
 --- !u!114 &184632487501251163
 MonoBehaviour:
