@@ -161,6 +161,7 @@ public class EnemySM : StateMachine
         try
         {
             EventManager.Instance.UnregisterListener<AttackEvent>(Dodge);
+            EventManager.Instance.UnregisterListener<EarthAbilityEvent>(Stun);
         }
         catch (System.NullReferenceException exception)
         {
