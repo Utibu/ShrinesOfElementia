@@ -78,16 +78,20 @@ public class GiantPassiveManager : MonoBehaviour
 
     private void CastWaterPassive()
     {
+        /*
         instantiatedPrefab = GameObject.Instantiate(giantPassivePrefab, gameObject.transform.position, gameObject.transform.rotation);
         instantiatedPrefab.transform.SetParent(gameObject.transform);
+        */
     }
     private void DestroyWaterPassive(EarthAbilityEvent ev)
     {
-        if (ElementalType == "Water" && Vector3.Distance(gameObject.transform.position, ev.PointOfOrigin) < 3f)
+        /*
+        if (ElementalType == "Water" && Vector3.Distance(gameObject.transform.position, ev.PointOfOrigin) < 7f)
         {
             Debug.Log("Water passive prefab is destroyed.");
             Destroy(instantiatedPrefab);
         }
+        */
     }
 
 
