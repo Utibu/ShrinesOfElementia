@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public PlayerInput PlayerInput { get; private set; }
     public HealthComponent Health { get; private set; }
     public Animator Animator { get; private set; }
-
+    public CharacterController CharacterController { get; private set; }
     public int healthDropsAmount = 20;
 
     private void Awake()
@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
         Animator = GetComponent<Animator>();
         MovementInput = GetComponent<MovementInput>();
         PlayerInput = GetComponent<PlayerInput>();
+        CharacterController = GetComponent<CharacterController>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
