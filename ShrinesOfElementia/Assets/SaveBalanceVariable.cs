@@ -35,6 +35,9 @@ public class SaveBalanceVariable : MonoBehaviour
             case BalancingVariables.PlayerAttack:
                 BalancingManager.Instance.SetPlayerAttack(float.Parse(val.Replace('.', ',')));
                 break;
+            case BalancingVariables.EnemyAttack:
+                BalancingManager.Instance.SetEnemyAttackValue(float.Parse(val.Replace('.', ',')));
+                break;
             default:
                 break;
         }

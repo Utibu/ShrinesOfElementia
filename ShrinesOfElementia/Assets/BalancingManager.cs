@@ -48,7 +48,7 @@ public class BalancingManager : MonoBehaviour
 
     void Start()
     {
-        
+        EnemyAttackModifier = 1;
     }
 
     public void SetPlayerHealth(float val)
@@ -76,6 +76,11 @@ public class BalancingManager : MonoBehaviour
         Player.Instance.healthDropsAmount = (int)Healthdrops;
     }
 
+    public void SetEnemyAttackValue(float val)
+    {
+        EnemyAttackModifier = val;
+    }
+
     public void UpdateInputs()
     {
         foreach(BalancingInput b in inputs)
@@ -93,6 +98,9 @@ public class BalancingManager : MonoBehaviour
                     break;
                 case BalancingVariables.PlayerAttack:
                     b.inputField.text = PlayerAttack.ToString();
+                    break;
+                case BalancingVariables.EnemyAttack:
+                    b.inputField.text = EnemyAttackModifier.ToString();
                     break;
                 default:
                     break;

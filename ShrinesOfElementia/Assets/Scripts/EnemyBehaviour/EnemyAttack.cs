@@ -43,7 +43,8 @@ public class EnemyAttack : MonoBehaviour
         {
             gameObject.SetActive(false);
             print("Player hit");
-            DamageEvent damageEvent = new DamageEvent(gameObject.name + " did damage to player", (int)gameObject.GetComponent<EnemyValues>().Damage, gameObject, collision.gameObject);
+            Debug.Log("::: " + animator.gameObject.GetComponent<EnemyValues>().Damage);
+            DamageEvent damageEvent = new DamageEvent(gameObject.name + " did damage to player", (int)animator.gameObject.GetComponent<EnemyValues>().Damage, gameObject, collision.gameObject);
             if(hitSoundClip != null && audioSource != null)
             {
                 audioSource.PlayOneShot(hitSoundClip, 0.3f);
