@@ -35,10 +35,15 @@ public class Sword : MonoBehaviour
     }
     */
 
+    private void Start()
+    {
+        BalancingManager.Instance.SetPlayerAttack(damage);
+    }
+
     //Attack detection with trigger
     private void OnTriggerEnter(Collider other)
     {
-        print("hit");
+        //print("hit");
 
         if (other.gameObject.CompareTag("Enemy")) //Should fix later. Attacks should be normalized
         {
@@ -49,6 +54,11 @@ public class Sword : MonoBehaviour
             DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + damage + " damage to " + other.gameObject, damage, gameObject, other.gameObject);
             EventManager.Instance.FireEvent(damageEvent);
         }
+    }
+
+    public void SetDamage(float val)
+    {
+        damage = (int)val;
     }
 
     private void OnDrawGizmos()

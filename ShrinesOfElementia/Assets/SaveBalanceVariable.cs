@@ -32,6 +32,9 @@ public class SaveBalanceVariable : MonoBehaviour
             case BalancingVariables.HealthDrops:
                 BalancingManager.Instance.SetHealthOrbsValue(float.Parse(val.Replace('.', ',')));
                 break;
+            case BalancingVariables.PlayerAttack:
+                BalancingManager.Instance.SetPlayerAttack(float.Parse(val.Replace('.', ',')));
+                break;
             default:
                 break;
         }

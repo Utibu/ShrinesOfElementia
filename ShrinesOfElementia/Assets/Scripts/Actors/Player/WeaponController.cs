@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    [SerializeField] private GameObject sword;
+    [SerializeField] public GameObject sword;
     [SerializeField] private GameObject shield;
 
     private Sword swordComponent;

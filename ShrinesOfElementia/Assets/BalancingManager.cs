@@ -11,7 +11,7 @@ public class BalancingInput
     public TMP_InputField inputField;
 }
 
-public enum BalancingVariables { PlayerHealth, PlayerRegen, EnemyHealth, HealthDrops, EnemyAttack };
+public enum BalancingVariables { PlayerHealth, PlayerRegen, EnemyHealth, HealthDrops, EnemyAttack, PlayerAttack };
 
 public class BalancingManager : MonoBehaviour
 {
@@ -26,6 +26,7 @@ public class BalancingManager : MonoBehaviour
     public float EnemyHealth;
     public float EnemyAttack;
     public float Healthdrops;
+    public float PlayerAttack;
     public bool hasSetupHealthOrbs = false;
 
     private void Awake()
@@ -56,6 +57,12 @@ public class BalancingManager : MonoBehaviour
         Player.Instance.GetComponent<AbilityManager>().regenerationInterval = PlayerRegen;
     }
 
+    public void SetPlayerAttack(float val)
+    {
+        PlayerAttack = val;
+        Player.Instance.GetComponent<WeaponController>().sword.GetComponent<Sword>().SetDamage(PlayerAttack);
+    }
+
     public void SetHealthOrbsValue(float val)
     {
         Healthdrops = val;
@@ -76,6 +83,9 @@ public class BalancingManager : MonoBehaviour
                     break;
                 case BalancingVariables.HealthDrops:
                     b.inputField.text = Healthdrops.ToString();
+                    break;
+                case BalancingVariables.PlayerAttack:
+                    b.inputField.text = PlayerAttack.ToString();
                     break;
                 default:
                     break;
