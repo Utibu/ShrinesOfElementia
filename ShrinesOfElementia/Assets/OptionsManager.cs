@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class OptionsManager : MonoBehaviour
 {
@@ -25,7 +26,8 @@ public class OptionsManager : MonoBehaviour
 
     public void LoadSettings()
     {
-        resolutions = Screen.resolutions;
+        resolutions = Screen.resolutions.Distinct().OrderBy(x => x.width)
+            .ThenBy(x => x.height).ThenBy(x => x.refreshRate).ToArray();
         List<string> options = new List<string>();
         int currentResolutionIndex = 0;
         for (int i = 0; i < resolutions.Length; i++)
