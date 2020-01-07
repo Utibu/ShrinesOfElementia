@@ -32,7 +32,7 @@ public class EnemyAttack : MonoBehaviour
         {
             gameObject.SetActive(false);
             animator.SetTrigger("AttackBlocked");
-            EventManager.Instance.FireEvent(new BlockEvent("Damage blocked: ",  gameObject.GetComponent<EnemyValues>().Damage));
+            EventManager.Instance.FireEvent(new BlockEvent("Damage blocked: ", 20f));
             if (blockSoundClip != null && Player.Instance.GetComponent<PlayerSoundController>().playerAudioSource != null)
             {
                 Player.Instance.GetComponent<PlayerSoundController>().playerAudioSource.PlayOneShot(blockSoundClip, 0.3f);
