@@ -21,7 +21,7 @@ public class BossBarrier : MonoBehaviour
     private void Start()
     {
         barrierCollider = GetComponent<BoxCollider>();
-        particles = GetComponent<ParticleSystem>();
+        particles = GetComponentInChildren<ParticleSystem>();
         EventManager.Instance.RegisterListener<BossDeathEvent>(OnBossDeath);
         switch (barrierTypes)
         {
