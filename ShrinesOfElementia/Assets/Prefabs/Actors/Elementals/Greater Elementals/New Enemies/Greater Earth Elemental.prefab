@@ -338,7 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvulnerable: 0
   canvas: {fileID: 7494926138993052245}
-  maxHealth: 50
+  maxHealth: 90
   baseHealthIncrease: 0
   healthIncreasePerLevel: 0
 --- !u!114 &4343489666953683773
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementalType: Earth
-  health: 100
+  health: 90
   damage: 20
   speed: 4
   atkCooldown: 2
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60103b110f2d18347b338334f9d84185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementalAdvantageDamageBonus: 10
+  elementalAdvantageDamageBonus: 30
 --- !u!114 &4568434938765980224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,16 +833,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4066281170317373075}
     m_Modifications:
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4086458299678198103, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -962,6 +952,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.47229713
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
@@ -1119,11 +1119,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4066281170317373075}
     m_Modifications:
-    - target: {fileID: 8998728463209156658, guid: 0a4e86c55b95f4a44a1f488cbbf112a5,
-        type: 3}
-      propertyPath: m_Name
-      value: Greater Earth Particles
-      objectReference: {fileID: 0}
     - target: {fileID: 3422225416878254913, guid: 0a4e86c55b95f4a44a1f488cbbf112a5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1178,6 +1173,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998728463209156658, guid: 0a4e86c55b95f4a44a1f488cbbf112a5,
+        type: 3}
+      propertyPath: m_Name
+      value: Greater Earth Particles
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a4e86c55b95f4a44a1f488cbbf112a5, type: 3}

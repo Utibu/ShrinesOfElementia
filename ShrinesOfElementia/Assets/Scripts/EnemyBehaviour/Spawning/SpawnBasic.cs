@@ -114,7 +114,7 @@ public class SpawnBasic : MonoBehaviour
     private void OnEnemyDeath(EnemyDeathEvent ev)
     {
         // whats the fookin problem here 
-        //spawnlings.Remove(ev.Enemy);
+        Spawnlings.Remove(ev.Enemy.gameObject);
 
         if(ev.SpawnArea != null)
         {

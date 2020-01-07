@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementalType: Wind
-  health: 100
+  health: 40
   damage: 17
   speed: 4
   atkCooldown: 2.4
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvulnerable: 0
   canvas: {fileID: 102160642073306499}
-  maxHealth: 30
+  maxHealth: 40
   baseHealthIncrease: 0
   healthIncreasePerLevel: 0
 --- !u!114 &6137999317873132727
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d341c196a69329c45bb03d0d8ab2f660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementalAdvantageDamageBonus: 10
+  elementalAdvantageDamageBonus: 30
 --- !u!114 &3119632150886281792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,16 +886,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1176628167125112257}
     m_Modifications:
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyCanvas (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4086458299678198103, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1015,6 +1005,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5591747
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyCanvas (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072118161787652684, guid: 184444fcd2106c24697b408e5174cd0c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6473342490783544382, guid: 184444fcd2106c24697b408e5174cd0c,
         type: 3}
