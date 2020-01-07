@@ -66,8 +66,6 @@ public class PlayerInput : MonoBehaviour
         // Geyser
         if (Input.GetKey(InputManager.Instance.keyCode["Water"].keyCode) && !IsBlocking)
         {
-            // activate projector
-            //abilityIndicator.ShowIndicator();
             abilityManager.ToggleAim();
         }
 
@@ -86,8 +84,6 @@ public class PlayerInput : MonoBehaviour
         else if (Input.GetKeyUp(InputManager.Instance.keyCode["Water"].keyCode) && !IsBlocking)
         {
             abilityManager.CheckGeyser();
-            //abilityIndicator.HideIndicator();
-            //print("hiding indicator");
             abilityManager.ToggleAim();
         }
 
@@ -107,26 +103,6 @@ public class PlayerInput : MonoBehaviour
         */
         #endregion
 
-        #region Old sprint code
-        /*
-        if (Input.GetKeyDown(KeyCode.LeftShift) && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
-            && staminaManager.CurrentStamina > 0) 
-        {
-            if(Input.GetAxis("Vertical") > 0)
-            {
-                player.Animator.SetBool("InCombat", false);
-                player.Animator.SetTrigger("IsSprinting");
-            }
-            
-        }
-
-        if (Input.GetKeyUp(KeyCode.LeftShift) || (player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint") 
-            && staminaManager.CurrentStamina <= 0))
-        {
-            player.Animator.SetTrigger("ToNeutral");
-        }
-        */
-        #endregion
 
         if (Input.GetKeyDown(KeyCode.LeftControl) && !movementInput.IsDodging && !isBlocking 
             && player.Animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Entire Body.Sprint")
@@ -134,15 +110,6 @@ public class PlayerInput : MonoBehaviour
         {
             movementInput.OnDodge();
         }
-
-        /*
-        if((player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 1")
-            || player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Sword and Shield Slash 2")))
-        {
-            //player.Animator.SetBool("CanBlock", true);
-            print("is attacking");
-        }
-       */
 
         #region Player respawner
         /*
@@ -187,16 +154,6 @@ public class PlayerInput : MonoBehaviour
             }
         }
 
-        //lightAttackTimer -= Time.deltaTime; // Temporary fix
-
-        // Holding down left click / Primary button
-        if (Input.GetMouseButton(0))
-        {
-            // Heavy Attack
-        }
-
-        // Holding down right click / Secondary button
-
         isBlocking = Input.GetMouseButton(1);
         player.Animator.SetBool("IsBlocking", isBlocking);
 
@@ -219,6 +176,7 @@ public class PlayerInput : MonoBehaviour
         }
 
         #region Ability cheats
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             EventManager.Instance.FireEvent(new ShrineEvent("Fire activated", "Fire"));
@@ -251,7 +209,7 @@ public class PlayerInput : MonoBehaviour
         {
             Player.Instance.Health.CurrentHealth = Player.Instance.Health.MaxHealth;
         }
-        
+        */
         #endregion
     }
 
