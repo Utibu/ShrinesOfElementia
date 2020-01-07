@@ -51,6 +51,7 @@ public class Shrine : Interactable
                 break;
         }
         EventManager.Instance.RegisterListener<StaggerEvent>(OnStagger);
+        EventManager.Instance.RegisterListener<PlayerDeathEvent>(OnPlayerDeath);
     }
 
 
@@ -102,6 +103,11 @@ public class Shrine : Interactable
     {
         Destroy(channelTimer);
         Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles();
+    }
+
+    private void OnPlayerDeath(PlayerDeathEvent eve)
+    {
+        interactCanvas.gameObject.SetActive(false);
     }
 
     protected override void Disable()
