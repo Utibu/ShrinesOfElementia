@@ -15,9 +15,6 @@ public class EnemyValues : MonoBehaviour
     [SerializeField] private GameObject orb;
     [SerializeField] private float experienceAmount;
 
-    public float healthModifier = 1f;
-    public float damageModifier = 1f;
-
     //If enemy is elite
     [SerializeField] private float castRange;
 
@@ -25,7 +22,7 @@ public class EnemyValues : MonoBehaviour
 
     public string ElementalType { get => ElementalType; set => ElementalType = value; }
     public float Health { get => health; set => health = value; }
-    public float Damage { get => damage; set => damage = value; }
+    public float Damage { get => damage * BalancingManager.Instance.EnemyAttackModifier; set => damage = value; }  // damage returns damage multiplied with modifier from balancing manager.
     public float Speed { get => speed; set => speed = value; }
     public float AtkCooldown { get => atkCooldown; set => atkCooldown = value; }
     public float SightRange { get => sightRange; set => sightRange = value; }

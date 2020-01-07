@@ -7,7 +7,6 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     //Temporary fix, should get damage from attack state instead
-    private float damage;
     Collider attackCollider;
     Animator animator;
     [SerializeField] private AudioClip hitSoundClip;
@@ -16,7 +15,6 @@ public class EnemyAttack : MonoBehaviour
 
     private void Start()
     {
-        damage = 10;
         attackCollider = GetComponent<Collider>();
         animator = GetComponentInParent<Animator>();
         audioSource = GetComponentInParent<AudioSource>();
@@ -28,12 +26,13 @@ public class EnemyAttack : MonoBehaviour
     {
         //print("Enemy attack collision");
 
+        
 
         if (collision.collider.gameObject.CompareTag("Shield"))
         {
             gameObject.SetActive(false);
             animator.SetTrigger("AttackBlocked");
-            EventManager.Instance.FireEvent(new BlockEvent("Damage blocked: ", damage));
+            EventManager.Instance.FireEvent(new BlockEvent("Damage blocked: ",  gameObject.GetComponent<EnemyValues>().Damage));
             if (blockSoundClip != null && Player.Instance.GetComponent<PlayerSoundController>().playerAudioSource != null)
             {
                 Player.Instance.GetComponent<PlayerSoundController>().playerAudioSource.PlayOneShot(blockSoundClip, 0.3f);
@@ -44,7 +43,7 @@ public class EnemyAttack : MonoBehaviour
         {
             gameObject.SetActive(false);
             print("Player hit");
-            DamageEvent damageEvent = new DamageEvent(gameObject.name + " did " + damage + " to player", (int)damage, gameObject, collision.gameObject);
+            DamageEvent damageEvent = new DamageEvent(gameObject.name + " did damage to player", (int)gameObject.GetComponent<EnemyValues>().Damage, gameObject, collision.gameObject);
             if(hitSoundClip != null && audioSource != null)
             {
                 audioSource.PlayOneShot(hitSoundClip, 0.3f);
