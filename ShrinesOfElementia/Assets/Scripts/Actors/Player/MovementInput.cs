@@ -455,6 +455,7 @@ public class MovementInput : MonoBehaviour
     Vector3 CameraRelativeFlatten(Vector3 input, Vector3 localUp)
     {
         Quaternion flatten = Quaternion.LookRotation(-localUp, cameraCamCamTheGlam.transform.forward) * Quaternion.Euler(Vector3.right * -90f);
+        flatten = new Quaternion(0.0f, flatten.y, 0.0f, flatten.w);
         return flatten * input;
     }
 
