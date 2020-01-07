@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public HealthComponent Health { get; private set; }
     public Animator Animator { get; private set; }
 
+    public int healthDropsAmount = 20;
+
     private void Awake()
     {
         // Prevents multiple instances
@@ -26,5 +28,10 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
 
         //base.Awake();
+    }
+
+    private void Start()
+    {
+        BalancingManager.Instance.SetHealthOrbsValue(healthDropsAmount);
     }
 }

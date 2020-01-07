@@ -27,6 +27,7 @@ public class BalancingManager : MonoBehaviour
     public float EnemyHealth;
     public float EnemyAttack;
     public float Healthdrops;
+    public bool hasSetupHealthOrbs = false;
 
     private void Awake()
     {
@@ -56,6 +57,12 @@ public class BalancingManager : MonoBehaviour
         Player.Instance.GetComponent<AbilityManager>().regenerationInterval = PlayerRegen;
     }
 
+    public void SetHealthOrbsValue(float val)
+    {
+        Healthdrops = val;
+        Player.Instance.healthDropsAmount = (int)Healthdrops;
+    }
+
     public void UpdateInputs()
     {
         foreach(BalancingInput b in inputs)
@@ -67,6 +74,9 @@ public class BalancingManager : MonoBehaviour
                     break;
                 case BalancingVariables.PlayerRegen:
                     b.inputField.text = PlayerRegen.ToString();
+                    break;
+                case BalancingVariables.HealthDrops:
+                    b.inputField.text = Healthdrops.ToString();
                     break;
                 default:
                     break;

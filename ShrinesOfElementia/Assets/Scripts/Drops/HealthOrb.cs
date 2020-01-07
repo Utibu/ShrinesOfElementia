@@ -10,7 +10,15 @@ public class HealthOrb : DroppableObject
 
     protected override void Start()
     {
-        
+        healthAmount = Player.Instance.healthDropsAmount;
+        /*if(BalancingManager.Instance.hasSetupHealthOrbs == false)
+        {
+            BalancingManager.Instance.SetHealthOrbsValue(healthAmount);
+            BalancingManager.Instance.hasSetupHealthOrbs = true;
+        } else
+        {
+            healthAmount = (int)BalancingManager.Instance.Healthdrops;
+        }*/
     }
 
     protected override void Update()
