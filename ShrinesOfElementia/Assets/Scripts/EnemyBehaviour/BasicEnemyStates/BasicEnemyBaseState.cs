@@ -33,18 +33,24 @@ public class BasicEnemyBaseState : State
     public override void Initialize(StateMachine stateMachine)
     {
         owner = (EnemySM)stateMachine;  // cast to subtype. 
+        IntializeEnemyValues();
+    }
+
+    public void IntializeEnemyValues()
+    {
         enemyValues = owner.GetComponent<EnemyValues>();
 
         //Set enemy values
         attackRange = enemyValues.AttackRange;
         sightRange = enemyValues.SightRange;
         atkCooldown = enemyValues.AtkCooldown;
-        damage = enemyValues.Damage;
+        damage = enemyValues.Damage * enemyValues.damageModifier;
         castRange = enemyValues.CastRange;
         speed = enemyValues.Speed;
         orb = enemyValues.Orb;
         orbDropChance = enemyValues.OrbDropChance;
         experienceAmount = enemyValues.ExperienceAmount;
+
     }
 
     public virtual void Start()

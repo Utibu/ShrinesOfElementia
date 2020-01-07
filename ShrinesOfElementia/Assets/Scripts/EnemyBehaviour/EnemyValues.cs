@@ -15,6 +15,9 @@ public class EnemyValues : MonoBehaviour
     [SerializeField] private GameObject orb;
     [SerializeField] private float experienceAmount;
 
+    public float healthModifier = 1f;
+    public float damageModifier = 1f;
+
     //If enemy is elite
     [SerializeField] private float castRange;
 
