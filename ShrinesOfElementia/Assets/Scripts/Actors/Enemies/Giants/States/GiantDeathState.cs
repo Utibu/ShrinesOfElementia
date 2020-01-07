@@ -17,7 +17,10 @@ public class GiantDeathState : GiantBaseState
             ps.gameObject.SetActive(false);
         }
         Destroy(owner.GetComponent<HealthComponent>());
+
         Destroy(owner);
+
+        Destroy(owner.gameObject.GetComponentInChildren<BossFightTriggerArea>());
         
 
         
