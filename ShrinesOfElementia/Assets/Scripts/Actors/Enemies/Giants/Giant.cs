@@ -200,6 +200,11 @@ public class Giant : StateMachine
         return Vector3.Distance(gameObject.transform.position, Player.Instance.transform.position);
     }
 
+    public virtual float DistanceToPatrol()
+    {
+        return Vector3.Distance(gameObject.transform.position, PatrolPoint.transform.position);
+    }
+
     public void OnPlayerDeath(PlayerDeathEvent ev)
     {
         gameObject.transform.position = PatrolPoint.transform.position;

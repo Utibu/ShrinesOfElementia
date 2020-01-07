@@ -15,6 +15,10 @@ public class GiantChaseState : GiantBattleState
 
     public override void HandleUpdate()
     {
+        if (owner.DistanceToPatrol() > 50f ) {
+            owner.Transition<GiantIdleState>();
+            owner.Agent.SetDestination(owner.PatrolPoint.transform.position);
+        }
         owner.Agent.SetDestination(Player.Instance.transform.position);
 
         if (owner.DistanceToPlayer() < owner.Agent.stoppingDistance)
