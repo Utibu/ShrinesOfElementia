@@ -39,6 +39,8 @@ public class GreatShrine : Shrine
 
     private void OnBossDeath(BossDeathEvent eve)
     {
+        bossesKilled++;
+        print("bosses killed: " + bossesKilled);
         if(bossesKilled >= 4)
         {
             isEnabled = true;
