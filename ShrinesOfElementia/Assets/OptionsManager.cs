@@ -33,7 +33,7 @@ public class OptionsManager : MonoBehaviour
         for (int i = 0; i < resolutions.Length; i++)
         {
 
-            string option = resolutions[i].width + " x " + resolutions[i].height;
+            string option = resolutions[i].width + " x " + resolutions[i].height + " - " + resolutions[i].refreshRate + "Hz";
             
             float aspectRatio = (float)resolutions[i].width / (float)resolutions[i].height;
             float targetRatio = 1920f / 1080f;
