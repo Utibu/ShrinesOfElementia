@@ -287,7 +287,7 @@ public class MovementInput : MonoBehaviour
 
         animator.SetFloat("InputMagnitude", animationSpeed, animationDamping, Time.deltaTime);
 
-        if (animationSpeed > allowPlayerRotation || animator.GetBool("InCombat") || animator.GetBool("IsBlocking"))
+        if (animationSpeed > allowPlayerRotation || animator.GetBool("InCombat") || animator.GetBool("IsBlocking") || isGliding)
         {
             PlayerRotation();
         }

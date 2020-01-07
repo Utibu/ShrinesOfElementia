@@ -34,6 +34,10 @@ public class Giant : StateMachine
     public float SweepRange;
     [SerializeField] protected float sweepCooldown;
 
+    [Header("Attack Objects")]
+    public GameObject SweepObject;
+    public GameObject BasicObject;
+
     #region SweepCooldownVariables
     private float sweepTimer;
     private bool sweepAvailable;
@@ -205,7 +209,13 @@ public class Giant : StateMachine
         return Vector3.Distance(gameObject.transform.position, PatrolPoint.transform.position);
     }
 
+    //TEST
     public void OnPlayerDeath(PlayerDeathEvent ev)
+    {
+        TimerManager.Instance.SetNewTimer(gameObject, 2f, ResetBossOnTimer);
+    }
+
+    private void ResetBossOnTimer()
     {
         gameObject.transform.position = PatrolPoint.transform.position;
         Transition<GiantIdleState>();

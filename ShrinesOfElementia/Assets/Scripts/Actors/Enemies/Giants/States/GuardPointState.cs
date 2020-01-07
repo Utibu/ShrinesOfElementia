@@ -22,7 +22,7 @@ public class GuardPointState : GiantBaseState
 
     public override void HandleUpdate()
     {
-        if (owner.DistanceToPatrol() < 4f)
+        if (owner.DistanceToPatrol() < 2f)
         {
             owner.Animator.SetBool("IsRunning", false);
             owner.Agent.SetDestination(owner.gameObject.transform.position);
