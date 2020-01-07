@@ -17,7 +17,7 @@ public class OptionsManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown screenModeDropdown;
     [SerializeField] private TMP_Dropdown qualityDropdown;
 
-
+    List<Resolution> allowedResolutions;
 
     private void Start()
     {
@@ -26,10 +26,13 @@ public class OptionsManager : MonoBehaviour
 
     public void LoadSettings()
     {
-        resolutions = Screen.resolutions.Distinct().OrderBy(x => x.width)
+        resolutions = Screen.resolutions.Where(x => x.width <= 2560).Distinct().OrderBy(x => x.width)
             .ThenBy(x => x.height).ThenBy(x => x.refreshRate).ToArray();
         List<string> options = new List<string>();
+        allowedResolutions = new List<Resolution>();
+        allowedResolutions.Clear();
         int currentResolutionIndex = 0;
+        int currentWidth = 0;
         for (int i = 0; i < resolutions.Length; i++)
         {
 
@@ -41,11 +44,19 @@ public class OptionsManager : MonoBehaviour
            // Debug.Log("ASPECT1: " + aspectRatio);
             //Debug.Log("TARGET: " + targetRatio);
             //if (options.Exists(x => x == option) == false && (aspectRatio == targetRatio)) {
+            //if(resolutions[i].width <= 2560)
+            //{
                 options.Add(option);
-                if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+                //allowedResolutions.Add(resolutions[i]);
+                //Debug.LogError("CURRENT RES: " + Screen.currentResolution.width);
+                if (resolutions[i].width + currentWidth == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
                 {
-                    currentResolutionIndex = i;
+
+                // currentResolutionIndex = allowedResolutions.IndexOf(resolutions[i]);
+                currentResolutionIndex = i;
                 }
+           // }
+                
             //}
             
         }
