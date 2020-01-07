@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FireDestructable : MonoBehaviour
 {
+    public GameObject particles;
+
     void Start()
     {
         EventManager.Instance.RegisterListener<FireAbilityEvent>(OnFireEvent);
@@ -19,8 +21,10 @@ public class FireDestructable : MonoBehaviour
     {
         if (ev.Target.GetInstanceID().Equals(gameObject.GetInstanceID()))
         {
-            GetComponent<ParticleSystem>().Stop();
-            TimerManager.Instance.SetNewTimer(gameObject, 3f, Destroy);
+            particles.GetComponent<ParticleSystem>().Stop();
+            TimerManager.Instance.SetNewTimer(gameObject, 1.5f, Destroy);
+            gameObject.GetComponent<Collider>().enabled = false;
+
             
         }
     }
