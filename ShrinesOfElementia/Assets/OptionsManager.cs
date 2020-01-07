@@ -12,19 +12,27 @@ public class OptionsManager : MonoBehaviour
     Resolution[] resolutions;
     //[SerializeField] private Dropdown resolutionDropdown;
     [SerializeField]private TMP_Dropdown resolutionDropdown;
+    [SerializeField] private TMP_Dropdown antiAliasingDropdown;
+    [SerializeField] private TMP_Dropdown screenModeDropdown;
+    [SerializeField] private TMP_Dropdown qualityDropdown;
 
 
 
     private void Start()
     {
+        LoadSettings();
+    }
+
+    public void LoadSettings()
+    {
         resolutions = Screen.resolutions;
         List<string> options = new List<string>();
         int currentResolutionIndex = 0;
-        for(int i = 0; i < resolutions.Length; i++)
+        for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
-            if(resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
             {
                 currentResolutionIndex = i;
             }
@@ -33,6 +41,38 @@ public class OptionsManager : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+
+
+        switch (Screen.fullScreenMode)
+        {
+            case FullScreenMode.FullScreenWindow:
+                screenModeDropdown.value = 2;
+                break;
+            case FullScreenMode.Windowed:
+                screenModeDropdown.value = 1;
+                break;
+            default:
+                screenModeDropdown.value = 0;
+                break;
+        }
+
+        switch (QualitySettings.antiAliasing)
+        {
+            case 0:
+                antiAliasingDropdown.value = 0;
+                break;
+            case 2:
+                antiAliasingDropdown.value = 1;
+                break;
+            case 4:
+                antiAliasingDropdown.value = 2;
+                break;
+            case 8:
+                antiAliasingDropdown.value = 3;
+                break;
+        }
+
+        qualityDropdown.value = QualitySettings.GetQualityLevel();
     }
 
     public void SetQuality(int qualityIndex)
@@ -40,10 +80,34 @@ public class OptionsManager : MonoBehaviour
         QualitySettings.SetQualityLevel(qualityIndex);
     }
 
-    public void SetScreenMode(bool isFullscreen)
+    /*public void SetScreenMode(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
+        
+    }*/
+
+    public void SetScreenMode(int index)
+    {
+        switch(index)
+        {
+            case 0:
+                //Fullscreen
+                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+                break;
+            case 1:
+                //Windowed
+                Screen.fullScreenMode = FullScreenMode.Windowed;
+                break;
+            case 2:
+                //Borderless
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+                break;
+            default:
+                break;
+        }
+
     }
+
 
     public void SetResolution(int resolutionIndex)
     {
