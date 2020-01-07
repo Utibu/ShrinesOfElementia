@@ -267,7 +267,6 @@ public class MovementInput : MonoBehaviour
         {
             Quaternion rotation = Quaternion.LookRotation(forward, Vector3.zero);
             transform.rotation = new Quaternion(rotation.x, rotation.y, 0.0f, rotation.w);
-            print(transform.rotation.x + " " + transform.rotation.y + " " + transform.rotation.z);
         }
         
     }

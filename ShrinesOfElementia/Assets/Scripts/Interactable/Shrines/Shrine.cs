@@ -23,8 +23,8 @@ public class Shrine : Interactable
     [SerializeField] private string firstUnlockableText;
     [SerializeField] private string secondUnlockableText;
 
-    [SerializeField] protected float channelTime;
-    protected GameObject channelTimer;
+    [SerializeField] private float channelTime;
+    GameObject channelTimer;
     //[SerializeField] private RectTransform shrinePanel;
     
 
@@ -64,13 +64,14 @@ public class Shrine : Interactable
                 //Player.Instance.Animator.SetBool("InCombat", false); // stops player from rotating to face camera.forward
                 channelTimer = TimerManager.Instance.SetNewTimer(gameObject, channelTime, OnInteract);
             }
-            else if (other.gameObject.tag == "Player" && Input.anyKeyDown && channelTimer != null)
-            {
-                Player.Instance.Animator.SetTrigger("ToNeutral");
-                Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles();
-                Destroy(channelTimer);
-                channelTimer = null;
-            }
+        }
+        else if (other.gameObject.tag == "Player" && Input.anyKeyDown && channelTimer != null)
+        {
+            print("cancelled channel");
+            Player.Instance.Animator.SetTrigger("ToNeutral");
+            Player.Instance.GetComponent<ParticleManager>().HideShrineActivationParticles();
+            Destroy(channelTimer);
+            channelTimer = null;
         }
     }
     
