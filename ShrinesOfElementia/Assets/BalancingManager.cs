@@ -18,16 +18,23 @@ public class BalancingManager : MonoBehaviour
     // Start is called before the first frame update
 
     public static BalancingManager Instance { get; private set; }
+    public float PlayerHealth { get => playerHealth; set => playerHealth = value; }
+    public float PlayerRegen { get => playerRegen; set => playerRegen = value; }
+    public float EnemyHealthModifier { get => enemyHealthModifier; set => enemyHealthModifier = value; }
+    public float EnemyAttackModifier { get => enemyAttackModifier; set => enemyAttackModifier = value; }
+    public float Healthdrops { get => healthdrops; set => healthdrops = value; }
+    public float PlayerAttack { get => playerAttack; set => playerAttack = value; }
+    public bool HasSetupHealthOrbs { get => hasSetupHealthOrbs; set => hasSetupHealthOrbs = value; }
 
     public List<BalancingInput> inputs;
 
-    public float PlayerHealth;
-    public float PlayerRegen;
-    public float EnemyHealth;
-    public float EnemyAttack;
-    public float Healthdrops;
-    public float PlayerAttack;
-    public bool hasSetupHealthOrbs = false;
+    private float playerHealth;
+    private float playerRegen;
+    private float enemyHealthModifier;
+    private float enemyAttackModifier;
+    private float healthdrops;
+    private float playerAttack;
+    private bool hasSetupHealthOrbs = false;
 
     private void Awake()
     {
