@@ -14,12 +14,14 @@ public class BossBarrier : MonoBehaviour
     };
 
     private Collider barrierCollider;
+    private ParticleSystem particles;
     private string element;
     [SerializeField] private BARRIERTYPES barrierTypes;
 
     private void Start()
     {
         barrierCollider = GetComponent<BoxCollider>();
+        particles = GetComponent<ParticleSystem>();
         EventManager.Instance.RegisterListener<BossDeathEvent>(OnBossDeath);
         switch (barrierTypes)
         {
@@ -49,5 +51,6 @@ public class BossBarrier : MonoBehaviour
     private void DisableBarrier()
     {
         barrierCollider.enabled = false;
+        particles.Stop();
     }
 }

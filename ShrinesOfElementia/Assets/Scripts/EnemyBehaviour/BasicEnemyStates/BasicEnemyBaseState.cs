@@ -44,7 +44,7 @@ public class BasicEnemyBaseState : State
         attackRange = enemyValues.AttackRange;
         sightRange = enemyValues.SightRange;
         atkCooldown = enemyValues.AtkCooldown;
-        damage = enemyValues.Damage * enemyValues.damageModifier;
+        damage = enemyValues.Damage;
         castRange = enemyValues.CastRange;
         speed = enemyValues.Speed;
         orb = enemyValues.Orb;
