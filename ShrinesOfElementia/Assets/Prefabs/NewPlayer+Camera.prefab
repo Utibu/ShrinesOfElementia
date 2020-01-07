@@ -447,7 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af7d91f8e3365c45aa9d7becd651042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatDuration: 3
+  combatDuration: 1
 --- !u!114 &5860557102494086950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,7 +490,7 @@ MonoBehaviour:
   damageIncrease: 5
   geyserPrefab: {fileID: 1201472749364718067, guid: ada15d4953ae06a44ab3eed588b0ac46,
     type: 3}
-  geyserCooldown: 12
+  geyserCooldown: 7
   geyserSpawnLocation: {x: 0, y: 0, z: 0}
   moistRange: 6
   geyserRange: 100
@@ -6757,6 +6757,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6888489262155708162}
     m_Modifications:
+    - target: {fileID: 2927204180604312459, guid: a59910355feb5a44d90b25c00f53091f,
+        type: 3}
+      propertyPath: m_Name
+      value: SpellIndicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 2927204180604312459, guid: a59910355feb5a44d90b25c00f53091f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6825535980101321461, guid: a59910355feb5a44d90b25c00f53091f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6810,16 +6820,6 @@ PrefabInstance:
     - target: {fileID: 6825535980101321461, guid: a59910355feb5a44d90b25c00f53091f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2927204180604312459, guid: a59910355feb5a44d90b25c00f53091f,
-        type: 3}
-      propertyPath: m_Name
-      value: SpellIndicator
-      objectReference: {fileID: 0}
-    - target: {fileID: 2927204180604312459, guid: a59910355feb5a44d90b25c00f53091f,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1714287983621711408, guid: a59910355feb5a44d90b25c00f53091f,

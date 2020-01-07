@@ -257,7 +257,6 @@ public class MovementInput : MonoBehaviour
         right.Normalize();
 
         //transform.rotation = Quaternion.LookRotation(forward, Vector3.zero);
-
         
         if(animator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Entire Body.Sprint"))
         {
@@ -266,7 +265,9 @@ public class MovementInput : MonoBehaviour
         }
         else
         {
-            transform.rotation = Quaternion.LookRotation(forward, Vector3.zero);
+            Quaternion rotation = Quaternion.LookRotation(forward, Vector3.zero);
+            transform.rotation = new Quaternion(rotation.x, rotation.y, 0.0f, rotation.w);
+            print(transform.rotation.x + " " + transform.rotation.y + " " + transform.rotation.z);
         }
         
     }
