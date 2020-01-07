@@ -9,4 +9,15 @@ public class GiantIdleState : GiantBaseState
     {
         //owner.Agent.SetDestination(owner.PatrolPoint.transform.position);
     }
+
+    /*
+    public override void HandleUpdate()
+    {
+        base.HandleUpdate();
+        if (owner.DistanceToPlayer() < 10f)
+        {
+            owner.StartBattle();
+        }
+    }
+    */
 }

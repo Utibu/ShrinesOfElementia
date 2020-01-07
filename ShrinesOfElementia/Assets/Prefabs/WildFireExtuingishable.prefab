@@ -9430,7 +9430,6 @@ GameObject:
   - component: {fileID: 1526152880745157326}
   - component: {fileID: 1526152880745157320}
   - component: {fileID: 1526152880745157321}
-  - component: {fileID: 2937901504716089236}
   m_Layer: 0
   m_Name: WildFireExtuingishable
   m_TagString: Firewall
@@ -14343,22 +14342,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReviveTime: 10
---- !u!208 &2937901504716089236
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1525322603020830385}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.25, y: 0.5, z: 0.25}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.082, y: -0.53000003, z: 0.006}
-  m_TimeToStationary: 0.5
 --- !u!1001 &5909374702965735073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14366,11 +14349,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1522999249210288257}
     m_Modifications:
-    - target: {fileID: 7594324640779035314, guid: ea6c54edee6bb4a4eb334a972a8e5571,
-        type: 3}
-      propertyPath: m_Name
-      value: BurnDamageSphere
-      objectReference: {fileID: 0}
     - target: {fileID: 7594324640779035312, guid: ea6c54edee6bb4a4eb334a972a8e5571,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14425,6 +14403,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594324640779035314, guid: ea6c54edee6bb4a4eb334a972a8e5571,
+        type: 3}
+      propertyPath: m_Name
+      value: BurnDamageSphere
       objectReference: {fileID: 0}
     - target: {fileID: 7594324640779035313, guid: ea6c54edee6bb4a4eb334a972a8e5571,
         type: 3}
