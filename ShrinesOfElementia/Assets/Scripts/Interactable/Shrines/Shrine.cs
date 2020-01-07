@@ -57,7 +57,7 @@ public class Shrine : Interactable
 
     protected override void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.E))
+        if (other.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.E) && Player.Instance.CharacterController.velocity.magnitude <= 0)
         {
             if (channelTimer == null)
             {
