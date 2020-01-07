@@ -50,6 +50,12 @@ public class BalancingManager : MonoBehaviour
         Player.Instance.Health.CurrentHealth = (int)PlayerHealth;
     }
 
+    public void SetPlayerRegen(float val)
+    {
+        PlayerRegen = val;
+        Player.Instance.GetComponent<AbilityManager>().regenerationInterval = PlayerRegen;
+    }
+
     public void UpdateInputs()
     {
         foreach(BalancingInput b in inputs)
@@ -58,6 +64,9 @@ public class BalancingManager : MonoBehaviour
             {
                 case BalancingVariables.PlayerHealth:
                     b.inputField.text = PlayerHealth.ToString();
+                    break;
+                case BalancingVariables.PlayerRegen:
+                    b.inputField.text = PlayerRegen.ToString();
                     break;
                 default:
                     break;

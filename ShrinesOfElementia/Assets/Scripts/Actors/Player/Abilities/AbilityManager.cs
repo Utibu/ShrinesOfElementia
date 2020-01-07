@@ -13,7 +13,7 @@ public class AbilityManager : MonoBehaviour
 
     [Header("Health")]
     [SerializeField] private int healthRegeneration;
-    [SerializeField] private float regenerationInterval;
+    [SerializeField] public float regenerationInterval;
     private float regenerationCountdown = 0f;
 
     [Header("Fireball attributes")]
@@ -77,6 +77,7 @@ public class AbilityManager : MonoBehaviour
         windBladeTimer = 0.0f;
         earthSpikesTimer = 0.0f;
         EventManager.Instance.RegisterListener<ShrineEvent>(UnlockElement);
+        BalancingManager.Instance.SetPlayerRegen(regenerationInterval);
         indicatorProjector.SetActive(false);
         if (noCooldown)
         {

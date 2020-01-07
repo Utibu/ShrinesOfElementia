@@ -24,7 +24,10 @@ public class SaveBalanceVariable : MonoBehaviour
         switch (type)
         {
             case BalancingVariables.PlayerHealth:
-                BalancingManager.Instance.SetPlayerHealth(float.Parse(val));
+                BalancingManager.Instance.SetPlayerHealth(float.Parse(val.Replace('.', ',')));
+                break;
+            case BalancingVariables.PlayerRegen:
+                BalancingManager.Instance.SetPlayerRegen(float.Parse(val.Replace('.', ',')));
                 break;
             default:
                 break;
