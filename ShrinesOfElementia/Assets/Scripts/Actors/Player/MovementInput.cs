@@ -229,7 +229,10 @@ public class MovementInput : MonoBehaviour
             {
                 isGliding = true;
                 animator.SetBool("IsGliding", true);
-                glideTimer = TimerManager.Instance.SetNewTimer(gameObject, 5f, FlightExpertAchieved);
+                if (!AchievementManager.Instance.FlightExpert)
+                {
+                    glideTimer = TimerManager.Instance.SetNewTimer(gameObject, 5f, FlightExpertAchieved);
+                }
             }
             else if (isGliding && !IsGrounded() && hasGlide)
             {
