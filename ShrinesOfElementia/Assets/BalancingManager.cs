@@ -11,7 +11,7 @@ public class BalancingInput
     public TMP_InputField inputField;
 }
 
-public enum BalancingVariables { PlayerHealth, PlayerRegen, EnemyHealth, HealthDrops, EnemyAttack, PlayerLives };
+public enum BalancingVariables { PlayerHealth, PlayerRegen, EnemyHealth, HealthDrops, EnemyAttack };
 
 public class BalancingManager : MonoBehaviour
 {
@@ -23,7 +23,6 @@ public class BalancingManager : MonoBehaviour
 
     public float PlayerHealth;
     public float PlayerRegen;
-    public float PlayerLives;
     public float EnemyHealth;
     public float EnemyAttack;
     public float Healthdrops;
