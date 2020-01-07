@@ -26,7 +26,6 @@ public class MovementInput : MonoBehaviour
     private Vector3 desiredMoveDirection;
     
     private float animationSpeed;
-    private float allowPlayerRotation;
     
     private float dodgeTimer = 0.0f;
     private bool isGliding;
@@ -49,6 +48,7 @@ public class MovementInput : MonoBehaviour
     [SerializeField] private float runSpeed;
     [SerializeField] private float animationDamping;
     [SerializeField] private float runAnimationSpeedMultiplier = 1.3f;
+    [SerializeField] private float allowPlayerRotation;
     private float movementSpeed;
 
     [Header("Stagger")]
@@ -238,6 +238,7 @@ public class MovementInput : MonoBehaviour
             }
         }
 
+        
         // This is what actually moves the character
         controller.Move(moveVector * Time.deltaTime);
     }
@@ -266,7 +267,7 @@ public class MovementInput : MonoBehaviour
         else
         {
             Quaternion rotation = Quaternion.LookRotation(forward, Vector3.zero);
-            transform.rotation = new Quaternion(rotation.x, rotation.y, 0.0f, rotation.w);
+            transform.rotation = Quaternion.Euler(rotation.eulerAngles.x, rotation.eulerAngles.y, 0.0f);
         }
         
     }

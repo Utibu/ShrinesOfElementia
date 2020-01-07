@@ -6291,7 +6291,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3312614853820166095}
   m_LocalRotation: {x: -0.12475845, y: 0.27450532, z: -0.010954151, w: 0.9533951}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalPosition: {x: 0.088, y: -0.071, z: 0.156}
   m_LocalScale: {x: 0.39370394, y: 0.39370352, z: 0.39370087}
   m_Children: []
   m_Father: {fileID: 8244055655294148465}
@@ -6308,7 +6308,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1.8}
+  m_Size: {x: 1.5, y: 2, z: 2.68}
   m_Center: {x: 0, y: 0.34, z: -0.4}
 --- !u!54 &3312614853820166089
 Rigidbody:
@@ -7700,14 +7700,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b7738f4c0182ffe439b7d72c19e55d53, type: 2}
   - {fileID: 11400000, guid: a0ec2de9029cec14d9e55677a3bc1089, type: 2}
   - {fileID: 11400000, guid: 7d78fcfc3b2979b45a723373dfe911db, type: 2}
+  - {fileID: 11400000, guid: 87690acc21d9bb3428e6a5740c00909c, type: 2}
   currentState: {fileID: 0}
   lastState: {fileID: 0}
+  PatrolPoint: {fileID: 0}
   ElementalType: Earth
   basicAttackDamage: 15
   BasicAttackRange: 4.2
   sweepDamage: 30
   SweepRange: 5
-  sweepCooldown: 6
+  sweepCooldown: 9
   StompDamage: 10
   StompRange: 10
   stompCooldown: 12

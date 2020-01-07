@@ -1216,14 +1216,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b7738f4c0182ffe439b7d72c19e55d53, type: 2}
   - {fileID: 11400000, guid: a0ec2de9029cec14d9e55677a3bc1089, type: 2}
   - {fileID: 11400000, guid: 7d78fcfc3b2979b45a723373dfe911db, type: 2}
+  - {fileID: 11400000, guid: 87690acc21d9bb3428e6a5740c00909c, type: 2}
   currentState: {fileID: 0}
   lastState: {fileID: 0}
+  PatrolPoint: {fileID: 0}
   ElementalType: Wind
   basicAttackDamage: 10
   BasicAttackRange: 2
   sweepDamage: 25
   SweepRange: 5
-  sweepCooldown: 4
+  sweepCooldown: 6
   StompDamage: 10
   StompRange: 8
   stompCooldown: 12
@@ -22954,7 +22956,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7649491048344204794}
   m_LocalRotation: {x: -0.12475848, y: 0.27450532, z: -0.010954076, w: 0.9533951}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.088, y: -0.071, z: 0.156}
   m_LocalScale: {x: 0.39370412, y: 0.39370385, z: 0.3937009}
   m_Children: []
   m_Father: {fileID: 3870970102185690436}
@@ -22971,7 +22973,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1.8}
+  m_Size: {x: 1.5, y: 2, z: 2.68}
   m_Center: {x: 0, y: 0.34, z: -0.4}
 --- !u!54 &7649491048344204796
 Rigidbody:
