@@ -209,7 +209,13 @@ public class Giant : StateMachine
         return Vector3.Distance(gameObject.transform.position, PatrolPoint.transform.position);
     }
 
+    //TEST
     public void OnPlayerDeath(PlayerDeathEvent ev)
+    {
+        TimerManager.Instance.SetNewTimer(gameObject, 2f, ResetBossOnTimer);
+    }
+
+    private void ResetBossOnTimer()
     {
         gameObject.transform.position = PatrolPoint.transform.position;
         Transition<GiantIdleState>();
