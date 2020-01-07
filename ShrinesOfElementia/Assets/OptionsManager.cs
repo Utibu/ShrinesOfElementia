@@ -30,12 +30,22 @@ public class OptionsManager : MonoBehaviour
         int currentResolutionIndex = 0;
         for (int i = 0; i < resolutions.Length; i++)
         {
+
             string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
-            {
-                currentResolutionIndex = i;
-            }
+            
+            float aspectRatio = (float)resolutions[i].width / (float)resolutions[i].height;
+            float targetRatio = 1920f / 1080f;
+           // Debug.Log("WIDTH: " + resolutions[i].width + " HEIGHT: " + resolutions[i].height);
+           // Debug.Log("ASPECT1: " + aspectRatio);
+            //Debug.Log("TARGET: " + targetRatio);
+            //if (options.Exists(x => x == option) == false && (aspectRatio == targetRatio)) {
+                options.Add(option);
+                if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+                {
+                    currentResolutionIndex = i;
+                }
+            //}
+            
         }
         resolutionDropdown.ClearOptions();
         resolutionDropdown.AddOptions(options);
@@ -45,9 +55,6 @@ public class OptionsManager : MonoBehaviour
 
         switch (Screen.fullScreenMode)
         {
-            case FullScreenMode.FullScreenWindow:
-                screenModeDropdown.value = 2;
-                break;
             case FullScreenMode.Windowed:
                 screenModeDropdown.value = 1;
                 break;
@@ -92,17 +99,14 @@ public class OptionsManager : MonoBehaviour
         {
             case 0:
                 //Fullscreen
-                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
                 break;
             case 1:
                 //Windowed
                 Screen.fullScreenMode = FullScreenMode.Windowed;
                 break;
-            case 2:
-                //Borderless
-                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
-                break;
             default:
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
                 break;
         }
 
