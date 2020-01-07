@@ -11,7 +11,7 @@ public class BalancingInput
     public TMP_InputField inputField;
 }
 
-public enum BalancingVariables { PlayerHealth, PlayerRegen, EnemyHealth, HealthDrops, EnemyAttack, PlayerAttack };
+public enum BalancingVariables { PlayerHealth, PlayerRegen, EnemySight, HealthDrops, EnemyAttack, PlayerAttack };
 
 public class BalancingManager : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class BalancingManager : MonoBehaviour
     public static BalancingManager Instance { get; private set; }
     public float PlayerHealth { get => playerHealth; set => playerHealth = value; }
     public float PlayerRegen { get => playerRegen; set => playerRegen = value; }
-    public float EnemyHealthModifier { get => enemyHealthModifier; set => enemyHealthModifier = value; }
+    public float EnemySightModifier { get => enemySightModifier; set => enemySightModifier = value; }
     public float EnemyAttackModifier { get => enemyAttackModifier; set => enemyAttackModifier = value; }
     public float Healthdrops { get => healthdrops; set => healthdrops = value; }
     public float PlayerAttack { get => playerAttack; set => playerAttack = value; }
@@ -30,7 +30,7 @@ public class BalancingManager : MonoBehaviour
 
     private float playerHealth;
     private float playerRegen;
-    private float enemyHealthModifier;
+    private float enemySightModifier;
     private float enemyAttackModifier;
     private float healthdrops;
     private float playerAttack;
@@ -49,6 +49,7 @@ public class BalancingManager : MonoBehaviour
     void Start()
     {
         EnemyAttackModifier = 1;
+        EnemySightModifier = 1;
     }
 
     public void SetPlayerHealth(float val)
@@ -81,6 +82,11 @@ public class BalancingManager : MonoBehaviour
         EnemyAttackModifier = val;
     }
 
+    public void SetEnemySightValue(float val)
+    {
+        EnemySightModifier = val;
+    }
+
     public void UpdateInputs()
     {
         foreach(BalancingInput b in inputs)
@@ -101,6 +107,9 @@ public class BalancingManager : MonoBehaviour
                     break;
                 case BalancingVariables.EnemyAttack:
                     b.inputField.text = EnemyAttackModifier.ToString();
+                    break;
+                case BalancingVariables.EnemySight:
+                    b.inputField.text = EnemySightModifier.ToString();
                     break;
                 default:
                     break;

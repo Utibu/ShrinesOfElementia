@@ -25,7 +25,7 @@ public class EnemyValues : MonoBehaviour
     public float Damage { get => damage * BalancingManager.Instance.EnemyAttackModifier; set => damage = value; }  // damage returns damage multiplied with modifier from balancing manager.
     public float Speed { get => speed; set => speed = value; }
     public float AtkCooldown { get => atkCooldown; set => atkCooldown = value; }
-    public float SightRange { get => sightRange; set => sightRange = value; }
+    public float SightRange { get => sightRange * BalancingManager.Instance.EnemySightModifier; set => sightRange = value; }
     public float AttackRange { get => attackRange; private set => attackRange = value; }
     public float CastRange { get => castRange; set => castRange = value; }
     public float OrbDropChance { get => orbDropChance; set => orbDropChance = value; }

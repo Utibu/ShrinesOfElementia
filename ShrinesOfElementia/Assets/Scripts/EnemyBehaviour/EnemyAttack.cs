@@ -42,8 +42,8 @@ public class EnemyAttack : MonoBehaviour
         else if (collision.gameObject.CompareTag("Player"))
         {
             gameObject.SetActive(false);
-            print("Player hit");
-            Debug.Log("::: " + animator.gameObject.GetComponent<EnemyValues>().Damage);
+            //print("Player hit");
+            //Debug.Log("::: " + animator.gameObject.GetComponent<EnemyValues>().Damage);
             DamageEvent damageEvent = new DamageEvent(gameObject.name + " did damage to player", (int)animator.gameObject.GetComponent<EnemyValues>().Damage, gameObject, collision.gameObject);
             if(hitSoundClip != null && audioSource != null)
             {

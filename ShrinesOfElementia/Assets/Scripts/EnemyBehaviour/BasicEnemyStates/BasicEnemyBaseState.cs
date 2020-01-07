@@ -9,7 +9,7 @@ public class BasicEnemyBaseState : State
     
     //reference to statemachine of enemy this state belongs to.
     protected EnemySM owner;
-    private EnemyValues enemyValues;
+    protected EnemyValues enemyValues;
 
     protected float distanceToPlayer;
     protected bool canSeePlayer;

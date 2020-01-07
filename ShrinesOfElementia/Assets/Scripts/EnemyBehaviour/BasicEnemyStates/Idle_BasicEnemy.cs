@@ -34,7 +34,7 @@ public class Idle_BasicEnemy : BasicEnemyBaseState
         idleTimerCountdown -= Time.deltaTime;
 
         // State Transition checks:
-        if (distanceToPlayer < sightRange) 
+        if (distanceToPlayer < enemyValues.SightRange) 
         {
             Debug.Log("nu kommer jag och tar dig!");
             owner.Transition<Chase_BasicEnemy>();
