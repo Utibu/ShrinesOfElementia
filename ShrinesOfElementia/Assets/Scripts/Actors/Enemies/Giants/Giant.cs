@@ -34,6 +34,10 @@ public class Giant : StateMachine
     public float SweepRange;
     [SerializeField] protected float sweepCooldown;
 
+    [Header("Attack Objects")]
+    public GameObject SweepObject;
+    public GameObject BasicObject;
+
     #region SweepCooldownVariables
     private float sweepTimer;
     private bool sweepAvailable;

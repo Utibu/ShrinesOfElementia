@@ -31,11 +31,12 @@ public class GiantAttackCollisionHandler : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Shield"))
         {
+            gameObject.SetActive(false);
             EventManager.Instance.FireEvent(new BlockEvent("bossBlock", 35));
-            return;
         }
         else if (other.gameObject.CompareTag("Player"))
         {
+            gameObject.SetActive(false);
             hitPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position); //used to find impact point
             DamageEvent damageEvent = new DamageEvent(gameObject + " has dealt " + damage + " damage to " + other.gameObject, damage, gameObject, other.gameObject);
             EventManager.Instance.FireEvent(damageEvent);
