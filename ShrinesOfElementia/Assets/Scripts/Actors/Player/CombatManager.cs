@@ -6,14 +6,12 @@ using UnityEngine;
 
 public class CombatManager : MonoBehaviour
 {
-    //private MovementInput movementInput;
     public bool InCombat { get; }
     [SerializeField] private float combatDuration = 3.0f;
     GameObject timer;
 
     private void Start()
     {
-        //movementInput = GetComponent<MovementInput>();
         EventManager.Instance.RegisterListener<CombatEvent>(OnCombatEvent);
     }
 

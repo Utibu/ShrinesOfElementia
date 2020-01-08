@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author: Joakim Ljung
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,8 +32,6 @@ public class GreatShrine : Shrine
         
     }
 
-
-
     protected override void OnInteract()
     {
         GameManager.Instance.EndGame();
@@ -40,7 +40,6 @@ public class GreatShrine : Shrine
     private void OnBossDeath(BossDeathEvent eve)
     {
         bossesKilled++;
-        print("bosses killed: " + bossesKilled);
         if(bossesKilled >= 4)
         {
             isEnabled = true;
