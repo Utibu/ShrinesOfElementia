@@ -60,6 +60,11 @@ public class OptionsManager : MonoBehaviour
             //}
             
         }
+
+        if(Screen.currentResolution.width > 2560)
+        {
+            Screen.SetResolution(1920, 1080, Screen.fullScreen);
+        }
         resolutionDropdown.ClearOptions();
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
