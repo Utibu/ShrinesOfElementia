@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author: Sofia Chyle Kauko
+//Co-Author: Niklas Almqvist
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;

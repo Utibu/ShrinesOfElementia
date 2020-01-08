@@ -1,4 +1,4 @@
-﻿//Authoe: Sofia Kauko
+﻿//Author: Sofia Kauko
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -1,4 +1,6 @@
 ﻿// Author: Bilal El Medkouri
+// Co-Author: Sofia Chyle Kauko, Joakim Ljung
+
 
 using UnityEngine;
 using UnityEngine.AI;

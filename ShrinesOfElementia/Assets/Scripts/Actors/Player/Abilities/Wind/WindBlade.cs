@@ -1,5 +1,5 @@
 ﻿//Author: Joakim Ljung
-//co-author: Sofia Kauko
+//Co-Author: Sofia Kauko
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

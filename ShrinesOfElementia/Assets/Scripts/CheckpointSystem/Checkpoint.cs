@@ -1,5 +1,5 @@
-﻿//Author jocke?
-//co-Author: Sofia Kauko
+﻿//Author: Joakim Ljung
+//Co-Author: Sofia Kauko
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

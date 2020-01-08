@@ -1,4 +1,5 @@
 ﻿//Author: Sofia Kauko
+//Co-Author: Joakim Ljung
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
@@ -209,14 +210,7 @@ public class GameManager : MonoBehaviour
     public void OnBossDeath(BossDeathEvent ev)
     {
         Debug.Log("Boss died, level int has been increased");
-        //go to menu? play cutscene? show UI with "next Chapter"? 
         Save();
-
-        // IF we want game to be over after killing all 4 giants.
-        if (!Achievements.SlayedGiants.ContainsValue(false))
-        {
-            //SceneManager.LoadScene(3);
-        }
 
     }
 

@@ -1,4 +1,5 @@
 ﻿//Author: Sofia Kauko
+//Co-Author: Joakim Ljung
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -67,15 +68,6 @@ public class Attack_BasicEnemy : BasicEnemyBaseState
             owner.transform.eulerAngles = new Vector3(0, owner.transform.eulerAngles.y, 0);
             owner.transform.position += owner.transform.forward * 6f * Time.deltaTime;
         }
-
-        /*
-        else if (distanceToPlayer > attackRange)
-        {
-            owner.GetComponent<EnemyValues>().SetGoBackFalse();
-        }
-        */
-        
-        
 
         // state transition checks
         if (distanceToPlayer  > attackRange * 2f)

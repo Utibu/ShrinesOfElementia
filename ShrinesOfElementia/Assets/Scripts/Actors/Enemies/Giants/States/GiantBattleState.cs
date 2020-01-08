@@ -1,4 +1,5 @@
 ﻿// Author: Bilal El Medkouri
+// Co-Author: Sofia Chyle Kauko
 
 public class GiantBattleState : GiantBaseState
 {
@@ -6,24 +7,6 @@ public class GiantBattleState : GiantBaseState
 
     public override void HandleUpdate()
     {
-        // Aura
-        /*if(GiantAuraManager.AuraEnabled == false && GiantAuraManager.AuraAvailable == true)
-        {
-            GiantAuraManager.Instance.AuraAvailable = false;
-            owner.Transition<GiantCastAuraState>();
-        }*/
-
-        // Ability
-        /*
-        if (GiantAbilityManager.Instance.AbilityAvailable == true && GiantAbilityManager.Instance.AbilityRange >= owner.DistanceToPlayer())
-        {
-            GiantAbilityManager.Instance.AbilityAvailable = false;
-            owner.Transition<GiantCastAbilityState>();
-        }
-        */
-
-        
-
 
         // Sweep
         if (owner.SweepAvailable && owner.SweepRange >= owner.DistanceToPlayer())
@@ -71,16 +54,5 @@ public class GiantBattleState : GiantBaseState
         {
             owner.Transition<GiantChaseState>();
         }
-
-        
-        
-        
-
     }
-
-
-
-
-
-
 }

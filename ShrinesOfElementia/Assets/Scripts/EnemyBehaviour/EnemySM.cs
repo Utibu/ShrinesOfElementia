@@ -1,5 +1,5 @@
 ﻿//Author: Sofia Kauko
-//Co-author: Niklas Almqvist
+//Co-author: Niklas Almqvist, Joakim Ljung
 using UnityEngine;
 using UnityEngine.AI;
 

@@ -1,5 +1,5 @@
 ﻿// Author: Bilal El Medkouri
-//co-Author Sofia Kauko
+// Co-Author Sofia Chyle Kauko, Joakim Ljung
 
 using System.Collections;
 using System.Collections.Generic;

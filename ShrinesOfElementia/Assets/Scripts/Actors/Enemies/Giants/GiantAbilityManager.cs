@@ -1,4 +1,5 @@
 ﻿// Author: Bilal El Medkouri
+// Co-Author: Sofia Chyle Kauko
 
 using UnityEngine;
 using System;
@@ -29,24 +30,7 @@ public class GiantAbilityManager : MonoBehaviour
     public float AbilityMinRange { get => abilityMinRange; set => abilityMinRange = value; }
     [Range(0f, 60f)] [SerializeField] protected float abilityCooldown = 0f;
 
-    /*
-    private float abilityTimer = 0f;
-    private bool abilityAvailable = true;
-    public bool AbilityAvailable
-    {
-        get => abilityAvailable;
-        set
-        {
-            abilityAvailable = value;
-
-            if (value == false)
-            {
-                abilityTimer = abilityCooldown;
-            }
-        }
-    }
-    */
-
+    
     protected void Awake() // was virtual.
     {
         // Prevents multiple instances
@@ -113,9 +97,6 @@ public class GiantAbilityManager : MonoBehaviour
         earthAbility.GetComponent<EarthSpikes>().CasterTag = gameObject.tag;
     }
 
-
-    //Random utility stuff i just nweed to place somewhere on the giant so animations can access...
-
     //slow down and stop when hitting ground.
     private void StopLeapSpeed()
     {
@@ -128,20 +109,4 @@ public class GiantAbilityManager : MonoBehaviour
 
 
 
-    /*
-    public void CountDownCooldown()
-    {
-        if (AbilityAvailable == false)
-        {
-            if (abilityTimer > 0f)
-            {
-                abilityTimer -= Time.deltaTime;
-            }
-            else if (abilityTimer <= 0f)
-            {
-                AbilityAvailable = true;
-            }
-        }
-    }
-    */
 }

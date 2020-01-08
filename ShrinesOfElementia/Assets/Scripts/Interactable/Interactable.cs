@@ -1,4 +1,5 @@
 ﻿//Author: Joakim Ljung
+//Co-Author: Sofia Chyle Kauko
 
 using System.Collections;
 using System.Collections.Generic;

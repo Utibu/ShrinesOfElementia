@@ -1,5 +1,5 @@
 ﻿// Author: Bilal El Medkouri
-//Co-authors: Niklas Almqvist & Sofia Kauko
+//Co-authors: Niklas Almqvist, Sofia Kauko, Joakim Ljung
 
 using UnityEngine;
 

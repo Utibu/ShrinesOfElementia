@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿//Author: Sofia Chyle Kauko
+using UnityEngine;
 
 public class PlayerSpawn : MonoBehaviour
 {

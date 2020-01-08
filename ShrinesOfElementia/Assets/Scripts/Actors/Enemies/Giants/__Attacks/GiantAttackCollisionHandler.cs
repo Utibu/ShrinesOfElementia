@@ -1,5 +1,5 @@
 ﻿// Author: Bilal El Medkouri
-// Co-Author: Joakim Ljung
+// Co-Author: Joakim Ljung, Sofia Chyle Kauko
 
 using UnityEngine;
 
